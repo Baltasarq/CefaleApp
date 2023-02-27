@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <q id="0" dataId="isFemale" value="bool" text="¿Hombre o mujer?">
+        <opt value="false" text="Hombre" w="0.05" />
+        <opt value="true" text="Mujer" w="0.15"/>
+    </q>
+
+    <q id="1" dataId="hasHistory" value="bool" text="¿En cuanto a antecedentes?">
+        <opt value="false" text="No hay antecedentes familiares de migraña" />
+        <opt value="true" text="Sí hay antecedentes familiares de migraña" />
+    </q>
+
+    <q id="2" dataId="hadAura" value="bool"
+        text="¿Ha tenido síntomas previos?">
+        <opt value="false" text="No ha habido una fase de aura precedente, viendo borroso, luces, destellos, ondas o líneas en zig-zag.." />
+        <opt value="true" text="Sí ha habido una fase de aura precedente, viendo borroso, luces, destellos, ondas o líneas en zig-zag.." />
+    </q>
+
+    <q id="3" dataId="hadSensitiveAura" value="bool"
+        text="¿Ha tenido alguna sensación adicional durante la fase de aura?">
+        <opt value="false" text="No ha tenido una sensación de hormigueo durante la fase de aura" />
+        <opt value="true" text="Sí ha tenido una sensación de hormigueo durante la fase de aura" />
+    </q>
+
+    <q id="4" dataId="isUnilateral" value="bool"
+        text="¿Cómo es el dolor de cabeza?">
+        <opt value="false" text="El dolor abarca toda la cabeza." goto="5" />
+        <opt value="true" text="Dolor unilateral, en la sien o tras el ojo." goto="kk" />
+    </q>
+
+    <q id="5" dataId="isGeneralized" value="bool"
+        text="En cuanto al dolor en toda la cabeza">
+        <opt value="false" text="No es un dolor opresivo en toda la cabeza" goto="kk"/>
+        <opt value="true"
+                text="Se trata de un dolor opresivo, que puede describirse como un casco o venda muy apretada alrededor de la cabeza"
+                goto="kk"/>
+    </q>
+
+    <q id="6" dataId="diagnostic_depression" value="str"
+        text="Diagnóstico: depresión."/>
+
+    <q id="7" dataId="isPulsing" value="bool"
+        text="¿El dolor es pulsátil o continuo?">
+        <opt value="false"
+             text="El dolor es continuo en intensidad."
+             goto="kk"/>
+        <opt value="true"
+            text="Se trata de un dolor pulsátil."
+            goto="kk"/>
+    </q>
+
+    <q id="8" dataId="soundPhobia" value="bool"
+        text="¿El dolor aumenta con los sonidos fuertes?">
+        <opt value="false"
+             text="No hay diferencia con los ruidos."
+             goto="kk"/>
+        <opt value="true"
+             text="Sensibilidad a los ruidos."
+             goto="kk"/>
+    </q>
+
+    <q id="9" dataId="photoPhobia" value="bool"
+        text="¿El dolor aumenta con la exposición a la luz?">
+        <opt value="false"
+            text="No hay diferencia con la luz."
+            goto="kk"/>
+        <opt value="true"
+            text="Mayor sensibilidad a los luz."
+            goto="kk"/>
+    </q>
+
+    <q id="10" dataId="photoPhobia" value="bool"
+        text="¿El dolor se alivia con el reposo?">
+        <opt value="false"
+            text="No hay diferencia en el dolor haciendo reposo."
+            goto="kk"/>
+        <opt value="true"
+            text="Con reposo el dolor mejora o incluso desaparece."
+            goto="kk"/>
+    </q>
+
+    <q id="11" dataId="photoPhobia" value="bool"
+        text="¿El dolor aparece regularmente?">
+        <opt value="false"
+            text="El dolor no aparece en fechas o momentos regulares."
+            goto="kk"/>
+        <opt value="true"
+            text="El dolor aparece en fechas o momentos regulares."
+            goto="kk"/>
+    </q>
+
+    <q id="12" dataId="diagnostic_racimo" value="str"
+        text="Diagnóstico: dolor en racimo."/>
+
+    <q id="13" dataId="diagnostic_cefalea" value="str"
+        text="Diagnóstico: migraña."/>
+</form>

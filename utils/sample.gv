@@ -1,0 +1,10 @@
+digraph Migranna {
+	a[shape=box];
+	b[shape=diamond];
+	c[shape=box];
+	d[shape=box];
+	a -> b[label="5%"];
+	b -> c[label="15%"];
+	b -> d[label="45%"];
+}
+
