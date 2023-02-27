@@ -1,0 +1,188 @@
+
+digraph Migranna {
+    
+    isFemale[shape=diamond, label="¿Hombre o mujer?"];
+
+    hasHistory[shape=diamond, label="¿En cuanto a
+antecedentes?"];
+
+    hadAura[shape=diamond, label="¿Ha tenido síntomas
+previos?"];
+
+    hadSensitiveAura[shape=diamond, label="¿Ha tenido alguna
+sensación adicional
+durante la
+fase de
+aura?"];
+
+    isUnilateral[shape=diamond, label="¿Cómo es el
+dolor de
+cabeza?"];
+
+    isGeneralized[shape=diamond, label="En cuanto al
+dolor en
+toda la
+cabeza"];
+
+    diagnostic_depression[shape=box, label="Diagnóstico: depresión."];
+
+    isPulsing[shape=diamond, label="¿El dolor es
+pulsátil o
+continuo?"];
+
+    regular[shape=diamond, label="¿El dolor aparece
+regularmente?"];
+
+    diagnostic_racimo[shape=box, label="Diagnóstico: dolor en
+racimo."];
+
+    soundPhobia[shape=diamond, label="¿El dolor aumenta
+con los
+sonidos fuertes?"];
+
+    photoPhobia[shape=diamond, label="¿El dolor aumenta
+con la
+exposición a
+la luz?"];
+
+    rest[shape=diamond, label="¿El dolor se
+alivia con
+el reposo?"];
+
+    diagnostic_cefalea[shape=box, label="Diagnóstico: migraña."];
+
+    isFemale -> hasHistory[label="Hombre
+0.05"];
+
+    isFemale -> hasHistory[label="Mujer
+0.15"];
+
+    hasHistory -> hadAura[label="No hay antecedentes
+familiares de
+migraña
+0"];
+
+    hasHistory -> hadAura[label="Sí hay antecedentes
+familiares de
+migraña
+0"];
+
+    hadAura -> hadSensitiveAura[label="No ha habido
+una fase
+de aura
+precedente, viendo
+borroso, luces,
+destellos, ondas
+o líneas
+en zig-zag..
+0"];
+
+    hadAura -> hadSensitiveAura[label="Sí ha habido
+una fase
+de aura
+precedente, viendo
+borroso, luces,
+destellos, ondas
+o líneas
+en zig-zag..
+0"];
+
+    hadSensitiveAura -> isUnilateral[label="No ha tenido
+una sensación
+de hormigueo
+durante la
+fase de
+aura
+0"];
+
+    hadSensitiveAura -> isUnilateral[label="Sí ha tenido
+una sensación
+de hormigueo
+durante la
+fase de
+aura
+0"];
+
+    isUnilateral -> isGeneralized[label="El dolor abarca
+toda la
+cabeza.
+0"];
+
+    isUnilateral -> isPulsing[label="Dolor unilateral, en
+la sien
+o tras
+el ojo.
+0"];
+
+    isGeneralized -> isPulsing[label="No es un
+dolor opresivo
+en toda
+la cabeza
+0"];
+
+    isGeneralized -> diagnostic_depression[label="Se trata de
+un dolor
+opresivo, que
+puede describirse
+como un
+casco o
+venda muy
+apretada alrededor
+de la
+cabeza
+0"];
+
+    isPulsing -> regular[label="El dolor es
+continuo en
+intensidad.
+0"];
+
+    isPulsing -> soundPhobia[label="Se trata de
+un dolor
+pulsátil.
+0"];
+
+    regular -> soundPhobia[label="El dolor no
+aparece en
+fechas o
+momentos regulares.
+0"];
+
+    regular -> diagnostic_racimo[label="El dolor aparece
+en fechas
+o momentos
+regulares.
+0"];
+
+    soundPhobia -> photoPhobia[label="No hay diferencia
+con los
+ruidos.
+0"];
+
+    soundPhobia -> photoPhobia[label="Sensibilidad a los
+ruidos.
+0"];
+
+    photoPhobia -> rest[label="No hay diferencia
+con la
+luz.
+0"];
+
+    photoPhobia -> rest[label="Mayor sensibilidad a
+los luz.
+0"];
+
+    rest -> diagnostic_cefalea[label="No hay diferencia
+en el
+dolor haciendo
+reposo.
+0"];
+
+    rest -> diagnostic_cefalea[label="Con reposo el
+dolor mejora
+o incluso
+desaparece.
+0"];
+
+}
+

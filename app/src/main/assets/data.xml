@@ -25,15 +25,14 @@
     <q id="4" dataId="isUnilateral" value="bool"
         text="¿Cómo es el dolor de cabeza?">
         <opt value="false" text="El dolor abarca toda la cabeza." goto="5" />
-        <opt value="true" text="Dolor unilateral, en la sien o tras el ojo." goto="kk" />
+        <opt value="true" text="Dolor unilateral, en la sien o tras el ojo." goto="7" />
     </q>
 
     <q id="5" dataId="isGeneralized" value="bool"
         text="En cuanto al dolor en toda la cabeza">
-        <opt value="false" text="No es un dolor opresivo en toda la cabeza" goto="kk"/>
+        <opt value="false" text="No es un dolor opresivo en toda la cabeza" goto="7"/>
         <opt value="true"
-                text="Se trata de un dolor opresivo, que puede describirse como un casco o venda muy apretada alrededor de la cabeza"
-                goto="kk"/>
+                text="Se trata de un dolor opresivo, que puede describirse como un casco o venda muy apretada alrededor de la cabeza" />
     </q>
 
     <q id="6" dataId="diagnostic_depression" value="str"
@@ -42,55 +41,47 @@
     <q id="7" dataId="isPulsing" value="bool"
         text="¿El dolor es pulsátil o continuo?">
         <opt value="false"
-             text="El dolor es continuo en intensidad."
-             goto="kk"/>
+             text="El dolor es continuo en intensidad." />
         <opt value="true"
             text="Se trata de un dolor pulsátil."
-            goto="kk"/>
+            goto="10"/>
     </q>
 
-    <q id="8" dataId="soundPhobia" value="bool"
-        text="¿El dolor aumenta con los sonidos fuertes?">
-        <opt value="false"
-             text="No hay diferencia con los ruidos."
-             goto="kk"/>
-        <opt value="true"
-             text="Sensibilidad a los ruidos."
-             goto="kk"/>
-    </q>
-
-    <q id="9" dataId="photoPhobia" value="bool"
-        text="¿El dolor aumenta con la exposición a la luz?">
-        <opt value="false"
-            text="No hay diferencia con la luz."
-            goto="kk"/>
-        <opt value="true"
-            text="Mayor sensibilidad a los luz."
-            goto="kk"/>
-    </q>
-
-    <q id="10" dataId="photoPhobia" value="bool"
-        text="¿El dolor se alivia con el reposo?">
-        <opt value="false"
-            text="No hay diferencia en el dolor haciendo reposo."
-            goto="kk"/>
-        <opt value="true"
-            text="Con reposo el dolor mejora o incluso desaparece."
-            goto="kk"/>
-    </q>
-
-    <q id="11" dataId="photoPhobia" value="bool"
+    <q id="8" dataId="regular" value="bool"
         text="¿El dolor aparece regularmente?">
         <opt value="false"
             text="El dolor no aparece en fechas o momentos regulares."
-            goto="kk"/>
+            goto="10" />
         <opt value="true"
-            text="El dolor aparece en fechas o momentos regulares."
-            goto="kk"/>
+            text="El dolor aparece en fechas o momentos regulares." />
     </q>
 
-    <q id="12" dataId="diagnostic_racimo" value="str"
+    <q id="9" dataId="diagnostic_racimo" value="str"
         text="Diagnóstico: dolor en racimo."/>
+
+    <q id="10" dataId="soundPhobia" value="bool"
+        text="¿El dolor aumenta con los sonidos fuertes?">
+        <opt value="false"
+             text="No hay diferencia con los ruidos." />
+        <opt value="true"
+             text="Sensibilidad a los ruidos." />
+    </q>
+
+    <q id="11" dataId="photoPhobia" value="bool"
+        text="¿El dolor aumenta con la exposición a la luz?">
+        <opt value="false"
+            text="No hay diferencia con la luz." />
+        <opt value="true"
+            text="Mayor sensibilidad a los luz." />
+    </q>
+
+    <q id="12" dataId="rest" value="bool"
+        text="¿El dolor se alivia con el reposo?">
+        <opt value="false"
+            text="No hay diferencia en el dolor haciendo reposo." />
+        <opt value="true"
+            text="Con reposo el dolor mejora o incluso desaparece." />
+    </q>
 
     <q id="13" dataId="diagnostic_cefalea" value="str"
         text="Diagnóstico: migraña."/>

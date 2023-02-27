@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.AppInfo;
 import com.devbaltasarq.cefaleapp.core.Form;
 import com.devbaltasarq.cefaleapp.core.FormPlayer;
 import com.devbaltasarq.cefaleapp.core.form.Option;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             LY_MAIN.addView( LBL_MESSAGE );
             Log.e( LOG_TAG, "error loading asset data: " + exc.getMessage() );
         }
+
+        this.setTitle( AppInfo.FULL_NAME );
     }
 
     @Override
