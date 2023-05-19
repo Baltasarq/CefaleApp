@@ -72,7 +72,7 @@
         <opt value="false"
             text="No hay diferencia con la luz." />
         <opt value="true"
-            text="Mayor sensibilidad a los luz." />
+            text="Mayor sensibilidad a la luz." />
     </q>
 
     <q id="12" dataId="rest" value="bool"
