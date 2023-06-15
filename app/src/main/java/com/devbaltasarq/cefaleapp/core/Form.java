@@ -9,10 +9,8 @@ import com.devbaltasarq.cefaleapp.core.form.Question;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.MalformedInputException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,30 +28,35 @@ public class Form {
     private final static String EtqOpt = "opt";
     private final static String EtqWeight = "w";
     private final static String EtqGoto = "goto";
+    private final static String EtqId = "id";
 
     protected Form()
     {
-        this.qs = new ArrayList<>();
+        this.qsById = new HashMap<>();
+    }
+
+    public Question getFirstQuestion()
+    {
+        return this.head;
     }
 
     public void addQuestion(Question q)
     {
-        this.qs.add( q );
+        if (this.head == null ) {
+            this.head = q;
+        }
+
+        this.qsById.put( q.getId(), q );
     }
 
-    public void addQuestions(Collection<Question> q)
+    public Question getQuestionById(String id)
     {
-        this.qs.addAll( q );
-    }
-
-    public Question getQuestion(int id)
-    {
-        return this.qs.get( id );
+        return this.qsById.get( id );
     }
 
     public int getNumQuestions()
     {
-        return this.qs.size();
+        return this.qsById.size();
     }
 
     public static Form buildFromFile(InputStream in) throws IOException
@@ -69,9 +72,10 @@ public class Form {
 
             for(int i = 0; i < Q_NODES.getLength(); ++i) {
                 final Element Q_NODE = (Element) Q_NODES.item( i );
-                final Question.Builder QB = new Question.Builder();
+                final Question.Builder QB = new Question.Builder( i );
                 final NodeList OPT_NODES = Q_NODE.getElementsByTagName( EtqOpt );
 
+                QB.setId( Q_NODE.getAttribute( EtqId ) );
                 QB.setText( Q_NODE.getAttribute( EtqText ) );
                 for(int j = 0; j < OPT_NODES.getLength(); ++j) {
                     QB.addOption( buildOptFromXml( (Element) OPT_NODES.item( j ) ) );
@@ -93,8 +97,8 @@ public class Form {
         String strWeight = OPT_NODE.getAttribute( EtqWeight );
         String strGotoId = OPT_NODE.getAttribute( EtqGoto );
         String text = OPT_NODE.getAttribute( EtqText );
+        String gotoId = "";
         double weight = 1.0;
-        int gotoId = -1;
 
         if ( text.isEmpty() ) {
             throw new IOException( "option without text !!" );
@@ -111,15 +115,12 @@ public class Form {
 
         // Load gotoId
         if ( !strGotoId.isEmpty() ) {
-            try {
-                gotoId = Integer.parseInt( strGotoId );
-            } catch(NumberFormatException exc) {
-                throw new IOException( "parsing option's goto id: " + exc.getMessage() );
-            }
+                gotoId = strGotoId.trim();
         }
 
         return new Option( text, gotoId, weight );
     }
 
-    private final ArrayList<Question> qs;
+    private Question head;
+    private final Map<String, Question> qsById;
 }

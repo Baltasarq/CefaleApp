@@ -5,18 +5,20 @@ package com.devbaltasarq.cefaleapp.ui;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.TextViewCompat;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add info
         this.createText( LY_TEXT, "Final del cuestionario" );
+        this.createText( LY_TEXT, this.player.getResult().getText() );
         this.createText( FRM_END, this.player.getResultsAsText() );
 
         // Margins and paddings
@@ -188,33 +191,38 @@ public class MainActivity extends AppCompatActivity {
         TORET.setId( id );
         TORET.setPadding( 10, 10, 10, 10 );
         TORET.setGravity( View.TEXT_ALIGNMENT_GRAVITY );
-        TORET.setTextAppearance( this, androidx.appcompat.R.style.TextAppearance_AppCompat_Large );
+        TextViewCompat.setTextAppearance( TORET, androidx.appcompat.R.style.TextAppearance_AppCompat_Large );
         TORET.setText( text );
 
         RADIO_GROUP.addView( TORET );
         return TORET;
     }
 
-    private TextView createText(final ViewGroup CONTAINER, String text)
+    private void createText(final ViewGroup CONTAINER, String text)
     {
         final TextView TORET = new TextView( this );
 
         TORET.setPadding( 10, 10, 10, 10 );
         TORET.setGravity( View.TEXT_ALIGNMENT_GRAVITY );
-        TORET.setTextAppearance( this, androidx.appcompat.R.style.TextAppearance_AppCompat_Large );
+        TextViewCompat.setTextAppearance( TORET, androidx.appcompat.R.style.TextAppearance_AppCompat_Large );
         TORET.setText( text );
 
         CONTAINER.addView( TORET );
-        return TORET;
     }
 
     private ImageButton createButton(final ViewGroup CONTAINER, int resId)
     {
         final ImageButton TORET = new ImageButton( this );
+        final TypedValue BCK = new TypedValue();
+        int bckColor = Color.parseColor( "#ffffff" );
 
+        // Get theme background
+        this.getTheme().resolveAttribute( android.R.attr.windowBackground, BCK, true );
+        bckColor = BCK.data;
+
+        TORET.setBackgroundColor( bckColor );
         TORET.setContentDescription( "siguiente" );
         TORET.setImageResource( resId );
-        TORET.setBackgroundColor( this.getResources().getColor( R.color.white ) );
         TORET.setPadding( 10, 10, 10, 10 );
         CONTAINER.addView( TORET );
         return TORET;

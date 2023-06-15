@@ -9,17 +9,17 @@ import java.util.Locale;
 public class Option {
     public Option(String text)
     {
-        this( text, -1, 1.0 );
+        this( text, "", 1.0 );
     }
 
-    public Option(String text, int gotoId, double w)
+    public Option(String text, String gotoId, double w)
     {
         this.text = text;
         this.gotoId = gotoId;
         this.weight = w;
     }
 
-    public int getGotoId()
+    public String getGotoId()
     {
         return this.gotoId;
     }
@@ -56,7 +56,7 @@ public class Option {
     public int hashCode()
     {
         return ( 7 * this.getText().hashCode() )
-             + ( 11 * Integer.hashCode( this.getGotoId() ) )
+             + ( 11 * this.getGotoId().hashCode() )
              + ( 11 * Double.hashCode( this.getWeight() ) );
     }
 
@@ -71,6 +71,6 @@ public class Option {
     }
 
     private final String text;
-    private final int gotoId;
+    private final String gotoId;
     private final double weight;
 }

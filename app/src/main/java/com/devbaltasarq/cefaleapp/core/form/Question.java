@@ -13,9 +13,16 @@ import java.util.List;
 public class Question {
     /** Builds a question. */
     public static class Builder {
-        public Builder()
+        public Builder(int num)
         {
+            this.num = num;
             this.options = new ArrayList<>();
+        }
+
+        public Builder setId(String id)
+        {
+            this.id = id;
+            return this;
         }
 
         public Builder setText(String text)
@@ -32,17 +39,26 @@ public class Question {
 
         public Question create()
         {
-            return new Question( this.text, this.options );
+            return new Question( this.id, this.num, this.text, this.options );
         }
 
+        private final int num;
+        private String id;
         private String text;
         private final ArrayList<Option> options;
     }
 
-    protected Question(String text, Collection<Option> options)
+    protected Question(String id, int num, String text, Collection<Option> options)
     {
+        this.id = id;
+        this.num = num;
         this.text = text;
         this.options = new ArrayList<>( options );
+    }
+
+    public int getOrdinal()
+    {
+        return this.num;
     }
 
     public String getText()
@@ -50,14 +66,19 @@ public class Question {
         return this.text;
     }
 
+    public String getId()
+    {
+        return this.id;
+    }
+
     public int getNumOptions()
     {
         return this.options.size();
     }
 
-    public Option getOption(int i)
+    public Option getOption(int id)
     {
-        return this.options.get( i );
+        return this.options.get( id );
     }
 
     public List<Option> getOptions()
@@ -104,6 +125,8 @@ public class Question {
         return toret;
     }
 
+    private final String id;
+    private final int num;
     private final String text;
     private final ArrayList<Option> options;
 }

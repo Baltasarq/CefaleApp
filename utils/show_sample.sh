@@ -1,2 +1,2 @@
-python diamk.py data.xml > $1.gv
-dot -Tpng $1.gv -o$1.png && gwenview $1.png&
+python diamk.py data.xml > data.gv
+dot -Tpng data.gv -odata.png && gwenview data.png&

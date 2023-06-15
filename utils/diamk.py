@@ -22,7 +22,6 @@ str_edge_template = """
 
 ETQ_Q = "q"
 ETQ_ID = "id"
-ETQ_DATA_ID = "dataId"
 ETQ_GOTO = "goto"
 ETQ_W = "w"
 ETQ_VALUE = "value"
@@ -46,20 +45,17 @@ def fmt_box_text(t: str) -> str:
     return "".join(l)
 
 
-def parse_file(fn: str) -> dict[str, dict]:
+def parse_file(fn: str) -> tuple:
     def store_q_attribute(qst: dict, dom_attr: tuple):
         if dom_attr[0] == ETQ_TEXT:
             qst[ETQ_TEXT] = fmt_box_text(dom_attr[1])
         elif dom_attr[0] == ETQ_ID:
             qst[ETQ_ID] = dom_attr[1]
-        elif dom_attr[0] == ETQ_DATA_ID:
-            qst[ETQ_DATA_ID] = dom_attr[1]
         elif dom_attr[0] == ETQ_VALUE:
             qst[ETQ_VALUE] = dom_attr[1]
 
     def store_opt_attribute(q: dict, op: dict, dom_attr: tuple):
-        op[ETQ_W] = "0"
-        op[ETQ_GOTO] = str(int(q[ETQ_ID]) + 1)
+        op[ETQ_W] = "1"
 
         if dom_attr[0] == ETQ_TEXT:
             op[ETQ_TEXT] = fmt_box_text(dom_attr[1])
@@ -71,16 +67,22 @@ def parse_file(fn: str) -> dict[str, dict]:
             op[ETQ_W] = dom_attr[1]
 
     qs = {}
+    head = None
     dom = xml.parse(fn)
     dom_qs = dom.getElementsByTagName(ETQ_Q)
 
     for dom_q in dom_qs:
+        # New question
         q = {}
+        if not head:
+            head = dom_q
 
+        # Read attributes
         if dom_q.hasAttributes():
             for attr in dom_q.attributes.items():
                 store_q_attribute(q, attr)
 
+            # Read sub nodes
             q[ETQ_OPTS] = []
             for sub_node in dom_q.getElementsByTagName(ETQ_OPT):
                 opt = {}
@@ -91,14 +93,15 @@ def parse_file(fn: str) -> dict[str, dict]:
 
         qs[q[ETQ_ID]] = q
 
-    return qs
+    return (head, qs)
 
 
-def create_diagram(qs: dict[str, dict]) -> str:
+def create_diagram(qs: tuple) -> str:
     diagram_template = Template(str_diagram_template)
     box_template = Template(str_box_template)
     edge_template = Template(str_edge_template)
     toret = ""
+    head, qs = qs
 
     substs = {
         "shape": "box",
@@ -111,7 +114,7 @@ def create_diagram(qs: dict[str, dict]) -> str:
     for q in qs.values():
         substs["shape"] = "diamond" if len(q[ETQ_OPTS]) > 0 else "box"
         substs["box_text"] = q[ETQ_TEXT]
-        substs["box_name"] = q[ETQ_DATA_ID]
+        substs["box_name"] = q[ETQ_ID]
         toret += box_template.substitute(substs)
 
     # Generate edges
@@ -120,8 +123,8 @@ def create_diagram(qs: dict[str, dict]) -> str:
             next_box = qs.get(opt[ETQ_GOTO])
 
             if next_box:
-                substs["box_name"] = q[ETQ_DATA_ID]
-                substs["next_box_name"] = next_box[ETQ_DATA_ID]
+                substs["box_name"] = q[ETQ_ID]
+                substs["next_box_name"] = next_box[ETQ_ID]
                 substs["label"] = opt[ETQ_TEXT] + '\n' + opt[ETQ_W]
                 toret += edge_template.substitute(substs)
 

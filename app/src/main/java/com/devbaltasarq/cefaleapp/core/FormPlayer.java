@@ -8,58 +8,46 @@ import com.devbaltasarq.cefaleapp.core.form.Option;
 import com.devbaltasarq.cefaleapp.core.form.Question;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class FormPlayer {
     public FormPlayer(final Form form)
     {
         this.form = form;
-        this.results = new Option[ this.form.getNumQuestions() ];
+        this.results = new ArrayList<>( this.form.getNumQuestions() );
         this.reset();
     }
 
     public void reset()
     {
-        this.numQ = 0;
+        this.currentQ = this.form.getFirstQuestion();
         this.totalWeight = 1;
-        Arrays.fill( this.results, null );
+        this.results.clear();
     }
 
     public Question getCurrentQuestion()
     {
         this.chkFinished();
-        return this.form.getQuestion( this.numQ );
+        return this.currentQ;
     }
 
-    public void setChosenOption(int i)
+    public void setChosenOption(int id)
     {
         this.chkFinished();
 
-        final Question Q = this.form.getQuestion( this.numQ );
-        final Option OPT = Q.getOption( i );
-        int nextQId = OPT.getGotoId();
+        final Question Q = this.currentQ;
+        final Option OPT = Q.getOption( id );
+        final String nextQId = OPT.getGotoId();
 
         // Store result
         this.totalWeight *= OPT.getWeight();
-        this.results[ this.numQ ] = OPT;
+        this.results.add( OPT );
 
         // Go to next question
-        if ( nextQId < 0 ) {
-            ++this.numQ;
-        } else {
-            this.numQ = OPT.getGotoId();
-        }
-
-        return;
-    }
-
-    public int getCurrentNumQuestion()
-    {
-        this.chkFinished();
-        return this.numQ;
+        this.currentQ = this.form.getQuestionById( OPT.getGotoId() );
     }
 
     public double getTotalWeight()
@@ -67,17 +55,14 @@ public class FormPlayer {
         return totalWeight;
     }
 
+    public Question getResult()
+    {
+        return this.currentQ;
+    }
+
     public List<Option> getResults()
     {
-        final ArrayList<Option> TORET = new ArrayList<>();
-
-        for(final Option OPT: this.results ) {
-            if ( OPT != null ) {
-                TORET.add( OPT );
-            }
-        }
-
-        return TORET;
+        return new ArrayList<>( this.results );
     }
 
     public String getResultsAsText()
@@ -99,8 +84,7 @@ public class FormPlayer {
 
     public boolean isFinished()
     {
-        return this.numQ >= this.form.getNumQuestions()
-            || this.form.getQuestion( this.numQ ).getNumOptions() == 0;
+        return this.currentQ.getNumOptions() == 0;
     }
 
     private void chkFinished()
@@ -110,8 +94,8 @@ public class FormPlayer {
         }
     }
 
-    private int numQ;
+    private Question currentQ;
     private double totalWeight;
+    private final List<Option> results;
     private final Form form;
-    private final Option[] results;
 }
