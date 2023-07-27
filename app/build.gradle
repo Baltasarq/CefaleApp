@@ -14,13 +14,14 @@ android {
 
     defaultConfig {
         applicationId "com.devbaltasarq.cefaleapp"
+        vectorDrawables.useSupportLibrary = true
         minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '20230104'
+        versionNameSuffix '20230107'
     }
 
     buildTypes {
@@ -30,8 +31,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_16
+        targetCompatibility JavaVersion.VERSION_16
     }
 }
 

@@ -1,0 +1,94 @@
+
+digraph Migranna {
+    
+    depression_painAsHelmet[shape=diamond, label="El dolor de
+cabeza afecta
+a toda
+la cabeza,
+ya sea
+como un
+peso, un
+casco o
+como una
+banda o
+cinta?"];
+
+    depression_painIsStabbing[shape=diamond, label="¿Tiene otras sensaciones
+como hormigueo
+o punzadas
+en la
+cabeza?"];
+
+    depression_afternoonWorsens[shape=diamond, label="¿El dolor comienza
+por la
+mañana, va
+aumentando a
+lo largo
+del día,
+y es
+peor por
+la tarde?"];
+
+    depression_stressWorsens[shape=diamond, label="¿El dolor puede
+relacionarse con
+situaciones de
+estrés, nerviosismo,
+preocupaciones...?"];
+
+    depression_distractionsImproves[shape=diamond, label="Las distracciones o
+el entretenimiento
+con tareas
+agradables, ¿hacen
+que el
+dolor sea
+menos intenso?"];
+
+    depression_painAsHelmet -> depression_painIsStabbing[label="La cefalea no
+se siente
+como un
+casco o
+banda.
+1"];
+
+    depression_painAsHelmet -> depression_painIsStabbing[label="La cefalea se
+siente como
+un casco
+o banda.
+1"];
+
+    depression_painIsStabbing -> depression_afternoonWorsens[label="La cefalea no
+se acompaña
+de hormigueos
+o punzadas.
+1"];
+
+    depression_painIsStabbing -> depression_afternoonWorsens[label="La cefalea se
+acompaña de
+hormigueos o
+punzadas.
+1"];
+
+    depression_afternoonWorsens -> depression_stressWorsens[label="La cefalea no
+es peor
+por la
+tarde.
+1"];
+
+    depression_afternoonWorsens -> depression_stressWorsens[label="La cefalea es
+peor por
+la tarde.
+1"];
+
+    depression_stressWorsens -> depression_distractionsImproves[label="La cefalea no
+es peor
+con el
+estrés.
+1"];
+
+    depression_stressWorsens -> depression_distractionsImproves[label="La cefalea es
+peor con
+el estrés.
+1"];
+
+}
+

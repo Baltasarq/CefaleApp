@@ -7,21 +7,21 @@ package com.devbaltasarq.cefaleapp.core.form;
 import java.util.Locale;
 
 public class Option {
-    public Option(String text)
+    public Option(String text, String value)
     {
-        this( text, "", 1.0 );
+        this( text, 1.0, value );
     }
 
-    public Option(String text, String gotoId, double w)
+    public Option(String text, double w, String value)
     {
         this.text = text;
-        this.gotoId = gotoId;
         this.weight = w;
+        this.value = value;
     }
 
-    public String getGotoId()
+    public String getValue()
     {
-        return this.gotoId;
+        return this.value;
     }
 
     public double getWeight()
@@ -40,12 +40,9 @@ public class Option {
         boolean toret = ( this == other );
 
         if ( !toret
-          && other instanceof Option )
+          && other instanceof final Option OPT )
         {
-            final Option OPT = (Option) other;
-
             toret = ( this.getText().equals( OPT.getText() )
-                   && this.getGotoId() == OPT.getGotoId()
                    && this.getWeight() == OPT.getWeight() );
         }
 
@@ -56,7 +53,6 @@ public class Option {
     public int hashCode()
     {
         return ( 7 * this.getText().hashCode() )
-             + ( 11 * this.getGotoId().hashCode() )
              + ( 11 * Double.hashCode( this.getWeight() ) );
     }
 
@@ -71,6 +67,6 @@ public class Option {
     }
 
     private final String text;
-    private final String gotoId;
+    private final String value;
     private final double weight;
 }

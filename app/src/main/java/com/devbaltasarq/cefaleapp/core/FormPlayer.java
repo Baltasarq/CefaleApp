@@ -4,98 +4,131 @@
 package com.devbaltasarq.cefaleapp.core;
 
 
+import com.devbaltasarq.cefaleapp.core.form.Branch;
 import com.devbaltasarq.cefaleapp.core.form.Option;
 import com.devbaltasarq.cefaleapp.core.form.Question;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.devbaltasarq.cefaleapp.core.form.Value;
+import com.devbaltasarq.cefaleapp.core.form.ValueType;
+import com.devbaltasarq.cefaleapp.core.result.ResultStep;
 
 
 public class FormPlayer {
-    public FormPlayer(final Form form)
+    public FormPlayer(final Form FORM)
     {
-        this.form = form;
-        this.results = new ArrayList<>( this.form.getNumQuestions() );
+        this.FORM = FORM;
+        this.REPO = Repo.get();
+        this.RESULT = new Result( this.FORM.calcNumQuestions() );
         this.reset();
     }
 
+    /** Resets everything and returns to first question. */
     public void reset()
     {
-        this.currentQ = this.form.getFirstQuestion();
-        this.totalWeight = 1;
-        this.results.clear();
+        this.currentBr = this.FORM.getHead();
+        this.currentQ = null;
+        this.RESULT.reset();
+        this.REPO.reset();
+    }
+
+    /** @return the form of questions. */
+    public Form getForm()
+    {
+        return this.FORM;
+    }
+
+    /** @return the repository of data. */
+    public Repo getRepo()
+    {
+        return this.REPO;
     }
 
     public Question getCurrentQuestion()
     {
-        this.chkFinished();
+        if ( this.currentQ == null ) {
+            this.gotoNextQuestion();
+        }
+
         return this.currentQ;
     }
 
-    public void setChosenOption(int id)
+    public Branch getCurrentBranch()
     {
-        this.chkFinished();
+        return this.currentBr;
+    }
 
+    public void setEnteredVal(Value val)
+    {
+        this.RESULT.add( val, 1.0 );
+    }
+
+    /** Got to the next question.
+      * @return true if we are in the next question, false otherwise.
+      */
+    public boolean gotoNextQuestion()
+    {
         final Question Q = this.currentQ;
-        final Option OPT = Q.getOption( id );
-        final String nextQId = OPT.getGotoId();
+        boolean toret = false;
 
-        // Store result
-        this.totalWeight *= OPT.getWeight();
-        this.results.add( OPT );
+        if ( Q == null ) {
+            toret = true;
+            this.currentQ = this.currentBr.getHead();
+        }
+        else
+        if ( !Q.isEnd() ) {
+            toret = true;
+            this.currentQ = this.currentBr.getQuestionById( Q.getGotoId() );
+        }
 
-        // Go to next question
-        this.currentQ = this.form.getQuestionById( OPT.getGotoId() );
+        return toret;
     }
 
-    public double getTotalWeight()
+    public void changeToBranch(String id)
     {
-        return totalWeight;
+        // Set the branch
+        final Branch BR = this.FORM.getBranchById( id );
+
+        if ( BR == null ) {
+            throw new Error( "missing branch (?): '" + id + "'" );
+        }
+
+        this.currentBr = BR;
+        this.currentQ = null;
     }
 
-    public Question getResult()
+    public Question getFinalQuestion()
     {
         return this.currentQ;
     }
 
-    public List<Option> getResults()
+    public ResultStep getLastResult()
     {
-        return new ArrayList<>( this.results );
+        final ResultStep TORET = this.RESULT.getLastStep();
+
+        if ( TORET == null ) {
+            throw new Error( "missing or incorrect last result" );
+        }
+
+        return TORET;
+    }
+
+    public Result getResult()
+    {
+        return this.RESULT;
     }
 
     public String getResultsAsText()
     {
-        final StringBuilder TORET = new StringBuilder();
-
-        for(final Option OPT: this.results ) {
-            if ( OPT != null ) {
-                TORET.append( OPT );
-                TORET.append( '\n' );
-                TORET.append( '\n' );
-            }
-        }
-
-        TORET.append( "\nCerteza acumulada: " );
-        TORET.append( this.getTotalWeight() );
-        return TORET.toString();
+        return this.RESULT.toString();
     }
 
     public boolean isFinished()
     {
-        return this.currentQ.getNumOptions() == 0;
-    }
-
-    private void chkFinished()
-    {
-        if ( this.isFinished() ) {
-            throw new IllegalStateException( "form finished" );
-        }
+        return this.currentQ.isEnd();
     }
 
     private Question currentQ;
-    private double totalWeight;
-    private final List<Option> results;
-    private final Form form;
+    private Branch currentBr;
+    private final Result RESULT;
+    private final Form FORM;
+    private final Repo REPO;
 }

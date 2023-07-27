@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">CefaleApp</string>
 
-    <string name="msg_no_option_chosen">No option selected.</string>
+    <!-- Labels -->
+    <string name="lbl_next">next</string>
+
+    <!-- Messages -->
+    <string name="msg_no_option_chosen">No option selected</string>
+
+    <!-- Errors -->
+    <string name="err_io">Unexpected error</string>
+    <string name="err_unexpected">Unexpected error</string>
 </resources>

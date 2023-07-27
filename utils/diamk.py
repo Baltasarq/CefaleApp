@@ -1,6 +1,7 @@
 # DiaMK (c) 2023 Baltasar MIT License <jbgarcia@uvigo.es>
 
 
+import sys
 from string import Template
 from xml.dom import minidom as xml
 
@@ -20,6 +21,7 @@ str_edge_template = """
 """
 
 
+ETQ_BRANCH = "branch"
 ETQ_Q = "q"
 ETQ_ID = "id"
 ETQ_GOTO = "goto"
@@ -45,7 +47,7 @@ def fmt_box_text(t: str) -> str:
     return "".join(l)
 
 
-def parse_file(fn: str) -> tuple:
+def parse_file(fn: str) -> dict:
     def store_q_attribute(qst: dict, dom_attr: tuple):
         if dom_attr[0] == ETQ_TEXT:
             qst[ETQ_TEXT] = fmt_box_text(dom_attr[1])
@@ -66,42 +68,50 @@ def parse_file(fn: str) -> tuple:
         elif dom_attr[0] == ETQ_W:
             op[ETQ_W] = dom_attr[1]
 
-    qs = {}
-    head = None
+    branches = {}
     dom = xml.parse(fn)
-    dom_qs = dom.getElementsByTagName(ETQ_Q)
+    dom_branches = dom.getElementsByTagName(ETQ_BRANCH)
 
-    for dom_q in dom_qs:
-        # New question
-        q = {}
-        if not head:
-            head = dom_q
+    for dom_branch in dom_branches:
+        branch_id = dom_branch.attributes[ETQ_ID].value
+        dom_qs = dom_branch.getElementsByTagName(ETQ_Q)
+        qs = {}
+        head = None
 
-        # Read attributes
-        if dom_q.hasAttributes():
-            for attr in dom_q.attributes.items():
-                store_q_attribute(q, attr)
+        for dom_q in dom_qs:
+            # New question
+            q = {}
 
-            # Read sub nodes
-            q[ETQ_OPTS] = []
-            for sub_node in dom_q.getElementsByTagName(ETQ_OPT):
-                opt = {}
-                q[ETQ_OPTS].append(opt)
+            # Read attributes
+            if dom_q.hasAttributes():
+                if not head:
+                    head = dom_q.attributes[ETQ_ID].value
 
-                for attr in sub_node.attributes.items():
-                    store_opt_attribute(q, opt, attr)
+                for attr in dom_q.attributes.items():
+                    store_q_attribute(q, attr)
 
-        qs[q[ETQ_ID]] = q
+                # Read sub nodes
+                q[ETQ_OPTS] = []
+                for sub_node in dom_q.getElementsByTagName(ETQ_OPT):
+                    opt = {}
+                    q[ETQ_OPTS].append(opt)
 
-    return (head, qs)
+                    for attr in sub_node.attributes.items():
+                        store_opt_attribute(q, opt, attr)
+
+            qs[q[ETQ_ID]] = q
+
+        branches[branch_id] = (head, qs)
+
+    return branches
 
 
-def create_diagram(qs: tuple) -> str:
+def create_diagram_for(branches: dict, id: str) -> str:
     diagram_template = Template(str_diagram_template)
     box_template = Template(str_box_template)
     edge_template = Template(str_edge_template)
     toret = ""
-    head, qs = qs
+    head, qs = branches[id]
 
     substs = {
         "shape": "box",
@@ -120,7 +130,7 @@ def create_diagram(qs: tuple) -> str:
     # Generate edges
     for q in qs.values():
         for opt in q[ETQ_OPTS]:
-            next_box = qs.get(opt[ETQ_GOTO])
+            next_box = qs.get(opt.get(ETQ_GOTO))
 
             if next_box:
                 substs["box_name"] = q[ETQ_ID]
@@ -132,4 +142,19 @@ def create_diagram(qs: tuple) -> str:
 
 
 if __name__ == "__main__":
-    print(create_diagram(parse_file("data.xml")))
+    if len(sys.argv) < 2:
+        print("[ERR] I need an XML file name to create a diagram for", file=sys.stderr)
+        sys.exit(-1)
+    elif len(sys.argv) < 3:
+        print("[ERR] I need a branch name to create a diagram for", file=sys.stderr)
+        sys.exit(-2)
+
+    branch_id = sys.argv[2]
+    branches = parse_file(sys.argv[1])
+    branch = branches.get(branch_id)
+
+    if not branch:
+        print("[ERR] No branch with id:", branch_id, file=sys.stderr)
+        sys.exit(-3)
+
+    print(create_diagram_for(branches, branch_id))

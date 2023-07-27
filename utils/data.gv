@@ -1,132 +1,39 @@
 
 digraph Migranna {
     
-    isFemale[shape=diamond, label="¿Hombre o mujer?"];
+    data_notes[shape=box, label="Notas libres a
+rellenar según
+los síntomas
+del paciente."];
 
-    howManyDaysPerMonth[shape=diamond, label="¿Cuántos episodios de
-dolor de
-cabeza incapacitante
-ha experimentado?"];
+    data_isFemale[shape=diamond, label="¿Hombre o mujer?"];
 
-    hasHistory[shape=diamond, label="¿En cuanto a
+    data_age[shape=box, label="¿Edad?"];
+
+    data_height[shape=box, label="¿Altura (en cm.)?"];
+
+    data_weight[shape=box, label="¿Peso (en kg.)?"];
+
+    data_highPressure[shape=box, label="¿Tensión máxima (sistólica)?"];
+
+    data_lowPressure[shape=box, label="¿Tensión mínima (diastólica)?"];
+
+    data_hasHistory[shape=diamond, label="¿En cuanto a
 antecedentes?"];
 
-    isUnilateral[shape=diamond, label="¿Cómo es el
-dolor de
-cabeza?"];
+    data_forMoreThanOneYear[shape=diamond, label="¿Lleva más de
+un año
+con cefaleas?"];
 
-    isGeneralized[shape=diamond, label="En cuanto al
-dolor en
-toda la
-cabeza"];
+    data_isDepressed[shape=diamond, label="¿Está diagnosticado de
+depresión, toma
+medicación para
+ello?"];
 
-    diagnostic_depression[shape=box, label="Diagnóstico: depresión."];
-
-    isPulsing[shape=diamond, label="¿El dolor es
-pulsátil o
-continuo?"];
-
-    soundPhobia[shape=diamond, label="¿El dolor aumenta
-con los
-sonidos fuertes?"];
-
-    photoPhobia[shape=diamond, label="¿El dolor aumenta
-con la
-exposición a
-la luz?"];
-
-    restImproves[shape=diamond, label="¿El dolor se
-alivia con
-el reposo?"];
-
-    diagnostic_cefalea[shape=box, label="Diagnóstico: migraña."];
-
-    isFemale -> howManyDaysPerMonth[label="Hombre
+    data_isFemale -> data_age[label="Hombre
 1"];
 
-    isFemale -> howManyDaysPerMonth[label="Mujer
-1"];
-
-    howManyDaysPerMonth -> hasHistory[label="Menos de cinco
-episodios.
-1"];
-
-    howManyDaysPerMonth -> hasHistory[label="Más de cinco
-episodios.
-1"];
-
-    hasHistory -> isUnilateral[label="No hay antecedentes
-familiares de
-migraña
-1"];
-
-    isUnilateral -> isGeneralized[label="El dolor abarca
-toda la
-cabeza.
-1"];
-
-    isUnilateral -> isPulsing[label="Dolor unilateral, en
-la sien
-o tras
-el ojo.
-1"];
-
-    isGeneralized -> isPulsing[label="No es un
-dolor opresivo
-en toda
-la cabeza
-1"];
-
-    isGeneralized -> diagnostic_depression[label="Se trata de
-un dolor
-opresivo, que
-puede describirse
-como un
-casco o
-venda muy
-apretada alrededor
-de la
-cabeza
-1"];
-
-    isPulsing -> soundPhobia[label="El dolor es
-continuo en
-intensidad.
-1"];
-
-    isPulsing -> soundPhobia[label="Se trata de
-un dolor
-pulsátil.
-1"];
-
-    soundPhobia -> photoPhobia[label="No hay diferencia
-con los
-ruidos.
-1"];
-
-    soundPhobia -> photoPhobia[label="Sensibilidad a los
-ruidos.
-1"];
-
-    photoPhobia -> restImproves[label="No hay diferencia
-con la
-luz.
-1"];
-
-    photoPhobia -> restImproves[label="Mayor sensibilidad a
-la luz.
-1"];
-
-    restImproves -> diagnostic_cefalea[label="No hay diferencia
-en el
-dolor haciendo
-reposo.
-1"];
-
-    restImproves -> diagnostic_cefalea[label="Con reposo el
-dolor mejora
-o incluso
-desaparece.
+    data_isFemale -> data_age[label="Mujer
 1"];
 
 }

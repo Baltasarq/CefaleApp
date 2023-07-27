@@ -10,24 +10,50 @@ import java.util.List;
 
 
 /** Represents a question in the form. */
-public class Question {
+public class Question extends BasicQuestion {
     /** Builds a question. */
     public static class Builder {
-        public Builder(int num)
+        public Builder()
         {
-            this.num = num;
+            this.gotoId = "";
+            this.pic = "";
+            this.type = ValueType.BOOL;
             this.options = new ArrayList<>();
         }
 
         public Builder setId(String id)
         {
-            this.id = id;
+            this.id = id.trim();
+            return this;
+        }
+
+        public Builder setPic(String id)
+        {
+            this.pic = id.trim();
+            return this;
+        }
+
+        public Builder setValueType(String id)
+        {
+            this.type = ValueType.parse( id.trim() );
+            return this;
+        }
+
+        public Builder setValueType(ValueType vt)
+        {
+            this.type = vt;
+            return this;
+        }
+
+        public Builder setGotoId(String id)
+        {
+            this.gotoId = id.trim();
             return this;
         }
 
         public Builder setText(String text)
         {
-            this.text = text;
+            this.text = text.trim();
             return this;
         }
 
@@ -39,26 +65,37 @@ public class Question {
 
         public Question create()
         {
-            return new Question( this.id, this.num, this.text, this.options );
+            return new Question( this.id,
+                    this.type,
+                    this.gotoId,
+                    this.text,
+                    this.pic,
+                    this.options );
         }
 
-        private final int num;
         private String id;
+        private String pic;
+        private String gotoId;
         private String text;
-        private final ArrayList<Option> options;
+        private ValueType type;
+        private final List<Option> options;
     }
 
-    protected Question(String id, int num, String text, Collection<Option> options)
+    /** Creates a regular question. */
+    protected Question(String id, ValueType dtype, String gotoId, String text, String pic,
+                       Collection<Option> options)
     {
-        this.id = id;
-        this.num = num;
+        super( id, gotoId );
+
+        this.TYPE = dtype;
+        this.pic = pic;
         this.text = text;
         this.options = new ArrayList<>( options );
     }
 
-    public int getOrdinal()
+    public boolean isReference()
     {
-        return this.num;
+        return false;
     }
 
     public String getText()
@@ -66,9 +103,25 @@ public class Question {
         return this.text;
     }
 
-    public String getId()
+    /** @see Question::getIdComponents
+     * @return the branch this question lives in.
+     */
+    public String getBranchFromId()
     {
-        return this.id;
+        return buildIdComponents( this.getId() )[ 0 ];
+    }
+
+    /** @see Question::getIdComponents
+     * @return the data this question produces.
+     */
+    public String getDataFromId()
+    {
+        return buildIdComponents( this.getId() )[ 1 ];
+    }
+
+    public ValueType getValueType()
+    {
+        return this.TYPE;
     }
 
     public int getNumOptions()
@@ -86,16 +139,19 @@ public class Question {
         return new ArrayList<>( this.options );
     }
 
+    public String getPic()
+    {
+        return this.pic;
+    }
+
     @Override
     public boolean equals(Object other)
     {
         boolean toret = ( this == other );
 
         if ( !toret
-          && other instanceof Question )
+          && other instanceof final Question Q )
         {
-            final Question Q = (Question) other;
-
             toret = ( this.getText().equals( Q.getText() )
                    && this.getNumOptions() == Q.getNumOptions() );
 
@@ -125,8 +181,61 @@ public class Question {
         return toret;
     }
 
-    private final String id;
-    private final int num;
+    public boolean isEnd()
+    {
+        return this.getGotoId().equals( ETQ_END );
+    }
+
+    public Question copyWithGotoId(String gotoId)
+    {
+        Question.Builder QB = new Question.Builder();
+
+        QB.setId( this.getId() )
+                .setGotoId( gotoId )
+                .setText( this.getText() )
+                .setPic( this.getPic() )
+                .setValueType( this.getValueType() );
+
+        return QB.create();
+    }
+
+    /** @see Question::getIdComponents
+     * @return the branch this question lives in.
+     */
+    public static String getBranchFromId(String id)
+    {
+        return buildIdComponents( id )[ 0 ];
+    }
+
+    /** @see Question::getIdComponents
+     * @return the data this question produces.
+     */
+    public static String getDataFromId(String id)
+    {
+        return buildIdComponents( id )[ 1 ];
+    }
+
+    /**
+     * ID's in each XML question node are composed by the branch
+     * the question lives in and the data it produces.
+     * @return a small array of two positions: 0 is the branch,
+     * 1 is the data produced.
+     */
+    private static String[] buildIdComponents(String id)
+    {
+        final String[] TORET = new String[ 2 ];
+        int underPos = id.indexOf( '_' );
+
+        TORET[ 0 ] = id.substring( 0, underPos );
+        TORET[ 1 ] = id.substring( underPos + 1 );
+
+        return TORET;
+    }
+
+    private static String ETQ_END = "/";
+
+    private final ValueType TYPE;
+    private final String pic;
     private final String text;
-    private final ArrayList<Option> options;
+    private final List<Option> options;
 }
