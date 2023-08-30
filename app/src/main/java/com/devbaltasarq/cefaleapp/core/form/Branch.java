@@ -52,8 +52,8 @@ public class Branch {
         Question q = null;
 
         if ( bq.isReference() ) {
-            final Question ORG_Q = this.locateForeignQuestion( bq.getId() );
-            q = ORG_Q.copyWithGotoId( bq.getGotoId() );
+            final Question ORG_Q = this.FORM.locate( bq.getId() );
+            q = ORG_Q.copyWith( this.getId(), bq.getGotoId() );
         } else {
             q = (Question) bq;
         }
@@ -62,7 +62,7 @@ public class Branch {
             this.head = q;
         }
 
-        this.QS_BY_ID.put( bq.getId(), q );
+        this.QS_BY_ID.put( q.getId(), q );
     }
 
     /** Returns a question, given its id.
@@ -71,20 +71,7 @@ public class Branch {
       */
     public Question getQuestionById(String id)
     {
-        Question toret = this.QS_BY_ID.get( id );
-
-        if ( toret.isReference() ) {
-            toret = this.locateForeignQuestion( id );
-        }
-
-        return toret;
-    }
-
-    private Question locateForeignQuestion(String id)
-    {
-        final Branch BR = this.FORM.getBranchById( Question.getBranchFromId( id ) );
-
-        return BR.getQuestionById( id );
+        return this.QS_BY_ID.get( id );
     }
 
     private Question head;

@@ -3,247 +3,287 @@
     <!-- Data of the patient -->
     <branch id="data" head="data_notes">
         <q id="data_notes" type="str"
+            summary="Notas"
             text="Notas libres a rellenar según los síntomas del paciente."
             goto="data_gender" />
 
         <q id="data_gender" goto="data_age" pic="pic_gender"
-            type="bool" text="¿Hombre o mujer?">
-            <opt value="false" text="Hombre" w="1" goto="data_age" />
-            <opt value="true" text="Mujer" w="1" goto="data_age" />
+            type="bool" text="¿Hombre o mujer?" summary="Sexo">
+            <opt value="false" text="Hombre" goto="data_age" />
+            <opt value="true" text="Mujer" goto="data_age" />
         </q>
 
-        <q id="data_age" goto="data_height" type="int" text="¿Edad?" />
+        <q id="data_age" goto="data_height" type="int" text="¿Edad?" summary="Edad" />
 
-        <q id="data_height" type="int" text="¿Altura (centímetros)?" goto="data_weight" />
+        <q id="data_height" type="int" text="¿Altura (centímetros)?" goto="data_weight" summary="Altura" />
 
-        <q id="data_weight" type="int" text="¿Peso (kilos)?" goto="data_highPressure" />
+        <q id="data_weight" type="int" text="¿Peso (kilos)?" goto="data_highPressure" summary="Peso" />
 
         <q id="data_highPressure"
             type="int" text="¿Tensión máxima (sistólica)?"
-            goto="data_lowPressure" />
+            goto="data_lowPressure"
+            summary="Sistólica" />
 
         <q id="data_lowPressure"
             type="int" text="¿Tensión mínima (diastólica)?"
-            goto="data_hasHistory" />
+            goto="data_hasHistory"
+            summary="Diastólica" />
 
         <q id="data_hasHistory"
             goto="data_forMoreThanOneYear"
             type="bool"
-            text="¿En cuanto a antecedentes?">
+            text="¿En cuanto a antecedentes familiares de migraña?"
+            summary="Antecedentes">
 
-            <opt value="false" w="1" text="No hay antecedentes familiares de migraña" />
-            <opt value="true" w="1" text="Sí hay antecedentes familiares de migraña" />
+            <opt value="false" text="No los hay." />
+            <opt value="true" text="Sí los hay." />
         </q>
 
         <q id="data_forMoreThanOneYear"
             goto="data_isDepressed"
             value="bool"
-            text="¿Lleva más de un año con cefaleas?">
-            <opt value="false" w="1" text="No, menos de un año." />
-            <opt value="true" w="1" text="Sí, más de un año." />
+            text="¿Lleva más de un año con cefaleas?"
+            summary="Con cefaleas >1 año">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
         <!-- PCD-JMP_SCREENING-1316 -->
         <q id="data_isDepressed" goto="/"
             type="bool"
-            text="¿Está diagnosticado de depresión, toma medicación para ello?">
-            <opt value="false" w="1"
-                text="No, ni diagnosticado ni con tratamiento para la depresión." />
-            <opt value="true" w="1"
-                text="Sí, diagnosticado o con tratamiento para la depresión." />
+            text="¿Está diagnosticado de depresión, o toma medicación para ello?"
+            summary="Depresión">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
     </branch>
 
     <!-- Screening
-         1. PCD-JGTE_2_migraine-1559: Two of them true: > 60%, branch to migraine.
-         2. PCD-JLTE_1-migraine+depression1602: 1 or less: 23%, first take the migraine branch
-                    and then the depression one.
-                    this is a combined scenario, in which taking into account
-                    the answer to data_isDepressed,
-                    we do only ask questions 1, 2 and 4 of depression.
-                    A positive combined outcome will be "cefalea mixta tensional".
-                    If only depression, then "Migraña con "síntomas depresivos asociados."
-                    In this latter case, do not insist on antidepressants,
-                    appraise other drugs.
+         1. PCD-JGTE_2-MIGRAINE-1559: Two or three of them true: > 60%, branch to migraine.
+                                      if ISDEPRESSED, include the tensional branch.
+         2. PCD-JE_1-MIGRAINE+TENSIONAL-1602: 1 of them true: 23%, first take the migraine branch
+                                              and then the tensional one.
+         3. PCD-JZ-TENSIONAL-1511: only the tensional branch.
     -->
     <branch id="screen" head="screen_wasCephaleaLimitant">
         <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_hadPhotoPhobia"
-           text="En cuanto a lo limitante del dolor de cabeza en los últimos tres meses...">
-            <opt value="false" w="1"
-                 text="El dolor de cabeza le ha impedido realizar una vida normal (en el trabajo, en las relaciones familiares, actividades de ocio...) durante un día o más en los últimos tres meses." />
-            <opt value="true" w="1"
-                 text="El dolor de cabeza no ha sido limitante respecto a la vida normal." />
+            summary="Limitante"
+            text="En cuanto a lo limitante del dolor de cabeza en los últimos tres meses,
+                 ¿Le ha impedido realizar una vida normal (en el trabajo, en las relaciones familiares, actividades de ocio...) durante un día o más?">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
         <q id="screen_hadPhotoPhobia" type="bool" goto="screen_hadNausea"
-            text="Con el dolor de cabeza, ¿le molesta la luz más de lo habitual?">
-            <opt value="false" w="1"
-                 text="Con el dolor de cabeza no acompaña molestias ante la luz más allá de lo habitual." />
-            <opt value="true" w="1"
-                 text="Con el dolor de cabeza acompaña molestias ante la luz más allá de lo habitual." />
+            text="Con el dolor de cabeza, ¿le molesta la luz más de lo habitual?"
+            summary="Fotofobia">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <!-- PCD-JGTE_2_migraine-1559 -->
-        <!-- PCD-JLTE_1-migraine+depression-1602 -->
         <q id="screen_hadNausea" type="bool" goto="/"
-            text="Con el dolor de cabeza, ¿ha sentido náuseas o malestar de estómago?">
-            <opt value="false" w="1"
-                 text="Con el dolor de cabeza no acompañan náuseas o malestar estomacal." />
-            <opt value="true" w="1"
-                 text="Con el dolor de cabeza aparecen náuseas o malestar estomacal." />
+            text="Con el dolor de cabeza, ¿ha sentido náuseas o vómitos?"
+            summary="Náuseas/vómitos">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
     </branch>
 
-    <!--- Branch migraine, specific questions
-          Two or more positive answers in the screening questions.
-    -->
-    <branch id="migraine" head="migraine_moreThanFiveEpisodes" >
-        <q id="migraine_moreThanFiveEpisodes" type="bool" goto="migraine_isIntense"
-            text="¿Ha tenido cinco o más episodios similares de dolor de cabeza?">
-            <opt value="false" w="1"
-                 text="No, han sido menos de cinco episodios de dolor de cabeza." />
-            <opt value="true" w="1"
-                 text="Sí, han sido cinco episodios o más de dolor de cabeza." />
+    <!--- Branch migraine, specific questions -->
+    <branch id="migraine" head="migraine_hadMoreThanFiveEpisodes" >
+        <q id="migraine_hadMoreThanFiveEpisodes" type="bool"
+            goto="migraine_migraineDuration"
+            text="¿Ha tenido cinco o más episodios similares de dolor de cabeza?"
+            summary="Episodios >5">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="migraine_isIntense" type="bool" goto="migraine_betterInDarkness"
-            text="¿Diría que su dolor de cabeza es intenso o muy intenso?">
-            <!-- This question should be paired with a positive answer
-                 in question 1 of the screening (screen_wasLimitant). -->
-            <opt value="false" w="1"
-                 text="No, el dolor de cabeza no es intenso." />
-            <opt value="true" w="1"
-                 text="Sí, el dolor de cabeza es intenso o muy intenso." />
+        <q id="migraine_migraineDuration" type="bool"
+            goto="migraine_isMigraineIntense"
+            text="¿El dolor de cabeza sin tratamiento dura al menos entre cuatro horas y hasta dos o tres días?"
+            summary=">4h o 3 días">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="migraine_betterInDarkness" type="bool" goto="migraine_oneSided"
-            text="¿Tuvo que acostarse en una habitación a oscuras, en silencio?">
+        <q id="migraine_isMigraineIntense" type="bool"
+            goto="migraine_betterInDarkness"
+            text="¿Diría que su dolor de cabeza es intenso o muy intenso?"
+            summary="Intenso">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+        <q id="migraine_betterInDarkness" type="bool"
+            goto="migraine_isCephaleaOneSided"
+            text="¿Tuvo que acostarse en una habitación a oscuras, en silencio?"
+            summary="Necesita descanso a oscuras">
             <!-- This question is asked in order to enforce the last one:
                  migraine_isIntense -->
-            <opt value="false" w="1"
-                 text="No, el dolor de cabeza no es intenso." />
-            <opt value="true" w="1"
-                 text="Sí, el dolor de cabeza es intenso o muy intenso." />
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="migraine_oneSided" type="bool" goto="migraine_beating"
-            text="¿El dolor de cabeza es más intenso en uno de los lados de la cabeza, o se centra en una de las sienes?">
-            <opt value="false" w="1"
-                 text="El dolor abarca toda la cabeza." />
-            <opt value="true" w="1"
-                 text="El dolor es más intenso en uno de los lados de la cabeza." />
+        <q id="migraine_isCephaleaOneSided" type="bool" goto="migraine_isPulsating"
+            text="¿El dolor de cabeza es más intenso en uno de los lados de la cabeza, o se centra en una de las sienes?"
+            summary="Dolor en un lado">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="migraine_beating" type="bool" goto="migraine_soundPhobia"
-            text="¿El dolor de cabeza es como un latido, palpitante?">
-            <opt value="false" w="1"
-                 text="El dolor de cabeza es palpitante." />
-            <opt value="true" w="1"
-                 text="El dolor de cabeza es sordo, opresivo." />
+        <q id="migraine_isPulsating" type="bool" goto="migraine_soundPhobia"
+            text="¿El dolor de cabeza es como un latido palpitante?"
+            summary="Palpitante">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_soundPhobia" type="bool" goto="migraine_exerciseWorsens"
-            text="¿Le molestan los ruidos o que la gente hable cuando tiene dolor de cabeza?">
-            <opt value="false" w="1"
-                 text="Los ruidos no molestan durante la cefalea." />
-            <opt value="true" w="1"
-                 text="Los ruidos molestan durante la cefalea." />
+            text="¿Le molestan los ruidos o que la gente hable cuando tiene dolor de cabeza?"
+            summary="Sonofobia">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí ." />
         </q>
 
         <q id="migraine_exerciseWorsens" type="bool" goto="migraine_hadAura"
-            text="Cuando tiene dolor de cabeza, si tiene que realizar alguna actividad física como cargar pesos o subir unas escaleras, ¿le empeora el dolor?">
-            <opt value="false" w="1"
-                 text="La actividad física no empeora el dolor de cabeza." />
-            <opt value="true" w="1"
-                 text="La actividad física empeora el dolor de cabeza." />
+            text="Cuando tiene dolor de cabeza, si tiene que realizar alguna actividad física como cargar pesos o subir unas escaleras, ¿le empeora el dolor?"
+            summary="El ejercicio lo empeora">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_hadAura" type="bool" goto="migraine_menstruationWorsens"
-            text="Antes de iniciar el dolor de cabeza, o acompañando al dolor, ha notado alteraciones en la vista, como visión borrosa o nublada, destellos luminosos, líneas en zig-zag, o puntos oscuros?">
-            <opt value="false" w="1"
-                 text="No ha experimentado aura visual." />
-            <opt value="true" w="1"
-                 text="Ha experimentado aura visual." />
+            text="Antes de iniciar el dolor de cabeza, o acompañando al dolor, ha notado alteraciones en la vista, como visión borrosa o nublada, destellos luminosos, líneas en zig-zag, o puntos oscuros?"
+            summary="Aura">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_menstruationWorsens" type="bool" goto="migraine_contraceptivesWorsens"
             text="¿Su cefalea tiene relación con la menstruación, de forma que la cefalea aparece o se agrava durante el ciclo?"
-            skip="male_gender:migraine_howManyCefaleasPerMonth">
-            <!-- This is only asked if the patient is female. -->
-            <opt value="false" w="1"
-                 text="No tiene relación con la menstruación." />
-
-            <!-- Catamenial migraine -->
-            <opt value="true" w="1"
-                 text="Sí tiene relación con la menstruación." />
+            summary="Menstruación relacionada">
+            <!-- PCD_MENSTRUATIONWORSENS_NOTMALE_2017
+                 This is only asked if the patient is female. -->
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="migraine_contraceptivesWorsens" type="bool" goto="migraine_howManyCefaleasPerMonth"
-            skip="male_gender:migraine_howManyCefaleasPerMonth"
-            text="En caso de haber tomado anticonceptivos orales, ¿exoerimentó un empeoramiento de las cefalesas en intensidad o frecuencia?">
-            <!-- This is only asked if the patient is female. -->
-            <opt value="false" w="1"
-                 text="No tiene relación con los anticonceptivos." />
-            <opt value="true" w="1"
-                 text="Sí tiene relación con la anticonceptivos." />
+        <q id="migraine_contraceptivesWorsens" type="bool" goto="migraine_howManyMigraine"
+            text="En caso de haber tomado anticonceptivos orales, ¿exoerimentó un empeoramiento de las cefalesas en intensidad o frecuencia?"
+            summary="Anticonceptivos relacionados">
+            <!-- PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
+                 This is only asked if the patient is female. -->
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <!-- 1 to 3 days with migraine is labelled as "ocasional" and it's no treated.
+        <!-- PCD_HOW_MANY_MIGRAINE_1151
+             1 to 3 days with migraine is labelled as "occasional" and it's no treated.
              4 to 7 days with migraine is labelled as "low frequency"
              8 to 14 days with migraine is labelled as "high frequency"
-             15 or more days with migraine is labelled as "cronic frequency"
+             15 or more days with migraine is labelled as "chronic frequency"
         -->
-        <q id="migraine_howManyCefaleasPerMonth" type="int" goto="/"
-            text="¿Cuántos días de dolor de cabeza tiene al mes?" />
+        <q id="migraine_howManyMigraine" type="int" goto="/"
+            text="¿Cuántos días de dolor de cabeza tiene al mes?"
+            summary="Migrañas/mes" />
     </branch>
 
-    <!--- Branch depression, specific questions
-          When in the screening questions we obtain one or less affirmative
-          answers, then the probability of a migraine is low.
+    <!--- Branch tensional, specific questions
           In this branch we ask questions to advance into
-          a tensional cefalea profile (stress, anxiety, depression, worriness).
-          We should also branch here with a positive answer to
-          the question data_isDepressed.
+          a tensional cephalea profile (stress, anxiety, depression, worrying).
     -->
-    <branch id="depression" head="depression_painAsHelmet">
-        <q id="depression_painAsHelmet" type="bool" goto="depression_painIsStabbing"
-           text="El dolor de cabeza afecta a toda la cabeza, ya sea como un peso, un casco o como una banda o cinta?">
-           <opt value="false" w="1" text="La cefalea no se siente como un casco o banda." />
-           <opt value="true" w="1" text="La cefalea se siente como un casco o banda." />
+    <branch id="tensional" head="tensional_wholeHead">
+        <q id="tensional_wholeHead" type="bool" goto="tensional_isCephaleaHelmet"
+            summary="Toda la cabeza"
+            text="¿En general, el dolor afecta a toda la cabeza?">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="depression_painIsStabbing" type="bool" goto="depression_afternoonWorsens"
+        <q id="tensional_isCephaleaHelmet" type="bool" goto="tensional_isTensionalIntense"
+           summary="Casco o venda opresiva"
+           text="Las características del dolor se parecen a tener un casco puesto en la cabeza, o a llevar un banda-cinta opresiva alrededor de la cabeza, o como un peso encima de ella?">
+           <opt value="false" text="No." />
+           <opt value="true" text="Sí." />
+        </q>
+
+        <q id="tensional_isTensionalIntense" type="bool" goto="tensional_exerciseWorsens"
+            summary="Dolor intenso"
+            text="¿El dolor es intenso, le impide realizar tareas cotidianas?">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+        <!-- PCD_EXERCISEWORSENS_2222 -->
+        <q id="migraine_exerciseWorsens" is_ref="true"
+           text="/" summary="/"
+           goto="tensional_isStabbing" />
+
+        <q id="tensional_isStabbing" type="bool" goto="tensional_isTensionalWorseOnAfternoons"
+            summary="Hormigueo/punzadas"
             text="¿Tiene otras sensaciones como hormigueo o punzadas en la cabeza?">
-            <opt value="false" w="1" text="La cefalea no se acompaña de hormigueos o punzadas." />
-            <opt value="true" w="1" text="La cefalea se acompaña de hormigueos o punzadas." />
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="depression_afternoonWorsens" type="bool" goto="depression_stressWorsens"
+        <q id="tensional_isTensionalWorseOnAfternoons" type="bool" goto="tensional_isTensionalRelatedToStress"
+            summary="Empeora por la tarde"
             text="¿El dolor comienza por la mañana, va aumentando a lo largo del día, y es peor por la tarde?" >
-            <opt value="false" w="1" text="La cefalea no es peor por la tarde." />
-            <opt value="true" w="1" text="La cefalea es peor por la tarde." />
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="depression_stressWorsens" type="bool" goto="depression_distractionsImproves"
+        <q id="tensional_isTensionalRelatedToStress" type="bool" goto="tensional_isTensionalBetterWhenDistracted"
+            summary="Empeora con stress"
             text="¿El dolor puede relacionarse con situaciones de estrés, nerviosismo, preocupaciones...?" >
-            <opt value="false" w="1" text="La cefalea no es peor con el estrés." />
-            <opt value="true" w="1" text="La cefalea es peor con el estrés." />
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
 
-        <q id="depression_distractionsImproves" type="bool" goto="/"
+        <q id="tensional_isTensionalBetterWhenDistracted" type="bool" goto="tensional_soundPhobia"
+            summary="Mejora con distracciones"
             text="Las distracciones o el entretenimiento con tareas agradables, ¿hacen que el dolor sea menos intenso?" >
-            <opt value="false" w="1"
-                 text="La cefalea no es menos intensa con distracciones o entretenimientos." />
-            <opt value="true" w="1"
-                 text="La cefalea es menos intensa con distracciones o entretenimientos." />
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
         </q>
-    </branch>
 
-    <!-- This is the cut version of the depression branch, taken
-         when there is a suspicious mixing of depression and migraine. -->
-    <branch id="cut_depression" head="depression_painAsHelmet">
-        <q id="depression_painAsHelmet" goto="depression_painIsStabbing" isref="true" />
-        <q id="depression_painIsStabbing" goto="depression_stressWorsens" isref="true" />
-        <q id="depression_stressWorsens" goto="/" isref="true" />
+        <!-- PCD_SOUNDPHOBIA_2228 -->
+        <q id="migraine_soundPhobia" is_ref="true"
+           text="/" summary="/"
+           goto="tensional_insomnia" />
+
+        <q id="tensional_insomnia" type="bool" goto="tensional_sad"
+            summary="Insomnio"
+            text="¿Tiene problemas para dormir?" >
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+        <q id="tensional_sad" type="bool" goto="tensional_solvable"
+            summary="Triste"
+            text="¿Se siente bien, o por el contrario, triste, irritable...?" >
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+        <q id="tensional_solvable" type="bool" goto="tensional_howManyTensional"
+            summary="Cede con medicación"
+            text="¿El dolor se alivia o cede con calmantes como paracetamol, ibuprofeno o nolotil?" >
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+        <!-- PCD-HOW_MANY_TENSIONAL-1147
+             How many days of tensional cephalea per month:
+                - 1 to 3: "cefalea tensional esporádica"
+                - 4 to 7: "cefatea tensional de baja frecuencia"
+                - de 8 to 14: "cefatea tensional de alta frecuencia"
+                - 15 or more: "cefalea tensional crónica" -->
+        <q id="tensional_howManyTensional" type="int" goto="/"
+            summary="Tensionales/mes"
+            text="¿Cuántos días de dolor de cabeza de este tipo tiene por mes?" >
+        </q>
+
     </branch>
 </form>

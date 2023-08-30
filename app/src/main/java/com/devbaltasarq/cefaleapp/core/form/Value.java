@@ -17,7 +17,7 @@ public class Value {
     {
         Object toret = null;
 
-        switch ( this.VTYPE) {
+        switch ( this.VTYPE ) {
             case BOOL:
                 toret = this.getBool();
                 break;
@@ -88,7 +88,16 @@ public class Value {
     @Override
     public String toString()
     {
-        return "/" + this.VTYPE + " value: " + this.VALUE + ".";
+        String toret;
+
+        if ( this.getValueType() == ValueType.BOOL ) {
+            toret = this.getBool() ? "Sí": "No";
+        }
+        else {
+            toret = this.get().toString();
+        }
+
+        return toret;
     }
 
     private final String VALUE;

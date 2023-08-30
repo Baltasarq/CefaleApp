@@ -1,0 +1,39 @@
+#	Branch	Id	Summary
+0	DATA	NOTES	Notas
+a	DATA	GENDER	Sexo
+b	DATA	AGE	Edad
+c.1	DATA	HEIGHT	Altura
+c.2	DATA	WEIGHT	Peso
+d.1	DATA	HIGHPRESSURE	"Tensión (alta)"
+d.2	DATA	LOWPRESSURE	"Tensión (baja)"
+e	DATA	HASHISTORY	"Antecedentes familiares"
+f	DATA	FORMORETHANONEYEAR	"Por más de un año"
+g	DATA	ISDEPRESSED	"¿Tiene depresión?"
+2.1	SCREENER	WASCEPHALEALIMITANT	"Dolor limitante"
+2.2	SCREENER	HADPHOTOPHOBIA	"Molestias por la luz"
+2.3	SCREENER	HADNAUSEA	"Náuseas o vómitos"
+3.1	MIGRAINE	HADMORETHANFIVEEPISODES	"¿Más de cinco episodios?"
+3.2	MIGRAINE	MIGRAINEDURATION	"Dolor más de entre 4 horas y hasta dos o tres días"
+3.3.1	MIGRAINE	ISMIGRAINEINTENSE	"¿Dolor intenso o muy intenso?"
+3.3.2	MIGRAINE	BETTERINDARKNESS	"¿Ha tenido que acostarse en un lugar oscuro?"
+3.4	MIGRAINE	ISCEPHALEAONESIDED	"En un lado de la cabeza o en una sien"
+3.5	MIGRAINE	ISPULSATING	"El dolor es un latido palpitante"
+3.6	MIGRAINE	SOUNDPHOBIA	"¿Le molestan los ruidos o que la gente hable en alto?"
+3.7	MIGRAINE	EXERCISEWORSENS	"El ejercicio físico lo empeora"
+3.8	MIGRAINE	HADAURA	"Presencia de aura"
+3.9	MIGRAINE	MENSTRUATIONWORSENS	"La menstruación la empeora"
+3.10	MIGRAINE	CONTRACEPTIVESWORSENS	"Los anticonceptivos  lo empeoran."
+3.11	MIGRAINE	HOWMANYMIGRAINE	"¿Cuántas migrañas al mes?"
+4.1	TENSIONAL	WHOLEHEAD	"El dolor afecta a toda la cabeza"
+4.2	TENSIONAL	ISCEPHALEAHELMET	"Casco o cinta opresiva"
+4.3	TENSIONAL	ISTENSIONALINTENSE	"El dolor es intenso, impide realizar tareas"
+4.4	TENSIONAL	EXERCISEWORSENS	"El ejercicio físico lo empeora"
+4.5	TENSIONAL	ISSTABBING	"¿Siente como hormigueo o punzadas?"
+4.6	TENSIONAL	ISTENSIONALWORSEONAFTERNOONS	"¿Empeora por la tarde?"
+4.7	TENSIONAL	ISTENSIONALRELATEDTOSTRESS	"¿Empeora con el estrés?"
+4.8	TENSIONAL	ISTENSIONALBETTERWHENDISTRACTED	"¿Mejora con las distracciones?"
+4.9	TENSIONAL	SOUNDPHOBIA	"¿Le molestan los ruidos o que la gente hable en alto?"
+4.10	TENSIONAL	INSOMNIA	Insomnio
+4.11	TENSIONAL	SAD	"Anímicamente, ¿se siente triste, irritable o aburrido?"
+4.12	TENSIONAL	SOLVABLE	"¿Cede con ibuprofeno, paracetamol o nolotil?"
+4.13	TENSIONAL	HOWMANYTENSIONAL	"¿Cuántas cefaleas tensionales al mes?"

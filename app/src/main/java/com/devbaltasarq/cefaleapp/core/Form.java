@@ -5,6 +5,7 @@ package com.devbaltasarq.cefaleapp.core;
 
 
 import com.devbaltasarq.cefaleapp.core.form.Branch;
+import com.devbaltasarq.cefaleapp.core.form.Question;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +60,13 @@ public class Form {
         }
 
         return toret;
+    }
+
+    public Question locate(String id)
+    {
+        final Branch BR = this.getBranchById( Question.getBranchFromId( id ) );
+
+        return BR.getQuestionById( id );
     }
 
     private Branch head;

@@ -1,0 +1,29 @@
+/*  (c) 2023 CefaleaApp Baltasar MIT License <baltasarq@gmail.com>
+ *  Style sheet for the CefaleApp web
+ */
+
+.clsInstitutional {
+    justify-content: center;
+    display: flex;
+    width: 90%;
+    padding: 35px;
+    margin: 5px;
+    color: white;
+    background-color: #007AC3
+} 
+
+#dvContents {
+    justify-content: center;
+    width: 90%;
+    padding: 35px;
+    margin: 5px;
+}
+
+p {
+    text-align: justify
+}
+
+a {
+  color: #007AC3;
+}
+

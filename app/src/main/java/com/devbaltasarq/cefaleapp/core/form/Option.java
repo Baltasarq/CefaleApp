@@ -9,29 +9,18 @@ import java.util.Locale;
 public class Option {
     public Option(String text, String value)
     {
-        this( text, 1.0, value );
-    }
-
-    public Option(String text, double w, String value)
-    {
-        this.text = text;
-        this.weight = w;
-        this.value = value;
+        this.TEXT = text;
+        this.VALUE = value;
     }
 
     public String getValue()
     {
-        return this.value;
-    }
-
-    public double getWeight()
-    {
-        return this.weight;
+        return this.VALUE;
     }
 
     public String getText()
     {
-        return this.text;
+        return this.TEXT;
     }
 
     @Override
@@ -43,7 +32,7 @@ public class Option {
           && other instanceof final Option OPT )
         {
             toret = ( this.getText().equals( OPT.getText() )
-                   && this.getWeight() == OPT.getWeight() );
+                   && this.getValue().equals( OPT.getValue() ) );
         }
 
         return toret;
@@ -53,7 +42,7 @@ public class Option {
     public int hashCode()
     {
         return ( 7 * this.getText().hashCode() )
-             + ( 11 * Double.hashCode( this.getWeight() ) );
+             + ( 11 * this.getValue().hashCode() );
     }
 
     @Override
@@ -61,12 +50,11 @@ public class Option {
     {
         return String.format(
                     Locale.getDefault(),
-                    "%s (w: %5.2f%%)",
+                    "%s (%s)",
                     this.getText(),
-                    this.getWeight() );
+                    this.getValue() );
     }
 
-    private final String text;
-    private final String value;
-    private final double weight;
+    private final String TEXT;
+    private final String VALUE;
 }

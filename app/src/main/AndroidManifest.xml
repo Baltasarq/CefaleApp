@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- Use the text-to-speech engine -->
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
-    </queries>
-
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
-                     tools:ignore="QueryAllPackagesPermission" />
+    </queries> <!-- Permissions -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cephalea"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/cephalea"
         android:supportsRtl="true"
         android:theme="@style/Theme.CefaleApp"
         tools:targetApi="31">
 
         <activity
+            android:name=".ui.TextSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CefaleApp.NoActionBar"
+            android:label="@string/lbl_text_settings" />
+        <activity
             android:name=".ui.MainActivity"
-            android:exported="true">
-
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CefaleApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
+        <activity
+            android:name=".ui.EnquiryActivity"
+            android:theme="@style/Theme.CefaleApp.NoActionBar" />
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ package com.devbaltasarq.cefaleapp.core;
 
 import androidx.annotation.NonNull;
 
-import com.devbaltasarq.cefaleapp.core.form.ValueType;
 import com.devbaltasarq.cefaleapp.core.form.Value;
 
 import java.util.ArrayList;
@@ -38,35 +37,46 @@ public final class Repo {
 
         // Migraine
         HADMORETHANFIVEEPISODES,
-        ISCEPHALEAINTENSE,
+        MIGRAINEDURATION,
+        ISMIGRAINEINTENSE,
         BETTERINDARKNESS,
         ISCEPHALEAONESIDED,
         ISPULSATING,
-        HADSOUNDPHOBIA,
+        SOUNDPHOBIA,
         EXERCISEWORSENS,
         HADAURA,
-        MATCHESMENSTRUATION,
+        MENSTRUATIONWORSENS,
         CONTRACEPTIVESWORSENS,
-        NUMCEPHALEASINMONTH,
+        HOWMANYMIGRAINE,
 
-        // Depression
+        // Tensional
+        WHOLEHEAD,
         ISCEPHALEAHELMET,
-        PAINISSTABBING,
-        ISCEPHALEAWORSEONAFTERNOONS,
-        ISCEPHALEARELATEDTOSTRESS,
-        ISCEPHALEABETTERWHENDISTRACTED;
+        ISTENSIONALINTENSE,
+        ISSTABBING,
+        ISTENSIONALWORSEONAFTERNOONS,
+        ISTENSIONALRELATEDTOSTRESS,
+        ISTENSIONALBETTERWHENDISTRACTED,
+        INSOMNIA,
+        SAD,
+        SOLVABLE,
+        HOWMANYTENSIONAL;
+
+        private static List<String> strValues = null;
 
         /** @return the list of values, but as a list of strings. */
         public static List<String> valuesAsString()
         {
-            final Id[] VALUES = Id.values();
-            final List<String> TORET = new ArrayList<>( VALUES.length );
+            if ( strValues == null ) {
+                final Id[] VALUES = Id.values();
+                strValues = new ArrayList<>( VALUES.length );
 
-            for(final Id ID: VALUES) {
-                TORET.add( ID.toString() );
+                for (final Id ID : VALUES) {
+                    strValues.add( ID.toString() );
+                }
             }
 
-            return TORET;
+            return strValues;
         }
 
         /** Returns the equivalent value to the passed string,
@@ -120,7 +130,7 @@ public final class Repo {
     }
 
     /** @return true if there is a value for id, false otherwise. */
-    public boolean existsValue(@NonNull Id id)
+    public boolean exists(@NonNull Id id)
     {
         return ( this.data.get( id ) != null );
     }
@@ -142,7 +152,7 @@ public final class Repo {
         return (String) TORET.get();
     }
 
-    public int getNum(@NonNull Id id) throws NoSuchElementException
+    public int getInt(@NonNull Id id) throws NoSuchElementException
     {
         final Value TORET = this.getValue( id );
 
@@ -162,29 +172,6 @@ public final class Repo {
         }
 
         return (boolean) TORET.get();
-    }
-
-    /** Calculates the result of the screening questions.
-      * i.e, the number of question that had "true" as answer.
-      * @return an integer with the number of "true" answers.
-      */
-    public int calcTotalScreen()
-    {
-        int toret = 0;
-
-        if ( this.getBool( Repo.Id.WASCEPHALEALIMITANT ) ) {
-            ++toret;
-        }
-
-        if ( this.getBool( Repo.Id.HADPHOTOPHOBIA ) ) {
-            ++toret;
-        }
-
-        if ( this.getBool( Repo.Id.HADNAUSEA ) ) {
-            ++toret;
-        }
-
-        return toret;
     }
 
     public static Repo get()

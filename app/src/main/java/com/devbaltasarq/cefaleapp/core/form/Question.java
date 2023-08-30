@@ -17,6 +17,7 @@ public class Question extends BasicQuestion {
         {
             this.gotoId = "";
             this.pic = "";
+            this.summary = "";
             this.type = ValueType.BOOL;
             this.options = new ArrayList<>();
         }
@@ -30,6 +31,12 @@ public class Question extends BasicQuestion {
         public Builder setPic(String id)
         {
             this.pic = id.trim();
+            return this;
+        }
+
+        public Builder setSummary(String id)
+        {
+            this.summary = id.trim();
             return this;
         }
 
@@ -70,11 +77,13 @@ public class Question extends BasicQuestion {
                     this.gotoId,
                     this.text,
                     this.pic,
+                    this.summary,
                     this.options );
         }
 
         private String id;
         private String pic;
+        private String summary;
         private String gotoId;
         private String text;
         private ValueType type;
@@ -82,17 +91,22 @@ public class Question extends BasicQuestion {
     }
 
     /** Creates a regular question. */
-    protected Question(String id, ValueType dtype, String gotoId, String text, String pic,
+    protected Question(String id, ValueType dtype, String gotoId,
+                       String text, String pic, String summary,
                        Collection<Option> options)
     {
         super( id, gotoId );
 
         this.TYPE = dtype;
-        this.pic = pic;
-        this.text = text;
-        this.options = new ArrayList<>( options );
+        this.PIC = pic;
+        this.TEXT = text;
+        this.SUMMARY = summary;
+        this.OPTS = new ArrayList<>( options );
     }
 
+    /** @return is this a reference? Objects of Question are never.
+      * @see BasicQuestion, ReferenceQuestion
+      */
     public boolean isReference()
     {
         return false;
@@ -100,7 +114,12 @@ public class Question extends BasicQuestion {
 
     public String getText()
     {
-        return this.text;
+        return this.TEXT;
+    }
+
+    public String getSummary()
+    {
+        return this.SUMMARY;
     }
 
     /** @see Question::getIdComponents
@@ -119,29 +138,38 @@ public class Question extends BasicQuestion {
         return buildIdComponents( this.getId() )[ 1 ];
     }
 
+    /** @return the type of the response. Typical: bool, yes / no.*/
     public ValueType getValueType()
     {
         return this.TYPE;
     }
 
+    /** @return the total number of options. */
     public int getNumOptions()
     {
-        return this.options.size();
+        return this.OPTS.size();
     }
 
+    /** Returns an option, given its order.
+      * @param id the order of the option.
+      * @return the Option object.
+      * @see Option, Question::getOptions, Question::getNumOptions
+      */
     public Option getOption(int id)
     {
-        return this.options.get( id );
+        return this.OPTS.get( id );
     }
 
+    /** @return the different options available. */
     public List<Option> getOptions()
     {
-        return new ArrayList<>( this.options );
+        return new ArrayList<>( this.OPTS);
     }
 
+    /** @return the picture name to use in this question. */
     public String getPic()
     {
-        return this.pic;
+        return this.PIC;
     }
 
     @Override
@@ -186,15 +214,21 @@ public class Question extends BasicQuestion {
         return this.getGotoId().equals( ETQ_END );
     }
 
-    public Question copyWithGotoId(String gotoId)
+    public Question copyWith(String branchId, String gotoId)
     {
-        Question.Builder QB = new Question.Builder();
+        final String NEW_ID = branchId + "_" + this.getDataFromId();
+        final Question.Builder QB = new Question.Builder();
 
-        QB.setId( this.getId() )
+        QB.setId( NEW_ID )
                 .setGotoId( gotoId )
                 .setText( this.getText() )
+                .setSummary( this.getSummary() )
                 .setPic( this.getPic() )
                 .setValueType( this.getValueType() );
+
+        for(Option opt: this.getOptions()) {
+            QB.addOption( new Option( opt.getText(), opt.getValue() ) );
+        }
 
         return QB.create();
     }
@@ -235,7 +269,8 @@ public class Question extends BasicQuestion {
     private static String ETQ_END = "/";
 
     private final ValueType TYPE;
-    private final String pic;
-    private final String text;
-    private final List<Option> options;
+    private final String PIC;
+    private final String TEXT;
+    private final String SUMMARY;
+    private final List<Option> OPTS;
 }

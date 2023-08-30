@@ -6,6 +6,6 @@ package com.devbaltasarq.cefaleapp.core;
 
 public class AppInfo {
     public static final String NAME = "CefaleaApp";
-    public static final String VERSION = "v0.1 20230303";
+    public static final String VERSION = "v1.0 20230823";
     public static String FULL_NAME = NAME + " " + VERSION;
 }
