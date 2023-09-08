@@ -49,6 +49,9 @@ public final class Repo {
         CONTRACEPTIVESWORSENS,
         HOWMANYMIGRAINE,
 
+        // Continue
+        AREYOUSURE,
+
         // Tensional
         WHOLEHEAD,
         ISCEPHALEAHELMET,
@@ -82,7 +85,7 @@ public final class Repo {
         /** Returns the equivalent value to the passed string,
          *  as in "NOTES" -> Id.NOTES.
          *
-         * @param str a string version of an Id value, such as "NOTES".
+         * @param str a string version of an Id.DATA value, such as "NOTES".
          * @return an Id if the value is recognized, throws otherwise.
          */
         public static Id parse(String str) throws IllegalArgumentException

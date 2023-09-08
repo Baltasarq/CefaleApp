@@ -4,6 +4,8 @@
 import sys
 from string import Template
 from xml.dom import minidom as xml
+from html.parser import HTMLParser
+from io import StringIO
 
 
 str_diagram_template = """
@@ -25,11 +27,32 @@ ETQ_BRANCH = "branch"
 ETQ_Q = "q"
 ETQ_ID = "id"
 ETQ_GOTO = "goto"
-ETQ_W = "w"
 ETQ_VALUE = "value"
 ETQ_OPT = "opt"
 ETQ_OPTS = "opts"
 ETQ_TEXT = "text"
+ETQ_SUMMARY = "summary"
+
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.text = StringIO()
+        
+    def handle_data(self, d):
+        self.text.write(d)
+        
+    def get_data(self):
+        return self.text.getvalue()
+
+
+def strip_tags(txt):
+    s = MLStripper()
+    s.feed(txt)
+    return s.get_data()
 
 
 def fmt_box_text(t: str) -> str:
@@ -55,18 +78,10 @@ def parse_file(fn: str) -> dict:
             qst[ETQ_ID] = dom_attr[1]
         elif dom_attr[0] == ETQ_VALUE:
             qst[ETQ_VALUE] = dom_attr[1]
-
-    def store_opt_attribute(q: dict, op: dict, dom_attr: tuple):
-        op[ETQ_W] = "1"
-
-        if dom_attr[0] == ETQ_TEXT:
-            op[ETQ_TEXT] = fmt_box_text(dom_attr[1])
-        elif dom_attr[0] == ETQ_VALUE:
-            op[ETQ_VALUE] = dom_attr[1]
         elif dom_attr[0] == ETQ_GOTO:
-            op[ETQ_GOTO] = dom_attr[1]
-        elif dom_attr[0] == ETQ_W:
-            op[ETQ_W] = dom_attr[1]
+            qst[ETQ_GOTO] = dom_attr[1]
+        elif dom_attr[0] == ETQ_SUMMARY:
+            qst[ETQ_SUMMARY] = dom_attr[1]
 
     branches = {}
     dom = xml.parse(fn)
@@ -89,15 +104,6 @@ def parse_file(fn: str) -> dict:
 
                 for attr in dom_q.attributes.items():
                     store_q_attribute(q, attr)
-
-                # Read sub nodes
-                q[ETQ_OPTS] = []
-                for sub_node in dom_q.getElementsByTagName(ETQ_OPT):
-                    opt = {}
-                    q[ETQ_OPTS].append(opt)
-
-                    for attr in sub_node.attributes.items():
-                        store_opt_attribute(q, opt, attr)
 
             qs[q[ETQ_ID]] = q
 
@@ -122,21 +128,22 @@ def create_diagram_for(branches: dict, id: str) -> str:
 
     # Generate boxes
     for q in qs.values():
-        substs["shape"] = "diamond" if len(q[ETQ_OPTS]) > 0 else "box"
-        substs["box_text"] = q[ETQ_TEXT]
+        text = strip_tags(q[ETQ_TEXT].replace('\n', ' '))
+        
+        substs["shape"] = "box"
+        substs["box_text"] = text
         substs["box_name"] = q[ETQ_ID]
         toret += box_template.substitute(substs)
 
     # Generate edges
     for q in qs.values():
-        for opt in q[ETQ_OPTS]:
-            next_box = qs.get(opt.get(ETQ_GOTO))
+        next_box = qs.get(q.get(ETQ_GOTO))
 
-            if next_box:
-                substs["box_name"] = q[ETQ_ID]
-                substs["next_box_name"] = next_box[ETQ_ID]
-                substs["label"] = opt[ETQ_TEXT] + '\n' + opt[ETQ_W]
-                toret += edge_template.substitute(substs)
+        if next_box:
+            substs["box_name"] = q[ETQ_ID]
+            substs["next_box_name"] = next_box[ETQ_ID]
+            substs["label"] = strip_tags(q[ETQ_SUMMARY])
+            toret += edge_template.substitute(substs)
 
     return diagram_template.substitute(body=toret)
 

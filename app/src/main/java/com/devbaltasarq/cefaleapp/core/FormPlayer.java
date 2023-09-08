@@ -13,10 +13,37 @@ import com.devbaltasarq.cefaleapp.core.form.Question;
 
 public class FormPlayer {
     private static final String LOG_TAG = FormPlayer.class.getSimpleName();
-    private static final String BR_DATA_ID = "data";
     private static final String BR_SCREEN_ID = "screen";
     private static final String BR_MIGRAINE_ID = "migraine";
     private static final String BR_TENSIONAL_ID = "tensional";
+    private static final String BR_CONTINUE_ID = "continue";
+
+    public static class Settings implements Cloneable {
+        public Settings()
+        {
+            this.reset();
+        }
+
+        public void reset()
+        {
+            this.showNotesQuestion = true;
+        }
+
+        public Settings clone()
+        {
+            Settings toret;
+
+            try {
+                toret = (Settings) super.clone();
+            } catch (CloneNotSupportedException exc) {
+                toret = null;
+            }
+
+            return toret;
+        }
+
+        public boolean showNotesQuestion;
+    }
 
     public FormPlayer(final Form FORM)
     {
@@ -25,6 +52,7 @@ public class FormPlayer {
         this.PATH = new Path();
         this.DIAG = new Diagnostic( this.REPO );
         this.STEPS = new Steps( this.FORM, this.REPO );
+        settings = new Settings();
         this.reset();
     }
 
@@ -40,6 +68,7 @@ public class FormPlayer {
         // PCD-JMP_SCREEN-1316
         this.PATH.clear();
         this.PATH.add( BR_SCREEN_ID );
+        settings.reset();
     }
 
     /** @return the form of questions. */
@@ -63,7 +92,7 @@ public class FormPlayer {
     public Question getCurrentQuestion()
     {
         if ( this.currentQ == null ) {
-            this.jumpToNextQuestion();
+            this.findFirstQuestion();
         }
 
         return this.currentQ;
@@ -74,10 +103,10 @@ public class FormPlayer {
         return this.currentBr;
     }
 
-    /** Got to the next question.
+    /** Get to the next question.
       * @return true if we are in the next question, false otherwise.
       */
-    public boolean gotoNextQuestion()
+    public boolean findNextQuestion()
     {
         boolean toret = false;
 
@@ -95,22 +124,35 @@ public class FormPlayer {
 
         if ( this.currentQ == null ) {
             toret = true;
-            this.jumpToNextQuestion();
+            this.findFirstQuestion();
         }
 
         return toret;
     }
 
+    /** Go to the first question of the current branch. */
+    private void findFirstQuestion()
+    {
+        // Go to the head of the branch
+        if ( this.currentQ == null ) {
+            this.currentQ = this.currentBr.getHead();
+
+            while ( this.preProcessing()
+                 && !this.currentQ.isEnd() )
+            {
+                this.jumpToNextQuestion();
+            }
+        }
+
+        return;
+    }
+
+    /** Go to the next question of the current question. */
     private void jumpToNextQuestion()
     {
-        final Question Q = this.currentQ;
-
-        if ( Q == null ) {
-            this.currentQ = this.currentBr.getHead();
-        }
-        else
-        if ( !Q.isEnd() ) {
-            this.currentQ = this.currentBr.getQuestionById( Q.getGotoId() );
+        if ( !this.currentQ.isEnd() ) {
+            this.currentQ = this.currentBr.getQuestionById(
+                                        this.currentQ.getGotoId() );
         }
 
         return;
@@ -132,6 +174,7 @@ public class FormPlayer {
     private boolean preProcessing()
     {
         final String Q_ID = this.getCurrentQuestion().getId();
+        final String Q_DATA = this.getCurrentQuestion().getDataFromId();
         final Repo REPO = this.getRepo();
         boolean toret = false;
 
@@ -142,28 +185,33 @@ public class FormPlayer {
             // PCD_MENSTRUATIONWORSENS_NOTMALE_2017
             // PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
             toret = true;
-            this.gotoNextQuestion();
             Log.i( LOG_TAG, "PCD_MENSTRUATIONWORSENS_NOTMALE_2017"
                     + " or PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024"
                     + " skipping question" );
         }
         else
-        if ( Q_ID.equals( "EXERCISEWORSENS" )
+        if ( Q_ID.equals( "data_notes" )
+          && !settings.showNotesQuestion )
+        {
+            // PCD_SHOWNOTES_2220
+            toret = true;
+            Log.i( LOG_TAG, "PCD_SHOWNOTES_2220 skipping notes" );
+        }
+        else
+        if ( Repo.Id.parse( Q_DATA ) == Repo.Id.EXERCISEWORSENS
           && REPO.exists( Repo.Id.EXERCISEWORSENS ) )
         {
             // PCD_EXERCISEWORSENS_2222
             toret = true;
-            this.gotoNextQuestion();
             Log.i( LOG_TAG, "PCD_EXERCISEWORSENS_2222"
                     + " already asked, skipping question" );
         }
         else
-        if ( Q_ID.equals( "SOUNDPHOBIA" )
+        if ( Repo.Id.parse( Q_DATA ) == Repo.Id.SOUNDPHOBIA
           && REPO.exists( Repo.Id.SOUNDPHOBIA ) )
         {
             // PCD_SOUNDPHOBIA_2228
             toret = true;
-            this.gotoNextQuestion();
             Log.i( LOG_TAG, "PCD_SOUNDPHOBIA_2228"
                     + " already asked, skipping question" );
         }
@@ -182,10 +230,19 @@ public class FormPlayer {
 
         if ( Q != null ) {
             // Store the question as answered
-            this.getSteps().add( Q.getId() );
+            this.getSteps().add( Q );
 
             // Check end of branch
             if ( Q.isEnd() ) {
+                // Check "continuity"
+                if ( Repo.Id.parse( Q.getDataFromId() ) == Repo.Id.AREYOUSURE ) {
+                    if ( !this.REPO.getBool( Repo.Id.AREYOUSURE ) ) {
+                        // PCD-CONTINUE-1338 // do not continue
+                        this.PATH.clear();
+                    }
+                }
+                else
+                // End of the screening, set the adequate questions path
                 if ( BR.getId().equals( BR_SCREEN_ID ) ) {
                     int totalScreen = this.getDiagnostic().calcTotalScreen();
 
@@ -196,13 +253,17 @@ public class FormPlayer {
                         this.PATH.add( BR_MIGRAINE_ID );
 
                         if ( this.REPO.getBool( Repo.Id.ISDEPRESSED ) ) {
-                            this.PATH.add( BR_MIGRAINE_ID );
+                            // PCD-CONTINUE-1338
+                            this.PATH.add( BR_CONTINUE_ID );
+                            this.PATH.add( BR_TENSIONAL_ID );
                         }
                     }
                     else
                     if ( totalScreen == 1 ) {
                         // PCD-JE_1-MIGRAINE-TENSIONAL-1602
                         this.PATH.add( BR_MIGRAINE_ID );
+                        // PCD-CONTINUE-1338
+                        this.PATH.add( BR_CONTINUE_ID );
                         this.PATH.add( BR_TENSIONAL_ID );
                     } else {
                         // PCD-JZ-TENSIONAL-1511
@@ -212,6 +273,7 @@ public class FormPlayer {
 
                 if ( this.PATH.size() > 0 ) {
                     // PCD-JMP_SCREEN-1316
+                    // PCD-CONTINUE-1338 // yes, continue
                     this.changeToBranch( this.PATH.next() );
                     this.PATH.remove();
                     toret = true;
@@ -230,7 +292,7 @@ public class FormPlayer {
     public String getFinalReport()
     {
         return this.DIAG.toString()
-                + "\n\n" + this.STEPS.toString();
+                + "<br/><br/>" + this.STEPS.toString();
     }
 
     private Question currentQ;
@@ -240,4 +302,5 @@ public class FormPlayer {
     private final Repo REPO;
     private final Diagnostic DIAG;
     private final Path PATH;
+    public static Settings settings;
 }

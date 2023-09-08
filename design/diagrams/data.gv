@@ -1,0 +1,43 @@
+
+digraph Migranna {
+    
+    data_notes[shape=box, label="Notas libres a rellenar según los síntomas del paciente."];
+
+    data_gender[shape=box, label="¿Hombre o mujer?"];
+
+    data_age[shape=box, label="¿Edad?"];
+
+    data_height[shape=box, label="¿Altura (centímetros)?"];
+
+    data_weight[shape=box, label="¿Peso (kilos)?"];
+
+    data_highPressure[shape=box, label="¿Tensión máxima (sistólica)?"];
+
+    data_lowPressure[shape=box, label="¿Tensión mínima (diastólica)?"];
+
+    data_hasHistory[shape=box, label="¿En cuanto a antecedentes familiares de migraña?"];
+
+    data_forMoreThanOneYear[shape=box, label="¿Lleva más de un año con cefaleas?"];
+
+    data_isDepressed[shape=box, label="¿Está diagnosticado de depresión, o toma medicación para ello?"];
+
+    data_notes -> data_gender[label="Notas"];
+
+    data_gender -> data_age[label="Sexo"];
+
+    data_age -> data_height[label="Edad"];
+
+    data_height -> data_weight[label="Altura"];
+
+    data_weight -> data_highPressure[label="Peso"];
+
+    data_highPressure -> data_lowPressure[label="Sistólica"];
+
+    data_lowPressure -> data_hasHistory[label="Diastólica"];
+
+    data_hasHistory -> data_forMoreThanOneYear[label="Antecedentes"];
+
+    data_forMoreThanOneYear -> data_isDepressed[label="Con cefaleas >1 año"];
+
+}
+

@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.DropboxUsrClient;
 import com.devbaltasarq.cefaleapp.core.FormPlayer;
 import com.devbaltasarq.cefaleapp.core.FormXMLLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,29 +39,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         this.setContentView( R.layout.activity_main );
 
+        this.initDefaults();
+        this.prepareDropboxClient();
         this.setButtonListeners();
         this.setNavViewOptionListener();
-        this.initDefaults();
         this.loadData();
     }
 
     private void initDefaults()
     {
-        EnquiryActivity.showNotesQuestion = false;
-        this.textSize = TextSize.MEDIUM;
-        this.textSize = TextSize.LARGE;
-        /*        NAV_VIEW.getMenu().getItem( 2 ).setChecked( true );
+        EnquiryActivity.playerSettings = new FormPlayer.Settings();
+        textSize = TextSize.MEDIUM;
+    }
 
-        if ( diagonalInches <= 4 ) {
-            this.textSize = TextSize.SMALL;
-            NAV_VIEW.getMenu().getItem( 0 ).setChecked( true );
-        }
-        else
-        if ( diagonalInches < 8 ) {
-            this.textSize = TextSize.MEDIUM;
-            NAV_VIEW.getMenu().getItem( 1 ).setChecked( true );
-        }
-*/
+    private void prepareDropboxClient()
+    {
+        EnquiryActivity.drpbxClient = new DropboxUsrClient( this );
     }
 
     private void setNavViewOptionListener()
@@ -67,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         final NavigationView NAV_VIEW = this.findViewById( R.id.nav_view );
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
 
-        NAV_VIEW.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        NAV_VIEW.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item)
             {
@@ -79,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 if ( item.getItemId() == R.id.op_enquiry_settings ) {
-                    //EnquiryActivity.showNotesQuestion = item.isChecked();
+                    final Intent INTENT = new Intent( SELF, QuestionSettingsActivity.class );
+                    SELF.startActivity( INTENT );
                 } else {
                     throw new Error( "unknown option" );
                 }
@@ -103,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this,
                     EnquiryActivity.class );
 
-            EnquiryActivity.setTextAppeareanceFromTextSize( this.textSize );
+            EnquiryActivity.setTextAppeareanceFromTextSize( textSize );
             EnquiryActivity.player.reset();
+            FormPlayer.settings = EnquiryActivity.playerSettings.clone();
             MainActivity.this.startActivity( INTENT );
         });
 
@@ -118,16 +116,21 @@ public class MainActivity extends AppCompatActivity {
     private void loadData()
     {
         final FloatingActionButton BT_START = this.findViewById( R.id.btStart );
-        final LinearLayout LY_MAIN = this.findViewById( R.id.lyMain );
+        final TextView TV_TITLE = this.findViewById( R.id.tvTitle );
+        final TextView TV_INSTITUTION1 = this.findViewById( R.id.tvInstitution1 );
+        final TextView TV_INSTITUTION2 = this.findViewById( R.id.tvInstitution2 );
+        final ImageView IMG_INSTITUTION1 = this.findViewById( R.id.imgInstitution1 );
+        final ImageView IMG_INSTITUTION2 = this.findViewById( R.id.imgInstitution2 );
 
         try {
             EnquiryActivity.form = FormXMLLoader.loadFromFile( this.getAssets().open( DATA_ASSET ) );
             EnquiryActivity.player = new FormPlayer( EnquiryActivity.form );
         } catch(IOException exc) {
-            final TextView LBL_MESSAGE = new TextView( this );
-
-            LBL_MESSAGE.setText( "i/o error: " + exc.getMessage() );
-            LY_MAIN.addView( LBL_MESSAGE );
+            TV_INSTITUTION1.setVisibility( View.GONE );
+            TV_INSTITUTION2.setVisibility( View.GONE );
+            IMG_INSTITUTION1.setVisibility( View.GONE );
+            IMG_INSTITUTION2.setVisibility( View.GONE );
+            TV_TITLE.setText( "i/o error: " + exc.getMessage() );
             Log.e( LOG_TAG, "error loading asset data: " + exc.getMessage() );
             BT_START.setEnabled( false );
         }
@@ -135,6 +138,5 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
-    private TextSize textSize;
+    static TextSize textSize;
 }
-

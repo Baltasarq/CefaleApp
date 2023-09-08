@@ -8,9 +8,11 @@
     <!-- Labels -->
     <string name="lbl_next">next</string>
     <string name="lbl_menu">menú</string>
+    <string name="lbl_enquiry">Cuestionario</string>
     <string name="lbl_text_size">Tamaño del texto</string>
     <string name="lbl_show_questions">Mostrar ciertas preguntas</string>
     <string name="lbl_text_settings">Ajustes del texto</string>
+    <string name="lbl_question_settings">Ajustes de las preguntas</string>
     <string name="lbl_enquiry_settings">Ajustes del cuestionario</string>
     <string name="lbl_text_small">Texto pequeño</string>
     <string name="lbl_text_medium">Texto mediano</string>

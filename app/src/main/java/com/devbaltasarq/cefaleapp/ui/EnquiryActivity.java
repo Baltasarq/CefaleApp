@@ -7,17 +7,22 @@ package com.devbaltasarq.cefaleapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.core.widget.TextViewCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.speech.tts.TextToSpeech;
+import android.text.Spanned;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -33,6 +38,7 @@ import android.widget.Toast;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
+import com.devbaltasarq.cefaleapp.core.DropboxUsrClient;
 import com.devbaltasarq.cefaleapp.core.Form;
 import com.devbaltasarq.cefaleapp.core.FormJSONSaver;
 import com.devbaltasarq.cefaleapp.core.FormPlayer;
@@ -42,8 +48,10 @@ import com.devbaltasarq.cefaleapp.core.form.Option;
 import com.devbaltasarq.cefaleapp.core.form.Question;
 import com.devbaltasarq.cefaleapp.core.form.Value;
 import com.devbaltasarq.cefaleapp.core.form.ValueType;
+import com.dropbox.core.DbxException;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -75,10 +83,13 @@ public class EnquiryActivity extends AppCompatActivity {
                             });
 
         if ( ACTION_BAR != null ) {
-            ACTION_BAR.hide();
+            ACTION_BAR.setTitle( R.string.lbl_enquiry );
+            ACTION_BAR.setDisplayHomeAsUpEnabled( true );
+            ACTION_BAR.setLogo( R.drawable.cephalea );
         }
 
         this.buildNextButton();
+        this.showingEnd = false;
     }
 
     @Override
@@ -86,9 +97,15 @@ public class EnquiryActivity extends AppCompatActivity {
     {
         super.onResume();
 
+        if ( showingEnd ) {
+            this.showFormEnd();
+        }
+        else
         if ( player != null ) {
             this.showCurrentQuestion();
         }
+
+        return;
     }
 
     @Override
@@ -110,6 +127,16 @@ public class EnquiryActivity extends AppCompatActivity {
             this.ttEngine.stop();
             this.ttEngine.shutdown();
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if ( item.getItemId() == android.R.id.home ) {
+            this.finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected( item );
     }
 
     /** Triggered when the user asks for the phone to speak the question. */
@@ -136,6 +163,7 @@ public class EnquiryActivity extends AppCompatActivity {
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
         final RadioGroup RG_OPTS = this.findViewById( R.id.rgOptions );
         final StringBuilder END_TEXT = new StringBuilder();
+        final String FINAL_REPORT = player.getFinalReport();
 
         // Prepare
         LY_IMAGE.removeAllViews();
@@ -149,29 +177,45 @@ public class EnquiryActivity extends AppCompatActivity {
         RG_OPTS.clearCheck();
         RG_OPTS.removeAllViews();
 
+        // Store & upload JSON
+        this.uploadToCloud( this.saveJSON() );
+
         // Set info
-        END_TEXT.append( "Final del cuestionario\n\n" );
-        END_TEXT.append( player.getFinalReport() );
-
-        LBL_QUESTION.setText( END_TEXT.toString() );
-
-        // Store JSON
-        this.saveJSON();
+        END_TEXT.append( "Final del cuestionario<br/><br/>" );
+        END_TEXT.append( FINAL_REPORT );
+        this.setTextInTextView( LBL_QUESTION, END_TEXT.toString() );
 
         // Reset button
         final ImageButton BUTTON_RESET = this.buildButton( LY_IMAGE, R.drawable.reset );
+        final ImageView BT_SHARE = this.buildButton( LY_IMAGE, android.R.drawable.ic_menu_share );
+
         BUTTON_RESET.setOnClickListener( (v) -> {
             EnquiryActivity.this.finish();
         });
+
+        BT_SHARE.setOnClickListener( (v) -> {
+            final Intent SEND_INTENT = new Intent();
+            SEND_INTENT.setAction( Intent.ACTION_SEND );
+            SEND_INTENT.putExtra( Intent.EXTRA_TEXT, FINAL_REPORT );
+            SEND_INTENT.setType( "text/html" );
+
+            final Intent SHARE_INTENT = Intent.createChooser( SEND_INTENT, null );
+            this.startActivity( SHARE_INTENT );
+        });
+
+        this.showingEnd = true;
     }
 
-    private void saveJSON()
+    private File saveJSON()
     {
-        final String FN = "data-" + Util.buildSerial() + ".json";
+        final File INTERNAL_DIR = this.getCacheDir();
+        final String FN = "enq-" + Util.buildSerial() + ".json";
+        final File TORET = new File( INTERNAL_DIR, FN );
 
-        try (FileOutputStream f = this.openFileOutput( FN, Context.MODE_PRIVATE ) ) {
+        try (FileOutputStream f = new FileOutputStream( TORET ) ) {
             DataOutputStream STREAM = new DataOutputStream( f );
             final PrintWriter WR = new PrintWriter( STREAM );
+
             new FormJSONSaver( player ).saveToJSON( WR );
             WR.flush();
             WR.close();
@@ -181,6 +225,33 @@ public class EnquiryActivity extends AppCompatActivity {
             Log.e( LOG_TAG, ERR_MSG );
             Toast.makeText( this, ERR_MSG, Toast.LENGTH_LONG ).show();
         }
+
+        return TORET;
+    }
+
+    private void uploadToCloud(File fin)
+    {
+        final HandlerThread HANDLER_THREAD = new HandlerThread( "dropbox_backup" );
+        final AppCompatActivity SELF = this;
+
+        HANDLER_THREAD.start();
+
+        final Handler HANDLER = new Handler( HANDLER_THREAD.getLooper() );
+        HANDLER.post( () -> {
+            try {
+                drpbxClient.uploadFile( fin );
+                SELF.runOnUiThread( () -> {
+                    Log.i( LOG_TAG, "Enquiry data uploaded" );
+                });
+            } catch(DbxException exc) {
+                SELF.runOnUiThread( () -> {
+                    Log.e( LOG_TAG, "Error uploading: " + exc.getMessage() );
+                });
+            } finally {
+                HANDLER.removeCallbacksAndMessages( null );
+                HANDLER_THREAD.quit();
+            }
+        });
 
         return;
     }
@@ -197,10 +268,26 @@ public class EnquiryActivity extends AppCompatActivity {
         LY_NEXT.setVisibility( View.VISIBLE );
 
         // Question attributes
-        TextViewCompat.setTextAppearance( LBL_QUESTION, textSize );
-        LBL_QUESTION.setText( Q.getText() );
+        this.setTextInTextView( LBL_QUESTION, Q.getText() );
         this.buildAnswerSupportFor( Q );
         this.buildImageFor( Q );
+        this.showingEnd = false;
+    }
+
+    /** Converts HTML to rich text understandable
+      * by Android's TextView.
+      * @param txt The text with html tags to convert.
+      * @return Spanned text.
+      */
+    private Spanned richTextFromHtml(String txt)
+    {
+        return HtmlCompat.fromHtml( txt, HtmlCompat.FROM_HTML_MODE_LEGACY );
+    }
+
+    private void setTextInTextView(final TextView LBL_QUESTION, String txt)
+    {
+        TextViewCompat.setTextAppearance( LBL_QUESTION, textSize );
+        LBL_QUESTION.setText( richTextFromHtml( txt ) );
     }
 
     private void buildAnswerSupportFor(final Question Q)
@@ -250,14 +337,6 @@ public class EnquiryActivity extends AppCompatActivity {
         this.hideKeyboard( RADIO_GROUP );
     }
 
-    private void hideKeyboard(final View VIEW)
-    {
-        final InputMethodManager IME = (InputMethodManager)
-                this.getSystemService( Activity.INPUT_METHOD_SERVICE );
-
-        IME.hideSoftInputFromWindow( VIEW.getWindowToken(), 0 );
-    }
-
     private void buildRadioButton(int id, final RadioGroup RADIO_GROUP, String text)
     {
         final RadioButton TORET = new RadioButton( this );
@@ -276,13 +355,6 @@ public class EnquiryActivity extends AppCompatActivity {
         final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
 
         if ( !Q.getPic().isEmpty() ) {
-            LY_IMAGE.setVisibility( View.VISIBLE );
-            LY_IMAGE.setPadding( 10, 10, 10, 10 );
-            LY_IMAGE.setLayoutParams(
-                    new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f )
-            );
-
             final ImageView IMAGE_VIEW = new ImageView( this );
             final String PIC_ID = Q.getPic();
             @SuppressLint("DiscouragedApi") final Drawable PIC = ResourcesCompat.getDrawable(
@@ -295,7 +367,9 @@ public class EnquiryActivity extends AppCompatActivity {
             IMAGE_VIEW.setLayoutParams( new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f ) );
             IMAGE_VIEW.setImageDrawable( PIC );
+            LY_IMAGE.removeAllViews();
             LY_IMAGE.addView( IMAGE_VIEW );
+            LY_IMAGE.setVisibility( View.VISIBLE );
         } else {
             LY_IMAGE.setVisibility( View.GONE );
         }
@@ -342,7 +416,7 @@ public class EnquiryActivity extends AppCompatActivity {
             final EnquiryActivity SELF = EnquiryActivity.this;
 
             if ( SELF.fetchAnswerFor( this.getCurrentQuestion() ) ) {
-                if ( player.gotoNextQuestion() ) {
+                if ( player.findNextQuestion() ) {
                     SELF.showCurrentQuestion();
                 } else {
                     SELF.showFormEnd();
@@ -474,6 +548,14 @@ public class EnquiryActivity extends AppCompatActivity {
         return toret;
     }
 
+    private void hideKeyboard(final View VIEW)
+    {
+        final InputMethodManager IME = (InputMethodManager)
+                this.getSystemService( Activity.INPUT_METHOD_SERVICE );
+
+        IME.hideSoftInputFromWindow( VIEW.getWindowToken(), 0 );
+    }
+
     static void setTextAppeareanceFromTextSize(MainActivity.TextSize ts)
     {
         textSize = androidx.appcompat.R.style.TextAppearance_AppCompat_Small;
@@ -489,9 +571,11 @@ public class EnquiryActivity extends AppCompatActivity {
         return;
     }
 
+    private boolean showingEnd;
     static Form form;
     static FormPlayer player;
     private TextToSpeech ttEngine;
     static int textSize;
-    static boolean showNotesQuestion;
+    static FormPlayer.Settings playerSettings;
+    static DropboxUsrClient drpbxClient;
 }

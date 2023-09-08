@@ -4,35 +4,35 @@
     <branch id="data" head="data_notes">
         <q id="data_notes" type="str"
             summary="Notas"
-            text="Notas libres a rellenar según los síntomas del paciente."
+            text="Notas libres a rellenar según los &lt;u>síntomas del paciente&lt;/u>."
             goto="data_gender" />
 
         <q id="data_gender" goto="data_age" pic="pic_gender"
-            type="bool" text="¿Hombre o mujer?" summary="Sexo">
-            <opt value="false" text="Hombre" goto="data_age" />
-            <opt value="true" text="Mujer" goto="data_age" />
+            type="bool" text="¿&lt;b>Hombre&lt;/b> o &lt;b>mujer&lt;/b>?" summary="Sexo">
+            <opt value="false" text="Hombre" />
+            <opt value="true" text="Mujer" />
         </q>
 
         <q id="data_age" goto="data_height" type="int" text="¿Edad?" summary="Edad" />
 
-        <q id="data_height" type="int" text="¿Altura (centímetros)?" goto="data_weight" summary="Altura" />
+        <q id="data_height" type="int" text="¿Altura (&lt;i>centímetros&lt;/i>)?" goto="data_weight" summary="Altura" />
 
-        <q id="data_weight" type="int" text="¿Peso (kilos)?" goto="data_highPressure" summary="Peso" />
+        <q id="data_weight" type="int" text="¿Peso (&lt;i>kilos&lt;/i>)?" goto="data_highPressure" summary="Peso" />
 
         <q id="data_highPressure"
-            type="int" text="¿Tensión máxima (sistólica)?"
+            type="int" text="¿Tensión máxima (&lt;i>sistólica&lt;/i>)?"
             goto="data_lowPressure"
             summary="Sistólica" />
 
         <q id="data_lowPressure"
-            type="int" text="¿Tensión mínima (diastólica)?"
+            type="int" text="¿Tensión mínima (&lt;i>diastólica&lt;/i>)?"
             goto="data_hasHistory"
             summary="Diastólica" />
 
         <q id="data_hasHistory"
             goto="data_forMoreThanOneYear"
             type="bool"
-            text="¿En cuanto a antecedentes familiares de migraña?"
+            text="¿En cuanto a antecedentes &lt;u>familiares&lt;/u> de migraña?"
             summary="Antecedentes">
 
             <opt value="false" text="No los hay." />
@@ -42,7 +42,7 @@
         <q id="data_forMoreThanOneYear"
             goto="data_isDepressed"
             value="bool"
-            text="¿Lleva más de un año con cefaleas?"
+            text="¿Lleva más de &lt;u>un año&lt;/u> con cefaleas?"
             summary="Con cefaleas >1 año">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -51,7 +51,7 @@
         <!-- PCD-JMP_SCREENING-1316 -->
         <q id="data_isDepressed" goto="/"
             type="bool"
-            text="¿Está diagnosticado de depresión, o toma medicación para ello?"
+            text="¿Está diagnosticado de &lt;u>depresión&lt;/u>, o toma medicación para ello?"
             summary="Depresión">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -68,21 +68,24 @@
     <branch id="screen" head="screen_wasCephaleaLimitant">
         <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_hadPhotoPhobia"
             summary="Limitante"
-            text="En cuanto a lo limitante del dolor de cabeza en los últimos tres meses,
-                 ¿Le ha impedido realizar una vida normal (en el trabajo, en las relaciones familiares, actividades de ocio...) durante un día o más?">
+            text="En cuanto a lo &lt;b>limitante&lt;/b> del dolor de cabeza
+                  en los últimos &lt;u>tres meses&lt;/u>,
+                 ¿Le ha impedido realizar una &lt;b>vida normal&lt;/b> (en el &lt;i>trabajo&lt;/i>,
+                 en las &lt;i>relaciones familiares&lt;/i>, &lt;i>actividades de ocio&lt;/i>...)
+                 durante un día o más?">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="screen_hadPhotoPhobia" type="bool" goto="screen_hadNausea"
-            text="Con el dolor de cabeza, ¿le molesta la luz más de lo habitual?"
+            text="Con el dolor de cabeza, ¿le molesta la luz &lt;u>más de lo habitual&lt;/u>?"
             summary="Fotofobia">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="screen_hadNausea" type="bool" goto="/"
-            text="Con el dolor de cabeza, ¿ha sentido náuseas o vómitos?"
+            text="Con el dolor de cabeza, ¿ha sentido &lt;i>náuseas&lt;/i> o &lt;i>vómitos&lt;/i>?"
             summary="Náuseas/vómitos">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -93,7 +96,7 @@
     <branch id="migraine" head="migraine_hadMoreThanFiveEpisodes" >
         <q id="migraine_hadMoreThanFiveEpisodes" type="bool"
             goto="migraine_migraineDuration"
-            text="¿Ha tenido cinco o más episodios similares de dolor de cabeza?"
+            text="¿Ha tenido &lt;u>cinco o más episodios&lt;/u> &lt;i>similares&lt;/i> de dolor de cabeza?"
             summary="Episodios >5">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -101,7 +104,8 @@
 
         <q id="migraine_migraineDuration" type="bool"
             goto="migraine_isMigraineIntense"
-            text="¿El dolor de cabeza sin tratamiento dura al menos entre cuatro horas y hasta dos o tres días?"
+            text="¿El dolor de cabeza &lt;b>sin tratamiento&lt;/b> dura al menos
+                  entre &lt;i>cuatro horas&lt;/i> y &lt;i>hasta dos o tres días&lt;/i>?"
             summary=">4h o 3 días">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -109,7 +113,7 @@
 
         <q id="migraine_isMigraineIntense" type="bool"
             goto="migraine_betterInDarkness"
-            text="¿Diría que su dolor de cabeza es intenso o muy intenso?"
+            text="¿Diría que su dolor de cabeza es &lt;i>intenso&lt;/i> o &lt;i>muy intenso&lt;/i>?"
             summary="Intenso">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
@@ -117,7 +121,8 @@
 
         <q id="migraine_betterInDarkness" type="bool"
             goto="migraine_isCephaleaOneSided"
-            text="¿Tuvo que acostarse en una habitación a oscuras, en silencio?"
+            text="¿Tuvo que &lt;u>acostarse&lt;/u> en una habitación a &lt;i>oscuras&lt;/i>,
+                  en &lt;i>silencio&lt;/i>?"
             summary="Necesita descanso a oscuras">
             <!-- This question is asked in order to enforce the last one:
                  migraine_isIntense -->
@@ -126,42 +131,50 @@
         </q>
 
         <q id="migraine_isCephaleaOneSided" type="bool" goto="migraine_isPulsating"
-            text="¿El dolor de cabeza es más intenso en uno de los lados de la cabeza, o se centra en una de las sienes?"
-            summary="Dolor en un lado">
+            text="¿El dolor de cabeza es más &lt;i>intenso&lt;/i> en
+                  &lt;u>uno de los lados de la cabeza&lt;/u>, o &lt;u>en una de las sienes&lt;/u>?"
+            summary="Dolor en un lado"
+            pic="pic_headache_one_side_head">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_isPulsating" type="bool" goto="migraine_soundPhobia"
-            text="¿El dolor de cabeza es como un latido palpitante?"
+            text="¿El dolor de cabeza es como un &lt;i>latido palpitante&lt;/i>?"
             summary="Palpitante">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_soundPhobia" type="bool" goto="migraine_exerciseWorsens"
-            text="¿Le molestan los ruidos o que la gente hable cuando tiene dolor de cabeza?"
+            text="¿Le molestan &lt;i>los ruidos&lt;/i> o que la gente hable cuando tiene dolor de cabeza?"
             summary="Sonofobia">
             <opt value="false" text="No." />
             <opt value="true" text="Sí ." />
         </q>
 
         <q id="migraine_exerciseWorsens" type="bool" goto="migraine_hadAura"
-            text="Cuando tiene dolor de cabeza, si tiene que realizar alguna actividad física como cargar pesos o subir unas escaleras, ¿le empeora el dolor?"
+            text="Cuando tiene dolor de cabeza,
+                  si tiene que realizar alguna &lt;i>actividad física&lt;/i>
+                  como cargar pesos o subir unas escaleras, ¿le &lt;u>empeora&lt;/u> el dolor?"
             summary="El ejercicio lo empeora">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_hadAura" type="bool" goto="migraine_menstruationWorsens"
-            text="Antes de iniciar el dolor de cabeza, o acompañando al dolor, ha notado alteraciones en la vista, como visión borrosa o nublada, destellos luminosos, líneas en zig-zag, o puntos oscuros?"
+            text="Antes de iniciar el dolor de cabeza, o acompañando al dolor,
+                  ha notado alteraciones en la vista, como &lt;i>visión borrosa o nublada&lt;/i>,
+                  &lt;i>destellos luminosos&lt;/i>, &lt;i>líneas en zig-zag&lt;/i>,
+                  o &lt;i>puntos oscuros&lt;/i>?"
             summary="Aura">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="migraine_menstruationWorsens" type="bool" goto="migraine_contraceptivesWorsens"
-            text="¿Su cefalea tiene relación con la menstruación, de forma que la cefalea aparece o se agrava durante el ciclo?"
+            text="¿Su cefalea tiene relación con la &lt;u>menstruación&lt;/u>,
+                  de forma que la cefalea &lt;i>aparece&lt;/i> o se &lt;i>agrava&lt;/i> durante el ciclo?"
             summary="Menstruación relacionada">
             <!-- PCD_MENSTRUATIONWORSENS_NOTMALE_2017
                  This is only asked if the patient is female. -->
@@ -170,7 +183,8 @@
         </q>
 
         <q id="migraine_contraceptivesWorsens" type="bool" goto="migraine_howManyMigraine"
-            text="En caso de haber tomado anticonceptivos orales, ¿exoerimentó un empeoramiento de las cefalesas en intensidad o frecuencia?"
+            text="En caso de haber tomado &lt;u>anticonceptivos orales&lt;/u>,
+                  ¿experimentó un &lt;i>empeoramiento&lt;/i> de las cefalesas en intensidad o frecuencia?"
             summary="Anticonceptivos relacionados">
             <!-- PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
                  This is only asked if the patient is female. -->
@@ -185,7 +199,9 @@
              15 or more days with migraine is labelled as "chronic frequency"
         -->
         <q id="migraine_howManyMigraine" type="int" goto="/"
-            text="¿Cuántos días de dolor de cabeza tiene al mes?"
+            text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
+                  (&lt;i>intenso&lt;/i>, &lt;i>en un lado o sien&lt;/i>...),
+                  tiene &lt;u>al mes&lt;/u>?"
             summary="Migrañas/mes" />
     </branch>
 
@@ -196,21 +212,24 @@
     <branch id="tensional" head="tensional_wholeHead">
         <q id="tensional_wholeHead" type="bool" goto="tensional_isCephaleaHelmet"
             summary="Toda la cabeza"
-            text="¿En general, el dolor afecta a toda la cabeza?">
+            text="¿En general, el &lt;i>dolor&lt;/i> afecta a &lt;u>toda la cabeza&lt;/u>?"
+            pic="pic_headache_whole_head">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_isCephaleaHelmet" type="bool" goto="tensional_isTensionalIntense"
            summary="Casco o venda opresiva"
-           text="Las características del dolor se parecen a tener un casco puesto en la cabeza, o a llevar un banda-cinta opresiva alrededor de la cabeza, o como un peso encima de ella?">
+           text="Las &lt;u>características&lt;/u> del dolor se parecen a tener &lt;i>un casco puesto en la cabeza&lt;/i>,
+                 o a llevar una &lt;i>banda-cinta opresiva&lt;/i> alrededor de la cabeza,
+                 o como &lt;i>un peso&lt;/i> encima de ella?">
            <opt value="false" text="No." />
            <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_isTensionalIntense" type="bool" goto="tensional_exerciseWorsens"
             summary="Dolor intenso"
-            text="¿El dolor es intenso, le impide realizar tareas cotidianas?">
+            text="¿El dolor es &lt;i>intenso&lt;/i>, le &lt;b>impide&lt;/b> realizar &lt;u>tareas cotidianas&lt;/u>?">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
@@ -222,28 +241,32 @@
 
         <q id="tensional_isStabbing" type="bool" goto="tensional_isTensionalWorseOnAfternoons"
             summary="Hormigueo/punzadas"
-            text="¿Tiene otras sensaciones como hormigueo o punzadas en la cabeza?">
+            text="¿Tiene otras sensaciones como &lt;i>hormigueo&lt;/i> o &lt;i>punzadas&lt;/i> en la cabeza?">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_isTensionalWorseOnAfternoons" type="bool" goto="tensional_isTensionalRelatedToStress"
             summary="Empeora por la tarde"
-            text="¿El dolor comienza por la mañana, va aumentando a lo largo del día, y es peor por la tarde?" >
+            text="¿El dolor &lt;i>comienza&lt;/i> por &lt;u>la mañana&lt;/u>,
+                  va &lt;i>aumentando&lt;/i> a lo largo del día,
+                  y es &lt;i>peor&lt;/i> por &lt;u>la tarde&lt;/u>?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_isTensionalRelatedToStress" type="bool" goto="tensional_isTensionalBetterWhenDistracted"
             summary="Empeora con stress"
-            text="¿El dolor puede relacionarse con situaciones de estrés, nerviosismo, preocupaciones...?" >
+            text="¿El dolor puede relacionarse con situaciones
+                  de &lt;i>estrés&lt;/i>, &lt;i>nerviosismo&lt;/i>, &lt;i>preocupaciones&lt;/i>...?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_isTensionalBetterWhenDistracted" type="bool" goto="tensional_soundPhobia"
             summary="Mejora con distracciones"
-            text="Las distracciones o el entretenimiento con tareas agradables, ¿hacen que el dolor sea menos intenso?" >
+            text="Las distracciones o el entretenimiento con tareas agradables,
+                  ¿hacen que el dolor sea &lt;i>menos intenso&lt;/i>?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
@@ -255,21 +278,22 @@
 
         <q id="tensional_insomnia" type="bool" goto="tensional_sad"
             summary="Insomnio"
-            text="¿Tiene problemas para dormir?" >
+            text="¿Tiene problemas para &lt;b>dormir&lt;/b>?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_sad" type="bool" goto="tensional_solvable"
-            summary="Triste"
-            text="¿Se siente bien, o por el contrario, triste, irritable...?" >
+            summary="Desánimo"
+            text="¿Se siente &lt;b>desanimado&lt;/b>, &lt;i>triste&lt;/i>, o &lt;i>irritable&lt;/i>...?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
         <q id="tensional_solvable" type="bool" goto="tensional_howManyTensional"
             summary="Cede con medicación"
-            text="¿El dolor se alivia o cede con calmantes como paracetamol, ibuprofeno o nolotil?" >
+            text="¿El dolor se &lt;u>alivia&lt;/u> o &lt;i>cede&lt;/u> con calmantes
+                  como &lt;i>paracetamol&lt;/i>, &lt;i>ibuprofeno&lt;/i> o &lt;i>nolotil&lt;/i>?" >
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
@@ -282,8 +306,21 @@
                 - 15 or more: "cefalea tensional crónica" -->
         <q id="tensional_howManyTensional" type="int" goto="/"
             summary="Tensionales/mes"
-            text="¿Cuántos días de dolor de cabeza de este tipo tiene por mes?" >
+            text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
+                  (&lt;i>no intenso&lt;/i>, &lt;i>en toda la cabeza&lt;/i>...),
+                  tiene por &lt;u>mes&lt;/u>?" >
         </q>
-
+    </branch>
+    <!--- The "Do you want to continue?" branch
+          (There is only one question here.)
+    -->
+    <branch id="continue" head="continue_areYouSure">
+        <!-- PCD-CONTINUE-1338 -->
+        <q id="continue_areYouSure" type="bool" goto="/" summary="Continuar"
+            text="Además de lo comentado previamente,
+                  ¿tiene otros dolores de cabeza que quiera comentar?">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
     </branch>
 </form>

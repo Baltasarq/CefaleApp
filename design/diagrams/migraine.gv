@@ -1,0 +1,51 @@
+
+digraph Migranna {
+    
+    migraine_hadMoreThanFiveEpisodes[shape=box, label="¿Ha tenido cinco o más episodios similares de dolor de cabeza?"];
+
+    migraine_migraineDuration[shape=box, label="¿El dolor de cabeza sin tratamiento dura al menos                   entre cuatro horas y hasta dos o tres días?"];
+
+    migraine_isMigraineIntense[shape=box, label="¿Diría que su dolor de cabeza es intenso o muy intenso?"];
+
+    migraine_betterInDarkness[shape=box, label="¿Tuvo que acostarse en una habitación a oscuras,                   en silencio?"];
+
+    migraine_isCephaleaOneSided[shape=box, label="¿El dolor de cabeza es más intenso en                   uno de los lados de la cabeza, o se centra en una de las sienes?"];
+
+    migraine_isPulsating[shape=box, label="¿El dolor de cabeza es como un latido palpitante?"];
+
+    migraine_soundPhobia[shape=box, label="¿Le molestan los ruidos o que la gente hable cuando tiene dolor de cabeza?"];
+
+    migraine_exerciseWorsens[shape=box, label="Cuando tiene dolor de cabeza,                   si tiene que realizar alguna actividad física                   como cargar pesos o subir unas escaleras, ¿le empeora el dolor?"];
+
+    migraine_hadAura[shape=box, label="Antes de iniciar el dolor de cabeza, o acompañando al dolor,                   ha notado alteraciones en la vista, como visión borrosa o nublada,                   destellos luminosos, líneas en zig-zag,                   o puntos oscuros?"];
+
+    migraine_menstruationWorsens[shape=box, label="¿Su cefalea tiene relación con la menstruación,                   de forma que la cefalea aparece o se agrava durante el ciclo?"];
+
+    migraine_contraceptivesWorsens[shape=box, label="En caso de haber tomado anticonceptivos orales,                   ¿experimentó un empeoramiento de las cefalesas en intensidad o frecuencia?"];
+
+    migraine_howManyMigraine[shape=box, label="¿Cuántos días de dolor de cabeza de este tipo tiene al mes?"];
+
+    migraine_hadMoreThanFiveEpisodes -> migraine_migraineDuration[label="Episodios >5"];
+
+    migraine_migraineDuration -> migraine_isMigraineIntense[label=">4h o 3 días"];
+
+    migraine_isMigraineIntense -> migraine_betterInDarkness[label="Intenso"];
+
+    migraine_betterInDarkness -> migraine_isCephaleaOneSided[label="Necesita descanso a oscuras"];
+
+    migraine_isCephaleaOneSided -> migraine_isPulsating[label="Dolor en un lado"];
+
+    migraine_isPulsating -> migraine_soundPhobia[label="Palpitante"];
+
+    migraine_soundPhobia -> migraine_exerciseWorsens[label="Sonofobia"];
+
+    migraine_exerciseWorsens -> migraine_hadAura[label="El ejercicio lo empeora"];
+
+    migraine_hadAura -> migraine_menstruationWorsens[label="Aura"];
+
+    migraine_menstruationWorsens -> migraine_contraceptivesWorsens[label="Menstruación relacionada"];
+
+    migraine_contraceptivesWorsens -> migraine_howManyMigraine[label="Anticonceptivos relacionados"];
+
+}
+

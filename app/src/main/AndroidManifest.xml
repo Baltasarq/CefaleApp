@@ -6,7 +6,8 @@
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
-    </queries> <!-- Permissions -->
+    </queries>
+    <!-- Permissions -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
@@ -27,8 +28,11 @@
         <activity
             android:name=".ui.TextSettingsActivity"
             android:exported="false"
-            android:theme="@style/Theme.CefaleApp.NoActionBar"
             android:label="@string/lbl_text_settings" />
+        <activity
+            android:name=".ui.QuestionSettingsActivity"
+            android:exported="false"
+            android:label="@string/lbl_question_settings" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
@@ -40,8 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.EnquiryActivity"
-            android:theme="@style/Theme.CefaleApp.NoActionBar" />
+            android:name=".ui.EnquiryActivity" />
     </application>
 
 </manifest>

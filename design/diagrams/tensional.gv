@@ -1,0 +1,51 @@
+
+digraph Migranna {
+    
+    tensional_wholeHead[shape=box, label="¿En general, el dolor afecta a toda la cabeza?"];
+
+    tensional_isCephaleaHelmet[shape=box, label="Las características del dolor se parecen a tener un casco puesto en la cabeza,                  o a llevar una banda-cinta opresiva alrededor de la cabeza,                  o como un peso encima de ella?"];
+
+    tensional_isTensionalIntense[shape=box, label="¿El dolor es intenso, le impide realizar tareas cotidianas?"];
+
+    migraine_exerciseWorsens[shape=box, label="/"];
+
+    tensional_isStabbing[shape=box, label="¿Tiene otras sensaciones como hormigueo o punzadas en la cabeza?"];
+
+    tensional_isTensionalWorseOnAfternoons[shape=box, label="¿El dolor comienza por la mañana,                   va aumentando a lo largo del día,                   y es peor por la tarde?"];
+
+    tensional_isTensionalRelatedToStress[shape=box, label="¿El dolor puede relacionarse con situaciones                   de estrés, nerviosismo, preocupaciones...?"];
+
+    tensional_isTensionalBetterWhenDistracted[shape=box, label="Las distracciones o el entretenimiento con tareas agradables,                   ¿hacen que el dolor sea menos intenso?"];
+
+    migraine_soundPhobia[shape=box, label="/"];
+
+    tensional_insomnia[shape=box, label="¿Tiene problemas para dormir?"];
+
+    tensional_sad[shape=box, label="¿Se siente bien, o por el contrario, triste, irritable...?"];
+
+    tensional_solvable[shape=box, label="¿El dolor se alivia o cede con calmantes                   como paracetamol, ibuprofeno o nolotil?"];
+
+    tensional_howManyTensional[shape=box, label="¿Cuántos días de dolor de cabeza de este tipo tiene por mes?"];
+
+    tensional_wholeHead -> tensional_isCephaleaHelmet[label="Toda la cabeza"];
+
+    tensional_isCephaleaHelmet -> tensional_isTensionalIntense[label="Casco o venda opresiva"];
+
+    migraine_exerciseWorsens -> tensional_isStabbing[label="/"];
+
+    tensional_isStabbing -> tensional_isTensionalWorseOnAfternoons[label="Hormigueo/punzadas"];
+
+    tensional_isTensionalWorseOnAfternoons -> tensional_isTensionalRelatedToStress[label="Empeora por la tarde"];
+
+    tensional_isTensionalRelatedToStress -> tensional_isTensionalBetterWhenDistracted[label="Empeora con stress"];
+
+    migraine_soundPhobia -> tensional_insomnia[label="/"];
+
+    tensional_insomnia -> tensional_sad[label="Insomnio"];
+
+    tensional_sad -> tensional_solvable[label="Triste"];
+
+    tensional_solvable -> tensional_howManyTensional[label="Cede con medicación"];
+
+}
+

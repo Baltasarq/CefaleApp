@@ -8,7 +8,7 @@
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical">
 
-    <TextView
+    <TextView       android:id="@+id/tvTitle"
         android:layout_margin="20dp"
         android:gravity="center_horizontal|center_vertical"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:orientation="vertical"
         android:layout_margin="20dp">
 
-        <ImageView
+        <ImageView      android:id="@+id/imgInstitution1"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_margin="10dp"
             android:layout_width="64dp"
@@ -30,7 +30,7 @@
             android:contentDescription="@string/neurologia_name"
             app:srcCompat="@drawable/sergas" />
 
-        <TextView
+        <TextView       android:id="@+id/tvInstitution1"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:orientation="vertical"
         android:layout_margin="20dp">
 
-        <ImageView
+        <ImageView      android:id="@+id/imgInstitution2"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_margin="10dp"
             android:layout_width="64dp"
@@ -54,7 +54,7 @@
             app:srcCompat="@drawable/esei" />
 
 
-        <TextView
+        <TextView       android:id="@+id/tvInstitution2"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

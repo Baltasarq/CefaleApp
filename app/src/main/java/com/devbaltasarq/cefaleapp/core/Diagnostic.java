@@ -6,6 +6,7 @@ package com.devbaltasarq.cefaleapp.core;
 
 import android.util.Log;
 
+
 public class Diagnostic {
     private static final String LOG_TAG = Diagnostic.class.getSimpleName();
 
@@ -57,6 +58,13 @@ public class Diagnostic {
                                         Repo.Id.HADNAUSEA } );
     }
 
+    /** PCD_HOW_MANY_MIGRAINE_1151 and PCD-HOW_MANY_TENSIONAL-1147
+      * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
+      * - 4 to 7 days with migraine is labelled as "low frequency"
+      * - 8 to 14 days with migraine is labelled as "high frequency"
+      * - 15 or more days with migraine is labelled as "chronic frequency"
+      * @return a Frequency depending in the criteria above.
+      */
     private Frequency frequencyFromEpisodes(int episodes)
     {
         Frequency toret = Frequency.ESPORADIC;
@@ -76,12 +84,20 @@ public class Diagnostic {
         return toret;
     }
 
-    /** PCD_HOW_MANY_MIGRAINE_1151
-      * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
-      * - 4 to 7 days with migraine is labelled as "low frequency"
-      * - 8 to 14 days with migraine is labelled as "high frequency"
-      * - 15 or more days with migraine is labelled as "chronic frequency"
-      * @return a Frequency depending in the criteria above.
+    /** @see Diagnostic::frequencyFromEpisodes
+     * @return a Frequency for mixed migraines diagnostic,
+     *         depending on the criteria above.
+     */
+    private Frequency getMixedFreq()
+    {
+        return this.frequencyFromEpisodes(
+                this.getInt( Repo.Id.HOWMANYMIGRAINE )
+                + this.getInt( Repo.Id.HOWMANYTENSIONAL ) );
+    }
+
+    /** @see Diagnostic::frequencyFromEpisodes
+      * @return a Frequency for migraines diagnostic,
+      *         depending on the criteria above.
       */
     private Frequency getMigraineFreq()
     {
@@ -89,13 +105,9 @@ public class Diagnostic {
                     this.getInt( Repo.Id.HOWMANYMIGRAINE ) );
     }
 
-    /** PCD-HOW_MANY_TENSIONAL-1147
-        How many days of tensional cephalea per month:
-        - 1 to 3: "cefalea tensional esporádica"
-        - 4 to 7: "cefatea tensional de baja frecuencia"
-        - de 8 to 14: "cefatea tensional de alta frecuencia"
-        - 15 or more: "cefalea tensional crónica"
-      * @return a Frequency value following the above criteria.
+    /** @see Diagnostic::frequencyFromEpisodes
+      * @return a Frequency for tensional cephaleas diagnostic,
+      *         following the above criteria.
       */
     private Frequency getTensionalFreq()
     {
@@ -145,6 +157,21 @@ public class Diagnostic {
         return toret;
     }
 
+    public boolean shouldManCheckedDoctor()
+    {
+        int mainCriteria = this.calcSumOf( new Repo.Id[] {
+                Repo.Id.ISCEPHALEAONESIDED,
+                Repo.Id.ISPULSATING,
+                Repo.Id.ISMIGRAINEINTENSE,
+                Repo.Id.EXERCISEWORSENS
+        });
+
+        return ( !this.isMigraine()
+              && this.isMale()
+              && mainCriteria >= 1
+              && this.getBool( Repo.Id.HASHISTORY ) );
+    }
+
     /** return true if the patient has tensional cephaleas, false otherwise. */
     private boolean isTensional()
     {
@@ -153,7 +180,8 @@ public class Diagnostic {
                                 Repo.Id.ISTENSIONALWORSEONAFTERNOONS,
                                 Repo.Id.ISTENSIONALRELATEDTOSTRESS,
                                 Repo.Id.ISTENSIONALBETTERWHENDISTRACTED,
-                                Repo.Id.SOUNDPHOBIA }) > 1;
+                                Repo.Id.SOUNDPHOBIA,
+                                Repo.Id.INSOMNIA }) > 1;
 
         if ( !toret ) {
             toret = this.getBool( Repo.Id.WHOLEHEAD )
@@ -189,6 +217,7 @@ public class Diagnostic {
 
         if ( this.REPO.exists( id ) ) {
             toret = this.REPO.getBool( id );
+        } else {
             Log.e( LOG_TAG, "missing from REPO " + id );
         }
 
@@ -220,8 +249,9 @@ public class Diagnostic {
         if ( !IS_MIGRAINE
           && !IS_TENSIONAL )
         {
-            TORET.append( "Sin evidencias de migraña." );
+            TORET.append( "<b>Sin evidencias de cefaleas</b>." );
         } else {
+            TORET.append( "<b>" );
             // Kind of cephalea
             if ( IS_MIXED ) {
                 TORET.append( "cefalea mixta" );
@@ -243,9 +273,11 @@ public class Diagnostic {
             }
 
             // Frequency
-            if ( IS_MIXED
-              || IS_MIGRAINE )
-            {
+            if ( IS_MIXED ) {
+                freq = this.getMixedFreq();
+            }
+            else
+            if ( IS_MIGRAINE ) {
                 freq = this.getMigraineFreq();
             } else {
                 freq = this.getTensionalFreq();
@@ -253,6 +285,34 @@ public class Diagnostic {
 
             TORET.append( ' ' );
             TORET.append( freq.toString() );
+            TORET.append( "</b><i>" );
+
+            // You should ask your doctor
+            if ( IS_MIXED
+              || IS_MIGRAINE )
+            {
+                if ( !this.REPO.getBool( Repo.Id.HADMORETHANFIVEEPISODES ) ) {
+                    TORET.append( '\n' );
+                    TORET.append( " (Probable, migraña de menos de cinco episodios. " );
+                    TORET.append( "Consulte con su médico.)" );
+                    TORET.append( '\n' );
+                }
+
+                if ( !this.REPO.getBool( Repo.Id.MIGRAINEDURATION ) ) {
+                    TORET.append( '\n' );
+                    TORET.append( " (No cumple con la duración de un episodio de migraña. " );
+                    TORET.append( "Consulte con su médico.)" );
+                    TORET.append( '\n' );
+                }
+            }
+
+            if ( this.shouldManCheckedDoctor() ) {
+                TORET.append( '\n' );
+                TORET.append( " (Síntoms relevantes. Consulte con su médico.)" );
+                TORET.append( '\n' );
+            }
+
+            TORET.append( "</i>" );
         }
 
         return TORET.toString();

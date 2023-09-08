@@ -34,6 +34,6 @@ g	DATA	ISDEPRESSED	"¿Tiene depresión?"
 4.8	TENSIONAL	ISTENSIONALBETTERWHENDISTRACTED	"¿Mejora con las distracciones?"
 4.9	TENSIONAL	SOUNDPHOBIA	"¿Le molestan los ruidos o que la gente hable en alto?"
 4.10	TENSIONAL	INSOMNIA	Insomnio
-4.11	TENSIONAL	SAD	"Anímicamente, ¿se siente triste, irritable o aburrido?"
+4.11	TENSIONAL	SAD	"¿Se siente triste, irritable o aburrido?"
 4.12	TENSIONAL	SOLVABLE	"¿Cede con ibuprofeno, paracetamol o nolotil?"
 4.13	TENSIONAL	HOWMANYTENSIONAL	"¿Cuántas cefaleas tensionales al mes?"
