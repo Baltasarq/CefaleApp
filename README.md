@@ -1,10 +1,10 @@
-# CefaleaApp
+# CefaleApp
 
 ## About
 
 An Android app to aid in the diagnosis of migraine, allowing to distinguish between tensional and migraine.
 
-[CefaleaAPP's Web](https://baltasarq.github.io/CefaleaApp/)
+[CefaleAPP's Web](https://baltasarq.github.io/CefaleApp/)
 
 ## Institutions
 
