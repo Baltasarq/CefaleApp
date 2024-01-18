@@ -1,12 +1,12 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
 import androidx.annotation.NonNull;
 
-import com.devbaltasarq.cefaleapp.core.form.Value;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

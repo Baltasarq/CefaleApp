@@ -1,11 +1,11 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
-import com.devbaltasarq.cefaleapp.core.form.Branch;
-import com.devbaltasarq.cefaleapp.core.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Branch;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
 
 import java.util.HashMap;
 import java.util.Map;

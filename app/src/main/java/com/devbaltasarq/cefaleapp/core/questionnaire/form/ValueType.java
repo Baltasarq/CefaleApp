@@ -1,14 +1,14 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core.form;
+package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public enum ValueType { BOOL, INT, STR;
+public enum ValueType { BOOL, INT, STR, SCORE;
     /** @return the list of values, but as a list of strings. */
     public static List<String> valuesAsString()
     {

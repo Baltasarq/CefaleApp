@@ -1,18 +1,20 @@
 // FormPlayer (c) 20023 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
 import android.util.Log;
 
-import com.devbaltasarq.cefaleapp.core.form.Branch;
-import com.devbaltasarq.cefaleapp.core.form.Path;
-import com.devbaltasarq.cefaleapp.core.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Branch;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Path;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 
-public class FormPlayer {
-    private static final String LOG_TAG = FormPlayer.class.getSimpleName();
+/** A player for the main migraine test form. */
+public class MigraineFormPlayer extends GenericFormPlayer {
+    private static final String LOG_TAG = MigraineFormPlayer.class.getSimpleName();
     private static final String BR_SCREEN_ID = "screen";
     private static final String BR_MIGRAINE_ID = "migraine";
     private static final String BR_TENSIONAL_ID = "tensional";
@@ -36,7 +38,7 @@ public class FormPlayer {
             try {
                 toret = (Settings) super.clone();
             } catch (CloneNotSupportedException exc) {
-                toret = null;
+                throw new Error( "Settings cannot be cloneable." );
             }
 
             return toret;
@@ -45,22 +47,22 @@ public class FormPlayer {
         public boolean showNotesQuestion;
     }
 
-    public FormPlayer(final Form FORM)
+    public MigraineFormPlayer(final Form FORM)
     {
-        this.FORM = FORM;
+        super( FORM );
+
         this.REPO = Repo.get();
         this.PATH = new Path();
         this.DIAG = new Diagnostic( this.REPO );
-        this.STEPS = new Steps( this.FORM, this.REPO );
+        this.STEPS = new Steps( this.getFORM(), this.REPO );
         settings = new Settings();
-        this.reset();
     }
 
-    /** Resets everything and returns to first question. */
+    @Override
     public void reset()
     {
-        this.currentBr = this.FORM.getHead();
-        this.currentQ = null;
+        super.reset();
+
         this.STEPS.reset();
         this.REPO.reset();
 
@@ -69,12 +71,6 @@ public class FormPlayer {
         this.PATH.clear();
         this.PATH.add( BR_SCREEN_ID );
         settings.reset();
-    }
-
-    /** @return the form of questions. */
-    public Form getForm()
-    {
-        return this.FORM;
     }
 
     /** @return the repository of data. */
@@ -89,89 +85,8 @@ public class FormPlayer {
         return this.DIAG;
     }
 
-    public Question getCurrentQuestion()
-    {
-        if ( this.currentQ == null ) {
-            this.findFirstQuestion();
-        }
-
-        return this.currentQ;
-    }
-
-    public Branch getCurrentBranch()
-    {
-        return this.currentBr;
-    }
-
-    /** Get to the next question.
-      * @return true if we are in the next question, false otherwise.
-      */
-    public boolean findNextQuestion()
-    {
-        boolean toret = false;
-
-        if ( !this.postProcessing() ) {
-            if ( !this.currentQ.isEnd() ) {
-                toret = true;
-
-                do {
-                    // Get the next question available, if any
-                    this.jumpToNextQuestion();
-                } while( this.preProcessing()
-                      && !this.currentQ.isEnd() );
-            }
-        }
-
-        if ( this.currentQ == null ) {
-            toret = true;
-            this.findFirstQuestion();
-        }
-
-        return toret;
-    }
-
-    /** Go to the first question of the current branch. */
-    private void findFirstQuestion()
-    {
-        // Go to the head of the branch
-        if ( this.currentQ == null ) {
-            this.currentQ = this.currentBr.getHead();
-
-            while ( this.preProcessing()
-                 && !this.currentQ.isEnd() )
-            {
-                this.jumpToNextQuestion();
-            }
-        }
-
-        return;
-    }
-
-    /** Go to the next question of the current question. */
-    private void jumpToNextQuestion()
-    {
-        if ( !this.currentQ.isEnd() ) {
-            this.currentQ = this.currentBr.getQuestionById(
-                                        this.currentQ.getGotoId() );
-        }
-
-        return;
-    }
-
-    public void changeToBranch(String id)
-    {
-        // Set the branch
-        final Branch BR = this.FORM.getBranchById( id );
-
-        if ( BR == null ) {
-            throw new Error( "missing branch (?): '" + id + "'" );
-        }
-
-        this.currentBr = BR;
-        this.currentQ = null;
-    }
-
-    private boolean preProcessing()
+    @Override
+    protected boolean preProcessing()
     {
         final String Q_ID = this.getCurrentQuestion().getId();
         final String Q_DATA = this.getCurrentQuestion().getDataFromId();
@@ -219,10 +134,8 @@ public class FormPlayer {
         return toret;
     }
 
-    /** Triggered after each question, especially for storing info in the repo.
-      * @return true if there was a branch change, false otherwise.
-      */
-    private boolean postProcessing()
+    @Override
+    protected boolean postProcessing()
     {
         final Branch BR = this.getCurrentBranch();
         final Question Q = this.getCurrentQuestion();
@@ -295,10 +208,21 @@ public class FormPlayer {
                 + "<br/><br/>" + this.STEPS.toString();
     }
 
-    private Question currentQ;
-    private Branch currentBr;
+    public boolean registerAnswer(final Value VAL)
+    {
+        final Question Q = this.getCurrentQuestion();
+        boolean toret = ( VAL != null );
+
+        if ( toret ) {
+            final Repo.Id ID = Repo.Id.parse( Q.getDataFromId() );
+
+            this.REPO.setValue( ID, VAL );
+        }
+
+        return toret;
+    }
+
     private final Steps STEPS;
-    private final Form FORM;
     private final Repo REPO;
     private final Diagnostic DIAG;
     private final Path PATH;

@@ -1,5 +1,9 @@
 package com.devbaltasarq.cefaleapp.core.form;
 
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.ValueType;
+
 import junit.framework.TestCase;
 
 import org.junit.Assert;

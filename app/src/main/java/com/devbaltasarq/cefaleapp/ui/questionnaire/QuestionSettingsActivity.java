@@ -1,4 +1,4 @@
-package com.devbaltasarq.cefaleapp.ui;
+package com.devbaltasarq.cefaleapp.ui.questionnaire;
 
 import android.os.Bundle;
 import android.view.MenuItem;

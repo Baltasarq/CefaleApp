@@ -1,13 +1,15 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
 import android.util.Log;
 import androidx.annotation.NonNull;
 
-import com.devbaltasarq.cefaleapp.core.form.Value;
+import com.devbaltasarq.cefaleapp.core.AppInfo;
+import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +20,7 @@ import java.io.Writer;
 
 
 public class FormJSONSaver {
-    public FormJSONSaver(FormPlayer form)
+    public FormJSONSaver(MigraineFormPlayer form)
     {
         this.FORM_PLAYER = form;
     }
@@ -74,7 +76,7 @@ public class FormJSONSaver {
         wr.write( this.toJSON().toString() );
     }
 
-    private final FormPlayer FORM_PLAYER;
+    private final MigraineFormPlayer FORM_PLAYER;
     private final String LOG_ID = FormJSONSaver.class.getSimpleName();
     private final String ETQ_ID = "id";
     private final String ETQ_SERIAL = "serial";

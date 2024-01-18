@@ -1,4 +1,4 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
 package com.devbaltasarq.cefaleapp.ui;
@@ -14,13 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.DropboxUsrClient;
-import com.devbaltasarq.cefaleapp.core.FormPlayer;
-import com.devbaltasarq.cefaleapp.core.FormXMLLoader;
+import com.devbaltasarq.cefaleapp.core.questionnaire.DropboxUsrClient;
+import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
+import com.devbaltasarq.cefaleapp.core.questionnaire.FormXMLLoader;
+import com.devbaltasarq.cefaleapp.ui.questionnaire.EnquiryActivity;
+import com.devbaltasarq.cefaleapp.ui.questionnaire.QuestionSettingsActivity;
+import com.devbaltasarq.cefaleapp.ui.questionnaire.TextSettingsActivity;
+import com.devbaltasarq.cefaleapp.ui.treatment.TreatmentActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +34,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     public enum TextSize { SMALL, MEDIUM, LARGE }
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private final static String DATA_ASSET = "data.xml";
+    private final static String DATA_ASSET = "migraine_test.xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDefaults()
     {
-        EnquiryActivity.playerSettings = new FormPlayer.Settings();
+        EnquiryActivity.playerSettings = new MigraineFormPlayer.Settings();
         textSize = TextSize.MEDIUM;
     }
 
@@ -62,28 +65,34 @@ public class MainActivity extends AppCompatActivity {
         final NavigationView NAV_VIEW = this.findViewById( R.id.nav_view );
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
 
-        NAV_VIEW.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
-                final MainActivity SELF = MainActivity.this;
+        NAV_VIEW.setNavigationItemSelectedListener( (MenuItem item) -> {
+            final MainActivity SELF = MainActivity.this;
+            Intent intent = null;
 
-                if ( item.getItemId() == R.id.op_text_settings ) {
-                    final Intent INTENT = new Intent( SELF, TextSettingsActivity.class );
-                    SELF.startActivity( INTENT );
-                }
-                else
-                if ( item.getItemId() == R.id.op_enquiry_settings ) {
-                    final Intent INTENT = new Intent( SELF, QuestionSettingsActivity.class );
-                    SELF.startActivity( INTENT );
-                } else {
-                    throw new Error( "unknown option" );
-                }
-
-                LY_DRAWER.closeDrawers();
-                return true;
+            if ( item.getItemId() == R.id.op_text_settings ) {
+                intent = new Intent( SELF, TextSettingsActivity.class );
             }
+            else
+            if ( item.getItemId() == R.id.op_enquiry_settings ) {
+                intent = new Intent( SELF, QuestionSettingsActivity.class );
+            }
+            else
+            if ( item.getItemId() == R.id.op_start_enquiry ) {
+                intent = new Intent( SELF, EnquiryActivity.class );
+            }
+            else
+            if ( item.getItemId() == R.id.op_start_treatment ) {
+                intent = new Intent( SELF, TreatmentActivity.class );
+            } else {
+                throw new Error( "unknown option" );
+            }
+
+            if ( intent != null ) {
+                SELF.startActivity( intent );
+            }
+
+            LY_DRAWER.closeDrawers();
+            return true;
         });
 
         return;
@@ -92,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private void setButtonListeners()
     {
         final ImageButton BT_MENU = this.findViewById( R.id.btMenu );
-        final FloatingActionButton BT_START = this.findViewById( R.id.btStart );
+        final FloatingActionButton BT_START = this.findViewById( R.id.btStartEnquiry);
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
 
         BT_START.setOnClickListener( (v) -> {
@@ -102,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
             EnquiryActivity.setTextAppeareanceFromTextSize( textSize );
             EnquiryActivity.player.reset();
-            FormPlayer.settings = EnquiryActivity.playerSettings.clone();
+            MigraineFormPlayer.settings = EnquiryActivity.playerSettings.clone();
             MainActivity.this.startActivity( INTENT );
         });
 
@@ -115,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadData()
     {
-        final FloatingActionButton BT_START = this.findViewById( R.id.btStart );
+        final FloatingActionButton BT_START = this.findViewById( R.id.btStartEnquiry);
         final TextView TV_TITLE = this.findViewById( R.id.tvTitle );
         final TextView TV_INSTITUTION1 = this.findViewById( R.id.tvInstitution1 );
         final TextView TV_INSTITUTION2 = this.findViewById( R.id.tvInstitution2 );
@@ -124,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             EnquiryActivity.form = FormXMLLoader.loadFromFile( this.getAssets().open( DATA_ASSET ) );
-            EnquiryActivity.player = new FormPlayer( EnquiryActivity.form );
+            EnquiryActivity.player = new MigraineFormPlayer( EnquiryActivity.form );
         } catch(IOException exc) {
             TV_INSTITUTION1.setVisibility( View.GONE );
             TV_INSTITUTION2.setVisibility( View.GONE );
@@ -138,5 +147,5 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
-    static TextSize textSize;
+    public static TextSize textSize;
 }

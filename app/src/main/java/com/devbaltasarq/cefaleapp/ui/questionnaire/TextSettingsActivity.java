@@ -1,4 +1,4 @@
-package com.devbaltasarq.cefaleapp.ui;
+package com.devbaltasarq.cefaleapp.ui.questionnaire;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.ui.MainActivity;
 
 import java.util.Arrays;
 import java.util.List;

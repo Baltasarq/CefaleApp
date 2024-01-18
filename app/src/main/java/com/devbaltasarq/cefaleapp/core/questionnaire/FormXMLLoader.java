@@ -1,14 +1,14 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
-import com.devbaltasarq.cefaleapp.core.form.BasicQuestion;
-import com.devbaltasarq.cefaleapp.core.form.Branch;
-import com.devbaltasarq.cefaleapp.core.form.Option;
-import com.devbaltasarq.cefaleapp.core.form.Question;
-import com.devbaltasarq.cefaleapp.core.form.ReferenceQuestion;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.BasicQuestion;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Branch;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.ReferenceQuestion;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

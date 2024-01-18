@@ -8,7 +8,10 @@
     <!-- Labels -->
     <string name="lbl_next">next</string>
     <string name="lbl_menu">menú</string>
+    <string name="lbl_settings">Ajustes</string>
+    <string name="lbl_actions">Acciones</string>
     <string name="lbl_enquiry">Cuestionario</string>
+    <string name="lbl_treatment">Tratamiento</string>
     <string name="lbl_text_size">Tamaño del texto</string>
     <string name="lbl_show_questions">Mostrar ciertas preguntas</string>
     <string name="lbl_text_settings">Ajustes del texto</string>
@@ -17,7 +20,9 @@
     <string name="lbl_text_small">Texto pequeño</string>
     <string name="lbl_text_medium">Texto mediano</string>
     <string name="lbl_text_large">Texto grande</string>
+    <string name="lbl_morbidity">Morbidity</string>
     <string name="lbl_show_notes_question">Pregunta sobre notas del paciente</string>
+    <string name="lbl_vademecum">Vademécum</string>
 
     <!-- Messages -->
     <string name="msg_no_option_chosen">No option selected</string>

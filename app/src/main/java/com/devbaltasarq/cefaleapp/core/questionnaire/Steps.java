@@ -1,11 +1,11 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
-import com.devbaltasarq.cefaleapp.core.form.Question;
-import com.devbaltasarq.cefaleapp.core.form.Value;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,7 +133,9 @@ public class Steps {
             final Question Q = this.FORM.locate( RES_STEP );
             final Repo.Id ID = Repo.Id.parse( Q.getDataFromId() );
 
-            if ( ID == Repo.Id.NOTES ) {
+            if ( ID == Repo.Id.NOTES
+              || ID == Repo.Id.AREYOUSURE )
+            {
                 continue;
             }
 

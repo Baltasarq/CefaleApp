@@ -1,7 +1,7 @@
-// Cefaleapp (c) 2023 Baltasar MIT License <jbgarcia@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <jbgarcia@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core;
+package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
 import android.util.Log;

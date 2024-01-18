@@ -1,7 +1,9 @@
-// CefaleApp (c) 2023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
 package com.devbaltasarq.cefaleapp.core.form;
+
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.ValueType;
 
 import junit.framework.TestCase;
 
