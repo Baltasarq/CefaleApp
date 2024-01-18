@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form head="midas">
+    <!-- MIDAS questions for migraine score -->
+    <branch id="midas" head="midas_headaches_avoid_working">
+
+        <q id="midas_headaches_avoid_working" type="int"
+            summary="Frecuencia cefaleas ha impedido trabajar"
+            text="¿Cuántos días en los últimos 3 meses no ha podido ir a trabajar por su cefalea?"
+            goto="midas_headaches_halves_productivity"/>
+
+        <q id="midas_headaches_halves_productivity" type="int"
+            summary="Frecuencia cefaleas ha reducido productividad"
+            text="¿Cuántos días en los últimos tres meses se redujo por la mitad su productividad en el trabajo por sus cefaleas? (No incluya los días que ha incluido en la pregunta anterior)"
+            goto="midas_headaches_prevents_chores"/>
+
+        <q id="midas_headaches_prevents_chores" type="int"
+            summary="Frecuencia cefaleas ha impedido tareas domésticas"
+            text="¿Cuántos días en los últimos 3 meses no ha realizado sus tareas domésticas por sus cefaleas?"
+            goto="midas_headaches_halves_domestic_productivity"/>
+
+        <q id="midas_headaches_halves_domestic_productivity" type="int"
+            summary="Frecuencia cefaleas ha reducido tareas domésticas"
+            text="¿Cuántos días en los últimos 3 meses se redujo por la mitad su productividad en la realización de tareas domésticas por la presencia de cefalea? (No incluya los días mencionados en la pregunta anterior)"
+            goto="midas_"/>
+
+        <q id="midas_headaches_prevented_social" type="int"
+            summary="Frecuencia cefaleas ha impedido ocio"
+            text="¿Cuántos días en los últimos 3 meses se perdió actividades familiares, sociales o lúdicas por sus cefaleas?"
+            goto="/"/>
+
+        <!--Test result
+            PCD-SUM_UP-MIDAS-1230: Find the final score, adding up all answers.
+
+            Score               MIDAS disability
+                0-5   pts       Minimum or no disability
+                6-10  pts       Low disability
+                11-20 pts       Moderate disability
+                >21   pts       High disability
+        -->
+
+    </branch>
+</form>

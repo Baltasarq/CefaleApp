@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  It's supposed to be in: http://www.headachetest.com -->
+<form head="hit">
+    <!-- HIT6 questions for migraine score -->
+    <branch id="hit" head="hit_headaches_frec_intense">
+
+        <q id="hit_headaches_frec_intense" type="score"
+            summary="Frecuencia dolores de cabeza intensos"
+            text="Cuando usted tiene dolor de cabeza, ¿con qué frecuencia el dolor es intenso?"
+            goto="hit_headaches_frec_limitant">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <q id="hit_headaches_frec_limitant" type="score"
+            summary="Frecuencia dolores de cabeza limitantes"
+            text="¿Con qué frecuencia el dolor de cabeza limita su capacidad para realizar actividades diarias habituales como las tareas domésticas, el trabajo, los estudios o actividades sociales?"
+            goto="hit_headaches_frec_lie_down">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <q id="hit_headaches_frec_lie_down" type="score"
+            summary="Frecuencia dolores de cabeza invitan acostarse"
+            text="Cuando tiene dolor de cabeza, ¿con qué frecuencia desearía poder acostarse?"
+            goto="hit_headaches_frec_too_tired">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <q id="hit_headaches_frec_too_tired" type="score"
+            summary="Frecuencia dolores de cabeza producen cansancio"
+            text="En las últimas 4 semanas, ¿con qué frecuencia se ha sentido demasiado cansada/o para trabajar o realizar las actividades diarias debido a su dolor de cabeza?"
+            goto="">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <q id="hit_headaches_frec_irritant" type="score"
+            summary="Frecuencia dolores de cabeza producen irritación"
+            text="En las últimas 4 semanas, ¿con qué frecuencia se ha sentido harta/o o irritada/o debido a su dolor de cabeza?"
+            goto="hit_headaches_frec_unfocused">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <q id="hit_headaches_frec_unfocused" type="score"
+            summary="Frecuencia dolores de cabeza producen desconcentración"
+            text="En las últimas 4 semanas, ¿con qué frecuencia el dolor de cabeza ha limitado su capacidad para concentrarse en el trabajo o en las actividades diarias?"
+            goto="\">
+
+            <opt value="6" text="Nunca" />
+            <opt value="8" text="Pocas veces" />
+            <opt value="10" text="A veces" />
+            <opt value="11" text="Muy a menudo" />
+            <opt value="13" text="Siempre" />
+        </q>
+
+        <!--
+            Test result
+            PCD-SUM_UP-HIT-2148: Find x (the final score), adding up each score for a question.
+
+            x > 60 Severe impact: your headaches are deeply impacting your life.
+            56 < x < 59: Important impact: your headaches are limiting your life.
+            50 < x < 55: Somewhat impacting: your headaches are conditioning your life.
+            x > 49: Small or no impact: your headaches are not limiting your life.
+        -->
+    </branch>
+</form>
