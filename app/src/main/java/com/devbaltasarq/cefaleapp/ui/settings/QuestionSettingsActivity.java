@@ -1,4 +1,4 @@
-package com.devbaltasarq.cefaleapp.ui.questionnaire;
+package com.devbaltasarq.cefaleapp.ui.settings;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,13 +8,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.ui.questionnaire.EnquiryActivity;
 
 
 public class QuestionSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        this.setContentView( R.layout.question_settings_activity );
+        this.setContentView( R.layout.activity_question_settings);
 
         final ActionBar ACTION_BAR = this.getSupportActionBar();
         final CheckBox CHK_SHOW_NOTES = this.findViewById( R.id.chkShowNotesQuestion );

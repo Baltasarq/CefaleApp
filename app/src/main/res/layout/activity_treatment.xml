@@ -24,56 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <LinearLayout       android:id="@+id/lyMorbidities"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageButton        android:id="@+id/btMorbidities"
-                        android:contentDescription="@string/lbl_morbidity"
-                        android:layout_weight=".3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        app:srcCompat="@drawable/sick" />
-
-                    <ImageButton        android:id="@+id/btMedicineGroups"
-                        android:layout_weight=".3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        app:srcCompat="@drawable/hierarchy" />
-
-                    <ImageButton        android:id="@+id/btMedicines"
-                        android:layout_weight=".3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        app:srcCompat="@drawable/medicine" />
-                </LinearLayout>
-
-                <LinearLayout       android:id="@+id/lyMorbidities"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout       android:id="@+id/lyMedicineGroups"
-                    android:visibility="gone"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout       android:id="@+id/lyMedicines"
-                    android:visibility="gone"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

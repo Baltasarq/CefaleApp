@@ -40,21 +40,13 @@
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btStartTreatment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@drawable/test" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btStartEnquiry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/lbl_enquiry"
         app:srcCompat="@drawable/test" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

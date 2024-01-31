@@ -33,7 +33,7 @@ public final class MedicineRepo implements Iterable<Medicine> {
         }
 
         // Medicines by id
-        for(Medicine m: Medicine.collectAll().values()) {
+        for(Medicine m: Medicine.getAll().values()) {
             this.medicinesById.put( m.getId(), m );
         }
         

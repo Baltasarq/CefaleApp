@@ -4,8 +4,6 @@
 package com.devbaltasarq.cefaleapp.core.treatment;
 
 
-import static java.util.Map.entry;
-
 import androidx.annotation.NonNull;
 
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class Medicine implements Identifiable {
         ZOLMITRIPTAN,
         ZONISAMIDA;
 
-        /** @return the name of the group. */
+        /** @return the name of the medicine. */
         public String getName()
         {
             return Names[ this.ordinal() ];
@@ -60,21 +58,63 @@ public class Medicine implements Identifiable {
     }
 
     /** Creates a new medicine.
-      * @param id the id of this medicine.
-      * @param minDosage the minimum dosage, or -1 if not given.
-      * @param recommendedDosage the recommended dosage, or -1 if not given.
-      * @param maxDosage the maximum dosage, or -1 if not given.
+      * @param ID the id of this medicine.
+      * @param GROUP_ID the id of the medicine group this medicine pertains to.
+      * @param MIN_DOSAGE the minimum dosage, or -1 if not given.
+      * @param REC_DOSAGE the recommended dosage, or -1 if not given.
+      * @param MAX_DOSAGE the maximum dosage, or -1 if not given.
       * @param adverseEffects adverse effects, as text.
+      * @throws IllegalArgumentException if params are null or invalid.
       */
-    public Medicine(Id id,
-                      double minDosage, double recommendedDosage, double maxDosage,
-                      String adverseEffects)
+    public Medicine(final Id ID,
+                      final MedicineGroup.Id GROUP_ID,
+                      final Dosage MIN_DOSAGE,
+                      final Dosage REC_DOSAGE,
+                      final Dosage MAX_DOSAGE,
+                      String adverseEffects,
+                      String url)
     {
-        this.id = id;
-        this.minDosage = minDosage;
-        this.recommendedDosage = recommendedDosage;
-        this.maxDosage = maxDosage;
+        if ( ID == null ) {
+            throw new IllegalArgumentException( "Medicine: invalid id" );
+        }
+
+        if ( GROUP_ID == null ) {
+            throw new IllegalArgumentException( "Medicine: " + ID
+                                                + ": invalid id group" );
+        }
+
+        if ( ( MIN_DOSAGE == null
+            || !MIN_DOSAGE.isValid() )
+          && ( REC_DOSAGE == null
+            || !REC_DOSAGE.isValid() )
+          && ( MAX_DOSAGE == null
+            || !MAX_DOSAGE.isValid() ) )
+        {
+            throw new IllegalArgumentException( "Medicine: " + ID
+                                                + ": no dosage specified" );
+        }
+
+        if ( adverseEffects == null
+          || adverseEffects.isEmpty() )
+        {
+            throw new IllegalArgumentException( "Medicine: " + ID
+                                                + " no adverse effects specified" );
+        }
+
+        if ( url == null
+          || url.isEmpty() )
+        {
+            throw new IllegalArgumentException( "Medicine: " + ID
+                                                + ": no url specified" );
+        }
+
+        this.id = ID;
+        this.groupId = GROUP_ID;
+        this.minDosage = MIN_DOSAGE;
+        this.recDosage = REC_DOSAGE;
+        this.maxDosage = MAX_DOSAGE;
         this.adverseEffects = adverseEffects.trim();
+        this.url = url;
     }
 
     /** @return the group this medicine pertaints to. */
@@ -86,7 +126,7 @@ public class Medicine implements Identifiable {
     /** Minimum dosage can be -1 if missing.
       * @return the minimum dosage, as a double, in mg/day.
       */
-    public double getMinDosage()
+    public Dosage getMinDosage()
     {
         return this.minDosage;
     }
@@ -94,15 +134,15 @@ public class Medicine implements Identifiable {
     /** Recommended dosage can be -1 if missing.
       * @return the recommended dosage, as a double, in mg/day.
       */
-    public double getRecommendedDosage()
+    public Dosage getRecommendedDosage()
     {
-        return this.recommendedDosage;
+        return this.recDosage;
     }
     
     /** Maximum dosage can be -1 if missing.
       * @return the maximum dosage, as a double, in mg/day.
       */
-    public double getMaxDosage()
+    public Dosage getMaxDosage()
     {
         return this.maxDosage;
     }
@@ -112,6 +152,19 @@ public class Medicine implements Identifiable {
     {
         return this.adverseEffects;
     }
+
+    /** @return the group this medicine pertains to. */
+    public MedicineGroup getGroup()
+    {
+        return MedicineGroup.collectAll().get( this.groupId );
+    }
+
+    /** @return the online url. */
+    public String getUrl()
+    {
+        return this.url;
+    }
+
     @Override
     public int hashCode()
     {
@@ -139,17 +192,17 @@ public class Medicine implements Identifiable {
         String higDosage = "";
         String recDosage = "";
         
-        if ( this.getMinDosage() >= 0 ) {
+        if ( this.getMinDosage().isValid() ) {
             lowDosage = "\nDosis mínima: " + this.getMinDosage();
             
         }
         
-        if ( this.getMaxDosage() >= 0 ) {
+        if ( this.getMaxDosage().isValid() ) {
             higDosage = "\nDosis máxima: " + this.getMaxDosage();
             
         }
         
-        if ( this.getRecommendedDosage() >= 0 ) {
+        if ( this.getRecommendedDosage().isValid() ) {
             recDosage = "\nDosis recomendada: " + this.getRecommendedDosage();
             
         }
@@ -167,212 +220,35 @@ public class Medicine implements Identifiable {
         );
     }
 
-    /** Creates all the medicine objects. */
+    /** @return all the medicine objects. */
     @NonNull
-    public static Map<Medicine.Id, Medicine> collectAll()
+    public static Map<Medicine.Id, Medicine> getAll()
     {
         if ( allMedicines == null ) {
-            allMedicines = new HashMap<>( Map.ofEntries(
-                // Valproico
-                entry(
-                    Id.ACIDO_VALPROICO,
-                    new Medicine( Id.ACIDO_VALPROICO,
-                            300, 600, -1,
-                            "somnolencia, cansancio, irritabilidad, "
-                                + "inquietud durante el sueño, "
-                                + "ataxia, temblor distal, "
-                                + "trastornos gastrointestinales, "
-                                + "aumento de peso, "
-                                + "pérdida de cabello,"
-                                + "elevación de transaminasas, "
-                                + "trombocitopenia." )),
-
-                // Almotriptán
-                entry(
-                    Id.ALMOTRIPTAN,
-                    new Medicine( Id.ALMOTRIPTAN,
-                            12.5, -1, 25,
-                            "Posible reacción cruzada con alérgicos "
-                                + "a sulfamidas. Opresión torácica, "
-                                + "náuseas, vómitos, mareos, vértigo, "
-                                + "somnolencia. Contraindicados en "
-                                + "pacientes con cardiopatía isquémica, "
-                                + "hipertensión, "
-                                + "enfermedad arterial periférica, "
-                                + "enfermedad de Raynaud." )),
-
-                // Amitriptilina
-                entry(
-                    Id.AMITRIPTILINA,
-                    new Medicine( Id.AMITRIPTILINA,
-                            10, 25, -1,
-                            "sequedad de boca, sabor metálico, "
-                                + "estreñimiento retención urinaria, "
-                                + "visión borrosa, trastorno de la acomodación "
-                                + "hipotensión postural, somnolencia,"
-                                + "aumento de apetito, aumento de peso "
-                                + "elevación de transaminasas, alteración "
-                                + "de la líbido. Precaución con glaucoma e "
-                                + "hipertrofia prostática." )),
-
-                // Cafergot
-                entry(
-                    Id.CAFERGOT,
-                    new Medicine( Id.CAFERGOT,
-                            2, 2, 6,
-                            "Náuseas, vómitos, dolor abdominal, "
-                                + "parestesias, calambres musculares, angor, "
-                                + "Contraindicado en cardiopatía isquemina, "
-                                + "arteriopatía periférica, migraña hemipléjica "
-                                + "enfermedad de Raynaud. No se puede combinar con "
-                                + "Triptán." )),
-
-                // Candesartán
-                entry(
-                    Id.CANDESARTAN,
-                    new Medicine( Id.CANDESARTAN,
-                            8, 16, -1,
-                            "Mareo, insomnio, hipotensión sin taquicardia "
-                                + "refleja, ortostatismo, hiperpotasemia, "
-                                + "insuficiencia renal, erupción cutánea, angioedema, tos, "
-                                + "astenia, congestión nasal, dispepsia, diarrea, "
-                                + "elevación de transaminasas." )),
-
-                // Flunarizina
-                entry(
-                    Id.FLUNARIZINA,
-                    new Medicine( Id.FLUNARIZINA,
-                            2.5, 5, -1,
-                            "Cefalea, astenia, somnolencia, sequedad oral, "
-                                + "visión borrosa, dermatitis, aumento de peso. "
-                                + "Precaución con hipotensión. "
-                                + "Contraindicada si hay depresión." )),
-
-                // Hemicraneal
-                entry(
-                    Id.HEMICRANEAL,
-                    new Medicine( Id.HEMICRANEAL,
-                            2, 6, -1,
-                            "Náuseas, vómitos, dolor abdominal, parestesias, "
-                                + "calambres musculares, angor. "
-                                + "Contraindicado en cardiopatía isquemina, "
-                                + "arteriopatía periférica, migraña hemipléjica, "
-                                + "enfermedad de Raynaud. No se puede combinar con "
-                                + "Triptán." )),
-
-                // Lisinopril
-                entry(
-                    Id.METOPROLOL,
-                    new Medicine( Id.METOPROLOL,
-                            50, 100, -1,
-                            "Bradicardia, hipotensión, "
-                               + "ortostatismo, vasoconstricción periférica, "
-                               + "broncoespasmo, astenia, "
-                               + "disminución de la líbido, "
-                               + "impotencia masculina, síntomas del SNC "
-                               + "(mareo, depresión, pesadillas -más "
-                               + "frecuentes con Propranolol-)" )),
-
-                // Metropolol
-                entry(
-                    Id.LISINOPRIL,
-                    new Medicine( Id.LISINOPRIL,
-                            50, 100, -1,
-                            "Bradicardia, hipotensión, ortostatismo, "
-                                + "vasoconstricción periférica, broncoespasmo, "
-                                + "astenia, disminución de la líbido, "
-                                + "impotencia masculina, síntomas del SNC ("
-                                + "mareo, depresión, pesadillas -más "
-                                + "frecuentes con Propranolol-)." )),
-
-                // Propranolol
-                entry(
-                    Id.PROPRANOLOL,
-                    new Medicine( Id.PROPRANOLOL,
-                            30, 60, -1,
-                            "Bradicardia, hipotensión, ortostatismo, "
-                                + "vasoconstricción periférica, broncoespasmo, "
-                                + "astenia, disminución de la líbido, "
-                                + "impotencia masculina, síntomas del SNC ("
-                                + "mareo, depresión, pesadillas)." )),
-
-                // Rizatriptán
-                entry(
-                    Id.RIZATRIPTAN,
-                    new Medicine( Id.RIZATRIPTAN,
-                            -1, 10, 20,
-                            "Posibles reacción cruzada con alérgicos y "
-                                + "sulfamidas. Opresión torácica, náuseas, vómitos, "
-                                + "mareos, vértigo, somnolencia. "
-                                + "Contraindicados en pacientes con cardiopatía "
-                                + "isquémica, hipertensión, enfermedad arterial "
-                                + "periférica, enfermedad de Raynaud." )),
-
-                // Sumatriptán
-                entry(
-                    Id.SUMATRIPTAN,
-                    new Medicine( Id.SUMATRIPTAN,
-                        -1, 50, 100,
-                        "20 mg. nasal, 6 mg. subcutáneo. "
-                                + "Posibles reacción cruzada con alérgicos y "
-                                + "sulfamidas. Opresión torácica, náuseas, vómitos, "
-                                + "mareos, vértigo, somnolencia. "
-                                + "Contraindicados en pacientes con cardiopatía "
-                                + "isquémica, hipertensión, enfermedad arterial "
-                                + "periférica, enfermedad de Raynaud." )),
-
-                // Topitramato
-                entry(
-                    Id.TOPIRAMATO,
-                    new Medicine( Id.TOPIRAMATO,
-                        50, 100, -1,
-                        "Astenia, mareos, fatiga, torpeza mental, "
-                                + "parestesias distales. somnolencia, síntomas depresivos, "
-                                + "diarrea, litiasis renal, glaucoma, pérdida de peso." )),
-
-                // Venlafaxina
-                entry(
-                    Id.VENLAFAXINA,
-                    new Medicine( Id.VENLAFAXINA,
-                        37.5, 75, -1,
-                        "Astenia, fatiga, hipertensión arterial, sofocos,"
-                                + "anorexia, estreñimiento, náuseas, alteración de la "
-                                + "líbido, anorgasmia, disfunción eréctil. "
-                                + "Ocasionalmente, hipotensión, síncope, taquicardia. "
-                                + "Contraindicado: uso conjunto con IMAO." )),
-
-                // Zolmitriptán
-                entry(
-                    Id.ZOLMITRIPTAN,
-                    new Medicine( Id.ZOLMITRIPTAN,
-                        2.5, 5, 10,
-                        "10 mg. nasal. "
-                                + "Posible reacción cruzada con alérgicos a "
-                                + "sulfamidas. Opresión torácica, náuseas, vómitos, "
-                                + "mareos, vértigo, somnolencia. Contraindicados en "
-                                + "pacientes con cardiopatía isquémica, hipertensión, "
-                                + "enfermedad arterial periférica, enfermedad de Raynaud." )),
-
-                // Zonisamida
-                entry(
-                    Id.ZONISAMIDA,
-                    new Medicine( Id.ZONISAMIDA,
-                        2.5, 5, 10,
-                        "Anorexia, pérdida de peso, irritabilidad, agitación "
-                                + "trastorno de la memoria, depresión, mareos, ataxia, "
-                                + "somnolencia, dipolopia, diarrea, anhidrosis, fiebre, "
-                                + "Nefrolitiasis." ))
-
-            ));
+            throw new Error( "Medicine.getAll() invoked before loading medicines" );
         }
 
         return allMedicines;
     }
+
+    public static void setAllMedicines(Map<Medicine.Id, Medicine> medicines)
+    {
+        if ( allMedicines == null ) {
+            allMedicines = new HashMap<>( medicines );
+        } else {
+            allMedicines.clear();
+            allMedicines.putAll( medicines );
+        }
+
+        return;
+    }
     
     private final Id id;
+    private final MedicineGroup.Id groupId;
     private final String adverseEffects;
-    private final double minDosage;
-    private final double recommendedDosage;
-    private final double maxDosage;
+    private final Dosage minDosage;
+    private final Dosage recDosage;
+    private final Dosage maxDosage;
+    private final String url;
     private static Map<Id, Medicine> allMedicines;
 }

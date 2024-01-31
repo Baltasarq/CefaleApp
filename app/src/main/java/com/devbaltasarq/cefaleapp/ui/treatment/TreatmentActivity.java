@@ -4,13 +4,16 @@
 package com.devbaltasarq.cefaleapp.ui.treatment;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
@@ -30,28 +33,18 @@ public class TreatmentActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         this.setContentView( R.layout.activity_treatment );
 
+        final ActionBar ACTION_BAR = this.getSupportActionBar();
+
+        if ( ACTION_BAR != null ) {
+            ACTION_BAR.setTitle( R.string.lbl_treatment );
+            ACTION_BAR.setDisplayHomeAsUpEnabled( true );
+            ACTION_BAR.setLogo( R.drawable.cephalea );
+        }
+
         final LinearLayout LY_MORBIDITIES = this.findViewById( R.id.lyMorbidities );
-        final LinearLayout LY_MEDICINE_GROUPS = this.findViewById( R.id.lyMedicineGroups );
-        final LinearLayout LY_MEDICINES = this.findViewById( R.id.lyMedicines );
-        final ImageButton BT_MORBIDITIES = this.findViewById( R.id.btMorbidities );
-        final ImageButton BT_MEDICINE_GROUPS = this.findViewById( R.id.btMedicineGroups );
-        final ImageButton BT_MEDICINES = this.findViewById( R.id.btMedicines );
-
-        // Button listeners
-        final View.OnClickListener ON_TAB_CLICK =
-                (View v) -> TreatmentActivity.this.changePage( (ImageButton) v );
-
-        BT_MORBIDITIES.setOnClickListener( ON_TAB_CLICK );
-        BT_MEDICINE_GROUPS.setOnClickListener( ON_TAB_CLICK );
-        BT_MEDICINES.setOnClickListener( ON_TAB_CLICK );
 
         // Populate with info
         this.populateLayout( LY_MORBIDITIES, Morbidity.collectAll() );
-        this.populateLayout( LY_MEDICINE_GROUPS, MedicineGroup.collectAll().values() );
-        this.populateLayout( LY_MEDICINES, Medicine.collectAll().values() );
-
-        // Set current page
-        this.changePage( BT_MORBIDITIES );
     }
 
     private<T extends Identifiable> void populateLayout(
@@ -112,32 +105,12 @@ public class TreatmentActivity extends AppCompatActivity {
         LY.addView( SEPARATOR );
     }
 
-    private void changePage(final ImageButton BUTTON)
-    {
-        final LinearLayout LY_MORBIDITIES = this.findViewById( R.id.lyMorbidities );
-        final LinearLayout LY_MEDICINE_GROUPS = this.findViewById( R.id.lyMedicineGroups );
-        final LinearLayout LY_MEDICINES = this.findViewById( R.id.lyMedicines );
-        final ImageButton BT_MORBIDITIES = this.findViewById( R.id.btMorbidities );
-        final ImageButton BT_MEDICINE_GROUPS = this.findViewById( R.id.btMedicineGroups );
-        final ImageButton BT_MEDICINES = this.findViewById( R.id.btMedicines );
-        final Function<ImageButton, Integer> FN_VISIBLE =
-                (bt) -> bt == BUTTON ? View.VISIBLE : View.GONE;
-        final Function<ImageButton, Integer> FN_ALPHA =
-                (bt) -> bt == BUTTON ? 75 : 255;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if ( item.getItemId() == android.R.id.home ) {
+            this.finish();
+            return true;
+        }
 
-        // Layouts
-        LY_MORBIDITIES.setVisibility( FN_VISIBLE.apply( BT_MORBIDITIES ) );
-        LY_MEDICINE_GROUPS.setVisibility( FN_VISIBLE.apply( BT_MEDICINE_GROUPS ) );
-        LY_MEDICINES.setVisibility( FN_VISIBLE.apply( BT_MEDICINES ) );
-
-        // Buttons' background
-        BT_MORBIDITIES.getDrawable().mutate().setAlpha( FN_ALPHA.apply( BT_MORBIDITIES ) );
-        BT_MEDICINE_GROUPS.getDrawable().mutate().setAlpha( FN_ALPHA.apply( BT_MEDICINE_GROUPS ) );
-        BT_MEDICINES.getDrawable().mutate().setAlpha( FN_ALPHA.apply( BT_MEDICINES ) );
-
-        // Buttons enabled
-        BT_MORBIDITIES.setEnabled( BUTTON != BT_MORBIDITIES );
-        BT_MEDICINE_GROUPS.setEnabled( BUTTON != BT_MEDICINE_GROUPS );
-        BT_MEDICINES.setEnabled( BUTTON != BT_MEDICINES );
+        return super.onOptionsItemSelected( item );
     }
 }

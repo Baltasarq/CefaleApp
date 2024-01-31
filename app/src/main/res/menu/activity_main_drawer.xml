@@ -35,7 +35,37 @@
             <item
                 android:id="@+id/op_start_treatment"
                 android:title="@string/lbl_treatment"
+                android:icon="@drawable/medical"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/op_start_vademecum"
+                android:title="@string/lbl_vademecum"
                 android:icon="@drawable/medicine"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/op_start_hit"
+                android:title="@string/lbl_test_hit"
+                android:icon="@drawable/test_hit"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/op_start_midas"
+                android:title="@string/lbl_test_midas"
+                android:icon="@drawable/test_midas"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/op_start_info"
+                android:title="@string/lbl_info"
+                android:icon="@drawable/question"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/op_start_about"
+                android:title="@string/lbl_about"
+                android:icon="@drawable/info"
                 app:showAsAction="never" />
         </group>
 </menu>

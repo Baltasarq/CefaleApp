@@ -14,7 +14,6 @@ public abstract class GenericFormPlayer {
     public GenericFormPlayer(final Form FORM)
     {
         this.FORM = FORM;
-        this.reset();
     }
 
     /** Resets everything and returns to first question. */

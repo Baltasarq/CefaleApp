@@ -27,8 +27,8 @@ public class MedicineGroup implements Identifiable {
         F,
         /** Toxina botulínica (uso hospitalario) **/
         G,
-        /** Sin grupo */
-        Z;
+        /** Intervention in case of migrainne. */
+        I;
 
         /** @return the name of the group. */
         public String getName()
@@ -44,7 +44,7 @@ public class MedicineGroup implements Identifiable {
                 "Neuromoduladores",
                 "Anticuerpos monoclonales",
                 "Toxina botulínica",
-                "No agrupado"
+                "Intervención"
         };
     }
 
@@ -133,26 +133,26 @@ public class MedicineGroup implements Identifiable {
             final MedicineGroup GRP_E = new MedicineGroup( Id.E );
             final MedicineGroup GRP_F = new MedicineGroup( Id.F );
             final MedicineGroup GRP_G = new MedicineGroup( Id.G );
-            final MedicineGroup GRP_Z = new MedicineGroup( Id.Z );
+            final MedicineGroup GRP_I = new MedicineGroup( Id.I );
 
             // Add medicines
-            GRP_A.add( 0, Medicine.collectAll().get( Medicine.Id.CANDESARTAN ) );
-            GRP_A.add( 1, Medicine.collectAll().get( Medicine.Id.LISINOPRIL ) );
+            GRP_A.add( 0, Medicine.getAll().get( Medicine.Id.CANDESARTAN ) );
+            GRP_A.add( 1, Medicine.getAll().get( Medicine.Id.LISINOPRIL ) );
 
-            GRP_B.add( 0, Medicine.collectAll().get( Medicine.Id.METOPROLOL) );
-            GRP_B.add( 1, Medicine.collectAll().get( Medicine.Id.PROPRANOLOL) );
+            GRP_B.add( 0, Medicine.getAll().get( Medicine.Id.METOPROLOL) );
+            GRP_B.add( 1, Medicine.getAll().get( Medicine.Id.PROPRANOLOL) );
 
-            GRP_C.add( 0, Medicine.collectAll().get( Medicine.Id.FLUNARIZINA ) );
+            GRP_C.add( 0, Medicine.getAll().get( Medicine.Id.FLUNARIZINA ) );
 
-            GRP_D.add( 0, Medicine.collectAll().get( Medicine.Id.AMITRIPTILINA ) );
-            GRP_D.add( 1, Medicine.collectAll().get( Medicine.Id.VENLAFAXINA ) );
+            GRP_D.add( 0, Medicine.getAll().get( Medicine.Id.AMITRIPTILINA ) );
+            GRP_D.add( 1, Medicine.getAll().get( Medicine.Id.VENLAFAXINA ) );
 
-            GRP_E.add( 0, Medicine.collectAll().get( Medicine.Id.TOPIRAMATO ) );
-            GRP_E.add( 1, Medicine.collectAll().get( Medicine.Id.ZONISAMIDA ) );
+            GRP_E.add( 0, Medicine.getAll().get( Medicine.Id.TOPIRAMATO ) );
+            GRP_E.add( 1, Medicine.getAll().get( Medicine.Id.ZONISAMIDA ) );
+            GRP_E.add( 2, Medicine.getAll().get( Medicine.Id.ACIDO_VALPROICO ) );
 
-            GRP_F.add( 0, Medicine.collectAll().get( Medicine.Id.AMITRIPTILINA ) );
-            GRP_F.add( 1, Medicine.collectAll().get( Medicine.Id.VENLAFAXINA ) );
-            GRP_F.add( 2, Medicine.collectAll().get( Medicine.Id.ACIDO_VALPROICO ) );
+            //GRP_F.add( 0, Medicine.getAll().get( Medicine.Id.AMITRIPTILINA ) );
+            //GRP_F.add( 1, Medicine.getAll().get( Medicine.Id.VENLAFAXINA ) );
 
             // Finish
             allGroups = new HashMap<>(
@@ -163,7 +163,7 @@ public class MedicineGroup implements Identifiable {
                     Map.entry( GRP_E.getId(), GRP_E ),
                     Map.entry( GRP_F.getId(), GRP_F ),
                     Map.entry( GRP_G.getId(), GRP_G ),
-                    Map.entry( GRP_Z.getId(), GRP_Z )));
+                    Map.entry( GRP_I.getId(), GRP_I )));
         }
 
         return allGroups;

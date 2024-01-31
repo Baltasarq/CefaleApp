@@ -24,17 +24,35 @@
         android:theme="@style/Theme.CefaleApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity2"
-            android:exported="false" />
+            android:name=".ui.treatment.MedicineActivity"
+            android:exported="false"
+            android:label="@string/lbl_medicine"/>
+        <activity
+            android:name=".ui.InfoActivity"
+            android:exported="false"
+            android:label="@string/lbl_info" />
+        <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false"
+            android:label="@string/lbl_about" />
+        <activity
+            android:name=".ui.treatment.VademecumActivity"
+            android:exported="false"
+            android:label="@string/lbl_about" />
+        <activity
+            android:name=".ui.questionnaire.EnquiryActivity"
+            android:exported="false"
+            android:label="@string/lbl_enquiry" />
         <activity
             android:name=".ui.treatment.TreatmentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/lbl_treatment" />
         <activity
-            android:name=".ui.questionnaire.TextSettingsActivity"
+            android:name=".ui.settings.TextSettingsActivity"
             android:exported="false"
             android:label="@string/lbl_text_settings" />
         <activity
-            android:name=".ui.questionnaire.QuestionSettingsActivity"
+            android:name=".ui.settings.QuestionSettingsActivity"
             android:exported="false"
             android:label="@string/lbl_question_settings" />
         <activity
@@ -48,7 +66,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.questionnaire.EnquiryActivity" />
     </application>
 
 </manifest>

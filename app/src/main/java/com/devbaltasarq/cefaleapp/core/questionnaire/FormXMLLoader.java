@@ -4,6 +4,7 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
+import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.BasicQuestion;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Branch;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
@@ -52,7 +53,7 @@ public class FormXMLLoader {
                 TORET.addBranch( loadBranch( TORET, (Element) BR_NODES.item( i ) ) );
             }
 
-            String headBranchId = getAttribute( DOC, ETQ_HEAD );
+            String headBranchId = Util.getXMLAttributeOrThrow( DOC, ETQ_HEAD );
             TORET.setHeadId( headBranchId );
         } catch(ParserConfigurationException | SAXException exc)
         {
@@ -65,8 +66,8 @@ public class FormXMLLoader {
     private static Branch loadBranch(Form form, Element branchElement) throws IOException
     {
         // Load branch's info
-        String id = getAttribute( branchElement, ETQ_ID );
-        String headQuestionId = getAttribute( branchElement, ETQ_HEAD );
+        String id = Util.getXMLAttributeOrThrow( branchElement, ETQ_ID );
+        String headQuestionId = Util.getXMLAttributeOrThrow( branchElement, ETQ_HEAD );
         final Branch TORET = new Branch( form, id );
 
         // Load branch
@@ -85,14 +86,14 @@ public class FormXMLLoader {
             final NodeList OPT_NODES = Q_NODE.getElementsByTagName( ETQ_OPT );
 
             // Load basic data
-            String id = getAttribute( Q_NODE, ETQ_ID );
-            String gotoId = getAttribute( Q_NODE, ETQ_GOTO );
+            String id = Util.getXMLAttributeOrThrow( Q_NODE, ETQ_ID );
+            String gotoId = Util.getXMLAttributeOrThrow( Q_NODE, ETQ_GOTO );
 
             // Is it a reference to another question?
             boolean isReference = false;
 
             if ( Q_NODE.hasAttribute( ETQ_REFERENCE ) ) {
-                isReference = Boolean.parseBoolean( getAttribute( Q_NODE, ETQ_REFERENCE ) );
+                isReference = Boolean.parseBoolean( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_REFERENCE ) );
             }
 
             BasicQuestion bq = null;
@@ -103,15 +104,15 @@ public class FormXMLLoader {
                 // Load the attributes of the regular question
                 QB.setId( id );
                 QB.setGotoId( gotoId );
-                QB.setText( getAttribute( Q_NODE, ETQ_TEXT ) );
-                QB.setSummary( getAttribute( Q_NODE, ETQ_SUMMARY ) );
+                QB.setText( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_TEXT ) );
+                QB.setSummary( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_SUMMARY ) );
 
                 if ( Q_NODE.hasAttribute( ETQ_PIC ) ) {
-                    QB.setPic( getAttribute( Q_NODE, ETQ_PIC ) );
+                    QB.setPic( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_PIC ) );
                 }
 
                 if ( Q_NODE.hasAttribute( ETQ_TYPE ) ) {
-                    QB.setValueType( getAttribute( Q_NODE, ETQ_TYPE ) );
+                    QB.setValueType( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_TYPE ) );
                 }
 
                 for(int j = 0; j < OPT_NODES.getLength(); ++j) {
@@ -127,32 +128,11 @@ public class FormXMLLoader {
         return;
     }
 
-    private static String getAttribute(Element element, String idAttr)
-            throws IOException
-    {
-        final String TORET = element.getAttribute( idAttr ).trim();
-
-        if ( TORET.isEmpty() ) {
-            String id = "";
-
-            if ( element.hasAttribute( ETQ_ID ) ) {
-                id = element.getAttribute( ETQ_ID );
-            }
-
-            throw new IOException( "XML: '"
-                            + idAttr + "' not found or empty in: "
-                            + element.getTagName()
-                            + "/" + id );
-        }
-
-        return TORET;
-    }
-
     private static Option loadOpt(final Element OPT_NODE)
             throws IOException
     {
-        final String TEXT = getAttribute( OPT_NODE, ETQ_TEXT );
-        final String VALUE = getAttribute( OPT_NODE, ETQ_VALUE );
+        final String TEXT = Util.getXMLAttributeOrThrow( OPT_NODE, ETQ_TEXT );
+        final String VALUE = Util.getXMLAttributeOrThrow( OPT_NODE, ETQ_VALUE );
 
         return new Option( TEXT, VALUE );
     }
