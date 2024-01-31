@@ -70,6 +70,7 @@ public class EnquiryActivity extends AppCompatActivity {
 
         final ActionBar ACTION_BAR = this.getSupportActionBar();
         final ImageButton BT_TALK = this.findViewById( R.id.btTalk );
+        final TextView LBL_QUESTION = this.findViewById( R.id.lblFaqQuestion);
 
         BT_TALK.setOnClickListener( (v) -> this.onTalk() );
 
@@ -143,7 +144,7 @@ public class EnquiryActivity extends AppCompatActivity {
     private void onTalk()
     {
         if ( !this.ttEngine.isSpeaking() ) {
-            final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
+            final TextView LBL_QUESTION = this.findViewById( R.id.lblFaqQuestion);
 
             this.ttEngine.speak(
                     LBL_QUESTION.getText(),
@@ -160,7 +161,7 @@ public class EnquiryActivity extends AppCompatActivity {
         final LinearLayout LY_ANSWER = this.findViewById( R.id.lyAnswer );
         final LinearLayout LY_NEXT = this.findViewById( R.id.lyNext );
         final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
-        final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
+        final TextView LBL_QUESTION = this.findViewById( R.id.lblFaqQuestion);
         final RadioGroup RG_OPTS = this.findViewById( R.id.rgOptions );
         final StringBuilder END_TEXT = new StringBuilder();
         final String FINAL_REPORT = player.getFinalReport();
@@ -272,6 +273,20 @@ public class EnquiryActivity extends AppCompatActivity {
         this.buildAnswerSupportFor( Q );
         this.buildImageFor( Q );
         this.showingEnd = false;
+
+        // Speech engine
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final EnquiryActivity SELF = EnquiryActivity.this;
+                SELF.ttEngine.speak(
+                        LBL_QUESTION.getText(),
+                        TextToSpeech.QUEUE_FLUSH,
+                        null,
+                        null );
+            }
+        }, 1500 );
     }
 
     /** Converts HTML to rich text understandable
