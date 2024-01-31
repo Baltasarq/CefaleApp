@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<medicines>
+    <medicine
+        id="ACIDO_VALPROICO"
+        groupId="E"
+        url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
+        <minDosage units="MG">300</minDosage>
+        <recDosage units="MG">600</recDosage>
+        <adverseEffects>
+            Somnolencia, cansancio, irritabilidad, inquietud durante el sueño,
+            ataxia, temblor distal, trastornos gastrointestinales,
+            aumento de peso, pérdida de cabello, elevación de transaminasas,
+            trombocitopenia.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="ALMOTRIPTAN"
+        groupId="I"
+        url="https://www.vademecum.es/principios-activos-almotriptan-n02cc05-es">
+        <minDosage units="MG">12.5</minDosage>
+        <maxDosage units="PILLS">2</maxDosage>
+        <adverseEffects>ºº
+            Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
+            náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
+            pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
+            enfermedad de Raynaud.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="AMITRIPTILINA"
+        groupId="D"
+        url="https://www.vademecum.es/principios-activos-amitriptilina-n06aa09-es">
+        <minDosage units="MG">10</minDosage>
+        <recDosage units="MG">25</recDosage>
+        <adverseEffects>
+            Sequedad de boca, sabor metálico, estreñimiento retención urinaria,
+            visión borrosa, trastorno de la acomodación hipotensión postural, somnolencia,
+            aumento de apetito, aumento de peso, elevación de transaminasas, alteración
+            de la líbido. Precaución con glaucoma e hipertrofia prostática.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="CAFERGOT"
+        groupId="I"
+        url="https://www.vademecum.es/medicamento-cafergot+_570">
+        <minDosage units="PILLS">2</minDosage>
+        <recDosage units="PILLS">2</recDosage>
+        <maxDosage units="PILLS">6</maxDosage>
+        <adverseEffects>
+            Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor,
+            Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica
+            enfermedad de Raynaud. No se puede combinar con Triptán.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="CANDESARTAN"
+        groupId="A"
+        url="https://www.vademecum.es/medicamento-candesartan+alter_ficha_37176">
+        <minDosage units="MG">8</minDosage>
+        <recDosage units="MG">16</recDosage>
+        <adverseEffects>
+            Mareo, insomnio, hipotensión sin taquicardia refleja, ortostatismo, hiperpotasemia,
+            insuficiencia renal, erupción cutánea, angioedema, tos, astenia, congestión nasal,
+            dispepsia, diarrea, elevación de transaminasas.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="FLUNARIZINA"
+        groupId="C"
+        url="https://www.vademecum.es/principios-activos-flunarizina-N07CA03-es">
+        <minDosage units="MG">2.5</minDosage>
+        <recDosage units="MG">5</recDosage>
+        <adverseEffects>
+            Cefalea, astenia, somnolencia, sequedad oral, visión borrosa, dermatitis,
+            aumento de peso. Precaución con hipotensión. Contraindicada si hay depresión.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="HEMICRANEAL"
+        groupId="I"
+        url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
+        <minDosage units="PILLS">2</minDosage>
+        <maxDosage units="PILLS">6</maxDosage>
+        <adverseEffects>
+            Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
+            Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
+            enfermedad de Raynaud. No se puede combinar con Triptán.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="LISINOPRIL"
+        groupId="A"
+        url="https://www.vademecum.es/principios-activos-lisinopril-c09aa03-es">
+        <minDosage units="MG">5</minDosage>
+        <recDosage units="MG">10</recDosage>
+        <adverseEffects>
+            Tos seca persistente, hipotensión, estomatitis, parestesias, erupción cutánea,
+            edema anioneurótico, disgeusia, hiperpotasemia, insuficiencia renal aguda
+            si existe estenosis bilateral de la arteria renal, artralgias.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="METOPROLOL"
+        groupId="B"
+        url="https://www.vademecum.es/principios-activos-metoprolol-C07AB02-es">
+        <minDosage units="MG">50</minDosage>
+        <recDosage units="MG">100</recDosage>
+        <adverseEffects>
+            Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
+            astenia, disminución de la líbido, impotencia masculina,
+            síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="PROPRANOLOL"
+        groupId="B"
+        url="https://www.vademecum.es/principios-activos-propranolol-c07aa05-es">
+        <minDosage units="MG">30</minDosage>
+        <recDosage units="MG">60</recDosage>
+        <adverseEffects>
+            Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
+            astenia, disminución de la líbido, impotencia masculina,
+            síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="RIZATRIPTAN"
+        groupId="I"
+        url="https://www.vademecum.es/principios-activos-rizatriptan-n02cc04-es">
+        <recDosage units="MG">10</recDosage>
+        <maxDosage units="PILLS">2</maxDosage>
+        <adverseEffects>
+            Posible reacción cruzada con alérgicos y sulfamidas.
+            Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
+            Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
+            enfermedad arterial periférica, enfermedad de Raynaud.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="SUMATRIPTAN"
+        groupId="I"
+        url="https://www.vademecum.es/principios-activos-sumatriptan-N02CC01-es">
+        <recDosage units="MG">50</recDosage>
+        <maxDosage units="PILLS">2</maxDosage>
+        <adverseEffects>
+            Posible reacción cruzada con alérgicos y sulfamidas.
+            Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
+            Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
+            enfermedad arterial periférica, enfermedad de Raynaud.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="TOPIRAMATO"
+        groupId="E"
+        url="https://www.vademecum.es/medicamento-topiramato+aristo_ficha_40392">
+        <recDosage units="MG">50</recDosage>
+        <maxDosage units="PILLS">2</maxDosage>
+        <adverseEffects>
+            Astenia, mareos, fatiga, torpeza mental, parestesias distales,
+            somnolencia, síntomas depresivos, diarrea, litiasis renal, glaucoma, pérdida de peso.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="VENLAFAXINA"
+        groupId="D"
+        url="https://www.vademecum.es/medicamento-venlafaxina+combix_ficha_29037">
+        <recDosage units="MG">37.5</recDosage>
+        <maxDosage units="MG">75</maxDosage>
+        <adverseEffects>
+            Astenia, fatiga, hipertensión arterial, sofocos,
+            anorexia, estreñimiento, náuseas, alteración de la líbido,
+            anorgasmia, disfunción eréctil.
+            Ocasionalmente, hipotensión, síncope, taquicardia.
+            Contraindicado: uso conjunto con IMAO.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="ZONISAMIDA"
+        groupId="E"
+        url="https://www.vademecum.es/principios-activos-zonisamida-N03AX15-es">
+        <minDosage units="MG">50</minDosage>
+        <maxDosage units="PILLS">100</maxDosage>
+        <adverseEffects>
+            Anorexia, pérdida de peso, irritabilidad, agitación trastorno de la memoria,
+            depresión, mareos, ataxia, somnolencia, dipolopia, diarrea, anhidrosis, fiebre,
+            nefrolitiasis.
+        </adverseEffects>
+    </medicine>
+
+</medicines>
