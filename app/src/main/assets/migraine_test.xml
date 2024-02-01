@@ -200,7 +200,6 @@
         -->
         <q id="migraine_howManyMigraine" type="int" goto="/"
             text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
-                  (&lt;i>intenso&lt;/i>, &lt;i>en un lado o sien&lt;/i>...),
                   tiene &lt;u>al mes&lt;/u>?"
             summary="Migrañas/mes" />
     </branch>
@@ -307,7 +306,6 @@
         <q id="tensional_howManyTensional" type="int" goto="/"
             summary="Tensionales/mes"
             text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
-                  (&lt;i>no intenso&lt;/i>, &lt;i>en toda la cabeza&lt;/i>...),
                   tiene por &lt;u>mes&lt;/u>?" >
         </q>
     </branch>
