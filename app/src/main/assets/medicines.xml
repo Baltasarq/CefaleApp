@@ -201,4 +201,56 @@
         </adverseEffects>
     </medicine>
 
+    <medicine
+        id="BOTOX"
+        groupId="G"
+        url="https://www.vademecum.es/espana/medicamento/37401/botox-50-unidades-allergan-polvo-para-solucion-inyectable">
+        <minDosage units="PILLS">1</minDosage>
+        <adverseEffects>
+            Medicamento de uso hospitalario.
+            Hipersensibilidad; miastenia grave, síndrome de Eaton Lambert
+            o esclerosis lateral amiotrófica; presencia de infección
+            o inflamación en los puntos a inyectar.
+            En el tratamiento de las disfunciones vesicales:
+            infección de las vías urinarias en el momento de tratamiento;
+            retención urinaria aguda; pacientes que no desean
+            o no pueden cateterizarse después del tratamiento en caso necesario.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="ERENUMAB"
+        groupId="F"
+        url="https://www.vademecum.es/principios-activos-erenumab-n02cd01-es">
+        <minDosage units="PILLS">1</minDosage>
+        <adverseEffects>
+            Medicamento de uso hospitalario.
+            Hipersensibilidad incluyendo erupción cutánea, inflamación/edema y urticaria;
+            estreñimiento; prurito; espasmos musculares; reacciones en el lugar de inyección.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="GALCANEZUMAB"
+        groupId="F"
+        url="https://www.vademecum.es/principios-activos-galcanezumab-n02cd02-es">
+        <minDosage units="PILLS">1</minDosage>
+        <adverseEffects>
+            Medicamento de uso hospitalario.
+            Vértigo; estreñimiento; prurito, erupción;
+            dolor en la zona de inyección, reacciones en la zona de inyección.
+        </adverseEffects>
+    </medicine>
+
+    <medicine
+        id="FREMANEZUMAB"
+        groupId="F"
+        url="https://www.vademecum.es/principios-activos-fremanezumab-n02cd03-es">
+        <minDosage units="PILLS">1</minDosage>
+        <adverseEffects>
+            Medicamento de uso hospitalario.
+            En el lugar de inyección: dolor, induración, eritema, prurito y exantema.
+        </adverseEffects>
+    </medicine>
+
 </medicines>

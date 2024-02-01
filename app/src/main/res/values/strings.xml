@@ -34,7 +34,7 @@
     <string name="lbl_maximum_dosage">Dosis máxima</string>
     <string name="lbl_recommended_dosage">Dosis recomendada</string>
     <string name="lbl_adverse_effects">Efectos adversos</string>
-    <string name="lbl_pills">grajea(s)</string>
+    <string name="lbl_pills">grajea(s)/unidade(s)</string>
 
     <!-- Texts -->
     <string-array name="txt_faq_qs">

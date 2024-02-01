@@ -43,7 +43,7 @@ public class MedicineGroup implements Identifiable {
                 "Antidepresivos",
                 "Neuromoduladores",
                 "Anticuerpos monoclonales",
-                "Toxina botulínica",
+                "Toxina botulímica",
                 "Uso sintomático"
         };
     }
@@ -151,8 +151,11 @@ public class MedicineGroup implements Identifiable {
             GRP_E.add( 1, Medicine.getAll().get( Medicine.Id.ZONISAMIDA ) );
             GRP_E.add( 2, Medicine.getAll().get( Medicine.Id.ACIDO_VALPROICO ) );
 
-            //GRP_F.add( 0, Medicine.getAll().get( Medicine.Id.AMITRIPTILINA ) );
-            //GRP_F.add( 1, Medicine.getAll().get( Medicine.Id.VENLAFAXINA ) );
+            GRP_F.add( 0, Medicine.getAll().get( Medicine.Id.ERENUMAB ) );
+            GRP_F.add( 1, Medicine.getAll().get( Medicine.Id.FREMANEZUMAB ) );
+            GRP_F.add( 2, Medicine.getAll().get( Medicine.Id.GALCANEZUMAB ) );
+
+            GRP_G.add( 0, Medicine.getAll().get( Medicine.Id.BOTOX ) );
 
             // Finish
             allGroups = new HashMap<>(
