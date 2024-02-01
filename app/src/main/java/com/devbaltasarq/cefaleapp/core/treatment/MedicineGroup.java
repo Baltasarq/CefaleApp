@@ -44,7 +44,7 @@ public class MedicineGroup implements Identifiable {
                 "Neuromoduladores",
                 "Anticuerpos monoclonales",
                 "Toxina botulínica",
-                "Intervención"
+                "Uso sintomático"
         };
     }
 
