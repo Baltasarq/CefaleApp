@@ -28,7 +28,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
 
         public void reset()
         {
-            this.showNotesQuestion = true;
+            this.showNotesQuestion = false;
         }
 
         public Settings clone()
