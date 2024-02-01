@@ -1,4 +1,8 @@
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@gmail.com>
+
+
 package com.devbaltasarq.cefaleapp.ui.settings;
+
 
 import android.os.Bundle;
 import android.view.MenuItem;
