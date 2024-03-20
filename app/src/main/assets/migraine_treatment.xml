@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<migraineTreatment>
+    <medicineGroups>
+        <medicineGroup id="A" name="Antihipertensivos" />
+        <medicineGroup id="B" name="Betabloqueantes" />
+        <medicineGroup id="C" name="Bloqueadores de calcio" />
+        <medicineGroup id="D" name="Antidepresivos" />
+        <medicineGroup id="E" name="Neuromoduladores" />
+        <medicineGroup id="F" name="Anticuerpos monoclonales (uso hospitalario)" />
+        <medicineGroup id="G" name="Toxina botulínica (uso hospitalario)" />
+        <medicineGroup id="I" name="Intervención: uso sintomático" />
+    </medicineGroups>
+
+    <medicines>
+        <medicine
+            id="ACIDO_VALPROICO"
+            name="Ácido valproico"
+            groupId="E"
+            posInGroup="3"
+            url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
+            <minDosage units="MG">300</minDosage>
+            <recDosage units="MG">600</recDosage>
+            <adverseEffects>
+                En mujeres en edad fértil, por sus efectos teratogénicos y
+                posibilidad de autismo, debe tomarse obligatoriamente
+                con anticonceptivos seguros.
+                Somnolencia, cansancio, irritabilidad, inquietud durante el sueño,
+                ataxia, temblor distal, trastornos gastrointestinales,
+                aumento de peso, pérdida de cabello, elevación de transaminasas,
+                trombocitopenia.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ALMOTRIPTAN"
+            name="Almotriptán"
+            groupId="I"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-almotriptan-n02cc05-es">
+            <minDosage units="MG">12.5</minDosage>
+            <maxDosage units="PILLS">2</maxDosage>
+            <adverseEffects>ºº
+                Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
+                náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
+                pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
+                enfermedad de Raynaud.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="AMITRIPTILINA"
+            name="Amitriptilina"
+            groupId="D"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-amitriptilina-n06aa09-es">
+            <minDosage units="MG">10</minDosage>
+            <recDosage units="MG">25</recDosage>
+            <adverseEffects>
+                Sequedad de boca, sabor metálico, estreñimiento retención urinaria,
+                visión borrosa, trastorno de la acomodación hipotensión postural, somnolencia,
+                aumento de apetito, aumento de peso, elevación de transaminasas, alteración
+                de la líbido. Precaución con glaucoma e hipertrofia prostática.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="CAFERGOT"
+            name="Cafergot"
+            groupId="I"
+            posInGroup="2"
+            url="https://www.vademecum.es/medicamento-cafergot+_570">
+            <minDosage units="PILLS">2</minDosage>
+            <recDosage units="PILLS">2</recDosage>
+            <maxDosage units="PILLS">6</maxDosage>
+            <adverseEffects>
+                Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor,
+                Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica
+                enfermedad de Raynaud. No se puede combinar con Triptán.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="CANDESARTAN"
+            name="Candesartán"
+            groupId="A"
+            posInGroup="1"
+            url="https://www.vademecum.es/medicamento-candesartan+alter_ficha_37176">
+            <minDosage units="MG">8</minDosage>
+            <recDosage units="MG">16</recDosage>
+            <adverseEffects>
+                Mareo, insomnio, hipotensión sin taquicardia refleja, ortostatismo, hiperpotasemia,
+                insuficiencia renal, erupción cutánea, angioedema, tos, astenia, congestión nasal,
+                dispepsia, diarrea, elevación de transaminasas.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="FLUNARIZINA"
+            name="Flunarizina"
+            groupId="C"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-flunarizina-N07CA03-es">
+            <minDosage units="MG">2.5</minDosage>
+            <recDosage units="MG">5</recDosage>
+            <adverseEffects>
+                Cefalea, astenia, somnolencia, sequedad oral, visión borrosa, dermatitis,
+                aumento de peso. Precaución con hipotensión. Contraindicada si hay depresión.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="HEMICRANEAL"
+            name="Hemicraneal"
+            groupId="I"
+            posInGroup="3"
+            url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
+            <minDosage units="PILLS">2</minDosage>
+            <maxDosage units="PILLS">6</maxDosage>
+            <adverseEffects>
+                Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
+                Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
+                enfermedad de Raynaud. No se puede combinar con Triptán.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="LISINOPRIL"
+            name="Lisinopril"
+            groupId="A"
+            posInGroup="2"
+            url="https://www.vademecum.es/principios-activos-lisinopril-c09aa03-es">
+            <minDosage units="MG">5</minDosage>
+            <recDosage units="MG">10</recDosage>
+            <adverseEffects>
+                Tos seca persistente, hipotensión, estomatitis, parestesias, erupción cutánea,
+                edema anioneurótico, disgeusia, hiperpotasemia, insuficiencia renal aguda
+                si existe estenosis bilateral de la arteria renal, artralgias.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="METOPROLOL"
+            name="Metoprolol"
+            groupId="B"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-metoprolol-C07AB02-es">
+            <minDosage units="MG">50</minDosage>
+            <recDosage units="MG">100</recDosage>
+            <adverseEffects>
+                Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
+                astenia, disminución de la líbido, impotencia masculina,
+                síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="PROPRANOLOL"
+            name="Propranolol"
+            groupId="B"
+            posInGroup="2"
+            url="https://www.vademecum.es/principios-activos-propranolol-c07aa05-es">
+            <minDosage units="MG">30</minDosage>
+            <recDosage units="MG">60</recDosage>
+            <adverseEffects>
+                Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
+                astenia, disminución de la líbido, impotencia masculina,
+                síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="RIZATRIPTAN"
+            name="Rizatriptán"
+            groupId="I"
+            posInGroup="4"
+            url="https://www.vademecum.es/principios-activos-rizatriptan-n02cc04-es">
+            <recDosage units="MG">10</recDosage>
+            <maxDosage units="PILLS">2</maxDosage>
+            <adverseEffects>
+                Posible reacción cruzada con alérgicos y sulfamidas.
+                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
+                Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
+                enfermedad arterial periférica, enfermedad de Raynaud.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="SUMATRIPTAN"
+            name="Sumatriptán"
+            groupId="I"
+            posInGroup="5"
+            url="https://www.vademecum.es/principios-activos-sumatriptan-N02CC01-es">
+            <recDosage units="MG">50</recDosage>
+            <maxDosage units="PILLS">2</maxDosage>
+            <adverseEffects>
+                Posible reacción cruzada con alérgicos y sulfamidas.
+                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
+                Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
+                enfermedad arterial periférica, enfermedad de Raynaud.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="TOPIRAMATO"
+            name="Topiramato"
+            groupId="E"
+            posInGroup="1"
+            url="https://www.vademecum.es/medicamento-topiramato+aristo_ficha_40392">
+            <recDosage units="MG">50</recDosage>
+            <maxDosage units="PILLS">2</maxDosage>
+            <adverseEffects>
+                Astenia, mareos, fatiga, torpeza mental, parestesias distales,
+                somnolencia, síntomas depresivos, diarrea, litiasis renal, glaucoma, pérdida de peso.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="VENLAFAXINA"
+            name="Venlafaxina"
+            groupId="D"
+            posInGroup="2"
+            url="https://www.vademecum.es/medicamento-venlafaxina+combix_ficha_29037">
+            <recDosage units="MG">37.5</recDosage>
+            <maxDosage units="MG">75</maxDosage>
+            <adverseEffects>
+                Astenia, fatiga, hipertensión arterial, sofocos,
+                anorexia, estreñimiento, náuseas, alteración de la líbido,
+                anorgasmia, disfunción eréctil.
+                Ocasionalmente, hipotensión, síncope, taquicardia.
+                Contraindicado: uso conjunto con IMAO.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ZONISAMIDA"
+            name="Zonisamida"
+            posInGroup="2"
+            groupId="E"
+            url="https://www.vademecum.es/principios-activos-zonisamida-N03AX15-es">
+            <minDosage units="MG">50</minDosage>
+            <maxDosage units="PILLS">100</maxDosage>
+            <adverseEffects>
+                Anorexia, pérdida de peso, irritabilidad, agitación trastorno de la memoria,
+                depresión, mareos, ataxia, somnolencia, dipolopia, diarrea, anhidrosis, fiebre,
+                nefrolitiasis.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="BOTOX"
+            name="Bótox"
+            groupId="G"
+            posInGroup="1"
+            url="https://www.vademecum.es/espana/medicamento/37401/botox-50-unidades-allergan-polvo-para-solucion-inyectable">
+            <minDosage units="PILLS">1</minDosage>
+            <adverseEffects>
+                Medicamento de uso hospitalario.
+                Hipersensibilidad; miastenia grave, síndrome de Eaton Lambert
+                o esclerosis lateral amiotrófica; presencia de infección
+                o inflamación en los puntos a inyectar.
+                En el tratamiento de las disfunciones vesicales:
+                infección de las vías urinarias en el momento de tratamiento;
+                retención urinaria aguda; pacientes que no desean
+                o no pueden cateterizarse después del tratamiento en caso necesario.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ERENUMAB"
+            name="Erenumab"
+            groupId="F"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-erenumab-n02cd01-es">
+            <minDosage units="PILLS">1</minDosage>
+            <adverseEffects>
+                Medicamento de uso hospitalario.
+                Hipersensibilidad incluyendo erupción cutánea, inflamación/edema y urticaria;
+                estreñimiento; prurito; espasmos musculares; reacciones en el lugar de inyección.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="GALCANEZUMAB"
+            name="Galcanezumab"
+            groupId="F"
+            posInGroup="2"
+            url="https://www.vademecum.es/principios-activos-galcanezumab-n02cd02-es">
+            <minDosage units="PILLS">1</minDosage>
+            <adverseEffects>
+                Medicamento de uso hospitalario.
+                Vértigo; estreñimiento; prurito, erupción;
+                dolor en la zona de inyección, reacciones en la zona de inyección.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="FREMANEZUMAB"
+            name="Fremanezumab"
+            groupId="F"
+            posInGroup="3"
+            url="https://www.vademecum.es/principios-activos-fremanezumab-n02cd03-es">
+            <minDosage units="PILLS">1</minDosage>
+            <adverseEffects>
+                Medicamento de uso hospitalario.
+                En el lugar de inyección: dolor, induración, eritema, prurito y exantema.
+            </adverseEffects>
+        </medicine>
+
+    </medicines>
+
+    <morbidities>
+
+        <morbidity
+            id="HYPERTENSION"
+            name="Hipertensión"
+            desc="La presión arterial alta es una enfermedad común que afecta a las arterias del cuerpo.
+                  También se conoce como hipertensión. Con la presión arterial alta,
+                  la fuerza que ejerce la sangre contra las paredes de las arterias
+                  es muy alta constantemente. El corazón debe trabajar más para bombear sangre.
+                    Si la hipertensión no está tratada, el tratamiento indicada es con:
+                    - Candesartán o Lisinopril.
+                    - Propranolol o Metoprolol.
+                    - Amitriptilina.
+                    - Topiramato o zonisamida.
+                    Si la hipertensión ya está tratada y controlada, valorar tratamiento con:
+                    - Flunarizina.
+                    - Amitriptilina.
+                    - Topiramato o zonisamida.">
+            <medicalTreatment>
+                <incompatible>VENLAFAXINA</incompatible>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+                <advised>PROPRANOLOL</advised>
+                <advised>METOPROLOL</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>FLUNARIZINA</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="HIPOTENSION"
+            name="Hipotensión"
+            desc="Lo que se considera presión arterial baja para una persona
+                  puede estar bien para otra. La presión arterial baja puede
+                  no causar ningún síntoma evidente o puede causar mareos y desmayos.
+                  Algunas veces, la presión arterial baja puede poner en riesgo la vida.
+                  Las causas de la presión arterial baja varían desde la deshidratación
+                  hasta afecciones médicas graves. Es importante averiguar
+                  qué es lo que causa la presión arterial baja para que pueda tratarse,
+                  de ser necesario.
+                  Contraindicados:
+                    - fármacos betabloqueantes.
+                    - fármacos anti-hipertensivos.
+                    El tratamiento preventivo indicado sería:
+                    - Venlafaxina.
+                    - Flunarizina.
+                    - Topiramato o zonisamida.">
+            <medicalTreatment>
+                <incompatibleGroup>A</incompatibleGroup>
+                <incompatibleGroup>B</incompatibleGroup>
+                <advised>VENLAFAXINA</advised>
+                <advised>FLUNARIZINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="BRADYCARDIA"
+            name="Bradicardia – bloqueo aurículoventricular"
+            desc="La bradicardia puede ser un problema grave
+                  si la frecuencia cardíaca es muy lenta y el corazón
+                  no puede bombear suficiente sangre rica en oxígeno al cuerpo.
+                  Si esto ocurre, la persona puede sentirse mareado,
+                  muy cansado o débil y con falta de aliento.
+                  A veces la bradicardia no causa síntomas ni complicaciones.
+                  Contraindicados:
+                    - fármacos betabloqueantes.
+                    El tratamiento preventivo indicado sería:
+                    - Flunarizina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatibleGroup>B</incompatibleGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="BRONQUIAL_ASTHMA"
+            name="Asma bronquial – Hiperreactividad bronquial"
+            desc="El asma es la enfermedad inflamatoria pulmonar más común,
+                  caracterizada por la presencia de inflamación crónica de la vía aérea,
+                  la hiperreactividad bronquial y el engrosamiento
+                  de las paredes de la vía aérea.
+                  Estos cambios son proporcionales
+                  a la severidad y duración de la enfermedad.
+                  La hiperreactividad bronquial es una respuesta exagerada
+                  frente a los alérgenos del ambiente que causan inflamación
+                  y obstrucción de la vía aérea.
+                  Contraindicados los fármacos betabloqueantes.
+                    El tratamiento preventivo indicado sería:
+                    - Flunarizina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatibleGroup>B</incompatibleGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="RAYNAUD"
+            name="Arteriopatía periférica – Enfermedad de Raynaud"
+            desc="La enfermedad de Raynaud causa sensación
+                  de adormecimiento y frío en algunas zonas del cuerpo,
+                  como los dedos de las manos y de los pies,
+                  en respuesta a temperaturas frías o al estrés.
+                  Contraindicados los fármacos betabloqueantes.
+                     El tratamiento preventivo indicado sería:
+                     - Flunarizina.
+                     - Amitriptilina o venlafaxina.
+                     - Topiramato o zonisamida.
+                     - Ácido valproico.
+                     - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatibleGroup>B</incompatibleGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="DIABETES"
+            name="Diabetes Mellitus tratada con insulina"
+            desc="La diabetes mellitus (DM) es un conjunto
+                  de trastornos metabólicos, cuya característica
+                  común principal es la presencia
+                  de concentraciones elevadas de glucosa en la sangre
+                  de manera persistente o crónica,
+                  debido ya sea a un defecto en la producción de insulina,
+                  a una resistencia a la acción de ella para utilizar la glucosa,
+                  a un aumento en la producción de glucosa,
+                  o a una combinación de estas causas.
+                  Contraindicados los fármacos betabloqueantes.
+                    El tratamiento preventivo indicado sería con:
+                    - Flunarizina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatibleGroup>B</incompatibleGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="OBESITY"
+            name="Obesidad – Bulimia"
+            desc="IMC > 30 kg/m².
+                  La obesidad es una enfermedad crónica que se caracteriza
+                  por la acumulación excesiva del tejido adiposo en el cuerpo,
+                  es decir, cuando la reserva natural de energía
+                  de los seres humanos y de otros animales mamíferos
+                  (almacenada en forma de grasa corporal) se incrementa
+                  hasta un punto en que pone en riesgo la salud o la vida.
+                  La obesidad es el quinto factor principal de riesgo
+                  de defunción humana en el mundo.
+                  Cada año, fallecen por lo menos 2,8 millones de personas
+                  adultas como consecuencia de la obesidad.
+                     Contraindicada flunarizina.
+                     Contraindicada amitriptilina.
+                     Contraindicado el ácido valproico.
+                     El tratamiento preventivo inicial indicado sería con:
+                     Flunarizina.
+                     Amitriptilina o venlafaxina.
+                     Topiramato o zonisamida.
+                     Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatible>FLUNARIZINA</incompatible>
+                <incompatible>AMITRIPTILINA</incompatible>
+                <incompatible>ACIDO_VALPROICO</incompatible>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="ANOREXIA"
+            name="Anorexia – Bajo peso"
+            desc="La anorexia nerviosa,
+                  a menudo simplemente denominada 'anorexia',
+                  es un trastorno de la alimentación
+                  que se caracteriza por el peso corporal anormalmente bajo,
+                  el temor intenso a aumentar de peso
+                  y la percepción distorsionada del peso.
+                    Contraindicado topiramato.
+                    Contraindicado zonisamida.
+                    Contraindicada venlafaxina.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Flunarizina.
+                    - Amitriptilina.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatible>TOPIRAMATO</incompatible>
+                <incompatible>ZONISAMIDA</incompatible>
+                <incompatible>VENLAFAXINA</incompatible>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="DEPRESSION"
+            name="Depresión – distimia depresiva"
+            desc="La gravedad de la depresión puede ir desde
+                 episodios de tristeza leves y temporales hasta cuadros
+                 de depresión persistente y grave.
+                 La depresión clínica es la forma más grave de depresión
+                 y también se la denomina 'depresión mayor'
+                 o 'trastorno depresivo mayor'.
+                 No es igual a la depresión provocada por una pérdida,
+                 como la muerte de un ser querido, o por una enfermedad,
+                 como un trastorno tiroideo.
+                 Contraindicada Flunaricina.
+                 El tratamiento preventivo inicial indicado sería con:
+                 - Amitriptilina o venlafaxina.
+                 - Ácido valproico.
+                 - Topiramato o zonisamida.
+                 - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatible>FLUNARIZINA</incompatible>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="GLAUCOMA"
+            name="Glaucoma"
+            desc="El glaucoma es un grupo de afecciones del ojo
+                  que dañan el nervio óptico.
+                  El nervio óptico es el encargado de enviar
+                  la información visual del ojo al cerebro
+                  y es vital para tener una buena visión.
+                  Los daños en el nervio óptico a menudo están relacionados
+                  con una presión alta en los ojos.
+                  Sin embargo, el glaucoma se puede producir
+                  incluso con una presión ocular normal.
+                  Elevación de la presión intraocular.
+                    - Contraindicado topiramato.
+                    - Contraindicada zonisamida.
+                    - Contraindicada amitriptilina.
+                  El tratamiento indicado sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Flunaricina.
+                    - Venlafaxina.
+                    - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatible>TOPIRAMATO</incompatible>
+                <incompatible>ZONISAMIDA</incompatible>
+                <incompatible>AMITRIPTILINA</incompatible>
+                <advisedGroup>B</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="LITIASIS"
+            name="Litiasis renal"
+            desc="Los cálculos renales (también llamados nefrolitiasis
+                  o urolitiasis) son depósitos duros hechos de minerales
+                  y sales que se forman dentro de los riñones.
+                - Contraindicado topiramato.
+                - Contraindicada zonisamida.
+                El tratamiento preventivo inicial sería con:
+                - Betabloqueantes (propranolol, metoprolol).
+                - Flunaricina.
+                - Amitriptilina o venlafaxina.
+                - Ácido valproico.
+                - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <incompatible>TOPIRAMATO</incompatible>
+                <incompatible>ZONISAMIDA</incompatible>
+                <advisedGroup>B</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="HORMONAL_CONTRACEPTIVES"
+            name="Toma de anticonceptivos hormonales"
+            desc="Los anticonceptivos orales son medicamentos
+                  que se utilizan para evitar el embarazo,
+                  basándose en hormonas.
+                  Topiramato puede disminuir el efecto anticonceptivo.
+                  El tratamiento preventivo inicial indicado sería con:
+                  - Betabloqueantes (propranolol, metoprolol).
+                  - Flunaricina.
+                  - Amitriptilina o venlafaxina.
+                  - Topiramato o zonisamida.
+                  - Ácido valproico.
+                  - Candesartán o lisinopril.">
+
+            <medicalTreatment>
+                <incompatible>TOPIRAMATO</incompatible>
+                <advisedGroup>B</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>ACIDO_VALPROICO</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+                <advised>ZONISAMIDA</advised>
+            </medicalTreatment>
+
+        </morbidity>
+
+        <morbidity
+                id="POLYCYSTIC_OVARY"
+                name="Mujer con ovario poliquístico"
+                desc="El síndrome de ovario poliquístico
+                      es un problema hormonal que se produce durante
+                      la edad reproductiva femenina.
+                      Las mujeres afectadas pueden experimentar tanto
+                      prolongados períodos menstruales como su total ausencia.
+                      Contraindicado el ácido valproico.
+                      - El tratamiento preventivo inicial indicado sería con:
+                      - Betabloqueantes (propranolol, metoprolol).
+                      - Flunaricina.
+                      - Amitriptilina o venlafaxina.
+                      - Topiramato o zonisamida.
+                      - Candesartán o lisinopril.">
+
+            <medicalTreatment>
+                <incompatible>ACIDO_VALPROICO</incompatible>
+                <advisedGroup>B</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+
+        </morbidity>
+
+        <morbidity
+            id="CHRONIC_LIVER_DISEASE"
+            name="Hepatopatía crónica"
+            desc="La hepatitis C es una infección vírica
+                que causa la hinchazón del hígado, denominada inflamación.
+                La hepatitis C puede derivar en graves daños hepáticos.
+                El virus de la hepatitis C (VHC) se propaga a través
+                del contacto con sangre que contiene el virus.
+                Contraindicado ácido valproico.
+                El tratamiento preventivo inicial indicado sería con:
+                - Betabloqueantes (propranolol, metoprolol).
+                - Flunaricina.
+                - Amitriptilina o venlafaxina.
+                - Topiramato o zonisamida.
+                - Candesartán o lisinopril.">
+
+            <medicalTreatment>
+                <incompatible>ACIDO_VALPROICO</incompatible>
+                <advisedGroup>B</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>AMITRIPTILINA</advised>
+                <advised>VENLAFAXINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+
+        </morbidity>
+
+        <morbidity
+            id="ANXIETY"
+            name="Ansiedad o estrés"
+            desc="Sentir ansiedad de modo ocasional
+                  es una parte normal de la vida.
+                  Sin embargo, las personas con trastornos de ansiedad
+                  con frecuencia tienen preocupaciones y miedos intensos,
+                  excesivos y persistentes sobre situaciones diarias.
+                  Con frecuencia, en los trastornos de ansiedad
+                  se dan episodios repetidos de sentimientos repentinos
+                  de ansiedad intensa y miedo o terror que alcanzan
+                  un máximo en una cuestión de minutos (ataques de pánico).
+                  No tenemos contraindicaciones, pero se optaría primero por tratamientos antidepresivos.
+                      El tratamiento preventivo sería con:
+                      - Betabloqueantes (propranolol, metoprolol).
+                      - Amitriptilina o venlafaxina.
+                      - Flunaricina.
+                      - Topiramato o zonisamida.
+                      - Candesartán o lisinopril.">
+            <medicalTreatment>
+                <advisedGroup>B</advisedGroup>
+                <advisedGroup>D</advisedGroup>
+                <advised>FLUNARIZINA</advised>
+                <advised>TOPIRAMATO</advised>
+                <advised>ZONISAMIDA</advised>
+                <advised>CANDESARTAN</advised>
+                <advised>LISINOPRIL</advised>
+            </medicalTreatment>
+        </morbidity>
+
+    </morbidities>
+
+</migraineTreatment>
