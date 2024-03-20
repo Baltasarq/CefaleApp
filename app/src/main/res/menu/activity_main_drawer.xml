@@ -2,7 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:id="@+id/menu_drawer">
 
     <item android:title="@string/lbl_settings"
           android:icon="@drawable/settings"
@@ -29,7 +30,7 @@
             <item
                 android:id="@+id/op_start_enquiry"
                 android:title="@string/lbl_enquiry"
-                android:icon="@drawable/test"
+                android:icon="@drawable/ic_questionnaire"
                 app:showAsAction="never" />
 
             <item

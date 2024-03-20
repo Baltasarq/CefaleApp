@@ -12,7 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.ui.questionnaire.EnquiryActivity;
+import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 
 
 public class QuestionSettingsActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class QuestionSettingsActivity extends AppCompatActivity {
         this.setCheckedQuestions();
 
         CHK_SHOW_NOTES.setOnCheckedChangeListener( (bt, status) -> {
-            EnquiryActivity.playerSettings.showNotesQuestion = status;
+            MigraineTestActivity.playerSettings.showNotesQuestion = status;
         });
     }
 
@@ -41,7 +41,7 @@ public class QuestionSettingsActivity extends AppCompatActivity {
     {
         final CheckBox CHK_SHOW_NOTES = this.findViewById( R.id.chkShowNotesQuestion );
 
-        CHK_SHOW_NOTES.setChecked( EnquiryActivity.playerSettings.showNotesQuestion );
+        CHK_SHOW_NOTES.setChecked( MigraineTestActivity.playerSettings.showNotesQuestion );
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

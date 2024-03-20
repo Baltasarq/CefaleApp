@@ -67,7 +67,7 @@ public class MedicineActivity extends AppCompatActivity {
         if ( ACTION_BAR != null ) {
             ACTION_BAR.setTitle( this.getString( R.string.lbl_medicine )
                                 + ": "
-                                + medicine.getId().toString() );
+                                + medicine.getId().getName() );
         }
 
         // Set info

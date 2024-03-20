@@ -5,25 +5,30 @@ package com.devbaltasarq.cefaleapp.ui.treatment;
 
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
-import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
-import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
+import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
+import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineRepo;
+import com.devbaltasarq.cefaleapp.core.questionnaire.Steps;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
+import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 
-import java.util.Collection;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class TreatmentActivity extends AppCompatActivity {
@@ -44,26 +49,64 @@ public class TreatmentActivity extends AppCompatActivity {
         final LinearLayout LY_MORBIDITIES = this.findViewById( R.id.lyMorbidities );
 
         // Populate with info
-        this.populateLayout( LY_MORBIDITIES, Morbidity.collectAll() );
+        this.entries = new HashMap<>();
+        this.prepareMorbidityIds();
+        this.populateLayout( LY_MORBIDITIES, Morbidity.getAll() );
+        this.buildDependencies();
+        this.loadFromMigraineRepo();
     }
 
-    private<T extends Identifiable> void populateLayout(
+    private void prepareMorbidityIds()
+    {
+        final Map<Morbidity.Id, Morbidity> MORBIDITIES = Morbidity.getAll();
+
+        final Morbidity.Id ID_HIPOTENSION = Morbidity.Id.get( "HIPOTENSION" );
+        final Morbidity.Id ID_HYPERTENSION = Morbidity.Id.get( "HYPERTENSION" );
+        final Morbidity.Id ID_OBESITY = Morbidity.Id.get( "OBESITY" );
+        final Morbidity.Id ID_ANOREXIA = Morbidity.Id.get( "ANOREXIA" );
+
+        this.hypotension = Objects.requireNonNull( MORBIDITIES.get( ID_HIPOTENSION ) );
+        this.hypertension = Objects.requireNonNull( MORBIDITIES.get( ID_HYPERTENSION ) );
+        this.obesity = Objects.requireNonNull( MORBIDITIES.get( ID_OBESITY ) );
+        this.anorexia = Objects.requireNonNull( MORBIDITIES.get( ID_ANOREXIA ) );
+    }
+
+    private void populateLayout(
             final LinearLayout LY,
-            final Collection<T> L_ID_OBJS)
+            final Map<Morbidity.Id, Morbidity> MORBIDITIES)
     {
         LY.removeAllViews();
+        this.entries.clear();
 
-        for(Identifiable idObj: L_ID_OBJS) {
+        // Put the opposite ones before
+        this.buildEntry( LY, this.hypotension);
+        this.buildEntry( LY, this.hypertension );
+        this.buildEntry( LY, this.anorexia );
+        this.buildEntry( LY, this.obesity );
+
+        MORBIDITIES.remove( this.hypotension.getId() );
+        MORBIDITIES.remove( this.hypertension.getId() );
+        MORBIDITIES.remove( this.anorexia.getId() );
+        MORBIDITIES.remove( this.obesity.getId() );
+
+        final List<Morbidity> LIST_MORBIDITIES = new ArrayList<>( MORBIDITIES.values() );
+
+        LIST_MORBIDITIES.sort( Comparator.comparing( m -> m.getId().getKey() ) );
+        for(Morbidity idObj: LIST_MORBIDITIES) {
             this.buildEntry( LY, idObj );
         }
+
+        return;
     }
 
-    private void buildEntry(final LinearLayout LY, final Identifiable ID_OBJ)
+    private void buildEntry(final LinearLayout LY, final Morbidity MORBIDITY)
     {
-        final AlertDialog.Builder DLG_INFO = new AlertDialog.Builder( this );
-        final TextView TV = new TextView( this );
-        final View SEPARATOR = new View( this );
-        String name = ID_OBJ.getId().getName();
+        if ( MORBIDITY == null ) {
+            throw new Error( "buildEntry(): missing morbidity" );
+        }
+
+        final LayoutInflater INFLATER = this.getLayoutInflater();
+        String name = MORBIDITY.getId().getName();
 
         // Prepare name (separate different lines by separator)
         int posSeparator = -1;
@@ -84,28 +127,118 @@ public class TreatmentActivity extends AppCompatActivity {
         }
 
         // Prepare text view
-        TV.setTextAppearance( android.R.style.TextAppearance_Large );
-        TV.setText( name );
-        TV.setOnClickListener( (v) -> DLG_INFO.create().show() );
+        final View ENTRY = INFLATER.inflate( R.layout.morbidity_entry, null );
+        final CheckBox CHK = ENTRY.findViewById( R.id.chkMorbidity );
+        final ImageView BT_DETAILS = ENTRY.findViewById( R.id.btDetails );
 
-        // Prepare separator
-        SEPARATOR.setLayoutParams(
-                        new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                1 ) );
-        SEPARATOR.setMinimumHeight( 1 );
-        SEPARATOR.setBackgroundResource( android.R.color.darker_gray );
-
-        // Prepare the dialog for the text view's info
-        DLG_INFO.setTitle( name );
-        DLG_INFO.setMessage( ID_OBJ.toString() );
+        CHK.setText( name );
+        BT_DETAILS.setOnClickListener( (v) -> this.launchMorbidityDetails( MORBIDITY ) );
 
         // Add to the layout
-        LY.addView( TV );
-        LY.addView( SEPARATOR );
+        this.entries.put( MORBIDITY.getId(), ENTRY );
+        LY.addView( ENTRY );
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    private void launchMorbidityDetails(Morbidity morbidity)
+    {
+        final Intent INTENT = new Intent( this, MorbidityActivity.class );
+
+        MorbidityActivity.morbidity = morbidity;
+        this.startActivity( INTENT );
+    }
+
+    private CheckBox getCheckBoxFor(final Morbidity.Id ID)
+    {
+        final View ENTRY = this.entries.get( ID );
+
+        if ( ENTRY == null ) {
+            throw new IllegalArgumentException( "missing entry for id: " + ID );
+        }
+
+        return ENTRY.findViewById( R.id.chkMorbidity );
+    }
+
+    private void buildDependencies()
+    {
+        final CheckBox CHK_HYPER = this.getCheckBoxFor( this.hypertension.getId() );
+        final CheckBox CHK_HYPO = this.getCheckBoxFor( this.hypotension.getId() );
+        final CheckBox CHK_OBESITY = this.getCheckBoxFor( this.obesity.getId() );
+        final CheckBox CHK_ANOREXIA = this.getCheckBoxFor( this.anorexia.getId() );
+
+        if ( CHK_HYPER == null ) {
+            throw new Error( "missing hypertension checkbox" );
+        }
+
+        if ( CHK_HYPO == null ) {
+            throw new Error( "missing hypotension checkbox" );
+        }
+
+        if ( CHK_OBESITY == null ) {
+            throw new Error( "missing obesity checkbox" );
+        }
+
+        if ( CHK_ANOREXIA == null ) {
+            throw new Error( "missing anorexia checkbox" );
+        }
+
+        CHK_HYPER.setOnCheckedChangeListener( (view, checked) -> {
+            CHK_HYPO.setEnabled( !checked );
+
+            if ( checked ) {
+                CHK_HYPO.setChecked( false );
+            }
+        });
+
+        CHK_HYPO.setOnCheckedChangeListener( (view, checked) -> {
+            CHK_HYPER.setEnabled( !checked );
+
+            if ( checked ) {
+                CHK_HYPER.setChecked( false );
+            }
+        });
+
+        CHK_ANOREXIA.setOnCheckedChangeListener( (view, checked) -> {
+            CHK_OBESITY.setEnabled( !checked );
+
+            if ( checked ) {
+                CHK_OBESITY.setChecked( false );
+            }
+        });
+
+        CHK_OBESITY.setOnCheckedChangeListener( (view, checked) -> {
+            CHK_ANOREXIA.setEnabled( !checked );
+
+            if ( checked ) {
+                CHK_ANOREXIA.setChecked( false );
+            }
+        });
+
+        return;
+    }
+
+    private void loadFromMigraineRepo()
+    {
+        final Steps STEPS = MigraineTestActivity.player.getSteps();
+
+        if ( !STEPS.isEmpty() ) {
+            final CheckBox CHK_HYPER = this.getCheckBoxFor( this.hypertension.getId() );
+            final CheckBox CHK_HYPO = this.getCheckBoxFor( this.hypotension.getId() );
+            final CheckBox CHK_OBESITY = this.getCheckBoxFor( this.obesity.getId() );
+            final CheckBox CHK_ANOREXIA = this.getCheckBoxFor( this.anorexia.getId() );
+            final CheckBox CHK_DEPRESSION = this.getCheckBoxFor( Morbidity.Id.get( "DEPRESSION" ) );
+
+            CHK_HYPER.setChecked( STEPS.hasHyperTension() );
+            CHK_HYPO.setChecked( STEPS.hasHypoTension() );
+            CHK_OBESITY.setChecked( STEPS.isObese() );
+            CHK_ANOREXIA.setChecked( STEPS.isAnorexic() );
+            CHK_DEPRESSION.setChecked( STEPS.isDepressed() );
+        }
+
+        return;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         if ( item.getItemId() == android.R.id.home ) {
             this.finish();
             return true;
@@ -113,4 +246,10 @@ public class TreatmentActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected( item );
     }
+
+    private Morbidity anorexia;
+    private Morbidity obesity;
+    private Morbidity hypotension;
+    private Morbidity hypertension;
+    private Map<Morbidity.Id, View> entries;
 }

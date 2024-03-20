@@ -4,6 +4,10 @@
 package com.devbaltasarq.cefaleapp.core;
 
 
+import android.text.Spanned;
+
+import androidx.core.text.HtmlCompat;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -43,6 +47,7 @@ public class Util {
                         + ELEMENT.getTagName() );
             }
 
+            toret = toret.trim();
             if ( toret.isEmpty() ) {
                 throw new IOException( "XML attribute: '"
                                         + ETQ_ATTR + "' empty in: "
@@ -75,5 +80,23 @@ public class Util {
         }
 
         return toret;
+    }
+
+    /** Converts HTML to rich text understandable
+     * by Android's TextView.
+     * @param txt The text with html tags to convert.
+     * @return Spanned text.
+     */
+    public static Spanned richTextFromHtml(String txt)
+    {
+        return HtmlCompat.fromHtml( txt, HtmlCompat.FROM_HTML_MODE_LEGACY );
+    }
+
+    public static Spanned formatText(String txt)
+    {
+        return richTextFromHtml(
+                    txt.replace( ".", ".<br/>" )
+                        .replace( ":", ":<br/>" )
+                        .replace( "-", "&mdash;" ));
     }
 }

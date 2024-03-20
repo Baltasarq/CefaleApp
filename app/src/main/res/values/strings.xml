@@ -11,6 +11,7 @@
     <string name="lbl_settings">Ajustes</string>
     <string name="lbl_actions">Acciones</string>
     <string name="lbl_enquiry">Cuestionario</string>
+    <string name="lbl_details">Detalles</string>
     <string name="lbl_treatment">Tratamiento</string>
     <string name="lbl_about">Acerca de...</string>
     <string name="lbl_faq">Preguntas frecuentes</string>
@@ -35,6 +36,36 @@
     <string name="lbl_recommended_dosage">Dosis recomendada</string>
     <string name="lbl_adverse_effects">Efectos adversos</string>
     <string name="lbl_pills">grajea(s)/unidade(s)</string>
+    <string name="lbl_compatible_medicines">Medicinas compatibles</string>
+    <string name="lbl_incompatible_medicines">Medicinas incompatibles</string>
+
+    <!-- Messages -->
+    <string name="msg_info">Información sobre la aplicación.</string>
+    <string name="msg_faq">Preguntas frecuentes sobre la migraña.</string>
+    <string name="msg_treatment">Funcionalidad dedicada al facultativo.
+        Asistencia al tratamiento. Tomando los datos del anterior cuestionario,
+        o partiendo desde cero, se sugiere el tratamiento indicado según
+        las comorbilidades aportadas.
+    </string>
+    <string name="msg_test_migraine">Cuestionario principal: migraña.
+    Una serie de preguntas entran en detalle en los síntomas del paciente para
+    aportar, igualmente de forma detallada, un diagnóstico en cuanto al padecimiento
+    de migrañas.</string>
+    <string name="msg_vademecum">Funcionalidad dedicada la facultativo.
+        Se trata de una infomración resumida de cada principio activo
+        para el tratamiento de migrañas, preventivo o sintomático.</string>
+    <string name="msg_test_hit">Test HIT. Este test realiza una serie reducida de preguntas
+        al paciente para determinar el impacto de las migrañas en su vida.</string>
+    <string name="msg_test_midas">Test MIDAS. Este test realiza una serie reducida de preguntas
+        al paciente para determinar un el grado de discapacidad provocado por las migrañas.</string>
+    <string name="msg_no_option_chosen">No option selected</string>
+    <string name="msg_app_target">Aplicación para el diagnóstico diferencial de cefaleas migrañosas y tensionales.</string>
+    <string name="msg_app_physician_mode">La app pasa ahora a estar en modo de soporte para facultativos, de modo
+                                     que está disponible funcionalidad relacionada con la asistencia al tratamiento
+                                     de migrañas mediante medicamentos. Recuerde que solo un médico está en condiciones
+                                     de comprender y aplicar correctamente estas recomendaciones.
+                                     La toma de medicamentos sin supervisión médica es peligrosa para la salud.
+                                      </string>
 
     <!-- Texts -->
     <string-array name="txt_faq_qs">
@@ -169,10 +200,6 @@
 
     <string name="txt_faq25_q">¿Hay terapias no farmacológicas para el tratamiento de la migraña?</string>
     <string name="txt_faq25_a">Dada la influencia del estrés como factor desencadenante de las crisis de migraña, las terapias cognitivo-conductuales, fundamentalmente las de biofeedback y relajación, son de utilidad en la disminución de los días de cefalea en los pacientes con migraña crónica o de alta frecuencia. La acupuntura es otra de las técnicas más usadas en la migraña que intenta inactivar los puntos gatillo miofasciales. Sin embargo, no se dispone de evidencia científica concluyente sobre el uso de esta técnica para mejorar los síntomas de la migraña. Una variación sería la colocación del piercing en la oreja, que utiliza el conocimiento de la acupuntura, de forma que con el piercing se destruye el punto que se estimula en la acupuntura para aliviar la cefalea. La neuromodulación no invasiva es un campo creciente en el tratamiento de la migraña, consiste en aplicar corrientes eléctricas o magnéticas a través de la piel y podrían utilizarse tanto para el tratamiento sintomático agudo como para la prevención a largo plazo. Un dispositivo de neuromodulación es CEFALY que funciona a través de la estimulación eléctrica externa del nervio trigémino con el objetivo de desensibilizar el nervio trigémino a lo largo del tiempo. Suplementos alimenticios como el magnesio, la riboflavina y la coenzyma Q10 también han demostrado alguna eficacia. El tratamiento con oxigeno hiperbárico podría ser de utilidad en los pacientes con migraña crónica, para disminuir los días de migraña.</string>
-
-    <!-- Messages -->
-    <string name="msg_no_option_chosen">No option selected</string>
-    <string name="msg_app_target">Aplicación para el diagnóstico diferencial de cefaleas migrañosas y tensionales.</string>
 
     <!-- Errors -->
     <string name="err_io">Unexpected error</string>

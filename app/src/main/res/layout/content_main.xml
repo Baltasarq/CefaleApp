@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:gravity="center|center_horizontal|center_vertical">
 
-        <LinearLayout
+        <LinearLayout           android:id="@+id/lyTreatment"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 app:tint="?attr/colorSecondary"
                 android:contentDescription="@string/lbl_enquiry"
                 android:tooltipText="@string/lbl_enquiry"
-                app:srcCompat="@drawable/test"/>
+                app:srcCompat="@drawable/test_migraine"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
 
-        <LinearLayout
+        <LinearLayout           android:id="@+id/lyVademecum"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

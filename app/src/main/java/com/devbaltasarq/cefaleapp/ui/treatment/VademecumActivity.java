@@ -5,7 +5,9 @@ package com.devbaltasarq.cefaleapp.ui.treatment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,13 +16,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Function;
 
 
@@ -52,28 +58,30 @@ public class VademecumActivity extends AppCompatActivity {
         BT_MEDICINES.setOnClickListener( ON_TAB_CLICK );
 
         // Populate with info
-        this.populateLayout( LY_MEDICINE_GROUPS, MedicineGroup.collectAll().values() );
+        this.populateLayout( LY_MEDICINE_GROUPS, MedicineGroup.getAll().values() );
         this.populateLayout( LY_MEDICINES, Medicine.getAll().values() );
 
         // Set current page
-        this.changePage( BT_MEDICINES );
+        this.changePage( BT_MEDICINE_GROUPS );
     }
 
     private<T extends Identifiable> void populateLayout(
             final LinearLayout LY,
-            final Collection<T> L_ID_OBJS)
+            final Collection<T> C_ID_OBJS)
     {
+        final List<T> L_OBJS = new ArrayList<>( C_ID_OBJS );
+
+        L_OBJS.sort( Comparator.comparing( e -> e.getId().getName() ));
         LY.removeAllViews();
 
-        for(Identifiable idObj: L_ID_OBJS) {
+        for(Identifiable idObj: L_OBJS) {
             this.buildEntry( LY, idObj );
         }
     }
 
     private void buildEntry(final LinearLayout LY, final Identifiable ID_OBJ)
     {
-        final TextView TV = new TextView( this );
-        final View SEPARATOR = new View( this );
+        final LayoutInflater INFLATER = this.getLayoutInflater();
         String name = ID_OBJ.getId().getName();
 
         // Prepare name (separate different lines by separator)
@@ -94,28 +102,27 @@ public class VademecumActivity extends AppCompatActivity {
                     + "\n" + name.substring( posSeparator + 1 ).trim();
         }
 
-        // Prepare text view
-        TV.setTextAppearance( android.R.style.TextAppearance_Large );
+        final View ENTRY_VIEW = INFLATER.inflate(
+                                        R.layout.vademecum_entry,
+                                    null );
+        final TextView TV = ENTRY_VIEW.findViewById( R.id.lblEntry );
+
+        if ( ID_OBJ instanceof Medicine ) {
+            TV.setCompoundDrawables( null, null, null, null );
+        } else {
+            TV.setTextColor( Color.parseColor( "#000000" ) );
+        }
+
+        // Add to the general layout
         TV.setText( name );
-        TV.setOnClickListener( (v) -> this.show( ID_OBJ ) );
-
-        // Prepare separator
-        SEPARATOR.setLayoutParams(
-                        new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                1 ) );
-        SEPARATOR.setMinimumHeight( 1 );
-        SEPARATOR.setBackgroundResource( android.R.color.darker_gray );
-
-        // Add to the layout
-        LY.addView( TV );
-        LY.addView( SEPARATOR );
+        ENTRY_VIEW.setOnClickListener( (v) -> this.show( ENTRY_VIEW, ID_OBJ ) );
+        LY.addView( ENTRY_VIEW );
     }
 
-    private void show(final Identifiable ID_OBJ)
+    private void show(final View ENTRY_VIEW, final Identifiable ID_OBJ)
     {
         if ( ID_OBJ instanceof MedicineGroup MEDICINE_GROUP ) {
-            this.showMedicineGroup( MEDICINE_GROUP );
+            this.showMedicineGroup( ENTRY_VIEW, MEDICINE_GROUP );
         }
         else
         if ( ID_OBJ instanceof Medicine MEDICINE ) {
@@ -135,9 +142,39 @@ public class VademecumActivity extends AppCompatActivity {
         this.startActivity( INTENT );
     }
 
-    private void showMedicineGroup(final MedicineGroup GROUP)
+    private void showMedicineGroup(final View ENTRY_VIEW, final MedicineGroup GROUP)
     {
+        final TextView TV = ENTRY_VIEW.findViewById( R.id.lblEntry );
+        final LinearLayout LY_SUB_ENTRIES = ENTRY_VIEW.findViewById( R.id.lySubEntries );
+        final LayoutInflater INFLATER = this.getLayoutInflater();
+        final List<Medicine> MEDICINES = GROUP.getMedicines();
 
+        if ( LY_SUB_ENTRIES.getVisibility() != View.VISIBLE ) {
+            LY_SUB_ENTRIES.setVisibility( View.VISIBLE );
+            TV.setCompoundDrawablesWithIntrinsicBounds(
+                    AppCompatResources.getDrawable( this,
+                            android.R.drawable.arrow_up_float ),
+                    null, null, null );
+
+            if ( LY_SUB_ENTRIES.getChildCount() == 0 ) {
+                for(final Medicine MEDICINE: MEDICINES) {
+                    final View SUB_ENTRY_VIEW = INFLATER.inflate( R.layout.medicine_group_entry, null );
+                    final TextView SUB_TV = SUB_ENTRY_VIEW.findViewById( R.id.lblMedicine );
+
+                    SUB_TV.setText( MEDICINE.getId().getName() );
+                    LY_SUB_ENTRIES.addView( SUB_ENTRY_VIEW );
+                    SUB_TV.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
+                }
+            }
+        } else {
+            LY_SUB_ENTRIES.setVisibility( View.GONE );
+            TV.setCompoundDrawablesWithIntrinsicBounds(
+                    AppCompatResources.getDrawable( this,
+                            android.R.drawable.arrow_down_float ),
+                    null, null, null );
+        }
+
+        return;
     }
 
     private void changePage(final ImageButton BUTTON)
