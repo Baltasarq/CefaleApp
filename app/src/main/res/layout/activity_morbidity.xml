@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context=".ui.treatment.MorbidityActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_details"
+                android:textColor="?colorSecondary"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView       android:id="@+id/lblDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView           android:id="@+id/lblCompatibleMedicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_compatible_medicines"
+                android:textColor="?colorSecondary"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <LinearLayout       android:id="@+id/lyCompatibleMedicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView           android:id="@+id/lblIncompatibleMedicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_incompatible_medicines"
+                android:textColor="?colorSecondary"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <LinearLayout       android:id="@+id/lyIncompatibleMedicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

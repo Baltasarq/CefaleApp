@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+    <CheckBox       android:id="@+id/chkMorbidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".8"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <ImageView      android:id="@+id/btDetails"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:contentDescription="@string/lbl_morbidity"
+        app:srcCompat="@drawable/ic_external_link"
+        app:tint="?colorSecondary" />
+
+</LinearLayout>

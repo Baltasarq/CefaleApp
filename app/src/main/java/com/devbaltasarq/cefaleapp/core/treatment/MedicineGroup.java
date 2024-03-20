@@ -4,6 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.treatment;
 
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,78 +14,158 @@ import java.util.Map;
 
 /** This groups a set of medicines. */
 public class MedicineGroup implements Identifiable {
-    public enum Id implements Nameable {
-        /** Antihipertensivos */
-        A,
-        /** Betabloqueantes */
-        B,
-        /** Bloqueadores de Calcio */
-        C,
-        /** Antidepresivos */
-        D,
-        /** Neuromoduladores */
-        E,
-        /** Anticuerpos monoclonales (uso hospitalario) **/
-        F,
-        /** Toxina botulínica (uso hospitalario) **/
-        G,
-        /** Intervention in case of migrainne. */
-        I;
-
-        /** @return the name of the group. */
-        public String getName()
+    public static final class Id implements Nameable {
+        /** Creates a new group id.
+          * @param key the char for the group.
+          * @param name the name of the group.
+          */
+        public Id(char key, String name)
         {
-            return Names[ this.ordinal() ];
+            final String KEY = Character.toString( Character.toUpperCase( key ) );
+
+            // Store the id as a basic id, if not created before
+            final BasicId BASIC_ID = createIdRepoIfNeeded().get( KEY );
+
+            if ( BASIC_ID == null ) {
+                this.id = new BasicId( KEY, name );
+                ids.add( this.id );
+            } else {
+                this.id = BASIC_ID;
+            }
         }
 
-        public static final String[] Names = {
-                "Antihipertensivos",
-                "Betabloqueantes",
-                "Bloqueadores de canales de calcio",
-                "Antidepresivos",
-                "Neuromoduladores",
-                "Anticuerpos monoclonales",
-                "Toxina botulímica",
-                "Uso sintomático"
-        };
+        /** @return the associated char (the key). */
+        public char getChar()
+        {
+            return this.id.getKey().charAt( 0 );
+        }
+
+        /** @return the name of the group. */
+        @Override
+        public String getName()
+        {
+            return this.id.getName();
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return this.id.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj)
+        {
+            boolean toret = false;
+
+            if ( obj instanceof Id medicineGroupId ) {
+                toret = this.id.equals( medicineGroupId.id );
+            }
+
+            return toret;
+        }
+
+        @Override
+        public String toString()
+        {
+            return this.id.toString();
+        }
+
+        /** Get the id associated with the key.
+         * @param key the given key.
+         * @return the Id object with that key.
+         */
+        public static Id get(char key)
+        {
+            final String KEY = Character.toString( Character.toUpperCase( key ) );
+            final BasicId TORET = createIdRepoIfNeeded().get( KEY );
+
+            if ( TORET == null ) {
+                throw new Error( "Id.get(): no id for key: " + key );
+            }
+
+            return IdFromBasicId( TORET );
+        }
+
+        /** Returns a list with all ids, ordered by the Id's key.
+         * (i.e., creation order).
+         * @return a list with all the created id's.
+         */
+        public static List<Id> getAll()
+        {
+            final List<Id> TORET = new ArrayList<>( createIdRepoIfNeeded().size() );
+
+            for(final BasicId BASIC_ID: ids.getAll()) {
+                TORET.add( IdFromBasicId( BASIC_ID ) );
+            }
+
+            return TORET;
+        }
+
+        private static Id IdFromBasicId(final BasicId BASIC_ID)
+        {
+            return new Id( BASIC_ID.getKey().charAt( 0 ),
+                            BASIC_ID.getName() );
+        }
+
+        private static IdsRepo createIdRepoIfNeeded()
+        {
+            if ( ids == null ) {
+                ids = new IdsRepo();
+            }
+
+            return ids;
+        }
+
+        private final BasicId id;
+        private static IdsRepo ids = null;
     }
 
-    public MedicineGroup(Id grp)
+    public MedicineGroup(Id grpId)
     {
-        this.grp = grp;
-        this.medicines = new ArrayList<>( 4 );
+        this.grpId = grpId;
+        this.medicines = new HashMap<>( 4 );
     }
 
     /** @return the group id. */
     public Id getId()
     {
-        return this.grp;
+        return this.grpId;
     }
 
-    /** Adds a new medicine to the group. */
-    public void add(int pos, Medicine m)
+    /** Inserts a medicine for a given key in the group.
+      * Throws an error if a medicine already exists for that key.
+      * @param key the key for this medicine in the group.
+      * @param m the given medicine.
+      */
+    public void insert(int key, Medicine m)
     {
-        // Ensure the position exists
-        while ( this.size() < ( pos + 1 ) ) {
-            this.medicines.add( null );
+        final Medicine EXISTING_MEDICINE = this.medicines.get( key );
+        final int MEDICINE_KEY = m.getGroupPos();
+
+        // Ensure it honors the key in the given medicine
+        if ( key != MEDICINE_KEY ) {
+            throw new Error( "trying to set medicine in "
+                            + key
+                            + " while medicine says to have key: " + MEDICINE_KEY );
         }
 
         // Ensure there was not a previous medicine set
-        if ( this.get( pos ) != null ) {
+        if ( EXISTING_MEDICINE != null ) {
             throw new Error(
                         String.format( "MedicineGroup.add(%d, %s): already existing %s",
-                            pos,
+                            key,
                             m.getId().toString(),
-                            this.medicines.get( pos ).getId().toString() ) );
+                            EXISTING_MEDICINE.getId().toString() ) );
         }
 
-        this.medicines.set( pos, m );
+        this.medicines.put( key, m );
     }
 
     /** @return the medicines in this group. */
     public List<Medicine> getMedicines()
     {
-        return new ArrayList<>( this.medicines );
+        return new ArrayList<>( this.medicines.values() );
     }
 
     /** @return the number of medicines in this group. */
@@ -92,18 +174,34 @@ public class MedicineGroup implements Identifiable {
         return this.medicines.size();
     }
 
-    /** @return the medicine at position i. */
-    public Medicine get(int i)
+    /** @return the medicine for the given key. */
+    public @NonNull Medicine get(int key)
     {
-        final int size = this.medicines.size();
+        final Medicine TORET = this.medicines.get( key );
 
-        if ( i < 0
-          || i >= size )
-        {
-            throw new Error( "MedicineGroup.get(): " + i + "/" + size );
+        if ( TORET == null ) {
+            throw new Error( "not found medicine for: " + key );
         }
 
-        return this.medicines.get( i );
+        return TORET;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.grpId.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        boolean toret = false;
+
+        if ( obj instanceof MedicineGroup mgroup ) {
+            toret = this.getId().equals( mgroup.getId() );
+        }
+
+        return toret;
     }
 
     @Override
@@ -112,7 +210,7 @@ public class MedicineGroup implements Identifiable {
         StringBuilder toret = new StringBuilder( this.getId().toString() );
 
         int i = 1;
-        for(Medicine m: this.medicines) {
+        for(Medicine m: this.medicines.values()) {
             toret.append( '\n' );
             toret.append( i );
             toret.append( ". " );
@@ -123,56 +221,34 @@ public class MedicineGroup implements Identifiable {
         return toret.toString();
     }
 
-    public static Map<MedicineGroup.Id, MedicineGroup> collectAll()
+    /** Sets all the medicine groups, probably loaded from XML.
+      * This must be called before getAll() can be called.
+      * @see TreatmentXMLoader , MedicineGroup::getAll
+      * @param medicineGroups all the medicine groups.
+      */
+    public static void setAllGroups(Map<Id, MedicineGroup> medicineGroups)
     {
         if ( allGroups == null ) {
-            final MedicineGroup GRP_A = new MedicineGroup( Id.A );
-            final MedicineGroup GRP_B = new MedicineGroup( Id.B );
-            final MedicineGroup GRP_C = new MedicineGroup( Id.C );
-            final MedicineGroup GRP_D = new MedicineGroup( Id.D );
-            final MedicineGroup GRP_E = new MedicineGroup( Id.E );
-            final MedicineGroup GRP_F = new MedicineGroup( Id.F );
-            final MedicineGroup GRP_G = new MedicineGroup( Id.G );
-            final MedicineGroup GRP_I = new MedicineGroup( Id.I );
-
-            // Add medicines
-            GRP_A.add( 0, Medicine.getAll().get( Medicine.Id.CANDESARTAN ) );
-            GRP_A.add( 1, Medicine.getAll().get( Medicine.Id.LISINOPRIL ) );
-
-            GRP_B.add( 0, Medicine.getAll().get( Medicine.Id.METOPROLOL) );
-            GRP_B.add( 1, Medicine.getAll().get( Medicine.Id.PROPRANOLOL) );
-
-            GRP_C.add( 0, Medicine.getAll().get( Medicine.Id.FLUNARIZINA ) );
-
-            GRP_D.add( 0, Medicine.getAll().get( Medicine.Id.AMITRIPTILINA ) );
-            GRP_D.add( 1, Medicine.getAll().get( Medicine.Id.VENLAFAXINA ) );
-
-            GRP_E.add( 0, Medicine.getAll().get( Medicine.Id.TOPIRAMATO ) );
-            GRP_E.add( 1, Medicine.getAll().get( Medicine.Id.ZONISAMIDA ) );
-            GRP_E.add( 2, Medicine.getAll().get( Medicine.Id.ACIDO_VALPROICO ) );
-
-            GRP_F.add( 0, Medicine.getAll().get( Medicine.Id.ERENUMAB ) );
-            GRP_F.add( 1, Medicine.getAll().get( Medicine.Id.FREMANEZUMAB ) );
-            GRP_F.add( 2, Medicine.getAll().get( Medicine.Id.GALCANEZUMAB ) );
-
-            GRP_G.add( 0, Medicine.getAll().get( Medicine.Id.BOTOX ) );
-
-            // Finish
-            allGroups = new HashMap<>(
-                Map.ofEntries(
-                    Map.entry( GRP_A.getId(), GRP_A ),
-                    Map.entry( GRP_B.getId(), GRP_B ),
-                    Map.entry( GRP_D.getId(), GRP_D ),
-                    Map.entry( GRP_E.getId(), GRP_E ),
-                    Map.entry( GRP_F.getId(), GRP_F ),
-                    Map.entry( GRP_G.getId(), GRP_G ),
-                    Map.entry( GRP_I.getId(), GRP_I )));
+            allGroups = new HashMap<>( medicineGroups );
+        } else {
+            allGroups.clear();
+            allGroups.putAll( medicineGroups );
         }
 
-        return allGroups;
+        return;
     }
 
-    private final Id grp;
-    private final List<Medicine> medicines;
+    /** @return all the existing medicine groups. */
+    public static Map<MedicineGroup.Id, MedicineGroup> getAll()
+    {
+        if ( allGroups == null ) {
+            throw new Error( "MedicineGroup.getAll(): trying to collect before loading" );
+        }
+
+        return new HashMap<>( allGroups );
+    }
+
+    private final Id grpId;
+    private final Map<Integer, Medicine> medicines;
     private static Map<Id, MedicineGroup> allGroups = null;
 }

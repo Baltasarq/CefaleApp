@@ -6,55 +6,132 @@ package com.devbaltasarq.cefaleapp.core.treatment;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Morbidity implements Identifiable {
-    public enum Id implements Nameable {
-        HYPERTENSION,
-        HIPOTENSION,
-        BRADYCARDIA,
-        BRONQUIAL_ASTHMA,
-        RAYNAUD,
-        DIABETES,
-        OBESITY,
-        ANOREXIA,
-        DEPRESSION,
-        GLAUCOMA,
-        LITIASIS;
-
-        /** @return the name of the group. */
-        public String getName()
+    public static final class Id implements Nameable {
+        /** Creates a new medicine id.
+         * @param key the char for the group.
+         * @param name the name of the group.
+         */
+        public Id(String key, String name)
         {
-            return Names[ this.ordinal() ];
+            if ( key == null
+              || key.isBlank() )
+            {
+                throw new Error( "Id(): empty key" );
+            }
+
+            final String KEY = key.trim().toUpperCase();
+
+            // Store the id as a basic id, if not created before
+            final BasicId BASIC_ID = createIdRepoIfNeeded().get( KEY );
+
+            if ( BASIC_ID == null ) {
+                this.id = new BasicId( KEY, name );
+                ids.add( this.id );
+            } else {
+                this.id = BASIC_ID;
+            }
         }
 
-        public static final String[] Names = {
-                "Hipertensión",
-                "Hipotensión",
-                "Bradicardia – bloqueo aurículoventricular",
-                "Asma bronquial – Hiperreactividad bronquial",
-                "Arteriopatía periférica – Enfermedad de Raynaud",
-                "Diabetes Mellitus tratada con insulina",
-                "Obesidad – Bulimia",
-                "Anorexia – Bajo peso",
-                "Depresión – distimia depresiva",
-                "Glaucoma",
-                "Litiasis"
-        };
+        /** @return the associated char (the key). */
+        public String getKey()
+        {
+            return this.id.getKey();
+        }
+
+        /** @return the name of the group. */
+        @Override
+        public String getName()
+        {
+            return this.id.getName();
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return this.id.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj)
+        {
+            boolean toret = false;
+
+            if ( obj instanceof Id medicineId ) {
+                toret = this.id.equals( medicineId.id );
+            }
+
+            return toret;
+        }
+
+        @Override
+        public String toString()
+        {
+            return this.id.toString();
+        }
+
+        /** Get the id associated with the key.
+         * @param key the given key.
+         * @return the Id object with that char.
+         */
+        public static Id get(String key)
+        {
+            final BasicId TORET = createIdRepoIfNeeded().get( key );
+
+            if ( TORET == null ) {
+                throw new Error( "Id.get(): no id for key: " + key );
+            }
+
+            return IdFromBasicId( TORET );
+        }
+
+        /** Returns a list with all ids, ordered by the Id's key.
+         * @return a list with all the created id's.
+         */
+        public static List<Id> getAll()
+        {
+            final List<Id> TORET = new ArrayList<>( createIdRepoIfNeeded().size() );
+
+            for(final BasicId BASIC_ID: ids.getAll() ) {
+                TORET.add( IdFromBasicId( BASIC_ID ) );
+            }
+
+            return TORET;
+        }
+
+        private static IdsRepo createIdRepoIfNeeded()
+        {
+            if ( ids == null ) {
+                ids = new IdsRepo();
+            }
+
+            return ids;
+        }
+
+        /** Converts a BasicId object to Id.
+         * @param BASIC_ID the given basic id.
+         * @return the equivalent Id object.
+         */
+        private static Id IdFromBasicId(final BasicId BASIC_ID)
+        {
+            return new Id(
+                    BASIC_ID.getKey(),
+                    BASIC_ID.getName() );
+        }
+
+        private final BasicId id;
+        private static IdsRepo ids = null;
     }
 
-    public Morbidity(Id id,
-                     String desc,
-                     Collection<MedicineGroup.Id> incompatibleGroups,
-                     Collection<Medicine.Id> incompatibleMedicines,
-                     Collection<Medicine.Id> advisedMedicines)
+    public Morbidity(Id id, String desc)
     {
         this.id = id;
         this.desc = desc;
-        this.incompatibleGroups = new ArrayList<>( incompatibleGroups );
-        this.incompatibleMedicines = new ArrayList<>( incompatibleMedicines );
-        this.advisedMedicines = new ArrayList<>( advisedMedicines );
     }
 
     /** @return the id of this morbidity. */
@@ -69,10 +146,26 @@ public class Morbidity implements Identifiable {
         return this.desc;
     }
 
+    /** Sets the incompatible groups.
+      * @param ids a collection with the ids of the incompatible groups.
+      */
+    public void setIncompatibleMedicineGroups(Collection<MedicineGroup.Id> ids)
+    {
+        this.incompatibleGroups = new ArrayList<>( ids );
+    }
+
     /** @return the part of the incompatible medicines: groups of medicines. */
-    public List<MedicineGroup.Id> getIncompatibleGroups()
+    public List<MedicineGroup.Id> getIncompatibleMedicineGroups()
     {
         return new ArrayList<>( this.incompatibleGroups );
+    }
+
+    /** Set the incompatible medicines.
+      * @param ids the ids of the incompatible medicines.
+      */
+    public void setIncompatibleMedicines(Collection<Medicine.Id> ids)
+    {
+        this.incompatibleMedicines = new ArrayList<>( ids );
     }
 
     /** @return part of the incompatible medicines: medicines. */
@@ -88,7 +181,7 @@ public class Morbidity implements Identifiable {
 
         // Collect all the medicines from the incompatible groups.
         for(MedicineGroup.Id groupId: this.incompatibleGroups) {
-            final MedicineGroup GROUP = MedicineGroup.collectAll().get( groupId );
+            final MedicineGroup GROUP = MedicineGroup.getAll().get( groupId );
 
             for(Medicine medicine: GROUP.getMedicines()) {
                 TORET.add( medicine.getId() );
@@ -98,10 +191,46 @@ public class Morbidity implements Identifiable {
         return TORET;
     }
 
+    /** Set the advised medicine groups.
+      * @param ids the ids of the advised medicine groups.
+      */
+    public void setAdvisedMedicineGroups(Collection<MedicineGroup.Id> ids)
+    {
+        this.advisedMedicineGroups = new ArrayList<>( ids );
+    }
+
+    /** @return the advised medicine groups. */
+    public List<MedicineGroup.Id> getAdvisedMedicineGroups()
+    {
+        return new ArrayList<>( this.advisedMedicineGroups );
+    }
+
     /** @return the advised medicines. */
     public List<Medicine.Id> getAdvisedMedicines()
     {
         return new ArrayList<>( this.advisedMedicines );
+    }
+
+    public void setAdvisedMedicines(Collection<Medicine.Id> ids)
+    {
+        this.advisedMedicines = new ArrayList<>( ids );
+    }
+
+    /** @return all the incompatible medicines. */
+    public List<Medicine.Id> getAllAdvisedMedicines()
+    {
+        final List<Medicine.Id> TORET = new ArrayList<>( this.advisedMedicines );
+
+        // Collect all the medicines from the advised groups.
+        for(MedicineGroup.Id groupId: this.advisedMedicineGroups) {
+            final MedicineGroup GROUP = MedicineGroup.getAll().get( groupId );
+
+            for(Medicine medicine: GROUP.getMedicines()) {
+                TORET.add( medicine.getId() );
+            }
+        }
+
+        return TORET;
     }
 
     @Override
@@ -113,225 +242,38 @@ public class Morbidity implements Identifiable {
         return nameParts[ 0 ] + ": " + this.getDesc();
     }
 
-    public static List<Morbidity> collectAll()
+    public static Map<Morbidity.Id, Morbidity> getAll()
     {
-        if ( morbidities == null ) {
-            morbidities = new ArrayList<>(
-                List.of(
-                    new Morbidity(
-                        Id.HYPERTENSION,
-                        """
-                        Si la hipertensión no está tratada, el tratamiento indicada es con:
-                        - Candesartán o Lisinopril,
-                        - Propranolol o Metoprolol,
-                        - Amitriptilina,
-                        - Topiramato o zonisamida.
-                        Si la hipertensión ya está tratada y controlada, valorar tratamiento con:
-                        - Flunarizina.
-                        - Amitriptilina.
-                        - Topiramato o zonisamida.
-                        """,
-                        List.of(),
-                        List.of( Medicine.Id.VENLAFAXINA ),
-                        List.of(
-                            Medicine.Id.CANDESARTAN,
-                            Medicine.Id.LISINOPRIL,
-                            Medicine.Id.PROPRANOLOL,
-                            Medicine.Id.METOPROLOL,
-                            Medicine.Id.AMITRIPTILINA,
-                            Medicine.Id.TOPIRAMATO,
-                            Medicine.Id.ZONISAMIDA,
-                            Medicine.Id.FLUNARIZINA,
-                            Medicine.Id.AMITRIPTILINA )),
-                    new Morbidity(
-                        Id.HIPOTENSION,
-                        """
-                        Contraindicados:
-                        - fármacos betabloqueantes.
-                        - fármacos anti-hipertensivos.
-                        El tratamiento preventivo indicado sería:
-                        - Venlafaxina.
-                        - Flunarizina.
-                        - Topiramato o zonisamida.
-                        """,
-                        List.of(
-                            MedicineGroup.Id.A,
-                            MedicineGroup.Id.B ),
-                        List.of(),
-                        List.of (
-                            Medicine.Id.VENLAFAXINA,
-                            Medicine.Id.FLUNARIZINA,
-                            Medicine.Id.TOPIRAMATO,
-                            Medicine.Id.ZONISAMIDA ) ),
-                    new Morbidity(
-                        Id.BRADYCARDIA,
-                        """
-                        Contraindicados:
-                        - fármacos betabloqueantes.
-                        El tratamiento preventivo indicado sería:
-                        - Flunarizina.
-                        - Amitriptilina o venlafaxina.
-                        - Topiramato o zonisamida.
-                        - Ácido valproico.
-                        - Candesartán o lisinopril.
-                        """,
-                        List.of( MedicineGroup.Id.B ),
-                        List.of(),
-                        List.of (
-                            Medicine.Id.FLUNARIZINA,
-                            Medicine.Id.AMITRIPTILINA,
-                            Medicine.Id.VENLAFAXINA,
-                            Medicine.Id.TOPIRAMATO,
-                            Medicine.Id.ZONISAMIDA,
-                            Medicine.Id.ACIDO_VALPROICO,
-                            Medicine.Id.CANDESARTAN,
-                            Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.BRONQUIAL_ASTHMA,
-                            """
-                            Contraindicados los fármacos betabloqueantes.
-                            El tratamiento preventivo indicado sería:
-                            - Flunarizina.
-                            - Amitriptilina o venlafaxina.
-                            - Topiramato o zonisamida.
-                            - Ácido valproico.
-                            - Candesartán o lisinopril.
-                            """,
-                            List.of( MedicineGroup.Id.B ),
-                            List.of(),
-                            List.of (
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.VENLAFAXINA,
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.ACIDO_VALPROICO,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.RAYNAUD,
-                            """
-                             Contraindicados los fármacos betabloqueantes.
-                             El tratamiento preventivo indicado sería:
-                             - Flunarizina.
-                             - Amitriptilina o venlafaxina.
-                             - Topiramato o zonisamida.
-                             - Ácido valproico.
-                             - Candesartán o lisinopril.
-                            """,
-                            List.of( MedicineGroup.Id.B ),
-                            List.of(),
-                            List.of (
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.VENLAFAXINA,
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.ACIDO_VALPROICO,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.DIABETES,
-                            """
-                            Contraindicados los fármacos betabloqueantes.
-                            El tratamiento preventivo indicado sería con:
-                            - Flunarizina.
-                            - Amitriptilina o venlafaxina.
-                            - Topiramato o zonisamida.
-                            - Ácido valproico.
-                            - Candesartán o lisinopril.
-                            """,
-                            List.of( MedicineGroup.Id.B ),
-                            List.of(),
-                            List.of (
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.VENLAFAXINA,
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.ACIDO_VALPROICO,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.OBESITY,
-                            """
-                             IMC > 30 kg/m\u00b2.
-                             Contraindicada flunarizina.
-                             Contraindicada amitriptilina.
-                             Contraindicado el ácido valproico.
-                             El tratamiento preventivo inicial indicado sería con:
-                             Flunarizina.
-                             Amitriptilina o venlafaxina.
-                             Topiramato o zonisamida.
-                             Candesartán o lisinopril.
-                             """,
-                            List.of(),
-                            List.of(
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.ACIDO_VALPROICO ),
-                            List.of (
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.VENLAFAXINA,
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.ANOREXIA,
-                            """
-                            Contraindicado topiramato.
-                            Contraindicado zonisamida.
-                            Contraindicada venlafaxina.
-                            El tratamiento preventivo inicial indicado sería con:
-                            - Flunarizina.
-                            - Amitriptilina.
-                            - Ácido valproico.
-                            - Candesartán o lisinopril.
-                            """,
-                            List.of(),
-                            List.of(
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.VENLAFAXINA ),
-                            List.of (
-                                Medicine.Id.FLUNARIZINA,
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ) ),
-                        new Morbidity(
-                            Id.DEPRESSION,
-                            """
-                             Contraindicada Flunarizina.
-                             El tratamiento preventivo inicial indicado sería con:
-                             - Amitriptilina o venlafaxina.
-                             - Ácido valproico.
-                             - Topiramato o zonisamida.
-                             - Candesartán o lisinopril.
-                             """,
-                            List.of(),
-                            List.of(
-                                Medicine.Id.FLUNARIZINA ),
-                            List.of (
-                                Medicine.Id.AMITRIPTILINA,
-                                Medicine.Id.VENLAFAXINA,
-                                Medicine.Id.ACIDO_VALPROICO,
-                                Medicine.Id.TOPIRAMATO,
-                                Medicine.Id.ZONISAMIDA,
-                                Medicine.Id.CANDESARTAN,
-                                Medicine.Id.LISINOPRIL ))
-            ));
+        if ( allMorbidities == null ) {
+            throw new Error( "morbidities not yet loaded" );
         }
 
-        return morbidities;
+        return new HashMap<>( allMorbidities );
+    }
+
+    /** Sets all the medicine groups, probably loaded from XML.
+     * This must be called before getAll() can be called.
+     * @see TreatmentXMLoader , MedicineGroup::getAll
+     * @param morbidities all the medicine groups.
+     */
+    public static void setAllMorbidities(Map<Id, Morbidity> morbidities)
+    {
+        if ( allMorbidities == null ) {
+            allMorbidities = new HashMap<>( morbidities );
+        } else {
+            allMorbidities.clear();
+            allMorbidities.putAll( morbidities );
+        }
+
+        return;
     }
 
     private final Id id;
     private final String desc;
-    private final List<MedicineGroup.Id> incompatibleGroups;
-    private final List<Medicine.Id> incompatibleMedicines;
-    private final List<Medicine.Id> advisedMedicines;
+    private List<MedicineGroup.Id> incompatibleGroups;
+    private List<MedicineGroup.Id> advisedMedicineGroups;
+    private List<Medicine.Id> incompatibleMedicines;
+    private List<Medicine.Id> advisedMedicines;
 
-    private static List<Morbidity> morbidities = null;
+    private static Map<Morbidity.Id, Morbidity> allMorbidities = null;
 }
