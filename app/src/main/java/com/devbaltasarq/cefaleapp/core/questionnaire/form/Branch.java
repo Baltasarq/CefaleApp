@@ -17,6 +17,7 @@ public class Branch {
     public Branch(Form form, String id)
     {
         this.ID = id.trim().toLowerCase();
+        this.numLastQuestion = 0;
         this.FORM = form;
         this.QS_BY_ID = new HashMap<>();
     }
@@ -47,15 +48,20 @@ public class Branch {
         this.head = this.getQuestionById( headId );
     }
 
+    private int assignNumQuestion()
+    {
+        return ++this.numLastQuestion;
+    }
+
     public void addQuestion(BasicQuestion bq)
     {
         Question q = null;
 
         if ( bq.isReference() ) {
             final Question ORG_Q = this.FORM.locate( bq.getId() );
-            q = ORG_Q.copyWith( this.getId(), bq.getGotoId() );
+            q = ORG_Q.copyWith( this.assignNumQuestion(), this.getId(), bq.getGotoId() );
         } else {
-            q = (Question) bq;
+            q = ( (Question) bq ).copyWith( this.assignNumQuestion(), null, null );
         }
 
         if ( this.head == null ) {
@@ -75,6 +81,7 @@ public class Branch {
     }
 
     private Question head;
+    private int numLastQuestion;
     private final String ID;
     private final Form FORM;
     private final Map<String, Question> QS_BY_ID;

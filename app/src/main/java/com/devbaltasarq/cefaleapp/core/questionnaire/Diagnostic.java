@@ -25,7 +25,7 @@ public class Diagnostic {
         };
     }
 
-    public Diagnostic(final Repo REPO)
+    public Diagnostic(final MigraineRepo REPO)
     {
         this.REPO = REPO;
     }
@@ -34,11 +34,11 @@ public class Diagnostic {
       * @param ids the ids of the questions involved.
       * @return the number of them that are true.
       */
-    private int calcSumOf(Repo.Id[] ids)
+    private int calcSumOf(MigraineRepo.Id[] ids)
     {
         int toret = 0;
 
-        for(Repo.Id id: ids) {
+        for(MigraineRepo.Id id: ids) {
             if ( this.getBool( id ) ) {
                 ++toret;
             }
@@ -53,9 +53,9 @@ public class Diagnostic {
      */
     public int calcTotalScreen()
     {
-        return this.calcSumOf( new Repo.Id[] { Repo.Id.WASCEPHALEALIMITANT,
-                                        Repo.Id.HADPHOTOPHOBIA,
-                                        Repo.Id.HADNAUSEA } );
+        return this.calcSumOf( new MigraineRepo.Id[] { MigraineRepo.Id.WASCEPHALEALIMITANT,
+                                        MigraineRepo.Id.HADPHOTOPHOBIA,
+                                        MigraineRepo.Id.HADNAUSEA } );
     }
 
     /** PCD_HOW_MANY_MIGRAINE_1151 and PCD-HOW_MANY_TENSIONAL-1147
@@ -91,8 +91,8 @@ public class Diagnostic {
     private Frequency getMixedFreq()
     {
         return this.frequencyFromEpisodes(
-                this.getInt( Repo.Id.HOWMANYMIGRAINE )
-                + this.getInt( Repo.Id.HOWMANYTENSIONAL ) );
+                this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE )
+                + this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
     }
 
     /** @see Diagnostic::frequencyFromEpisodes
@@ -102,7 +102,7 @@ public class Diagnostic {
     private Frequency getMigraineFreq()
     {
         return this.frequencyFromEpisodes(
-                    this.getInt( Repo.Id.HOWMANYMIGRAINE ) );
+                    this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE ) );
     }
 
     /** @see Diagnostic::frequencyFromEpisodes
@@ -112,21 +112,21 @@ public class Diagnostic {
     private Frequency getTensionalFreq()
     {
         return this.frequencyFromEpisodes(
-                this.getInt( Repo.Id.HOWMANYTENSIONAL ) );
+                this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
     }
 
     /** return true if the patient has migraines, false otherwise. */
     private boolean isMigraine()
     {
         boolean toret = false;
-        final boolean PHOTO = this.getBool( Repo.Id.HADPHOTOPHOBIA );
-        final boolean SOUND = this.getBool( Repo.Id.SOUNDPHOBIA );
-        final boolean NAUSEA = this.getBool( Repo.Id.HADNAUSEA );
-        int mainCriteria = this.calcSumOf( new Repo.Id[] {
-                                Repo.Id.ISCEPHALEAONESIDED,
-                                Repo.Id.ISPULSATING,
-                                Repo.Id.ISMIGRAINEINTENSE,
-                                Repo.Id.EXERCISEWORSENS
+        final boolean PHOTO = this.getBool( MigraineRepo.Id.HADPHOTOPHOBIA );
+        final boolean SOUND = this.getBool( MigraineRepo.Id.SOUNDPHOBIA );
+        final boolean NAUSEA = this.getBool( MigraineRepo.Id.HADNAUSEA );
+        int mainCriteria = this.calcSumOf( new MigraineRepo.Id[] {
+                                MigraineRepo.Id.ISCEPHALEAONESIDED,
+                                MigraineRepo.Id.ISPULSATING,
+                                MigraineRepo.Id.ISMIGRAINEINTENSE,
+                                MigraineRepo.Id.EXERCISEWORSENS
         });
 
         if ( mainCriteria == 4 ) {
@@ -149,9 +149,9 @@ public class Diagnostic {
         else
         if ( mainCriteria == 1 ) {
             toret = ( this.isFemale()
-              && this.getBool( Repo.Id.HASHISTORY )
-              && this.getBool( Repo.Id.MENSTRUATIONWORSENS )
-              && this.getBool( Repo.Id.CONTRACEPTIVESWORSENS ) );
+              && this.getBool( MigraineRepo.Id.HASHISTORY )
+              && this.getBool( MigraineRepo.Id.MENSTRUATIONWORSENS )
+              && this.getBool( MigraineRepo.Id.CONTRACEPTIVESWORSENS ) );
         }
 
         return toret;
@@ -159,36 +159,36 @@ public class Diagnostic {
 
     public boolean shouldManCheckedDoctor()
     {
-        int mainCriteria = this.calcSumOf( new Repo.Id[] {
-                Repo.Id.ISCEPHALEAONESIDED,
-                Repo.Id.ISPULSATING,
-                Repo.Id.ISMIGRAINEINTENSE,
-                Repo.Id.EXERCISEWORSENS
+        int mainCriteria = this.calcSumOf( new MigraineRepo.Id[] {
+                MigraineRepo.Id.ISCEPHALEAONESIDED,
+                MigraineRepo.Id.ISPULSATING,
+                MigraineRepo.Id.ISMIGRAINEINTENSE,
+                MigraineRepo.Id.EXERCISEWORSENS
         });
 
         return ( !this.isMigraine()
               && this.isMale()
               && mainCriteria >= 1
-              && this.getBool( Repo.Id.HASHISTORY ) );
+              && this.getBool( MigraineRepo.Id.HASHISTORY ) );
     }
 
     /** return true if the patient has tensional cephaleas, false otherwise. */
     private boolean isTensional()
     {
-        boolean toret = this.calcSumOf( new Repo.Id[]{
-                                Repo.Id.ISSTABBING,
-                                Repo.Id.ISTENSIONALWORSEONAFTERNOONS,
-                                Repo.Id.ISTENSIONALRELATEDTOSTRESS,
-                                Repo.Id.ISTENSIONALBETTERWHENDISTRACTED,
-                                Repo.Id.SOUNDPHOBIA,
-                                Repo.Id.INSOMNIA }) > 1;
+        boolean toret = this.calcSumOf( new MigraineRepo.Id[]{
+                                MigraineRepo.Id.ISSTABBING,
+                                MigraineRepo.Id.ISTENSIONALWORSEONAFTERNOONS,
+                                MigraineRepo.Id.ISTENSIONALRELATEDTOSTRESS,
+                                MigraineRepo.Id.ISTENSIONALBETTERWHENDISTRACTED,
+                                MigraineRepo.Id.SOUNDPHOBIA,
+                                MigraineRepo.Id.INSOMNIA }) > 1;
 
         if ( !toret ) {
-            toret = this.getBool( Repo.Id.WHOLEHEAD )
-                    && this.getBool( Repo.Id.ISCEPHALEAHELMET )
-                    && !this.getBool( Repo.Id.ISTENSIONALINTENSE )
-                    && this.getBool( Repo.Id.SAD )
-                    && this.getBool( Repo.Id.ISDEPRESSED );
+            toret = this.getBool( MigraineRepo.Id.WHOLEHEAD )
+                    && this.getBool( MigraineRepo.Id.ISCEPHALEAHELMET )
+                    && !this.getBool( MigraineRepo.Id.ISTENSIONALINTENSE )
+                    && this.getBool( MigraineRepo.Id.SAD )
+                    && this.getBool( MigraineRepo.Id.ISDEPRESSED );
         }
 
         return toret;
@@ -196,22 +196,22 @@ public class Diagnostic {
 
     public boolean isMale()
     {
-        return !this.getBool( Repo.Id.GENDER );
+        return !this.getBool( MigraineRepo.Id.GENDER );
     }
 
     public boolean isFemale()
     {
-        return this.getBool( Repo.Id.GENDER );
+        return this.getBool( MigraineRepo.Id.GENDER );
     }
 
     /** @return whether the patient had an aura or not. */
     private boolean hadAura()
     {
-        return this.getBool( Repo.Id.HADAURA );
+        return this.getBool( MigraineRepo.Id.HADAURA );
     }
 
     /** @return a boolean value given its id. */
-    private boolean getBool(Repo.Id id)
+    private boolean getBool(MigraineRepo.Id id)
     {
         boolean toret = false;
 
@@ -224,7 +224,7 @@ public class Diagnostic {
         return toret;
     }
 
-    private int getInt(Repo.Id id)
+    private int getInt(MigraineRepo.Id id)
     {
         int toret = 0;
 
@@ -291,14 +291,14 @@ public class Diagnostic {
             if ( IS_MIXED
               || IS_MIGRAINE )
             {
-                if ( !this.REPO.getBool( Repo.Id.HADMORETHANFIVEEPISODES ) ) {
+                if ( !this.REPO.getBool( MigraineRepo.Id.HADMORETHANFIVEEPISODES ) ) {
                     TORET.append( '\n' );
                     TORET.append( " (Probable, migraña de menos de cinco episodios. " );
                     TORET.append( "Consulte con su médico.)" );
                     TORET.append( '\n' );
                 }
 
-                if ( !this.REPO.getBool( Repo.Id.MIGRAINEDURATION ) ) {
+                if ( !this.REPO.getBool( MigraineRepo.Id.MIGRAINEDURATION ) ) {
                     TORET.append( '\n' );
                     TORET.append( " (No cumple con la duración de un episodio de migraña. " );
                     TORET.append( "Consulte con su médico.)" );
@@ -318,5 +318,5 @@ public class Diagnostic {
         return TORET.toString();
     }
 
-    final private Repo REPO;
+    final private MigraineRepo REPO;
 }

@@ -15,11 +15,18 @@ public class Question extends BasicQuestion {
     public static class Builder {
         public Builder()
         {
+            this.num = 0;
             this.gotoId = "";
             this.pic = "";
             this.summary = "";
             this.type = ValueType.BOOL;
             this.options = new ArrayList<>();
+        }
+
+        public Builder setNum(int num)
+        {
+            this.num = num;
+            return this;
         }
 
         public Builder setId(String id)
@@ -72,7 +79,9 @@ public class Question extends BasicQuestion {
 
         public Question create()
         {
-            return new Question( this.id,
+            return new Question(
+                    this.num,
+                    this.id,
                     this.type,
                     this.gotoId,
                     this.text,
@@ -81,6 +90,7 @@ public class Question extends BasicQuestion {
                     this.options );
         }
 
+        private int num;
         private String id;
         private String pic;
         private String summary;
@@ -91,12 +101,13 @@ public class Question extends BasicQuestion {
     }
 
     /** Creates a regular question. */
-    protected Question(String id, ValueType dtype, String gotoId,
+    protected Question(int num, String id, ValueType dtype, String gotoId,
                        String text, String pic, String summary,
                        Collection<Option> options)
     {
         super( id, gotoId );
 
+        this.num = num;
         this.TYPE = dtype;
         this.PIC = pic;
         this.TEXT = text;
@@ -172,6 +183,12 @@ public class Question extends BasicQuestion {
         return this.PIC;
     }
 
+    /** @return the question number. */
+    public int getNum()
+    {
+        return this.num;
+    }
+
     @Override
     public boolean equals(Object other)
     {
@@ -211,15 +228,27 @@ public class Question extends BasicQuestion {
 
     public boolean isEnd()
     {
-        return this.getGotoId().equals( ETQ_END );
+        return ETQ_END.contains( this.getGotoId() );
     }
 
-    public Question copyWith(String branchId, String gotoId)
+    public Question copyWith(int num, String branchId, String gotoId)
     {
-        final String NEW_ID = branchId + "_" + this.getDataFromId();
+        String newId = "";
+
+        if ( branchId == null ) {
+            newId = this.getId();
+        } else {
+            newId = branchId + "_" + this.getDataFromId();
+        }
+
+        if ( gotoId == null ) {
+            gotoId = this.getGotoId();
+        }
+
         final Question.Builder QB = new Question.Builder();
 
-        QB.setId( NEW_ID )
+        QB.setId( newId )
+                .setNum( num )
                 .setGotoId( gotoId )
                 .setText( this.getText() )
                 .setSummary( this.getSummary() )
@@ -266,8 +295,9 @@ public class Question extends BasicQuestion {
         return TORET;
     }
 
-    private static String ETQ_END = "/";
+    private static String ETQ_END = "/\\-";
 
+    private final int num;
     private final ValueType TYPE;
     private final String PIC;
     private final String TEXT;

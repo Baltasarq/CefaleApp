@@ -20,9 +20,10 @@ import java.io.Writer;
 
 
 public class FormJSONSaver {
-    public FormJSONSaver(MigraineFormPlayer form)
+    public FormJSONSaver(MigraineRepo repo, Steps steps)
     {
-        this.FORM_PLAYER = form;
+        this.repo = repo;
+        this.steps = steps;
     }
 
     public @NonNull JSONObject toJSON()
@@ -36,7 +37,7 @@ public class FormJSONSaver {
             TORET.put( ETQ_REPO, this.buildRepoValues() );
         } catch(JSONException exc)
         {
-            Log.e( LOG_ID, exc.getMessage() );
+            Log.e( LOG_ID, "FormJSONSaver.toJSON(): " + exc.getMessage() );
         }
 
         return TORET;
@@ -44,11 +45,10 @@ public class FormJSONSaver {
 
     private JSONObject buildRepoValues() throws JSONException
     {
-        final Repo REPO = this.FORM_PLAYER.getRepo();
         final JSONObject TORET = new JSONObject();
 
-        for(Repo.Id id: Repo.Id.values()) {
-            final Value VALUE = REPO.getValue( id );
+        for(MigraineRepo.Id id: MigraineRepo.Id.values()) {
+            final Value VALUE = this.repo.getValue( id );
 
             if ( VALUE != null ) {
                 TORET.put( id.toString().toLowerCase(), VALUE.get() );
@@ -61,10 +61,8 @@ public class FormJSONSaver {
     private JSONArray buildHistory() throws JSONException
     {
         final JSONArray TORET = new JSONArray();
-        final Steps STEPS = this.FORM_PLAYER.getSteps();
 
-        for(final String RES_STEP: STEPS.getQuestionHistory() )
-        {
+        for(final String RES_STEP: this.steps.getQuestionHistory() ) {
             TORET.put( RES_STEP );
         }
 
@@ -76,12 +74,11 @@ public class FormJSONSaver {
         wr.write( this.toJSON().toString() );
     }
 
-    private final MigraineFormPlayer FORM_PLAYER;
+    private final MigraineRepo repo;
+    private final Steps steps;
     private final String LOG_ID = FormJSONSaver.class.getSimpleName();
     private final String ETQ_ID = "id";
     private final String ETQ_SERIAL = "serial";
-    private final String ETQ_STEP = "step";
-    private final String ETQ_TEXT = "txt";
     private final String ETQ_REPO = "repo";
     private final String ETQ_HISTORY = "history";
 }
