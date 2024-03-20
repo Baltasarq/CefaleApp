@@ -13,7 +13,7 @@ import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 
 /** A player for the main migraine test form. */
-public class MigraineFormPlayer extends GenericFormPlayer {
+public class MigraineFormPlayer extends FormPlayer {
     private static final String LOG_TAG = MigraineFormPlayer.class.getSimpleName();
     private static final String BR_SCREEN_ID = "screen";
     private static final String BR_MIGRAINE_ID = "migraine";
@@ -51,10 +51,10 @@ public class MigraineFormPlayer extends GenericFormPlayer {
     {
         super( FORM );
 
-        this.REPO = Repo.get();
+        this.REPO = MigraineRepo.get();
         this.PATH = new Path();
         this.DIAG = new Diagnostic( this.REPO );
-        this.STEPS = new Steps( this.getFORM(), this.REPO );
+        this.STEPS = new Steps( this.getForm(), this.REPO );
         settings = new Settings();
     }
 
@@ -74,7 +74,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
     }
 
     /** @return the repository of data. */
-    public Repo getRepo()
+    public MigraineRepo getRepo()
     {
         return this.REPO;
     }
@@ -90,7 +90,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
     {
         final String Q_ID = this.getCurrentQuestion().getId();
         final String Q_DATA = this.getCurrentQuestion().getDataFromId();
-        final Repo REPO = this.getRepo();
+        final MigraineRepo REPO = this.getRepo();
         boolean toret = false;
 
         if ( this.getDiagnostic().isMale()
@@ -113,8 +113,8 @@ public class MigraineFormPlayer extends GenericFormPlayer {
             Log.i( LOG_TAG, "PCD_SHOWNOTES_2220 skipping notes" );
         }
         else
-        if ( Repo.Id.parse( Q_DATA ) == Repo.Id.EXERCISEWORSENS
-          && REPO.exists( Repo.Id.EXERCISEWORSENS ) )
+        if ( MigraineRepo.Id.parse( Q_DATA ) == MigraineRepo.Id.EXERCISEWORSENS
+          && REPO.exists( MigraineRepo.Id.EXERCISEWORSENS ) )
         {
             // PCD_EXERCISEWORSENS_2222
             toret = true;
@@ -122,8 +122,8 @@ public class MigraineFormPlayer extends GenericFormPlayer {
                     + " already asked, skipping question" );
         }
         else
-        if ( Repo.Id.parse( Q_DATA ) == Repo.Id.SOUNDPHOBIA
-          && REPO.exists( Repo.Id.SOUNDPHOBIA ) )
+        if ( MigraineRepo.Id.parse( Q_DATA ) == MigraineRepo.Id.SOUNDPHOBIA
+          && REPO.exists( MigraineRepo.Id.SOUNDPHOBIA ) )
         {
             // PCD_SOUNDPHOBIA_2228
             toret = true;
@@ -148,8 +148,8 @@ public class MigraineFormPlayer extends GenericFormPlayer {
             // Check end of branch
             if ( Q.isEnd() ) {
                 // Check "continuity"
-                if ( Repo.Id.parse( Q.getDataFromId() ) == Repo.Id.AREYOUSURE ) {
-                    if ( !this.REPO.getBool( Repo.Id.AREYOUSURE ) ) {
+                if ( MigraineRepo.Id.parse( Q.getDataFromId() ) == MigraineRepo.Id.AREYOUSURE ) {
+                    if ( !this.REPO.getBool( MigraineRepo.Id.AREYOUSURE ) ) {
                         // PCD-CONTINUE-1338 // do not continue
                         this.PATH.clear();
                     }
@@ -165,7 +165,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
                         // PCD-JGTE_2-migraine-1559
                         this.PATH.add( BR_MIGRAINE_ID );
 
-                        if ( this.REPO.getBool( Repo.Id.ISDEPRESSED ) ) {
+                        if ( this.REPO.getBool( MigraineRepo.Id.ISDEPRESSED ) ) {
                             // PCD-CONTINUE-1338
                             this.PATH.add( BR_CONTINUE_ID );
                             this.PATH.add( BR_TENSIONAL_ID );
@@ -202,6 +202,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
         return this.STEPS;
     }
 
+    @Override
     public String getFinalReport()
     {
         return this.DIAG.toString()
@@ -214,7 +215,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
         boolean toret = ( VAL != null );
 
         if ( toret ) {
-            final Repo.Id ID = Repo.Id.parse( Q.getDataFromId() );
+            final MigraineRepo.Id ID = MigraineRepo.Id.parse( Q.getDataFromId() );
 
             this.REPO.setValue( ID, VAL );
         }
@@ -223,7 +224,7 @@ public class MigraineFormPlayer extends GenericFormPlayer {
     }
 
     private final Steps STEPS;
-    private final Repo REPO;
+    private final MigraineRepo REPO;
     private final Diagnostic DIAG;
     private final Path PATH;
     public static Settings settings;

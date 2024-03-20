@@ -21,7 +21,7 @@
         <q id="midas_headaches_halves_domestic_productivity" type="int"
             summary="Frecuencia cefaleas ha reducido tareas domésticas"
             text="¿Cuántos días en los últimos 3 meses se redujo por la mitad su productividad en la realización de tareas domésticas por la presencia de cefalea? (No incluya los días mencionados en la pregunta anterior)"
-            goto="midas_"/>
+            goto="midas_headaches_prevented_social"/>
 
         <q id="midas_headaches_prevented_social" type="int"
             summary="Frecuencia cefaleas ha impedido ocio"

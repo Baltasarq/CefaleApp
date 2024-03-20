@@ -43,7 +43,7 @@
         <q id="hit_headaches_frec_too_tired" type="score"
             summary="Frecuencia dolores de cabeza producen cansancio"
             text="En las últimas 4 semanas, ¿con qué frecuencia se ha sentido demasiado cansada/o para trabajar o realizar las actividades diarias debido a su dolor de cabeza?"
-            goto="">
+            goto="hit_headaches_frec_irritant">
 
             <opt value="6" text="Nunca" />
             <opt value="8" text="Pocas veces" />
@@ -78,7 +78,7 @@
 
         <!--
             Test result
-            PCD-SUM_UP-HIT-2148: Find x (the final score), adding up each score for a question.
+            PCD-SUM_UP-HIT-2148: Find x (the final int), adding up each int for a question.
 
             x > 60 Severe impact: your headaches are deeply impacting your life.
             56 < x < 59: Important impact: your headaches are limiting your life.
