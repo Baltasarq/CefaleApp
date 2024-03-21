@@ -93,7 +93,7 @@ public class HITFormActivity extends TestActivity {
         // Details
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
         final StringBuilder END_TEXT = new StringBuilder();
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
         final ImageView BT_SHARE = this.buildButton( LY_IMAGE, android.R.drawable.ic_menu_share );
         final String FINAL_REPORT = player.getFinalReport();
 

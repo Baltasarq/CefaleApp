@@ -5,7 +5,6 @@ package com.devbaltasarq.cefaleapp.ui.tests;
 
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import android.content.Intent;
@@ -17,8 +16,6 @@ import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
-import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
-import com.devbaltasarq.cefaleapp.core.questionnaire.HITFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MIDASFormPlayer;
 
 
@@ -95,7 +92,7 @@ public class MIDASFormActivity extends TestActivity {
         // Details
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
         final StringBuilder END_TEXT = new StringBuilder();
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
         final ImageView BT_SHARE = this.buildButton( LY_IMAGE, android.R.drawable.ic_menu_share );
         final String FINAL_REPORT = player.getFinalReport();
 

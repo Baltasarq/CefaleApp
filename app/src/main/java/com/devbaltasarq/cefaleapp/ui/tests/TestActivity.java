@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
-import android.text.Spanned;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -30,7 +29,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.text.HtmlCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.devbaltasarq.cefaleapp.R;
@@ -169,7 +167,7 @@ public abstract class TestActivity extends AppCompatActivity {
         final FrameLayout FRM_END = this.findViewById( R.id.frmEnd );
         final LinearLayout LY_ANSWER = this.findViewById( R.id.lyAnswer );
         final LinearLayout LY_NEXT = this.findViewById( R.id.lyNext );
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
         final RadioGroup RG_OPTS = this.findViewById( R.id.rgOptions );
 
         // Prepare
@@ -328,10 +326,10 @@ public abstract class TestActivity extends AppCompatActivity {
 
     protected void buildImageFor(final Question Q)
     {
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
 
         if ( !Q.getPic().isEmpty() ) {
-            final ImageView IMAGE_VIEW = new ImageView( this );
+            final ImageView IMAGE_VIEW = this.findViewById( R.id.picImageTest );
             final String PIC_ID = Q.getPic();
             @SuppressLint("DiscouragedApi") final Drawable PIC = ResourcesCompat.getDrawable(
                     this.getResources(),
@@ -340,11 +338,7 @@ public abstract class TestActivity extends AppCompatActivity {
                             "drawable",
                             this.getPackageName() ),
                     null );
-            IMAGE_VIEW.setLayoutParams( new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f ) );
             IMAGE_VIEW.setImageDrawable( PIC );
-            LY_IMAGE.removeAllViews();
-            LY_IMAGE.addView( IMAGE_VIEW );
             LY_IMAGE.setVisibility( View.VISIBLE );
         } else {
             LY_IMAGE.setVisibility( View.GONE );

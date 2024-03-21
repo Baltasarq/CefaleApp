@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:appCompat="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,6 +25,8 @@
             android:padding="10dp">
 
             <TextView       android:id="@+id/lblQuestion"
+                android:labelFor="@id/edTextArea"
+                android:contentDescription="@string/lbl_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -60,6 +63,7 @@
                 android:padding="10dp" />
 
             <EditText       android:id="@+id/edInputNum"
+                android:importantForAutofill="no"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,13 +74,20 @@
 
         </LinearLayout>
 
-        <LinearLayout   android:id="@+id/lyImage"
+        <LinearLayout       android:id="@+id/lyImageTest"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:padding="10dp">
+
+            <ImageView      android:id="@+id/picImageTest"
+                app:tint="?colorSecondary"
+                appCompat:src="@drawable/cephalea"
+                android:contentDescription="@string/msg_test_migraine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

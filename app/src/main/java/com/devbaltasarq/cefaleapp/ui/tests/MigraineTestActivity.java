@@ -150,7 +150,7 @@ public class MigraineTestActivity extends TestActivity {
         super.showFormEnd();
 
         // Details
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImage );
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
         final MigraineFormPlayer PLAYER = (MigraineFormPlayer) this.getFormPlayer();
         final String FINAL_REPORT = PLAYER.getFinalReport();
