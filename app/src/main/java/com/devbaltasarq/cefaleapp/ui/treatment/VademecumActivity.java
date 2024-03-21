@@ -201,7 +201,8 @@ public class VademecumActivity extends AppCompatActivity {
         BT_MEDICINES.setEnabled( BUTTON != BT_MEDICINES );
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         if ( item.getItemId() == android.R.id.home ) {
             this.finish();
             return true;

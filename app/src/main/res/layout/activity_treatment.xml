@@ -9,7 +9,7 @@
     android:forceDarkAllowed="false">
 
     <ScrollView
-        android:id="@+id/scrlMorbodities"
+        android:id="@+id/scrlMorbidities"
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,8 +23,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btStartMedicineDiscards"
-        app:layout_constraintEnd_toEndOf="@id/scrlMorbodities"
-        app:layout_constraintBottom_toBottomOf="@id/scrlMorbodities"
+        app:layout_constraintEnd_toEndOf="@id/scrlMorbidities"
+        app:layout_constraintBottom_toBottomOf="@id/scrlMorbidities"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="bottom|end"

@@ -17,11 +17,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
-import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineRepo;
+import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Steps;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
+import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -46,9 +47,14 @@ public class TreatmentActivity extends AppCompatActivity {
             ACTION_BAR.setLogo( R.drawable.cephalea );
         }
 
-        final LinearLayout LY_MORBIDITIES = this.findViewById( R.id.lyMorbidities );
+        // Listeners
+        final FloatingActionButton FAB_START = this.findViewById( R.id.btStartMedicineDiscards );
+
+        FAB_START.setOnClickListener( (v) -> this.onStartMedicineDiscards() );
 
         // Populate with info
+        final LinearLayout LY_MORBIDITIES = this.findViewById( R.id.lyMorbidities );
+
         this.entries = new HashMap<>();
         this.prepareMorbidityIds();
         this.populateLayout( LY_MORBIDITIES, Morbidity.getAll() );
@@ -92,6 +98,7 @@ public class TreatmentActivity extends AppCompatActivity {
         final List<Morbidity> LIST_MORBIDITIES = new ArrayList<>( MORBIDITIES.values() );
 
         LIST_MORBIDITIES.sort( Comparator.comparing( m -> m.getId().getKey() ) );
+        Util.sortIdentifiableI18n( LIST_MORBIDITIES );
         for(Morbidity idObj: LIST_MORBIDITIES) {
             this.buildEntry( LY, idObj );
         }
@@ -235,6 +242,27 @@ public class TreatmentActivity extends AppCompatActivity {
         }
 
         return;
+    }
+
+    private void onStartMedicineDiscards()
+    {
+        final List<Morbidity.Id> MORBIDITY_IDS = new ArrayList<>();
+
+        // Build the modbidity list
+        for(final Morbidity.Id ID: this.entries.keySet()) {
+            final CheckBox CHK = this.getCheckBoxFor( ID );
+
+            if ( CHK.isChecked() ) {
+                MORBIDITY_IDS.add( ID );
+            }
+        }
+
+        // Launch activity
+        final Intent INTENT = new Intent( this, TreatmentResultActivity.class );
+        final TreatmentAdvisor ADVISOR = new TreatmentAdvisor( MORBIDITY_IDS );
+
+        TreatmentResultActivity.medicineList = ADVISOR.determineMedicines();
+        this.startActivity( INTENT );
     }
 
     public boolean onOptionsItemSelected(MenuItem item)

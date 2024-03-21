@@ -7,7 +7,6 @@ package com.devbaltasarq.cefaleapp.ui.treatment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,17 +14,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.Map;
+
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
 
-import java.util.List;
-
 
 public class MorbidityActivity extends AppCompatActivity {
-    private static final String LOG_TAG = MorbidityActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,16 +49,19 @@ public class MorbidityActivity extends AppCompatActivity {
         final LinearLayout LY_INCOMPATIBLE_MEDICINES = this.findViewById( R.id.lyIncompatibleMedicines);
         final TextView LBL_COMPATIBLE_MEDICINES = this.findViewById( R.id.lblCompatibleMedicines );
         final TextView LBL_INCOMPATIBLE_MEDICINES = this.findViewById( R.id.lblIncompatibleMedicines );
-        final List<Medicine.Id> MID_COMPATIBLE = morbidity.getAllAdvisedMedicines();
-        final List<Medicine.Id> MID_INCOMPATIBLE = morbidity.getAllIncompatibleMedicines();
+        final Map<Medicine.Id, Medicine> ALL_MEDICINES = Medicine.getAll();
+        final List<Medicine> MID_COMPATIBLE = Util.getObjListFromIdList( ALL_MEDICINES, morbidity.getAllAdvisedMedicines() );
+        final List<Medicine> MID_INCOMPATIBLE = Util.getObjListFromIdList( ALL_MEDICINES, morbidity.getAllIncompatibleMedicines() );
 
         this.setTitle( morbidity.getId().getName() );
         LBL_DETAILS.setText( Util.formatText( morbidity.getDesc() ) );
 
+        Util.sortIdentifiableI18n( MID_COMPATIBLE );
+
         // Build compatible medicines
         if ( !MID_COMPATIBLE.isEmpty() ) {
-            for(Medicine.Id mid: MID_COMPATIBLE) {
-                LY_COMPATIBLE_MEDICINES.addView( buildMedicineEntry( mid ) );
+            for(final Medicine MEDICINE: MID_COMPATIBLE) {
+                LY_COMPATIBLE_MEDICINES.addView( buildMedicineEntry( MEDICINE ) );
             }
 
             LBL_COMPATIBLE_MEDICINES.setVisibility( View.VISIBLE );
@@ -70,8 +71,8 @@ public class MorbidityActivity extends AppCompatActivity {
 
         // Build incompatible medicines
         if ( !MID_INCOMPATIBLE.isEmpty() ) {
-            for(Medicine.Id mid: MID_INCOMPATIBLE) {
-                LY_INCOMPATIBLE_MEDICINES.addView( buildMedicineEntry( mid ) );
+            for(final Medicine MEDICINE: MID_INCOMPATIBLE) {
+                LY_INCOMPATIBLE_MEDICINES.addView( buildMedicineEntry( MEDICINE ) );
             }
 
             LBL_INCOMPATIBLE_MEDICINES.setVisibility( View.VISIBLE );
@@ -82,28 +83,15 @@ public class MorbidityActivity extends AppCompatActivity {
         return;
     }
 
-    private View buildMedicineEntry(final Medicine.Id MID)
+    private View buildMedicineEntry(final Medicine MEDICINE)
     {
-        final Medicine MEDICINE = Medicine.getAll().get( MID );
         final LayoutInflater INFLATER = this.getLayoutInflater();
         final View MEDICINE_ENTRY = INFLATER.inflate( R.layout.medicine_group_entry, null );
         final TextView LBL_MEDICINE = MEDICINE_ENTRY.findViewById( R.id.lblMedicine );
 
-        if ( MEDICINE == null ) {
-            throw new Error( "missing medicine: " + MID.toString() );
-        }
-
         LBL_MEDICINE.setText( MEDICINE.getId().getName() );
-        LBL_MEDICINE.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
+        LBL_MEDICINE.setOnClickListener( (v) -> Util.showMedicine( this, MEDICINE ) );
         return MEDICINE_ENTRY;
-    }
-
-    private void showMedicine(Medicine m)
-    {
-        final Intent INTENT = new Intent( this, MedicineActivity.class );
-
-        MedicineActivity.medicine = m;
-        this.startActivity( INTENT );
     }
 
     public boolean onOptionsItemSelected(MenuItem item)

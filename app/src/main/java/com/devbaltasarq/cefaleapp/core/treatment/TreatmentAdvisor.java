@@ -4,10 +4,15 @@
 package com.devbaltasarq.cefaleapp.core.treatment;
 
 
+import com.devbaltasarq.cefaleapp.core.Util;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /** Determines the treatment to follow, given the morbidities. */
@@ -15,65 +20,55 @@ public class TreatmentAdvisor {
     /** Creates a new Treatment object, given the morbidities.
       * @param morbidities the collection of morbidities.
       */
-    public TreatmentAdvisor(Collection<Morbidity> morbidities)
+    public TreatmentAdvisor(Collection<Morbidity.Id> morbidities)
     {
         this.morbidities = new ArrayList<>( morbidities );
-        this.resultingMedicines = new ArrayList<>();
+        this.resultingMedicines = new HashSet<>( morbidities.size() );
     }
 
     /** @return the collection of compatible medicines, as a list of medicine. */
     public List<Medicine> determineMedicines()
     {
         if ( this.resultingMedicines.isEmpty() ) {
-            for (final Morbidity MORBIDITY: this.morbidities) {
-                // Add advised medicines
-                this.resultingMedicines.addAll(
-                        this.getMedicinesFromId(
-                                MORBIDITY.getAdvisedMedicines() ));
-                this.resultingMedicines.addAll(
-                        this.getMedicinesFromGroupId(
-                                MORBIDITY.getAdvisedMedicineGroups() ));
-            }
+            // Add all existing medicines
+            this.resultingMedicines.addAll( Medicine.getAll().keySet() );
 
-            for (final Morbidity MORBIDITY: this.morbidities) {
+            for (final Morbidity.Id MORBIDITY_ID: this.morbidities) {
+                final Morbidity MORBIDITY = Objects.requireNonNull(
+                        Morbidity.getAll().get( MORBIDITY_ID ) );
+
                 // Remove incompatible medicines
-                this.resultingMedicines.removeAll(
-                        this.getMedicinesFromId(
-                                MORBIDITY.getIncompatibleMedicines() ));
-                this.resultingMedicines.removeAll(
-                        this.getMedicinesFromGroupId(
-                                MORBIDITY.getIncompatibleMedicineGroups() ));
+                MORBIDITY.getIncompatibleMedicines().forEach(
+                                            this.resultingMedicines::remove );
+
+                this.getMedicineIdsFromGroupId(
+                        MORBIDITY.getIncompatibleMedicineGroups() ).forEach(
+                                                this.resultingMedicines::remove );
             }
         }
 
-        return this.resultingMedicines;
+        return new ArrayList<>(
+                Util.getObjListFromIdList(
+                        Medicine.getAll(),
+                        this.resultingMedicines ) );
     }
 
-    private List<Medicine> getMedicinesFromId(final List<Medicine.Id> MEDICINE_IDS)
+    private List<Medicine.Id> getMedicineIdsFromGroupId(final List<MedicineGroup.Id> MEDICINE_GROUP_IDS)
     {
-        final List<Medicine> TORET = new ArrayList<>( MEDICINE_IDS.size() );
-
-        for(final Medicine.Id ID: MEDICINE_IDS) {
-            TORET.add( Objects.requireNonNull( Medicine.getAll().get( ID ) ) );
-        }
-
-        return TORET;
-    }
-
-    private List<Medicine> getMedicinesFromGroupId(final List<MedicineGroup.Id> MEDICINE_GROUP_IDS)
-    {
-        final List<Medicine> TORET = new ArrayList<>( MEDICINE_GROUP_IDS.size() * 3 );
+        final List<Medicine.Id> TORET = new ArrayList<>( MEDICINE_GROUP_IDS.size() * 3 );
 
         for(final MedicineGroup.Id ID: MEDICINE_GROUP_IDS) {
             final MedicineGroup GROUP = MedicineGroup.getAll().get( ID );
             final List<Medicine> MEDICINES = Objects.requireNonNull( GROUP ).getMedicines();
 
-            TORET.addAll( MEDICINES );
+            TORET.addAll(
+                    MEDICINES.stream().map( Medicine::getId )
+                            .collect( Collectors.toList() ) );
         }
 
         return TORET;
     }
 
-    private List<Morbidity> morbidities;
-    private List<Medicine> resultingMedicines;
+    private final List<Morbidity.Id> morbidities;
+    private final Set<Medicine.Id> resultingMedicines;
 }

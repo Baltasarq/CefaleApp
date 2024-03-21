@@ -4,17 +4,32 @@
 package com.devbaltasarq.cefaleapp.core;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.text.Spanned;
 
 import androidx.core.text.HtmlCompat;
+
+import com.devbaltasarq.cefaleapp.core.treatment.BasicId;
+import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
+import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.core.treatment.Nameable;
+import com.devbaltasarq.cefaleapp.ui.treatment.MedicineActivity;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.IOException;
+import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class Util {
@@ -98,5 +113,46 @@ public class Util {
                     txt.replace( ".", ".<br/>" )
                         .replace( ":", ":<br/>" )
                         .replace( "-", "&mdash;" ));
+    }
+
+    /** Shos the medicine activity with the given medicine loaded.
+      * @param CTX the activity this call is originated.
+      * @param M the given medicine to show.
+      */
+    public static void showMedicine(final Context CTX, final Medicine M)
+    {
+        final Intent INTENT = new Intent( CTX, MedicineActivity.class );
+
+        MedicineActivity.medicine = M;
+        CTX.startActivity( INTENT );
+    }
+
+    /** Sorts identifiables (medicines, morbidities...) taking into account locales.
+      * @param IDENTIFIABLES the medicine list to sort.
+      */
+    public static void sortIdentifiableI18n(final List<? extends Identifiable> IDENTIFIABLES)
+    {
+        final Collator COLLATOR = Collator.getInstance( new Locale("es","ES" ));
+
+        IDENTIFIABLES.sort( (m1, m2) ->
+                            COLLATOR.compare(
+                                    m1.getId().getName(),
+                                    m2.getId().getName() ) );
+    }
+
+    /** Generates a new list with all corresponding objects.
+      * @param ALL the collection of all objects.
+      * @param IDS the collection of all ids.
+      * @return a new list with the objects corresponding to the given identifiers.
+      * @param <T> The identifiable objects, i.e. Mordbity, Medicine...
+      * @param <U> The id object, i.e. Medicine.Id, Morbidity.Id...
+      */
+    public static <T extends Identifiable, U extends Nameable> List<T > getObjListFromIdList(
+                                        final Map<U, T> ALL,
+                                        final Collection<U> IDS)
+    {
+        return IDS.stream().map( id
+                                    -> Objects.requireNonNull( ALL.get( id ) ) )
+                           .collect( Collectors.toList() );
     }
 }
