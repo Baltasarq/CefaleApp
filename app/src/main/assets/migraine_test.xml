@@ -20,12 +20,12 @@
         <q id="data_weight" type="int" text="¿Peso (&lt;i>kilos&lt;/i>)?" goto="data_highPressure" summary="Peso" />
 
         <q id="data_highPressure"
-            type="int" text="¿Tensión máxima (&lt;i>sistólica&lt;/i>)?"
+            type="int" text="¿Tensión máxima (&lt;i>sistólica&lt;/i> en mm HG, por ejemplo 120)?"
             goto="data_lowPressure"
             summary="Sistólica" />
 
         <q id="data_lowPressure"
-            type="int" text="¿Tensión mínima (&lt;i>diastólica&lt;/i>)?"
+            type="int" text="¿Tensión mínima (&lt;i>diastólica&lt;/i> en mm HG, por ejemplo 80)?"
             goto="data_hasHistory"
             summary="Diastólica" />
 
