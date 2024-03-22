@@ -10,7 +10,6 @@ import android.text.Spanned;
 
 import androidx.core.text.HtmlCompat;
 
-import com.devbaltasarq.cefaleapp.core.treatment.BasicId;
 import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.Nameable;
@@ -22,7 +21,6 @@ import org.w3c.dom.NodeList;
 
 import java.io.IOException;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
@@ -147,7 +145,7 @@ public class Util {
       * @param <T> The identifiable objects, i.e. Mordbity, Medicine...
       * @param <U> The id object, i.e. Medicine.Id, Morbidity.Id...
       */
-    public static <T extends Identifiable, U extends Nameable> List<T > getObjListFromIdList(
+    public static <T extends Identifiable, U extends Nameable> List<T > objListFromIdList(
                                         final Map<U, T> ALL,
                                         final Collection<U> IDS)
     {

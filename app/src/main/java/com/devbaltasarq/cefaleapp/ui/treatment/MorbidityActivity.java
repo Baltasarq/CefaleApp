@@ -50,8 +50,8 @@ public class MorbidityActivity extends AppCompatActivity {
         final TextView LBL_COMPATIBLE_MEDICINES = this.findViewById( R.id.lblCompatibleMedicines );
         final TextView LBL_INCOMPATIBLE_MEDICINES = this.findViewById( R.id.lblIncompatibleMedicines );
         final Map<Medicine.Id, Medicine> ALL_MEDICINES = Medicine.getAll();
-        final List<Medicine> MID_COMPATIBLE = Util.getObjListFromIdList( ALL_MEDICINES, morbidity.getAllAdvisedMedicines() );
-        final List<Medicine> MID_INCOMPATIBLE = Util.getObjListFromIdList( ALL_MEDICINES, morbidity.getAllIncompatibleMedicines() );
+        final List<Medicine> MID_COMPATIBLE = Util.objListFromIdList( ALL_MEDICINES, morbidity.getAllAdvisedMedicines() );
+        final List<Medicine> MID_INCOMPATIBLE = Util.objListFromIdList( ALL_MEDICINES, morbidity.getAllIncompatibleMedicines() );
 
         this.setTitle( morbidity.getId().getName() );
         LBL_DETAILS.setText( Util.formatText( morbidity.getDesc() ) );

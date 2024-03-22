@@ -48,7 +48,7 @@ public class TreatmentAdvisor {
         }
 
         return new ArrayList<>(
-                Util.getObjListFromIdList(
+                Util.objListFromIdList(
                         Medicine.getAll(),
                         this.resultingMedicines ) );
     }
