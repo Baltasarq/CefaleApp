@@ -368,6 +368,31 @@
         </morbidity>
 
         <morbidity
+            id="ALLERGY_ACETILSALILICO_ACID"
+            name="Alergia al ácido acetil salicílico"
+            desc="Una alergia o hipersensibilidad al AAS (ácido acetil salicílico),
+                  y a los AINE (medicamentos antinflamatorios no esteroideos),
+                  puede provocar cualquiera de los siguientes efectos:
+                  ronchas, picazón, inflamación, falta de aire, congestión nasal,
+                  sibilancia, debilidad o incluso desmayos.
+                  Contraindicados:
+                    - Todos los AINE.">
+            <medicalTreatment>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
+            id="ALLERGY_ANTIBIOTIC"
+            name="Alergia a las sulfamidas"
+            desc="Los antibióticos que contienen sustancias químicas denominadas sulfonamidas
+                  pueden desencadenar una reacción si se tiene una alergia a sulfamidas.
+                  Contraindicados:
+                    - Todas las sulfamidas.">
+            <medicalTreatment>
+            </medicalTreatment>
+        </morbidity>
+
+        <morbidity
             id="BRADYCARDIA"
             name="Bradicardia – bloqueo aurículoventricular"
             desc="La bradicardia puede ser un problema grave
