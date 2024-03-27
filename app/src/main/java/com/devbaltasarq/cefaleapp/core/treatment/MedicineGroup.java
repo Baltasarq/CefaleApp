@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 /** This groups a set of medicines. */
@@ -121,9 +122,10 @@ public class MedicineGroup implements Identifiable {
         private static IdsRepo ids = null;
     }
 
-    public MedicineGroup(Id grpId)
+    public MedicineGroup(Id grpId, MedicineClass.Id clsId)
     {
         this.grpId = grpId;
+        this.clsId = clsId;
         this.medicines = new HashMap<>( 4 );
     }
 
@@ -131,6 +133,18 @@ public class MedicineGroup implements Identifiable {
     public Id getId()
     {
         return this.grpId;
+    }
+
+    /** @return the medicine class id. */
+    public MedicineClass.Id getClsId()
+    {
+        return this.clsId;
+    }
+
+    /** @return the medicine class object. */
+    public MedicineClass getCls()
+    {
+        return Objects.requireNonNull( MedicineClass.getAll().get( this.clsId ) );
     }
 
     /** Inserts a medicine for a given key in the group.
@@ -249,6 +263,7 @@ public class MedicineGroup implements Identifiable {
     }
 
     private final Id grpId;
+    private final MedicineClass.Id clsId;
     private final Map<Integer, Medicine> medicines;
     private static Map<Id, MedicineGroup> allGroups = null;
 }

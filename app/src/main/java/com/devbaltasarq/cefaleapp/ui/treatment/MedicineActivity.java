@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.treatment.Dosage;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -63,6 +64,11 @@ public class MedicineActivity extends AppCompatActivity {
         final int MIN_DOSAGE_VISIBLE = MIN_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
         final int MAX_DOSAGE_VISIBLE = MAX_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
         final int REC_DOSAGE_VISIBLE = REC_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
+        final String COMPLETE_GROUP_NAME =
+                                    medicine.getGroup().getClsId().getName()
+                                    + " ("
+                                    + medicine.getGroupId().getName().toLowerCase()
+                                    + ")";
 
         if ( ACTION_BAR != null ) {
             ACTION_BAR.setTitle( this.getString( R.string.lbl_medicine )
@@ -87,7 +93,7 @@ public class MedicineActivity extends AppCompatActivity {
         }
 
         LBL_ADVERSE_EFFECTS.setText( medicine.getAdverseEffects() );
-        LBL_MEDICINE_GROUP.setText( medicine.getGroup().getId().getName() );
+        LBL_MEDICINE_GROUP.setText( COMPLETE_GROUP_NAME );
         BT_WEB.setOnClickListener( v -> openVademecum( medicine.getUrl() ) );
 
         // Set visibility
@@ -98,9 +104,9 @@ public class MedicineActivity extends AppCompatActivity {
 
     private void openVademecum(String url)
     {
-        final Intent BROWSER_INTENT = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
-        this.startActivity( BROWSER_INTENT );
+        this.startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( url ) ) );
     }
+
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if ( item.getItemId() == android.R.id.home ) {

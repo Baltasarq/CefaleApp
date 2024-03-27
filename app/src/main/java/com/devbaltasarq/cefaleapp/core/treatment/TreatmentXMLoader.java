@@ -32,7 +32,9 @@ import javax.xml.parsers.ParserConfigurationException;
 public class TreatmentXMLoader {
     private static final String ETQ_MEDICINE = "medicine";
     private static final String ETQ_MEDICINE_GROUP = "medicineGroup";
+    private static final String ETQ_MEDICINE_CLASS = "medicineClass";
     private static final String ETQ_ID = "id";
+    private static final String ETQ_CLASS = "classId";
     private static final String ETQ_NAME = "name";
     private static final String ETQ_POS_IN_GROUP = "posInGroup";
     private static final String ETQ_GROUP_ID = "groupId";
@@ -53,11 +55,13 @@ public class TreatmentXMLoader {
 
     private TreatmentXMLoader(Map<Medicine.Id, Medicine> medicines,
                               Map<MedicineGroup.Id, MedicineGroup> medicineGroups,
+                              Map<MedicineClass.Id, MedicineClass> medicineClasses,
                               Map<Morbidity.Id, Morbidity> morbidities)
     {
         this.medicines = medicines;
         this.morbidities = morbidities;
         this.medicineGroups = medicineGroups;
+        this.medicineClasses = medicineClasses;
     }
 
     /** @return all the loaded medicines, as a map of Id, Medicine. */
@@ -70,6 +74,12 @@ public class TreatmentXMLoader {
     public Map<MedicineGroup.Id, MedicineGroup> getMedicineGroups()
     {
         return this.medicineGroups;
+    }
+
+    /** @return all the loaded medicine classes, as a map of Id, MedicineClass. */
+    public Map<MedicineClass.Id, MedicineClass> getMedicineClasses()
+    {
+        return this.medicineClasses;
     }
 
     /** @return all the loaded morbidities, as a map of Id, Morbidity. */
@@ -88,20 +98,47 @@ public class TreatmentXMLoader {
             final DocumentBuilder DB = DBF.newDocumentBuilder();
             final Document DOM = DB.parse( in );
             final Element DOC = DOM.getDocumentElement();
-
+            final Map<MedicineClass.Id, MedicineClass> MEDICINE_CLASSES =
+                                            loadMedicineClassesFromXML( DOC );
             final Map<MedicineGroup.Id, MedicineGroup> MEDICINE_GROUPS =
-                                                   loadMedicineGroupsFromXML( DOC );
+                                            loadMedicineGroupsFromXML( DOC );
             final Map<Medicine.Id, Medicine> MEDICINES = loadMedicinesFromXML( DOC );
             final Map<Morbidity.Id, Morbidity> MORBIDITIES = loadMorbiditiesFromXML( DOC );
 
+            assignMedicineGroupsToClasses( MEDICINE_GROUPS, MEDICINE_CLASSES );
             assignMedicinesToMedicineGroups( MEDICINES, MEDICINE_GROUPS );
-            toret = new TreatmentXMLoader( MEDICINES, MEDICINE_GROUPS, MORBIDITIES );
+            toret = new TreatmentXMLoader(
+                                    MEDICINES,
+                                    MEDICINE_GROUPS,
+                                    MEDICINE_CLASSES,
+                                    MORBIDITIES );
         } catch(ParserConfigurationException | SAXException exc)
         {
             throw new IOException( exc.getMessage() );
         }
 
         return toret;
+    }
+
+    private static void assignMedicineGroupsToClasses(
+            final Map<MedicineGroup.Id, MedicineGroup> MEDICINE_GROUPS,
+            final Map<MedicineClass.Id, MedicineClass> MEDICINE_CLASSES)
+    {
+        for(final MedicineGroup GROUP: MEDICINE_GROUPS.values()) {
+            final MedicineClass.Id CLS_ID = GROUP.getClsId();
+            final MedicineClass CLS = MEDICINE_CLASSES.get( CLS_ID );
+
+            if ( CLS_ID != null
+              && CLS != null )
+            {
+                CLS.insert( GROUP );
+            } else {
+                throw new Error( "Loading groups in classes "
+                                + "missing class/class id: " + CLS_ID );
+            }
+        }
+
+        return;
     }
 
     private static void assignMedicinesToMedicineGroups(
@@ -147,6 +184,32 @@ public class TreatmentXMLoader {
                             (Element) MEDICINE_GROUP_NODES.item( i ) );
 
             TORET.put( MEDICINE_GROUP.getId(), MEDICINE_GROUP );
+        }
+
+        return TORET;
+    }
+
+    /** Loads all medicine groups from XML.
+     * @param DOC the root element.
+     * @return a map in which the keys are MedicineGroup.Id's,
+     *         and values are the medicines groups themselves.
+     */
+    @NonNull
+    private static Map<MedicineClass.Id, MedicineClass> loadMedicineClassesFromXML(
+            final Element DOC)
+            throws IOException
+    {
+        final Map<MedicineClass.Id, MedicineClass> TORET = new HashMap<>( 10 );
+
+        // Load from XML
+        final NodeList MEDICINE_CLASS_NODES = DOC.getElementsByTagName( ETQ_MEDICINE_CLASS );
+
+        for(int i = 0; i < MEDICINE_CLASS_NODES.getLength(); ++i) {
+            final MedicineClass MEDICINE_CLASS =
+                    loadMedicineClassFromXML(
+                            (Element) MEDICINE_CLASS_NODES.item( i ) );
+
+            TORET.put( MEDICINE_CLASS.getId(), MEDICINE_CLASS );
         }
 
         return TORET;
@@ -232,10 +295,28 @@ public class TreatmentXMLoader {
                         URL );
     }
 
-    /** Loads a single medicine info.
-     * @param medicineGroupElement The element to read the medicine info from;
-     *                         It should have a tag "medicine"
-     * @return a Medicine object.
+    /** Loads a single medicine class info.
+     * @param medicineClassElement The element to read the medicine class info from;
+     *                         It should have a tag "medicineClass"
+     * @return a MedicineClass object.
+     * @throws IOException if something goes wrong.
+     */
+    private static MedicineClass loadMedicineClassFromXML(
+            Element medicineClassElement)
+            throws IOException
+    {
+        final String ID = Util.getXMLAttributeOrThrow(
+                medicineClassElement, ETQ_ID );
+        final String NAME = Util.getXMLAttributeOrThrow(
+                medicineClassElement, ETQ_NAME );
+
+        return new MedicineClass( new MedicineClass.Id( ID, NAME ) );
+    }
+
+    /** Loads a single medicine group info.
+     * @param medicineGroupElement The element to read the medicine group info from;
+     *                         It should have a tag "medicineGroup"
+     * @return a MedicineGroup object.
      * @throws IOException if something goes wrong.
      */
     private static MedicineGroup loadMedicineGroupFromXML(
@@ -244,10 +325,14 @@ public class TreatmentXMLoader {
     {
         final String ID = Util.getXMLAttributeOrThrow(
                                     medicineGroupElement, ETQ_ID );
+        final String CLS_ID = Util.getXMLAttributeOrThrow(
+                                    medicineGroupElement, ETQ_CLASS );
         final String NAME = Util.getXMLAttributeOrThrow(
                                     medicineGroupElement, ETQ_NAME );
 
-        return new MedicineGroup( new MedicineGroup.Id( ID.charAt( 0 ), NAME ) );
+        return new MedicineGroup(
+                        new MedicineGroup.Id( ID.charAt( 0 ), NAME ),
+                        new MedicineClass.Id( CLS_ID, NAME ));
     }
 
     private static String formatMultilineValue(String adverseEffects)
@@ -413,4 +498,5 @@ public class TreatmentXMLoader {
     private final Map<Medicine.Id, Medicine> medicines;
     private final Map<Morbidity.Id, Morbidity> morbidities;
     private final Map<MedicineGroup.Id, MedicineGroup> medicineGroups;
+    private final Map<MedicineClass.Id, MedicineClass> medicineClasses;
 }

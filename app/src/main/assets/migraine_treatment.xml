@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <migraineTreatment>
+    <!--
+        Class ANALG: analgésico.
+        Class PRVNT: preventivos.
+    -->
+    <medicineClasses>
+        <medicineClass id="PRVNT" name="Preventivo" />
+        <medicineClass id="ANALG" name="Analgésico" />
+    </medicineClasses>
+
+    <!-- A letter identifies each group id. -->
     <medicineGroups>
-        <medicineGroup id="A" name="Antihipertensivos" />
-        <medicineGroup id="B" name="Betabloqueantes" />
-        <medicineGroup id="C" name="Bloqueadores de calcio" />
-        <medicineGroup id="D" name="Antidepresivos" />
-        <medicineGroup id="E" name="Neuromoduladores" />
-        <medicineGroup id="F" name="Anticuerpos monoclonales (uso hospitalario)" />
-        <medicineGroup id="G" name="Toxina botulínica (uso hospitalario)" />
-        <medicineGroup id="I" name="Intervención: uso sintomático" />
+        <medicineGroup id="A" classId="PRVNT" name="Antihipertensivos" />
+        <medicineGroup id="B" classId="PRVNT" name="Betabloqueantes" />
+        <medicineGroup id="C" classId="PRVNT" name="Bloqueadores de calcio" />
+        <medicineGroup id="D" classId="PRVNT" name="Antidepresivos" />
+        <medicineGroup id="E" classId="PRVNT" name="Neuromoduladores" />
+        <medicineGroup id="F" classId="PRVNT" name="Anticuerpos monoclonales (uso hospitalario)" />
+        <medicineGroup id="G" classId="PRVNT" name="Toxina botulínica (uso hospitalario)" />
+        <medicineGroup id="I" classId="ANALG" name="Intervención: uso sintomático" />
     </medicineGroups>
 
     <medicines>

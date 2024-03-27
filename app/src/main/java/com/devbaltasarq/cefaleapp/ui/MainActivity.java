@@ -23,6 +23,7 @@ import com.devbaltasarq.cefaleapp.core.questionnaire.MIDASFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormXMLLoader;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentXMLoader;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
@@ -211,10 +212,12 @@ public class MainActivity extends AppCompatActivity {
                     this.getAssets().open( TREATMENT_DATA_ASSET ) );
             Medicine.setAllMedicines( LOADED.getMedicines() );
             MedicineGroup.setAllGroups( LOADED.getMedicineGroups() );
+            MedicineClass.setAllClasses( LOADED.getMedicineClasses() );
             Morbidity.setAllMorbidities( LOADED.getMorbididties() );
+
             MigraineTestActivity.migraineForm = FormXMLLoader.loadFromFile(
                                     this.getAssets().open( MIGRAINE_FORM_DATA_ASSET ) );
-            MigraineTestActivity.player = new MigraineFormPlayer( MigraineTestActivity.migraineForm);
+            MigraineTestActivity.player = new MigraineFormPlayer( MigraineTestActivity.migraineForm );
             MIDASFormActivity.MIDASForm = FormXMLLoader.loadFromFile(
                                     this.getAssets().open( MIDAS_FORM_DATA_ASSET ) );
             MIDASFormActivity.player = new MIDASFormPlayer( MIDASFormActivity.MIDASForm );
