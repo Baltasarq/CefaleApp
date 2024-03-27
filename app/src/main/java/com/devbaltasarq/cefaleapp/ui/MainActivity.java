@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         this.prepareDropboxClient();
         this.setButtonListeners();
         this.setNavViewOptionListener();
-        this.showFunctionality();
         this.loadData();
     }
 
@@ -83,16 +82,6 @@ public class MainActivity extends AppCompatActivity {
         final NavigationView NAV_VIEW = this.findViewById( R.id.nav_view );
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
         final TextView LBL_TITLE = this.findViewById( R.id.lblMainTitle );
-
-        this.numTitleBarTaps = 0;
-        LBL_TITLE.setOnClickListener( (v) -> {
-            this.numTitleBarTaps += 1;
-
-            if ( this.numTitleBarTaps >= 11 ) {
-                this.showFunctionality( AppInfo.MODE != AppInfo.ModeType.PHYSICIAN );
-                this.numTitleBarTaps = 0;
-            }
-        });
 
         NAV_VIEW.setNavigationItemSelectedListener( (MenuItem item) -> {
             LY_DRAWER.closeDrawers();
@@ -237,37 +226,5 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
-    private void showFunctionality()
-    {
-        this.showFunctionality( AppInfo.MODE == AppInfo.ModeType.PHYSICIAN );
-    }
-
-    private void showFunctionality(boolean show)
-    {
-        final LinearLayout LY_TREATMENT = this.findViewById( R.id.lyTreatment );
-        final LinearLayout LY_VADEMECUM = this.findViewById( R.id.lyVademecum );
-        final NavigationView NAV_VIEW = this.findViewById( R.id.nav_view );
-        final Menu NAV_MENU = NAV_VIEW.getMenu();
-        final MenuItem OP_TREATMENT = NAV_MENU.findItem( R.id.op_start_treatment );
-        final MenuItem OP_VADEMECUM = NAV_MENU.findItem( R.id.op_start_vademecum );
-
-        if ( show ) {
-            final AlertDialog.Builder DLG = new AlertDialog.Builder( this );
-            DLG.setMessage( R.string.msg_app_physician_mode );
-            DLG.setPositiveButton( "Ok", null );
-
-            AppInfo.MODE = AppInfo.ModeType.PHYSICIAN;
-            DLG.create().show();
-        } else {
-            AppInfo.MODE = AppInfo.ModeType.PATIENT;
-        }
-
-        LY_TREATMENT.setVisibility( show? View.VISIBLE: View.GONE );
-        LY_VADEMECUM.setVisibility( show? View.VISIBLE: View.GONE );
-        OP_TREATMENT.setVisible( show );
-        OP_VADEMECUM.setVisible( show );
-    }
-
-    private int numTitleBarTaps;
     public static TextSize textSize;
 }
