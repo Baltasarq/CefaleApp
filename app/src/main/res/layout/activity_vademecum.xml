@@ -41,11 +41,43 @@
                     app:srcCompat="@drawable/medicine" />
             </LinearLayout>
 
-            <LinearLayout       android:id="@+id/lyMedicineGroups"
-                android:visibility="gone"
+            <LinearLayout       android:id="@+id/lyClasses"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+
+                <TextView   android:id="@+id/lblClsPreventive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    android:justificationMode="inter_word"
+                    app:drawableStartCompat="@android:drawable/arrow_down_float"
+                    android:drawablePadding="5dp"
+                    android:layout_margin="5dp" />
+
+                <LinearLayout       android:id="@+id/lyPreventiveGroups"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView   android:id="@+id/lblClsSymptomatic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    android:justificationMode="inter_word"
+                    app:drawableStartCompat="@android:drawable/arrow_down_float"
+                    android:drawablePadding="5dp"
+                    android:layout_margin="5dp" />
+
+                <LinearLayout       android:id="@+id/lySymptomaticGroups"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <LinearLayout       android:id="@+id/lyMedicines"
                 android:visibility="gone"

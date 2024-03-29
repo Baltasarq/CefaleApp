@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
-        android:text="@string/lbl_syntomatic_treatment"
+        android:text="@string/lbl_symptomatic_treatment"
         android:layout_margin="10dp"/>
 
     <ScrollView

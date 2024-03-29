@@ -21,6 +21,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 
 import java.util.ArrayList;
@@ -45,10 +46,19 @@ public class VademecumActivity extends AppCompatActivity {
             ACTION_BAR.setLogo( R.drawable.medicine );
         }
 
-        final LinearLayout LY_MEDICINE_GROUPS = this.findViewById( R.id.lyMedicineGroups );
+        final MedicineClass CLS_PREVENTIVE = MedicineClass.getAll().get( MedicineClass.Id.get( "PRVNT" ) );
+        final MedicineClass CLS_SYMPTOMATIC = MedicineClass.getAll().get( MedicineClass.Id.get( "ANALG" ) );
+
+        final TextView LBL_CLS_PREVENTIVE = this.findViewById( R.id.lblClsPreventive );
+        final TextView LBL_CLS_SYMPTOMATIC = this.findViewById( R.id.lblClsSymptomatic );
+        final LinearLayout LY_PREVENTIVE_GROUPS = this.findViewById( R.id.lyPreventiveGroups );
+        final LinearLayout LY_SYMPTOMATIC_GROUPS = this.findViewById( R.id.lySymptomaticGroups );
         final LinearLayout LY_MEDICINES = this.findViewById( R.id.lyMedicines );
         final ImageButton BT_MEDICINE_GROUPS = this.findViewById( R.id.btMedicineGroups );
         final ImageButton BT_MEDICINES = this.findViewById( R.id.btMedicines );
+
+        LBL_CLS_PREVENTIVE.setText( R.string.lbl_preventive_treatment );
+        LBL_CLS_SYMPTOMATIC.setText( R.string.lbl_symptomatic_treatment);
 
         // Button listeners
         final View.OnClickListener ON_TAB_CLICK =
@@ -57,12 +67,42 @@ public class VademecumActivity extends AppCompatActivity {
         BT_MEDICINE_GROUPS.setOnClickListener( ON_TAB_CLICK );
         BT_MEDICINES.setOnClickListener( ON_TAB_CLICK );
 
+        LBL_CLS_PREVENTIVE.setOnClickListener(
+                                v -> switchShowClass(
+                                            LBL_CLS_PREVENTIVE, LY_PREVENTIVE_GROUPS ) );
+        LBL_CLS_SYMPTOMATIC.setOnClickListener(
+                                v -> switchShowClass(
+                                            LBL_CLS_SYMPTOMATIC, LY_SYMPTOMATIC_GROUPS ) );
+
         // Populate with info
-        this.populateLayout( LY_MEDICINE_GROUPS, MedicineGroup.getAll().values() );
+        final List<MedicineGroup> PREV_GROUPS = CLS_PREVENTIVE.getGroups();
+        final List<MedicineGroup> SYMP_GROUPS = CLS_SYMPTOMATIC.getGroups();
+        this.populateLayout( LY_PREVENTIVE_GROUPS, PREV_GROUPS );
+        this.populateLayout( LY_SYMPTOMATIC_GROUPS, SYMP_GROUPS );
         this.populateLayout( LY_MEDICINES, Medicine.getAll().values() );
 
         // Set current page
         this.changePage( BT_MEDICINE_GROUPS );
+    }
+
+    private void switchShowClass(
+                    final TextView LBL_MED_CLS,
+                    final LinearLayout LY_MED_CLS)
+    {
+        int contraryVisibility = View.VISIBLE;
+
+        LBL_MED_CLS.setCompoundDrawablesWithIntrinsicBounds(
+                android.R.drawable.arrow_up_float,
+                0, 0, 0 );
+
+        if ( LY_MED_CLS.getVisibility() == View.VISIBLE ) {
+            contraryVisibility = View.GONE;
+            LBL_MED_CLS.setCompoundDrawablesWithIntrinsicBounds(
+                    android.R.drawable.arrow_down_float,
+                    0, 0, 0 );
+        }
+
+        LY_MED_CLS.setVisibility( contraryVisibility );
     }
 
     private<T extends Identifiable> void populateLayout(
@@ -81,7 +121,6 @@ public class VademecumActivity extends AppCompatActivity {
 
     private void buildEntry(final LinearLayout LY, final Identifiable ID_OBJ)
     {
-        final LayoutInflater INFLATER = this.getLayoutInflater();
         String name = ID_OBJ.getId().getName();
 
         // Prepare name (separate different lines by separator)
@@ -102,6 +141,7 @@ public class VademecumActivity extends AppCompatActivity {
                     + "\n" + name.substring( posSeparator + 1 ).trim();
         }
 
+        final LayoutInflater INFLATER = this.getLayoutInflater();
         final View ENTRY_VIEW = INFLATER.inflate(
                                         R.layout.vademecum_entry,
                                     null );
@@ -152,9 +192,8 @@ public class VademecumActivity extends AppCompatActivity {
         if ( LY_SUB_ENTRIES.getVisibility() != View.VISIBLE ) {
             LY_SUB_ENTRIES.setVisibility( View.VISIBLE );
             TV.setCompoundDrawablesWithIntrinsicBounds(
-                    AppCompatResources.getDrawable( this,
-                            android.R.drawable.arrow_up_float ),
-                    null, null, null );
+                            android.R.drawable.arrow_up_float,
+                            0, 0, 0 );
 
             if ( LY_SUB_ENTRIES.getChildCount() == 0 ) {
                 for(final Medicine MEDICINE: MEDICINES) {
@@ -169,9 +208,8 @@ public class VademecumActivity extends AppCompatActivity {
         } else {
             LY_SUB_ENTRIES.setVisibility( View.GONE );
             TV.setCompoundDrawablesWithIntrinsicBounds(
-                    AppCompatResources.getDrawable( this,
-                            android.R.drawable.arrow_down_float ),
-                    null, null, null );
+                            android.R.drawable.arrow_down_float ,
+                            0, 0, 0 );
         }
 
         return;
@@ -179,7 +217,7 @@ public class VademecumActivity extends AppCompatActivity {
 
     private void changePage(final ImageButton BUTTON)
     {
-        final LinearLayout LY_MEDICINE_GROUPS = this.findViewById( R.id.lyMedicineGroups );
+        final LinearLayout LY_CLASSES = this.findViewById( R.id.lyClasses );
         final LinearLayout LY_MEDICINES = this.findViewById( R.id.lyMedicines );
         final ImageButton BT_MEDICINE_GROUPS = this.findViewById( R.id.btMedicineGroups );
         final ImageButton BT_MEDICINES = this.findViewById( R.id.btMedicines );
@@ -189,7 +227,7 @@ public class VademecumActivity extends AppCompatActivity {
                 (bt) -> bt == BUTTON ? 75 : 255;
 
         // Layouts
-        LY_MEDICINE_GROUPS.setVisibility( FN_VISIBLE.apply( BT_MEDICINE_GROUPS ) );
+        LY_CLASSES.setVisibility( FN_VISIBLE.apply( BT_MEDICINE_GROUPS ) );
         LY_MEDICINES.setVisibility( FN_VISIBLE.apply( BT_MEDICINES ) );
 
         // Buttons' background

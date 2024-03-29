@@ -40,7 +40,7 @@
     <string name="lbl_compatible_medicines">Medicinas compatibles</string>
     <string name="lbl_incompatible_medicines">Medicinas incompatibles</string>
     <string name="lbl_preventive_treatment">Tratamiento preventivo</string>
-    <string name="lbl_syntomatic_treatment">Tratamiento sintomático</string>
+    <string name="lbl_symptomatic_treatment">Tratamiento sintomático</string>
 
     <!-- Messages -->
     <string name="msg_info">Información sobre la aplicación.</string>
