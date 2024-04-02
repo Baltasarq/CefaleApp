@@ -17,6 +17,11 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.faq.Faq;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class InfoActivity extends AppCompatActivity {
@@ -40,19 +45,20 @@ public class InfoActivity extends AppCompatActivity {
     private void showFAQ()
     {
         final LinearLayout LY_FAQ = this.findViewById( R.id.lyFAQContainer );
-        final String[] FAQ_QUESTIONS = this.getResources().getStringArray( R.array.txt_faq_qs );
-        final String[] FAQ_ANSWERS = this.getResources().getStringArray( R.array.txt_faq_as );
+        final List<Faq> FAQ_ENTRIES= new ArrayList<>( Faq.getForLang( "es" ).values() );
         final LayoutInflater INFLATER = this.getLayoutInflater();
 
-        for(int i = 0; i < FAQ_QUESTIONS.length; ++i) {
-            final LinearLayout FAQ_ENTRY = (LinearLayout) INFLATER
-                                        .inflate( R.layout.faq_entry, null );
-            final TextView LBL_QUESTION = FAQ_ENTRY.findViewById( R.id.lblFaqQuestion );
-            final TextView LBL_ANSWER = FAQ_ENTRY.findViewById( R.id.lblFaqAnswer );
+        FAQ_ENTRIES.sort( Comparator.comparing( Faq::getId ) );
 
-            LBL_QUESTION.setText( FAQ_QUESTIONS[ i ] );
-            LBL_ANSWER.setText( FAQ_ANSWERS[ i ] );
-            LY_FAQ.addView( FAQ_ENTRY );
+        for(final Faq FAQ: FAQ_ENTRIES) {
+            final LinearLayout FAQ_VIEW = (LinearLayout) INFLATER
+                                        .inflate( R.layout.faq_entry, null );
+            final TextView LBL_QUESTION = FAQ_VIEW.findViewById( R.id.lblFaqQuestion );
+            final TextView LBL_ANSWER = FAQ_VIEW.findViewById( R.id.lblFaqAnswer );
+
+            LBL_QUESTION.setText( FAQ.getQuestion() );
+            LBL_ANSWER.setText( FAQ.getAnswer() );
+            LY_FAQ.addView( FAQ_VIEW );
 
             LBL_QUESTION.setOnClickListener( (v) -> {
                 if ( LBL_ANSWER.getVisibility() == View.GONE ) {
@@ -87,6 +93,4 @@ public class InfoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected( item );
     }
-
-    private static SimpleExpandableListAdapter adapter = null;
 }
