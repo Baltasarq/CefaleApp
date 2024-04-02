@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_weight=".8">
+
+        <TextView       android:id="@+id/lblLinkSrc"
+            android:orientation="vertical"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView       android:id="@+id/lblLinkDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+    </LinearLayout>
+
+    <ImageView      android:id="@+id/btGoLink"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:contentDescription="@string/lbl_links"
+        app:srcCompat="@drawable/ic_external_link"
+        app:tint="?colorSecondary" />
+</LinearLayout>

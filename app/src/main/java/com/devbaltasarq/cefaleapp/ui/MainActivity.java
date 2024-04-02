@@ -7,7 +7,6 @@ package com.devbaltasarq.cefaleapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,7 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.AppInfo;
+import com.devbaltasarq.cefaleapp.core.faq.Faq;
+import com.devbaltasarq.cefaleapp.core.faq.FaqXMLLoader;
+import com.devbaltasarq.cefaleapp.core.links.WebUrl;
+import com.devbaltasarq.cefaleapp.core.links.WebUrlXMLLoader;
 import com.devbaltasarq.cefaleapp.core.questionnaire.DropboxUsrClient;
 import com.devbaltasarq.cefaleapp.core.questionnaire.HITFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MIDASFormPlayer;
@@ -37,7 +39,6 @@ import com.devbaltasarq.cefaleapp.ui.treatment.TreatmentActivity;
 import com.devbaltasarq.cefaleapp.ui.treatment.VademecumActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private final static String HIT_FORM_DATA_ASSET = "hit_test.xml";
     private final static String MIDAS_FORM_DATA_ASSET = "midas_test.xml";
     private final static String TREATMENT_DATA_ASSET = "migraine_treatment.xml";
+    private final static String FAQ_DATA_ASSET = "faq.xml";
+    private final static String LINKS_DATA_ASSET = "links.xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     {
         final NavigationView NAV_VIEW = this.findViewById( R.id.nav_view );
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
-        final TextView LBL_TITLE = this.findViewById( R.id.lblMainTitle );
 
         NAV_VIEW.setNavigationItemSelectedListener( (MenuItem item) -> {
             LY_DRAWER.closeDrawers();
@@ -99,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             if ( item.getItemId() == R.id.op_start_treatment ) {
-                this.startActivity( TreatmentActivity.class );
+                this.gotoActivity( TreatmentActivity.class );
             }
             else
             if ( item.getItemId() == R.id.op_start_vademecum ) {
-                this.startActivity( VademecumActivity.class );
+                this.gotoActivity( VademecumActivity.class );
             }
             else
             if ( item.getItemId() == R.id.op_start_hit ) {
@@ -115,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             if ( item.getItemId() == R.id.op_start_info ) {
-                this.startActivity( InfoActivity.class );
+                this.gotoActivity( InfoActivity.class );
             }
             else
             if ( item.getItemId() == R.id.op_start_about ) {
-                this.startActivity( AboutActivity.class );
+                this.gotoActivity( AboutActivity.class );
             } else {
                 throw new Error( "unknown option" );
             }
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout LY_DRAWER = this.findViewById( R.id.lyDrawer );
         final ImageView BT_ABOUT = this.findViewById( R.id.btAbout );
         final ImageView BT_INFO = this.findViewById( R.id.btInfo );
+        final ImageView BT_LINKS = this.findViewById( R.id.btLinks );
         final ImageView BT_VADEMECUM = this.findViewById( R.id.btVademecum );
         final ImageView BT_ENQUIRY = this.findViewById( R.id.btEnquiry );
         final ImageView BT_TREATMENT = this.findViewById( R.id.btTreatment );
@@ -147,10 +150,11 @@ public class MainActivity extends AppCompatActivity {
         );
 
         BT_ENQUIRY.setOnClickListener( v -> this.onEnquiry() );
-        BT_ABOUT.setOnClickListener( v -> this.startActivity( AboutActivity.class ));
-        BT_INFO.setOnClickListener( v -> this.startActivity( InfoActivity.class ));
-        BT_VADEMECUM.setOnClickListener( v-> this.startActivity( VademecumActivity.class ));
-        BT_TREATMENT.setOnClickListener( v-> this.startActivity( TreatmentActivity.class ));
+        BT_ABOUT.setOnClickListener( v -> this.gotoActivity( AboutActivity.class ));
+        BT_INFO.setOnClickListener( v -> this.gotoActivity( InfoActivity.class ));
+        BT_LINKS.setOnClickListener( v -> this.gotoActivity( LinksActivity.class ));
+        BT_VADEMECUM.setOnClickListener( v-> this.gotoActivity( VademecumActivity.class ));
+        BT_TREATMENT.setOnClickListener( v-> this.gotoActivity( TreatmentActivity.class ));
         BT_HIT.setOnClickListener( v-> this.onLaunchHitForm() );
         BT_MIDAS.setOnClickListener( v-> this.onLaunchMidasForm() );
     }
@@ -179,40 +183,48 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity( INTENT );
     }
 
-    private void startActivity(Class<?> activityClass)
+    private void gotoActivity(Class<?> activityClass)
     {
         this.startActivity( new Intent( this, activityClass ) );
     }
 
     private void onLaunchHitForm()
     {
-        this.startActivity( HITFormActivity.class );
+        this.gotoActivity( HITFormActivity.class );
     }
 
     private void onLaunchMidasForm()
     {
-        this.startActivity( MIDASFormActivity.class );
+        this.gotoActivity( MIDASFormActivity.class );
     }
 
     private void loadData()
     {
         try {
-            final TreatmentXMLoader LOADED = TreatmentXMLoader.loadFromXML(
+            // Load all treatment-related data
+            final TreatmentXMLoader TR_LOADER = TreatmentXMLoader.loadFromXML(
                     this.getAssets().open( TREATMENT_DATA_ASSET ) );
-            Medicine.setAllMedicines( LOADED.getMedicines() );
-            MedicineGroup.setAllGroups( LOADED.getMedicineGroups() );
-            MedicineClass.setAllClasses( LOADED.getMedicineClasses() );
-            Morbidity.setAllMorbidities( LOADED.getMorbididties() );
+            Medicine.setAllMedicines( TR_LOADER.getMedicines() );
+            MedicineGroup.setAllGroups( TR_LOADER.getMedicineGroups() );
+            MedicineClass.setAllClasses( TR_LOADER.getMedicineClasses() );
+            Morbidity.setAllMorbidities( TR_LOADER.getMorbididties() );
 
-            MigraineTestActivity.migraineForm = FormXMLLoader.loadFromFile(
+            // Load all tests
+            MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIGRAINE_FORM_DATA_ASSET ) );
             MigraineTestActivity.player = new MigraineFormPlayer( MigraineTestActivity.migraineForm );
-            MIDASFormActivity.MIDASForm = FormXMLLoader.loadFromFile(
+            MIDASFormActivity.MIDASForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIDAS_FORM_DATA_ASSET ) );
             MIDASFormActivity.player = new MIDASFormPlayer( MIDASFormActivity.MIDASForm );
-            HITFormActivity.HITForm = FormXMLLoader.loadFromFile(
+            HITFormActivity.HITForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( HIT_FORM_DATA_ASSET ) );
             HITFormActivity.player = new HITFormPlayer( HITFormActivity.HITForm );
+
+            // Load FAQ entries
+            Faq.setAll( FaqXMLLoader.loadFrom( this.getAssets().open( FAQ_DATA_ASSET ) ) );
+
+            // Load links
+            WebUrl.setAll( WebUrlXMLLoader.loadFrom( this.getAssets().open( LINKS_DATA_ASSET ) ) );
         } catch(IOException exc) {
             final TextView TV_STATUS = this.findViewById( R.id.tvErrorStatus );
             final LinearLayout LY_MAIN = this.findViewById( R.id.lyMain );

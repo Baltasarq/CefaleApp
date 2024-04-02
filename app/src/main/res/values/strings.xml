@@ -41,6 +41,7 @@
     <string name="lbl_incompatible_medicines">Medicinas incompatibles</string>
     <string name="lbl_preventive_treatment">Tratamiento preventivo</string>
     <string name="lbl_symptomatic_treatment">Tratamiento sintomático</string>
+    <string name="lbl_links">Enlaces</string>
 
     <!-- Messages -->
     <string name="msg_info">Información sobre la aplicación.</string>
@@ -69,141 +70,6 @@
                                      de comprender y aplicar correctamente estas recomendaciones.
                                      La toma de medicamentos sin supervisión médica es peligrosa para la salud.
                                       </string>
-
-    <!-- Texts -->
-    <string-array name="txt_faq_qs">
-        <item>@string/txt_faq1_q</item>
-        <item>@string/txt_faq2_q</item>
-        <item>@string/txt_faq3_q</item>
-        <item>@string/txt_faq4_q</item>
-        <item>@string/txt_faq5_q</item>
-        <item>@string/txt_faq6_q</item>
-        <item>@string/txt_faq7_q</item>
-        <item>@string/txt_faq8_q</item>
-        <item>@string/txt_faq9_q</item>
-        <item>@string/txt_faq10_q</item>
-        <item>@string/txt_faq11_q</item>
-        <item>@string/txt_faq12_q</item>
-        <item>@string/txt_faq13_q</item>
-        <item>@string/txt_faq14_q</item>
-        <item>@string/txt_faq15_q</item>
-        <item>@string/txt_faq16_q</item>
-        <item>@string/txt_faq17_q</item>
-        <item>@string/txt_faq18_q</item>
-        <item>@string/txt_faq19_q</item>
-        <item>@string/txt_faq20_q</item>
-        <item>@string/txt_faq21_q</item>
-        <item>@string/txt_faq22_q</item>
-        <item>@string/txt_faq23_q</item>
-        <item>@string/txt_faq24_q</item>
-        <item>@string/txt_faq25_q</item>
-    </string-array>
-
-    <string-array name="txt_faq_as">
-        <item>@string/txt_faq1_a</item>
-        <item>@string/txt_faq2_a</item>
-        <item>@string/txt_faq3_a</item>
-        <item>@string/txt_faq4_a</item>
-        <item>@string/txt_faq5_a</item>
-        <item>@string/txt_faq6_a</item>
-        <item>@string/txt_faq7_a</item>
-        <item>@string/txt_faq8_a</item>
-        <item>@string/txt_faq9_a</item>
-        <item>@string/txt_faq10_a</item>
-        <item>@string/txt_faq11_a</item>
-        <item>@string/txt_faq12_a</item>
-        <item>@string/txt_faq13_a</item>
-        <item>@string/txt_faq14_a</item>
-        <item>@string/txt_faq15_a</item>
-        <item>@string/txt_faq16_a</item>
-        <item>@string/txt_faq17_a</item>
-        <item>@string/txt_faq18_a</item>
-        <item>@string/txt_faq19_a</item>
-        <item>@string/txt_faq20_a</item>
-        <item>@string/txt_faq21_a</item>
-        <item>@string/txt_faq22_a</item>
-        <item>@string/txt_faq23_a</item>
-        <item>@string/txt_faq24_a</item>
-        <item>@string/txt_faq25_a</item>
-    </string-array>
-
-    <string name="txt_faq1_q">¿Cefalea y migraña es lo mismo?</string>
-    <string name="txt_faq1_a">Cefalea significa simplemente dolor de cabeza. La migraña es un tipo de cefalea. Hay muchos tipos de cefaleas, pero las más conocidas son la migraña, la cefalea tensional y la cefalea en racimos o cefalea de Horton. Todas las cefaleas tienen unos criterios clínicos para su diagnóstico, que se basan fundamentalmente en la intensidad del dolor, en su localización, en su duración, y otros síntomas o características acompañantes.</string>
-
-    <string name="txt_faq2_q">¿Las cefaleas se relacionan con el sexo de la persona?</string>
-    <string name="txt_faq2_a">La prevalencia de las cefaleas varia con el sexo. La migraña es tres veces más frecuente en las mujeres que en los hombres, en la población general, y esta prevalencia aumenta entre las personas que consultan en Neurología donde el 80% son mujeres. Las pacientes con migraña pueden tener crisis en el periodo menstrual, suelen empeorar con la toma de anticonceptivos hormonales, y suelen mejorar sus migrañas con la menopausia. En los hombres, la cefalea en racimos es tres veces más frecuente que en las mujeres.</string>
-
-    <string name="txt_faq3_q">¿Las migrañas se heredan?</string>
-    <string name="txt_faq3_a">No hay un gen que transmita la migraña, pero si hay una predisposición genética familiar en al menos el 60% de los pacientes afectados. En ocasiones los pacientes comentan que sus padres no padecen de migraña, pero si la padecía algunos de los abuelos, o de los tíos o de los primos. Hay una migraña especial, la llamada migraña hemipléjica familiar, que se caracteriza por acompañarse de una clínica motora en forma de hemiplejía transitoria y que está genéticamente determinada a través de mutaciones en el gen CACNA1A en el cromosoma 19.</string>
-
-    <string name="txt_faq4_q">¿Es lo mismo jaqueca que migraña?</string>
-    <string name="txt_faq4_a">Jaqueca es la forma popular en que se conoce a la migraña. Otras veces se le conoce como hemicránea, y que indica que es un dolor que afecta a una mitad del cráneo y que es la localización más típica del dolor de la migraña.</string>
-
-    <string name="txt_faq5_q">¿Qué es una migraña?</string>
-    <string name="txt_faq5_a">La migraña es un tipo de cefalea. Se diagnostica por criterios clínicos. Sus principales características son la de un dolor de horas de duración, de intensidad moderada-severa, con una cualidad pulsátil y un predominio hemicraneal, es frecuente la presencia de intolerancia a la luz y al ruido, y puede presentar náuseas y/o vómitos. Otra característica es el agravamiento con la actividad física.</string>
-
-    <string name="txt_faq6_q">¿Qué es un aura de migraña?</string>
-    <string name="txt_faq6_a">El aura es un síntoma neurológico que precede al inicio del dolor de la migraña. Suele durar entre 5 a 60 minutos. Las auras de la migraña pueden ser visuales (lucecitas, líneas en zig-zag, un espectro de fortificación, una zona oscura en el campo visual -llamada escotoma-), sensitivas (sensación de hormigueos en la mano y alrededor de la boca), del lenguaje (dificultad para expresarse), y motoras (pérdida de fuerza en un lado del cuerpo).</string>
-
-    <string name="txt_faq7_q">¿Qué son los pródromos de la migraña?</string>
-    <string name="txt_faq7_a">Los síntomas prodrómicos son aquellos que predicen que puede ocurrir una enfermedad. En el caso de la migraña los pacientes suelen referir en las 24 horas previas a una crisis, cambios en el humor con irritabilidad, falta de concentración, cansancio, bostezos, fotosensibilidad y cambios en el apetito con apetencia por los dulces.</string>
-
-    <string name="txt_faq8_q">¿Qué es una migraña de alta frecuencia y una migraña crónica?</string>
-    <string name="txt_faq8_a">Una migraña de alta frecuencia es aquella en la que los días de cefalea se sitúan entre 8 y 14 días al mes, durante al menos 3 meses consecutivos. Y la migraña crónica implica tener más de 15 días de cefalea al mes durante al menos 3 meses consecutivos. Por tanto, es muy importante que los pacientes se acostumbren a llevar un calendario de migraña donde anotará los días de cefalea, su intensidad y los analgésicos consumidos. El tratamiento precoz de la migraña es la mejor medida para evitar la cronificación de la migraña.</string>
-
-    <string name="txt_faq9_q">¿Cuándo está indicado realizar una prueba de imagen en la migraña?</string>
-    <string name="txt_faq9_a">La migraña es un diagnóstico clínico. Se realiza con una historia clínica detallada identificando las características del dolor y realizando un diagnóstico diferencial con otros tipos de cefaleas tanto primarias como secundarias. En una migraña la exploración neurológica tiene que ser normal. Por tanto, el neurólogo solicitará una prueba en caso de no cumplir estrictamente los criterios diagnósticos o por presentar anomalías en la exploración neurológica, o la respuesta al tratamiento no es la esperable. Sin embargo, una resonancia magnética cerebral se indicará en el caso de una cefalea en racimos o cefalea de Horton y en las neuralgias del trigémino para identificar una causa orgánica responsable de la cefalea.</string>
-
-    <string name="txt_faq10_q">¿Cuándo está indicado realizar un electroencefalograma?</string>
-    <string name="txt_faq10_a">Epidemiológicamente la epilepsia es más frecuente entre los pacientes con migraña que en la población general, sin embargo, el estudio electroencefalográfico no está indicado en la valoración clínica de las cefaleas. En ocasiones los pacientes con migraña presentan un predominio de las auras, y en este caso se debe realizar un diagnóstico diferencial con la epilepsia y se solicitará un electroencefalograma.</string>
-
-    <string name="txt_faq11_q">¿Qué relación hay entre migraña y epilepsia?</string>
-    <string name="txt_faq11_a">La epilepsia es más prevalente entre los pacientes con migraña que en la población general, y aunque las cifras son dispersas, se puede considerar que la mediana de prevalencia de la epilepsia es de un 6% entre los pacientes con migraña, mientras que en la población general la prevalencia es menor del 1%. La migralepsia es un concepto clínico controvertido que hace referencia a las crisis epilépticas que ocurren durante un episodio de migraña.</string>
-
-    <string name="txt_faq12_q">¿Hay alimentos que provocan migraña?</string>
-    <string name="txt_faq12_a">Una relación entre ciertos alimentos y una crisis de migraña puede estar presente en el 10–20% de los pacientes con migraña. Los alimentos que más se han implicado son el chocolate, los frutos secos, el plátano, las fresas, el vino tinto (sulfitos), los quesos curados, edulcorantes artificiales (aspartamo), el glutamato monosódico (es un aditivo que se emplea como conservante de las comidas, y se relacionó con la cefalea tras una comida en un restaurante chino), la tiramina (presente en quesos con el feta, parmesano y queso azul). Cada paciente debe identificar si hay algún alimento que le pueda generar una crisis migraña y evitarlo. No hay que olvidar que el ayuno también puede ocasionar una crisis de migraña.</string>
-
-    <string name="txt_faq13_q">¿Qué relación hay entre el déficit de DAO y la migraña?</string>
-    <string name="txt_faq13_a">Esta relación no está reconocida por la Sociedad Española de Neurología que ha emitido una nota informativa en este sentido.
-        Por el interés divulgativo, transcribimos la información que se registra en la página web de ADN-Institut sobre DAO y migraña. El déficit de DAO, también denominado intolerancia a la histamina o histaminosis alimentaria, es una alteración metabólica caracterizada por una disminución en la capacidad de degradación de la histamina procedente de la dieta. Se debe a una disminución en la actividad de la enzima diaminooxidasa (DAO), encargada de metabolizar la histamina. Se calcula que el déficit de DAO afecta al 12% de la población, con una mayor prevalencia en mujeres. En las personas con una actividad normal de DAO, la histamina de los alimentos es degradada rápidamente, pero aquellas que tienen una disminución en la actividad de esta enzima acumulan altos niveles de histamina en sangre (histaminosis). Esto aumenta la probabilidad de presentar efectos adversos como migraña, síntomas gastrointestinales, piel seca o atópica o fatiga crónica, entre otros. El déficit de DAO es el principal responsable de la migraña alimentaria.
-        A partir de un test simple y no invasivo, las personas que sufren migraña pueden conocer si esta dolencia es debida a un trastorno en la metabolización de la histamina presente en ciertos alimentos ricos en esta sustancia como por ejemplo los embutidos, leches y derivados lácticos, alimentos precocinados y bollería industrial, entre otros.</string>
-
-    <string name="txt_faq14_q">¿Qué relación hay entre la migraña y la menstruación?</string>
-    <string name="txt_faq14_a">La migraña puede guardar una relación con el periodo menstrual de dos maneras. La primera es que durante el ciclo menstrual las migrañas sean más frecuentes o intensas, y la segunda es que la migraña se presente exclusivamente durante el período menstrual (es la migraña catamenial). La migraña puede ocurrir premenstrual, durante el menstruo y postmenstrual. No hay diferencias clínicas entre la migraña menstrual y la migraña fuera del ciclo, pero si es habitual que sean más intensas y con menos respuesta a los tratamientos analgésicos.</string>
-
-    <string name="txt_faq15_q">¿Es cierto que dejaré de tener migrañas en la menopausia?</string>
-    <string name="txt_faq15_a">La norma es que el 70% de las mujeres experimentarán una mejoría o un cese de sus migrañas en la fase de menopausia. Evidentemente si la migraña tenía una alta influencia menstrual y ovulatoria estos factores quedan ahora eliminados. Algunas mujeres pueden experimentar una cronificación de la migraña, es decir, la intensidad de la migraña se reduce, pero la cefalea ocurre más a diario. También conocemos algunos casos de cefalea de perfil migrañoso que se han iniciado en la postmenopausia. Finalmente, recordar que la terapia hormonal sustitutiva para el control de los síntomas de la menopausia y de la osteoporosis también se ha relacionado con la migraña.</string>
-
-    <string name="txt_faq16_q">¿Puedo tomar anticonceptivos con hormonas  -“la píldora”- si tengo migraña?</string>
-    <string name="txt_faq16_a">Está bien reconocido que los anticonceptivos hormonales empeoran la migraña, tanto la frecuencia como la intensidad de la crisis. No obstante, un 30% de las mujeres no refieren este empeoramiento con los anticonceptivos. Siempre debe usarse el anticonceptivo con la menor dosis de estrógeno posible. Evidentemente si la indicación del empleo es como anticonceptivo y se produce un agravamiento de la migraña, este debería ser retirado, aunque es una decisión compartida con la paciente. Si la indicación es por un problema ginecológico (endometriosis, dismenorrea, metrorragias) y su uso es obligatorio para el control de la patología, el neurólogo buscará el método más eficaz para intentar controlar la migraña.</string>
-
-    <string name="txt_faq17_q">¿Qué puedo usar para tratar la migraña si estoy embarazada?</string>
-    <string name="txt_faq17_a">Siempre en el embarazo hay que buscar el equilibrio entre el riesgo y el beneficio de los tratamientos. Consensuar los tratamientos con el obstetra es la mejor práctica médica. Medidas no farmacológicas como el reposo a oscuras y en silencio y con el empleo de frio local pueden resultar de alivio. Analgésicos como paracetamol o el metamizol pueden ser empleados durante el embarazo, y también los antiinflamatorios no esteroideos (ibuprofeno, naproxeno) con seguridad hasta el segundo trimestre de la gestación. El sumatriptán es un tratamiento específico para la migraña sin aparente riesgo para su uso en la gestación. Una pauta corta de prednisona también podría valorarse. Si precisáramos emplear un tratamiento preventivo por una alta frecuencia de migrañas incapacitantes, si no hay contraindicaciones, el propanolol es el indicado.</string>
-
-    <string name="txt_faq18_q">¿Hay un riesgo entre tener migraña y los ictus cerebrales?</string>
-    <string name="txt_faq18_a">La migraña se ha identificado como un factor de riesgo independiente para la ocurrencia de un ictus isquémico. Estamos hablando de incidencias muy bajas, no hay que generar temor, pero una mujer debe estar informada de los riesgos que se asumen con el uso de los anticonceptivos. Esta relación es más relevante en mujeres y en presencia de migraña con aura. El riesgo de ictus aumenta en presencia de otros factores asociados, de forma que se incrementa más de 3 veces en las pacientes con migraña con hábito tabáquico y más de 4 veces en las que consumen anticonceptivos orales (y a mayor dosis de estrógenos contenidos en la píldora anticonceptiva, mayor riesgo de ictus). Otro concepto es el infarto migrañoso que es el que ocurre durante una crisis de migraña, y que suele ocurrir en mujeres menores de 45 años y que combinan el hábito tabáquico y el uso de anticonceptivos. Hay otra patología que se ha identificado como más prevalente en los pacientes con migraña y que son las disecciones arteriales, y que pueden dar lugar a la ocurrencia de un ictus. Finalmente, comentar que los anticonceptivos hormonales se han relacionado con un mayor riesgo de presentar una trombosis venosa -incluida la cerebral-, y este riesgo se ha relacionado con un déficit en algún factor de la coagulación, y que debe estudiarse antes de la prescripción de los anticonceptivos.</string>
-
-    <string name="txt_faq19_q">¿Puedo tomar cualquier calmante para aliviar mi migraña?</string>
-    <string name="txt_faq19_a">En principio si puede, pero siempre con la supervisión de su médico de atención primaria. El dolor de la migraña suele ser una intensidad moderada o grave, y loa analgésicos que están más indicados son los antiinflamatorios no esteroideos (AINEs), entre los que se encuentran el ibuprofeno, el diclofenaco, el naproxeno y el dexketoprofeno. Lo importante es tomar el analgésico al inicio del dolor, ya que si la migraña ya está instaurada la respuesta a la medicación es parcial. Si la cefalea es de intensidad severa el mejor tratamiento sintomático son los llamados triptanes. Lo que siempre se debe evitar son los fármacos que combinan analgésicos y la toma de medicación opiácea. Hay que evitar el abuso de los analgésicos ya que se ha relacionado con la cronificación de la migraña.</string>
-
-    <string name="txt_faq20_q">¿Qué son los triptanes?</string>
-    <string name="txt_faq20_a">Los triptanes son un grupo de medicamentos específicos para el tratamiento de la migraña. Son los de mayor eficacia. Son también medicamentos seguros, y sólo se contraindican en los pacientes con cardiopatía isquémica, con antecedentes de ictus o con hipertensión arterial mal controlada. Además, no se recomiendan en unos tipos especiales de migraña como son la hemipléjica familiar y la migraña basilar. Como efectos adversos frecuentes está una sensación transitoria de malestar torácico. Los principios activos son el sumatriptán (Imigran), zolmitriptán (Zomig), razatriptán (Maxalt), almotriptán (Almogran), eletriptán (Relert), naratriptán (Naramig) y frovatriptán (Forvey). Zomig y Maxalt tienen una formulación “flas” que permite su utilización sublingual, útil en el caso de presentar nauseas o vómitos, al igual que las formulaciones intranasales de Imigran y Zomig.</string>
-
-    <string name="txt_faq21_q">¿Puedo tomar Hemicraneal o Cafergot?</string>
-    <string name="txt_faq21_a">Son medicamentos indicados para el tratamiento de la migraña. Son de la clase farmacológica conocida como ergóticos, ya que contienen ergotamina, una sustancia que produce vasoconstricción arterial, y por esta posible complicación no debe abusarse de ellos. Para migrañas muy esporádicas es una opción de tratamiento sintomático, pero no deben emplearse como tratamientos preventivos. No se pueden combinar con la toma de los triptanes. Siempre bajo prescripción médica, la dosis inicial es de 2 comprimidos, y luego 1 comprimido cada hora hasta un máximo de 6 comprimido/día, y sin exceder de 10 comprimidos/semana.</string>
-
-    <string name="txt_faq22_q">¿Cuándo debo tomar un tratamiento preventivo?</string>
-    <string name="txt_faq22_a">En general los tratamientos preventivos de la migraña se recomiendan cuando hay más de tres episodios de migraña invalidantes por la intensidad y duración del dolor al mes. Los tratamientos preventivos más usados son el propranolol, la amitriptilina, la flunaricina, y el topiramato. La elección de los mismos va a depender de la presencia de otras patologías o comorbilidades que pueda tener la persona con migraña (hipotensión, asma, bradicardias, obesidad, anorexia, depresión, cálculos renales, glaucoma, fibromialgia). Una vez instaurados se suelen mantener durante unos 6 meses para ver la evolución. El objetivo realista de su empleo es conseguir al menos una reducción superior al 50% en los días de cefalea, y también de la intensidad de la misma. En ocasiones se precisa mantenerlos durante años para controlar la frecuencia de las migrañas.</string>
-
-    <string name="txt_faq23_q">¿Cuándo me pueden prescribir el tratamiento con Botox?</string>
-    <string name="txt_faq23_a">Botox es el nombre comercial de la toxina botulínica que está aprobada para el tratamiento de la migraña crónica. Su administración es hospitalaria en las consultas de Neurología, en forma de inyecciones subcutáneas en varios puntos dispersos por el cuero cabelludo. Salvo dolor en algún punto de inyección es un tratamiento bien tolerado. Al menos el 50% de los pacientes con migraña crónica son respondedores al Botox. Si la migraña es de alta frecuencia, y no ha respondido a los preventivos habituales, la opción de tratamiento son los anticuerpos monoclonales contra el CGRP.</string>
-
-    <string name="txt_faq24_q">¿Qué son los anticuerpos monoclonales para la migraña?</string>
-    <string name="txt_faq24_a">Son un tratamiento muy específico para la prevención de la migraña. Se basan en bloquear la acción de una sustancia implicada en el desarrollo del dolor en la migraña conocida como CGRP. Están aprobados para el tratamiento de la migraña a partir de al menos 4 días de cefalea al mes, pero a día de hoy sólo se financian para aquellos pacientes que tienen 8 o más días de migraña al mes. Por lo tanto, se está indicando actualmente en la migraña episódica de alta frecuencia y en la migraña crónica. La administración es subcutánea, con una inyección mensual. Además de pequeñas molestias locales, el estreñimiento es el efecto adverso más frecuente (10% de los pacientes tratados). Una precaución especial hay que poner con los pacientes diagnosticados de cardiopatía isquémica. Los principios activos con erenumab (Aimovig), galcanezumab (Emgality) y fremanezumab (Ajovy).</string>
-
-    <string name="txt_faq25_q">¿Hay terapias no farmacológicas para el tratamiento de la migraña?</string>
-    <string name="txt_faq25_a">Dada la influencia del estrés como factor desencadenante de las crisis de migraña, las terapias cognitivo-conductuales, fundamentalmente las de biofeedback y relajación, son de utilidad en la disminución de los días de cefalea en los pacientes con migraña crónica o de alta frecuencia. La acupuntura es otra de las técnicas más usadas en la migraña que intenta inactivar los puntos gatillo miofasciales. Sin embargo, no se dispone de evidencia científica concluyente sobre el uso de esta técnica para mejorar los síntomas de la migraña. Una variación sería la colocación del piercing en la oreja, que utiliza el conocimiento de la acupuntura, de forma que con el piercing se destruye el punto que se estimula en la acupuntura para aliviar la cefalea. La neuromodulación no invasiva es un campo creciente en el tratamiento de la migraña, consiste en aplicar corrientes eléctricas o magnéticas a través de la piel y podrían utilizarse tanto para el tratamiento sintomático agudo como para la prevención a largo plazo. Un dispositivo de neuromodulación es CEFALY que funciona a través de la estimulación eléctrica externa del nervio trigémino con el objetivo de desensibilizar el nervio trigémino a lo largo del tiempo. Suplementos alimenticios como el magnesio, la riboflavina y la coenzyma Q10 también han demostrado alguna eficacia. El tratamiento con oxigeno hiperbárico podría ser de utilidad en los pacientes con migraña crónica, para disminuir los días de migraña.</string>
-
     <!-- Errors -->
     <string name="err_io">Unexpected error</string>
     <string name="err_unexpected">Unexpected error</string>

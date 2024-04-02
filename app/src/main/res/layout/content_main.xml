@@ -64,6 +64,30 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <ImageView          android:id="@+id/btLinks"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_margin="5dp"
+                app:tint="?attr/colorSecondary"
+                android:contentDescription="@string/lbl_links"
+                android:tooltipText="@string/lbl_links"
+                app:srcCompat="@drawable/ic_internet"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_links"
+                android:textColor="?attr/colorSecondary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -92,30 +116,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_treatment"
-                android:textColor="?attr/colorSecondary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:orientation="vertical">
-
-            <ImageView          android:id="@+id/btEnquiry"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_margin="5dp"
-                app:tint="?attr/colorSecondary"
-                android:contentDescription="@string/lbl_enquiry"
-                android:tooltipText="@string/lbl_enquiry"
-                app:srcCompat="@drawable/test_migraine"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbl_enquiry"
                 android:textColor="?attr/colorSecondary"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
@@ -171,6 +171,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_test_hit"
+                android:textColor="?attr/colorSecondary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <ImageView          android:id="@+id/btEnquiry"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_margin="5dp"
+                app:tint="?attr/colorSecondary"
+                android:contentDescription="@string/lbl_enquiry"
+                android:tooltipText="@string/lbl_enquiry"
+                app:srcCompat="@drawable/test_migraine"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_enquiry"
                 android:textColor="?attr/colorSecondary"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>

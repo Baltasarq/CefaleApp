@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<links>
+    <link
+        id="url1"
+        src="Novartis"
+        url="https://www.novartis.com/ar-es/news/migrana-mucho-mas-que-un-dolor-de-cabeza"
+        desc="Estudio de la migraña."/>
+
+    <link
+        id="url2"
+        src="Clínica Mayo"
+        url="https://www.mayoclinic.org/es/diseases-conditions/migraine-headache/diagnosis-treatment/drc-20360207"
+        desc="Introducción a la migraña."/>
+</links>

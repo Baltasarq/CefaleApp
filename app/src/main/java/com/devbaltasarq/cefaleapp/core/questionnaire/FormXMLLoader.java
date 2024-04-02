@@ -38,7 +38,7 @@ public class FormXMLLoader {
     private final static String ETQ_REFERENCE = "is_ref";
     private final static String ETQ_ID = "id";
 
-    public static Form loadFromFile(InputStream in) throws IOException
+    public static Form loadFrom(InputStream in) throws IOException
     {
         final Form TORET = new Form();
 
