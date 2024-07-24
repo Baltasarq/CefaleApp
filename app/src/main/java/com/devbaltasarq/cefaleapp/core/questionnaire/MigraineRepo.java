@@ -299,6 +299,30 @@ public final class MigraineRepo {
         return toret;
     }
 
+    /** @return the int value for id, or 0 if it does not exist. */
+    private int getNumOf(Id id)
+    {
+        int toret = 0;
+
+        if ( this.exists( id ) ) {
+            toret = this.getInt( id );
+        }
+
+        return toret;
+    }
+
+    /** @return the number of migraine episodes. */
+    public int getNumMigraines()
+    {
+        return this.getNumOf( Id.HOWMANYMIGRAINE );
+    }
+
+    /** @return the number of tensional cephaleas. */
+    public int getNumTensionalCephaleas()
+    {
+        return this.getNumOf( Id.HOWMANYTENSIONAL );
+    }
+
     /** @see MigraineRepo::frequencyFromEpisodes
      * @return a Frequency for mixed migraines diagnostic,
      *         depending on the criteria above.
@@ -306,8 +330,8 @@ public final class MigraineRepo {
     public Frequency getMixedFreq()
     {
         return this.frequencyFromEpisodes(
-                this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE )
-                        + this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
+                this.getNumMigraines()
+                + this.getNumTensionalCephaleas() );
     }
 
     /** @see MigraineRepo::frequencyFromEpisodes
@@ -316,8 +340,7 @@ public final class MigraineRepo {
      */
     public Frequency getMigraineFreq()
     {
-        return this.frequencyFromEpisodes(
-                this.getInt( Id.HOWMANYMIGRAINE ) );
+        return this.frequencyFromEpisodes( this.getNumMigraines() );
     }
 
     /** @see MigraineRepo::frequencyFromEpisodes
@@ -326,8 +349,7 @@ public final class MigraineRepo {
      */
     public Frequency getTensionalFreq()
     {
-        return this.frequencyFromEpisodes(
-                this.getInt( Id.HOWMANYTENSIONAL ) );
+        return this.frequencyFromEpisodes( this.getNumTensionalCephaleas() );
     }
 
     /** @return whether the pain (tensional or migraine) is perceived as intense. */
@@ -339,19 +361,19 @@ public final class MigraineRepo {
     /** @return true if patient is male, false otherwise. */
     public boolean isMale()
     {
-        return !this.getBool( MigraineRepo.Id.GENDER );
+        return !this.getBool( Id.GENDER );
     }
 
     /** @return true if patient is female, false otherwise. */
     public boolean isFemale()
     {
-        return this.getBool( MigraineRepo.Id.GENDER );
+        return this.getBool( Id.GENDER );
     }
 
     /** @return whether the patient had an aura or not. */
     public boolean hadAura()
     {
-        return this.getBool( MigraineRepo.Id.HADAURA );
+        return this.getBool( Id.HADAURA );
     }
 
     public static MigraineRepo get()

@@ -11,6 +11,8 @@ import com.devbaltasarq.cefaleapp.core.questionnaire.form.Path;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
+import java.util.NoSuchElementException;
+
 
 /** A player for the main migraine test form. */
 public class MigraineFormPlayer extends FormPlayer {
@@ -91,6 +93,24 @@ public class MigraineFormPlayer extends FormPlayer {
         return this.DIAG;
     }
 
+    /** Decide whether the patient is male or not.
+      * @return true if the patient is male or gender is not available,
+      *         false otherwise.
+      */
+    private boolean isMale()
+    {
+        boolean toret;
+
+        try {
+            toret = this.REPO.isMale();
+        } catch(NoSuchElementException exc) {
+            toret = true;
+            Log.d( LOG_TAG, "retrieving gender: " + exc.getMessage() );
+        }
+
+        return toret;
+    }
+
     @Override
     protected boolean preProcessing()
     {
@@ -99,7 +119,7 @@ public class MigraineFormPlayer extends FormPlayer {
         final MigraineRepo REPO = this.getRepo();
         boolean toret = false;
 
-        if ( REPO.isMale()
+        if ( this.isMale()
           && ( Q_ID.equals( "migraine_menstruationWorsens" )
             || Q_ID.equals( "migraine_contraceptivesWorsens" ) ) )
         {

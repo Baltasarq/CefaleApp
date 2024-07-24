@@ -87,6 +87,18 @@ public class Steps {
         return toret;
     }
 
+    private String reportHypotensionIfPresent()
+    {
+        String toret = "";
+
+        if ( this.REPO.hasHypoTension() ) {
+            toret += "<b>Hipotensión</b>: "
+                    + "Sí<br/>";
+        }
+
+        return toret;
+    }
+
     private String reportHypertensionIfPresent()
     {
         String toret = "";
@@ -125,13 +137,10 @@ public class Steps {
         return toret;
     }
 
-    @Override
-    public String toString()
+    /** @return all the info from the recorded steps. */
+    private String stringFromAllSteps()
     {
         final StringBuilder TORET = new StringBuilder();
-
-        TORET.append( this.reportHypertensionIfPresent() );
-        TORET.append( this.reportIMCIfNeeded() );
 
         // Add all the steps
         for(final String RES_STEP: this.getQuestionHistory()) {
@@ -139,7 +148,7 @@ public class Steps {
             final MigraineRepo.Id ID = MigraineRepo.Id.parse( Q.getDataFromId() );
 
             if ( ID == MigraineRepo.Id.NOTES
-              || ID == MigraineRepo.Id.AREYOUSURE )
+                    || ID == MigraineRepo.Id.AREYOUSURE )
             {
                 continue;
             }
@@ -163,6 +172,18 @@ public class Steps {
             TORET.append( unitsLabelFor( ID ) );
             TORET.append( "\n<br/>" );
         }
+
+        return TORET.toString();
+    }
+
+    @Override
+    public String toString()
+    {
+        final StringBuilder TORET = new StringBuilder();
+
+        TORET.append( this.reportHypotensionIfPresent() );
+        TORET.append( this.reportHypertensionIfPresent() );
+        TORET.append( this.reportIMCIfNeeded() );
 
         return TORET.toString();
     }
