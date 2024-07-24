@@ -10,110 +10,124 @@
 
     <include layout="@layout/content_test_header" />
 
-    <LinearLayout       android:id="@+id/lyMain"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout   android:id="@+id/lyText"
+        <LinearLayout       android:id="@+id/lyMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:padding="10dp">
 
-            <TextView       android:id="@+id/lblQuestion"
-                android:labelFor="@id/edTextArea"
-                android:contentDescription="@string/lbl_question"
+            <LinearLayout   android:id="@+id/frmMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:orientation="vertical"
                 android:layout_margin="10dp"
-                android:padding="10dp" />
+                android:padding="10dp">
 
-        </LinearLayout>
+                <LinearLayout   android:id="@+id/lyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:padding="10dp">
 
-        <LinearLayout   android:id="@+id/lyAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:padding="10dp">
+                    <TextView       android:id="@+id/lblQuestion"
+                        android:labelFor="@id/edTextArea"
+                        android:contentDescription="@string/lbl_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:layout_margin="10dp"
+                        android:padding="10dp" />
 
-            <RadioGroup     android:id="@+id/rgOptions"
+                </LinearLayout>
+
+                <LinearLayout   android:id="@+id/lyAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:padding="10dp">
+
+                    <RadioGroup     android:id="@+id/rgOptions"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="10dp" />
+
+                    <EditText       android:id="@+id/edTextArea"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:lines="5"
+                        android:maxLines="10"
+                        android:imeOptions="flagNoEnterAction"
+                        android:inputType="text|textMultiLine"
+                        android:layout_margin="10dp"
+                        android:importantForAutofill="no"
+                        android:padding="10dp" />
+
+                    <EditText       android:id="@+id/edInputNum"
+                        android:importantForAutofill="no"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textAlignment="textEnd"
+                        android:layout_margin="10dp"
+                        android:padding="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout       android:id="@+id/lyImageTest"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:padding="10dp">
+
+                    <ImageView      android:id="@+id/picImageTest"
+                        app:tint="?colorSecondary"
+                        appCompat:src="@drawable/cephalea"
+                        android:contentDescription="@string/msg_test_migraine"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout   android:id="@+id/lyNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="10dp">
+
+                    <ImageButton        android:id="@+id/btNext"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/right_arrow"
+                        app:tint="?colorSecondary"
+                        android:contentDescription="@string/lbl_next" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout        android:id="@+id/frmEnd"
                 android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:padding="10dp" />
-
-            <EditText       android:id="@+id/edTextArea"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="false"
-                android:lines="5"
-                android:maxLines="10"
-                android:imeOptions="flagNoEnterAction"
-                android:inputType="text|textMultiLine"
-                android:layout_margin="10dp"
-                android:importantForAutofill="no"
-                android:padding="10dp" />
-
-            <EditText       android:id="@+id/edInputNum"
-                android:importantForAutofill="no"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textAlignment="textEnd"
-                android:layout_margin="10dp"
-                android:padding="10dp" />
-
-        </LinearLayout>
-
-        <LinearLayout       android:id="@+id/lyImageTest"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:padding="10dp">
-
-            <ImageView      android:id="@+id/picImageTest"
-                app:tint="?colorSecondary"
-                appCompat:src="@drawable/cephalea"
-                android:contentDescription="@string/msg_test_migraine"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-        <LinearLayout   android:id="@+id/lyNext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="10dp">
-
-            <ImageButton        android:id="@+id/btNext"
                 android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/right_arrow"
-                app:tint="?colorSecondary"
-                android:contentDescription="@string/lbl_next" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-    </LinearLayout>
-    <FrameLayout        android:id="@+id/frmEnd"
-        android:visibility="gone"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    </ScrollView>
 </LinearLayout>

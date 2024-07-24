@@ -9,37 +9,39 @@
     android:layout_height="match_parent"
     android:forceDarkAllowed="false">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton        android:id="@+id/btMedicineGroups"
+            android:layout_weight=".3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:tint="?attr/colorSecondary"
+            android:contentDescription="@string/lbl_medicine_group"
+            app:srcCompat="@drawable/hierarchy" />
+
+        <ImageButton        android:id="@+id/btMedicines"
+            android:layout_weight=".3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:tint="?attr/colorSecondary"
+            android:contentDescription="@string/lbl_medicine"
+            app:srcCompat="@drawable/medicine" />
+    </LinearLayout>
+
     <ScrollView
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton        android:id="@+id/btMedicineGroups"
-                    android:layout_weight=".3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    app:tint="?attr/colorSecondary"
-                    app:srcCompat="@drawable/hierarchy" />
-
-                <ImageButton        android:id="@+id/btMedicines"
-                    android:layout_weight=".3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    app:tint="?attr/colorSecondary"
-                    app:srcCompat="@drawable/medicine" />
-            </LinearLayout>
+            android:layout_height="wrap_content">
 
             <LinearLayout       android:id="@+id/lyClasses"
                 android:orientation="vertical"
@@ -59,6 +61,7 @@
                 <LinearLayout       android:id="@+id/lyPreventiveGroups"
                     android:visibility="gone"
                     android:orientation="vertical"
+                    android:layout_marginStart="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -75,6 +78,7 @@
                 <LinearLayout       android:id="@+id/lySymptomaticGroups"
                     android:visibility="gone"
                     android:orientation="vertical"
+                    android:layout_marginStart="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

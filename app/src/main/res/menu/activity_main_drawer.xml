@@ -29,7 +29,7 @@
         <group android:id="@+id/nav_grp2">
             <item
                 android:id="@+id/op_start_enquiry"
-                android:title="@string/lbl_enquiry"
+                android:title="@string/lbl_test_migraine"
                 android:icon="@drawable/ic_questionnaire"
                 app:showAsAction="never" />
 

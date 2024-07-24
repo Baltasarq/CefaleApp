@@ -17,6 +17,7 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
 import com.devbaltasarq.cefaleapp.core.faq.Faq;
 
 import java.util.ArrayList;
@@ -44,8 +45,9 @@ public class InfoActivity extends AppCompatActivity {
 
     private void showFAQ()
     {
+        final MultiLanguageWrapper.Lang LANG_ES = MultiLanguageWrapper.Lang.es;
         final LinearLayout LY_FAQ = this.findViewById( R.id.lyFAQContainer );
-        final List<Faq> FAQ_ENTRIES= new ArrayList<>( Faq.getForLang( "es" ).values() );
+        final List<Faq> FAQ_ENTRIES= new ArrayList<>( Faq.getAll().getForLang( LANG_ES ).values() );
         final LayoutInflater INFLATER = this.getLayoutInflater();
 
         FAQ_ENTRIES.sort( Comparator.comparing( Faq::getId ) );

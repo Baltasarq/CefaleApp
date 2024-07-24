@@ -23,15 +23,15 @@ public class Question extends BasicQuestion {
             this.options = new ArrayList<>();
         }
 
-        public Builder setNum(int num)
-        {
-            this.num = num;
-            return this;
-        }
-
         public Builder setId(String id)
         {
             this.id = id.trim();
+            return this;
+        }
+
+        public Builder setNum(int num)
+        {
+            this.num = num;
             return this;
         }
 
@@ -82,8 +82,8 @@ public class Question extends BasicQuestion {
             return new Question(
                     this.num,
                     this.id,
-                    this.type,
                     this.gotoId,
+                    this.type,
                     this.text,
                     this.pic,
                     this.summary,
@@ -101,16 +101,15 @@ public class Question extends BasicQuestion {
     }
 
     /** Creates a regular question. */
-    protected Question(int num, String id, ValueType dtype, String gotoId,
+    protected Question(int num, String id, String gotoId, ValueType dtype,
                        String text, String pic, String summary,
                        Collection<Option> options)
     {
-        super( id, gotoId );
+        super( num, id, gotoId );
 
-        this.num = num;
         this.TYPE = dtype;
-        this.PIC = pic;
         this.TEXT = text;
+        this.PIC = pic;
         this.SUMMARY = summary;
         this.OPTS = new ArrayList<>( options );
     }
@@ -183,12 +182,6 @@ public class Question extends BasicQuestion {
         return this.PIC;
     }
 
-    /** @return the question number. */
-    public int getNum()
-    {
-        return this.num;
-    }
-
     @Override
     public boolean equals(Object other)
     {
@@ -229,6 +222,11 @@ public class Question extends BasicQuestion {
     public boolean isEnd()
     {
         return ETQ_END.contains( this.getGotoId() );
+    }
+
+    public Question copyWith(String branchId, String gotoId)
+    {
+        return this.copyWith( this.getNum(), branchId, gotoId );
     }
 
     public Question copyWith(int num, String branchId, String gotoId)
@@ -295,9 +293,8 @@ public class Question extends BasicQuestion {
         return TORET;
     }
 
-    private static String ETQ_END = "/\\-";
+    private static final String ETQ_END = "/\\-";
 
-    private final int num;
     private final ValueType TYPE;
     private final String PIC;
     private final String TEXT;

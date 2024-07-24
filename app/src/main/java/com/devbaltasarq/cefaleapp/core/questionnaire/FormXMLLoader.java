@@ -42,6 +42,8 @@ public class FormXMLLoader {
     {
         final Form TORET = new Form();
 
+        numQuestion = 1;
+
         try {
             final DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
             final DocumentBuilder DB = DBF.newDocumentBuilder();
@@ -99,10 +101,11 @@ public class FormXMLLoader {
             BasicQuestion bq = null;
 
             if ( isReference ) {
-                bq = new ReferenceQuestion( id, gotoId );
+                bq = new ReferenceQuestion( numQuestion, id, gotoId );
             } else {
                 // Load the attributes of the regular question
                 QB.setId( id );
+                QB.setNum( numQuestion );
                 QB.setGotoId( gotoId );
                 QB.setText( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_TEXT ) );
                 QB.setSummary( Util.getXMLAttributeOrThrow( Q_NODE, ETQ_SUMMARY ) );
@@ -122,6 +125,7 @@ public class FormXMLLoader {
                 bq = QB.create();
             }
 
+            ++numQuestion;
             branch.addQuestion( bq );
         }
 
@@ -136,4 +140,6 @@ public class FormXMLLoader {
 
         return new Option( TEXT, VALUE );
     }
+
+    private static int numQuestion;
 }

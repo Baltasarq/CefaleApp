@@ -86,7 +86,7 @@ public class MorbidityActivity extends AppCompatActivity {
     private View buildMedicineEntry(final Medicine MEDICINE)
     {
         final LayoutInflater INFLATER = this.getLayoutInflater();
-        final View MEDICINE_ENTRY = INFLATER.inflate( R.layout.medicine_group_entry, null );
+        final View MEDICINE_ENTRY = INFLATER.inflate( R.layout.medicine_entry, null );
         final TextView LBL_MEDICINE = MEDICINE_ENTRY.findViewById( R.id.lblMedicine );
 
         LBL_MEDICINE.setText( MEDICINE.getId().getName() );

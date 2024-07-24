@@ -123,10 +123,24 @@ public abstract class TestActivity extends AppCompatActivity {
 
     protected void initProgress()
     {
-        final ProgressBar PROGRESS = this.findViewById( R.id.pbTestProgress);
+        final ProgressBar PROGRESS = this.findViewById( R.id.pbTestProgress );
 
         PROGRESS.setMin( 1 );
         PROGRESS.setMax( this.getForm().calcNumQuestions() );
+    }
+
+    protected void updateProgress(int num)
+    {
+        final ProgressBar PROGRESS = this.findViewById( R.id.pbTestProgress );
+
+        PROGRESS.setProgress( num, true );
+    }
+
+    protected void updateProgressCompleted()
+    {
+        final ProgressBar PROGRESS = this.findViewById( R.id.pbTestProgress );
+
+        PROGRESS.setProgress( PROGRESS.getMax(), true );
     }
 
     protected void initTalk()
@@ -167,13 +181,13 @@ public abstract class TestActivity extends AppCompatActivity {
         final FrameLayout FRM_END = this.findViewById( R.id.frmEnd );
         final LinearLayout LY_ANSWER = this.findViewById( R.id.lyAnswer );
         final LinearLayout LY_NEXT = this.findViewById( R.id.lyNext );
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest );
         final RadioGroup RG_OPTS = this.findViewById( R.id.rgOptions );
 
         // Prepare
+        FRM_END.setVisibility( View.VISIBLE );
         LY_IMAGE.removeAllViews();
 
-        FRM_END.setVisibility( View.VISIBLE );
         LY_ANSWER.setVisibility( View.GONE );
         LY_IMAGE.setVisibility( View.VISIBLE );
         LY_NEXT.setVisibility( View.GONE );
@@ -181,6 +195,7 @@ public abstract class TestActivity extends AppCompatActivity {
 
         RG_OPTS.clearCheck();
         RG_OPTS.removeAllViews();
+        this.updateProgressCompleted();
 
         // Reset button
         final ImageButton BUTTON_RESET = this.buildButton( LY_IMAGE, R.drawable.reset );
@@ -198,10 +213,9 @@ public abstract class TestActivity extends AppCompatActivity {
         final FrameLayout FRM_END = this.findViewById( R.id.frmEnd );
         final LinearLayout LY_NEXT = this.findViewById( R.id.lyNext );
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
-        final ProgressBar PROGRESS = this.findViewById( R.id.pbTestProgress );
 
         // Prepare
-        PROGRESS.setProgress( Q.getNum() );
+        this.updateProgress( Q.getNum() );
         FRM_END.setVisibility( View.GONE );
         LY_NEXT.setVisibility( View.VISIBLE );
 
@@ -233,6 +247,13 @@ public abstract class TestActivity extends AppCompatActivity {
                 null, null );
 
         return;
+    }
+
+    /** Stops talking immediately. */
+    protected void shutUp()
+    {
+        this.ttEngine.stop();
+        this.ttEngine.shutdown();
     }
 
     /** Launches a text to be spoken, but with a delay.

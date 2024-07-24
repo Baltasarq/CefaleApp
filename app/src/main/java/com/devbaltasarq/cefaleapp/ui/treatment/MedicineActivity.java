@@ -11,14 +11,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.treatment.Dosage;
+import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
-import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -47,28 +44,18 @@ public class MedicineActivity extends AppCompatActivity {
 
     private void showMedicine()
     {
-        final TextView LBL_MINIMUM_DOSAGE = this.findViewById( R.id.lblMedicineMinimumDosage );
-        final TextView LBL_RECOMMENDED_DOSAGE = this.findViewById( R.id.lblMedicineRecommendedDosage );
-        final TextView LBL_MAXIMUM_DOSAGE = this.findViewById( R.id.lblMedicineMaximumDosage );
         final TextView LBL_ADVERSE_EFFECTS = this.findViewById( R.id.lblMedicineAdverseEffects );
+        final TextView LBL_POSOLOGY = this.findViewById( R.id.lblMedicinePosology );
         final TextView LBL_MEDICINE_GROUP = this.findViewById( R.id.lblMedicineMedicineGroup );
-        final LinearLayout LY_MIN_DOSAGE = this.findViewById( R.id.lyMedicineMinimumDosage );
-        final LinearLayout LY_REC_DOSAGE = this.findViewById( R.id.lyMedicineRecommendedDosage );
-        final LinearLayout LY_MAX_DOSAGE = this.findViewById( R.id.lyMedicineMaximumDosage );
         final FloatingActionButton BT_WEB = this.findViewById( R.id.btMedicineWeb );
         final ActionBar ACTION_BAR = this.getSupportActionBar();
-        final Dosage MIN_DOSAGE = medicine.getMinDosage();
-        final Dosage MAX_DOSAGE = medicine.getMaxDosage();
-        final Dosage REC_DOSAGE = medicine.getRecommendedDosage();
-        final String LBL_PILLS = this.getString( R.string.lbl_pills );
-        final int MIN_DOSAGE_VISIBLE = MIN_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
-        final int MAX_DOSAGE_VISIBLE = MAX_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
-        final int REC_DOSAGE_VISIBLE = REC_DOSAGE.isValid() ? View.VISIBLE : View.GONE;
-        final String COMPLETE_GROUP_NAME =
-                                    medicine.getGroup().getClsId().getName()
-                                    + " ("
+        final String COMPLETE_GROUP_NAME = "<b>"
+                                    + medicine.getGroup().getClsId().getName()
+                                    + "</b>.<br/>"
+                                    + this.getString( R.string.lbl_medicine_group )
+                                    + ": <i>"
                                     + medicine.getGroupId().getName().toLowerCase()
-                                    + ")";
+                                    + "</i>.";
 
         if ( ACTION_BAR != null ) {
             ACTION_BAR.setTitle( this.getString( R.string.lbl_medicine )
@@ -77,29 +64,10 @@ public class MedicineActivity extends AppCompatActivity {
         }
 
         // Set info
-        if ( MIN_DOSAGE_VISIBLE == View.VISIBLE ) {
-            LBL_MINIMUM_DOSAGE.setText(
-                    medicine.getMinDosage().getFormatted( LBL_PILLS ));
-        }
-
-        if ( REC_DOSAGE_VISIBLE == View.VISIBLE ) {
-            LBL_RECOMMENDED_DOSAGE.setText(
-                    medicine.getRecommendedDosage().getFormatted( LBL_PILLS ));
-        }
-
-        if ( MAX_DOSAGE_VISIBLE == View.VISIBLE ) {
-            LBL_MAXIMUM_DOSAGE.setText(
-                    medicine.getMaxDosage().getFormatted( LBL_PILLS ));
-        }
-
+        LBL_POSOLOGY.setText( medicine.getPosology() );
         LBL_ADVERSE_EFFECTS.setText( medicine.getAdverseEffects() );
-        LBL_MEDICINE_GROUP.setText( COMPLETE_GROUP_NAME );
+        LBL_MEDICINE_GROUP.setText( Util.richTextFromHtml( COMPLETE_GROUP_NAME ) );
         BT_WEB.setOnClickListener( v -> openVademecum( medicine.getUrl() ) );
-
-        // Set visibility
-        LY_MIN_DOSAGE.setVisibility( MIN_DOSAGE_VISIBLE );
-        LY_MAX_DOSAGE.setVisibility( MAX_DOSAGE_VISIBLE );
-        LY_REC_DOSAGE.setVisibility( REC_DOSAGE_VISIBLE );
     }
 
     private void openVademecum(String url)

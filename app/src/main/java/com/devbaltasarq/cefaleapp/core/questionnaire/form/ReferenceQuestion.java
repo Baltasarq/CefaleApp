@@ -9,9 +9,9 @@ import java.util.List;
 
 /** This class represents a reference to another question. */
 public class ReferenceQuestion extends BasicQuestion {
-    public ReferenceQuestion(String id, String gotoId)
+    public ReferenceQuestion(int num, String id, String gotoId)
     {
-        super( id, gotoId );
+        super( num, id, gotoId );
     }
 
     @Override

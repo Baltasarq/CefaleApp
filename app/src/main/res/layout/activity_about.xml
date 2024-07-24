@@ -9,48 +9,47 @@
     android:orientation="vertical"
     android:layout_margin="10dp">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView      android:id="@+id/btAboutDetailsInfo"
+                android:layout_weight=".5"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:tint="?attr/colorSecondary"
+                android:backgroundTint="@color/white"
+                app:srcCompat="@drawable/ic_details" />
+
+            <ImageView      android:id="@+id/btAboutInfo"
+                android:layout_weight=".5"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="@color/white"
+                app:srcCompat="@drawable/info"
+                app:tint="?attr/colorSecondary" />
+
+            <ImageView      android:id="@+id/btAboutAbout"
+                android:layout_weight=".5"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:tint="?attr/colorSecondary"
+                android:backgroundTint="@color/white"
+                app:srcCompat="@drawable/ic_teamwork" />
+
+        </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:padding="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView      android:id="@+id/btAboutDetailsInfo"
-                    android:layout_weight=".5"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    app:tint="?attr/colorSecondary"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/ic_details" />
-
-                <ImageView      android:id="@+id/btAboutInfo"
-                    android:layout_weight=".5"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/info"
-                    app:tint="?attr/colorSecondary"
-                    android:alpha="0.25" />
-
-                <ImageView      android:id="@+id/btAboutAbout"
-                    android:layout_weight=".5"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    app:tint="?attr/colorSecondary"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/ic_teamwork" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -169,29 +168,6 @@
                             android:text="@string/msg_faq"/>
                     </TableRow>
 
-                    <TableRow       android:id="@+id/tblRowTreatment"
-                        android:visibility="gone"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:padding="5dp"
-                            app:tint="?colorSecondary"
-                            android:contentDescription="@string/lbl_treatment"
-                            app:srcCompat="@drawable/medical" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:padding="5dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:text="@string/msg_treatment"/>
-                    </TableRow>
-
                     <TableRow       android:id="@+id/tblRowTestMigraine"
                         android:padding="5dp"
                         android:layout_width="wrap_content"
@@ -202,7 +178,7 @@
                             android:layout_height="36dp"
                             android:padding="5dp"
                             app:tint="?colorSecondary"
-                            android:contentDescription="@string/lbl_enquiry"
+                            android:contentDescription="@string/lbl_test_migraine"
                             app:srcCompat="@drawable/test_migraine" />
 
                         <TextView
@@ -258,6 +234,51 @@
                             android:text="@string/msg_test_midas"/>
                     </TableRow>
 
+                    <TableRow       android:id="@+id/tblRowTreatment"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:padding="5dp"
+                            app:tint="?colorSecondary"
+                            android:contentDescription="@string/lbl_treatment"
+                            app:srcCompat="@drawable/medical" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".8"
+                            android:padding="5dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:text="@string/msg_treatment"/>
+                    </TableRow>
+
+                    <TableRow       android:id="@+id/tblRowVademecum"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:padding="5dp"
+                            app:tint="?colorSecondary"
+                            android:contentDescription="@string/lbl_vademecum"
+                            app:srcCompat="@drawable/medicine" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".8"
+                            android:padding="5dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:text="@string/msg_vademecum"/>
+                    </TableRow>
+
+
                 </TableLayout>
 
                 <WebView           android:id="@+id/lbl_app_info"
@@ -267,6 +288,6 @@
                     android:layout_margin="10dp" />
 
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

@@ -10,21 +10,6 @@ import android.util.Log;
 public class Diagnostic {
     private static final String LOG_TAG = Diagnostic.class.getSimpleName();
 
-    public enum Frequency { ESPORADIC, LOW, HIGH, CHRONIC;
-        @Override
-        public String toString()
-        {
-            return STR_FREQ[ this.ordinal() ];
-        }
-
-        private static final String[] STR_FREQ = {
-                "esporádica",
-                "de baja frecuencia",
-                "de alta frecuencia",
-                "crónica"
-        };
-    }
-
     public Diagnostic(final MigraineRepo REPO)
     {
         this.REPO = REPO;
@@ -56,63 +41,6 @@ public class Diagnostic {
         return this.calcSumOf( new MigraineRepo.Id[] { MigraineRepo.Id.WASCEPHALEALIMITANT,
                                         MigraineRepo.Id.HADPHOTOPHOBIA,
                                         MigraineRepo.Id.HADNAUSEA } );
-    }
-
-    /** PCD_HOW_MANY_MIGRAINE_1151 and PCD-HOW_MANY_TENSIONAL-1147
-      * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
-      * - 4 to 7 days with migraine is labelled as "low frequency"
-      * - 8 to 14 days with migraine is labelled as "high frequency"
-      * - 15 or more days with migraine is labelled as "chronic frequency"
-      * @return a Frequency depending in the criteria above.
-      */
-    private Frequency frequencyFromEpisodes(int episodes)
-    {
-        Frequency toret = Frequency.ESPORADIC;
-
-        if ( episodes >= 15 ) {
-            toret = Frequency.CHRONIC;
-        }
-        else
-        if ( episodes >= 8 ) {
-            toret = Frequency.HIGH;
-        }
-        else
-        if ( episodes >= 4 ) {
-            toret = Frequency.LOW;
-        }
-
-        return toret;
-    }
-
-    /** @see Diagnostic::frequencyFromEpisodes
-     * @return a Frequency for mixed migraines diagnostic,
-     *         depending on the criteria above.
-     */
-    private Frequency getMixedFreq()
-    {
-        return this.frequencyFromEpisodes(
-                this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE )
-                + this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
-    }
-
-    /** @see Diagnostic::frequencyFromEpisodes
-      * @return a Frequency for migraines diagnostic,
-      *         depending on the criteria above.
-      */
-    private Frequency getMigraineFreq()
-    {
-        return this.frequencyFromEpisodes(
-                    this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE ) );
-    }
-
-    /** @see Diagnostic::frequencyFromEpisodes
-      * @return a Frequency for tensional cephaleas diagnostic,
-      *         following the above criteria.
-      */
-    private Frequency getTensionalFreq()
-    {
-        return this.frequencyFromEpisodes(
-                this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
     }
 
     /** return true if the patient has migraines, false otherwise. */
@@ -148,7 +76,7 @@ public class Diagnostic {
         }
         else
         if ( mainCriteria == 1 ) {
-            toret = ( this.isFemale()
+            toret = ( this.REPO.isFemale()
               && this.getBool( MigraineRepo.Id.HASHISTORY )
               && this.getBool( MigraineRepo.Id.MENSTRUATIONWORSENS )
               && this.getBool( MigraineRepo.Id.CONTRACEPTIVESWORSENS ) );
@@ -157,7 +85,7 @@ public class Diagnostic {
         return toret;
     }
 
-    public boolean shouldManCheckedDoctor()
+    public boolean shouldCheckDoctor()
     {
         int mainCriteria = this.calcSumOf( new MigraineRepo.Id[] {
                 MigraineRepo.Id.ISCEPHALEAONESIDED,
@@ -167,7 +95,7 @@ public class Diagnostic {
         });
 
         return ( !this.isMigraine()
-              && this.isMale()
+              && this.REPO.isMale()
               && mainCriteria >= 1
               && this.getBool( MigraineRepo.Id.HASHISTORY ) );
     }
@@ -194,23 +122,7 @@ public class Diagnostic {
         return toret;
     }
 
-    public boolean isMale()
-    {
-        return !this.getBool( MigraineRepo.Id.GENDER );
-    }
-
-    public boolean isFemale()
-    {
-        return this.getBool( MigraineRepo.Id.GENDER );
-    }
-
-    /** @return whether the patient had an aura or not. */
-    private boolean hadAura()
-    {
-        return this.getBool( MigraineRepo.Id.HADAURA );
-    }
-
-    /** @return a boolean value given its id. */
+    /** @return a boolean value given its id, assuming not existing means "false" */
     private boolean getBool(MigraineRepo.Id id)
     {
         boolean toret = false;
@@ -224,6 +136,7 @@ public class Diagnostic {
         return toret;
     }
 
+    /** @return an int value given its id, assuming not existing means "false" */
     private int getInt(MigraineRepo.Id id)
     {
         int toret = 0;
@@ -243,7 +156,7 @@ public class Diagnostic {
         final boolean IS_MIGRAINE = this.isMigraine();
         final boolean IS_TENSIONAL = this.isTensional();
         final boolean IS_MIXED = IS_MIGRAINE && IS_TENSIONAL;
-        Frequency freq;
+        MigraineRepo.Frequency freq;
 
         // No cephalea
         if ( !IS_MIGRAINE
@@ -267,20 +180,20 @@ public class Diagnostic {
 
             // Had an aura
             if ( IS_MIGRAINE
-              && this.hadAura() )
+              && this.REPO.hadAura() )
             {
                 TORET.append( " con aura" );
             }
 
             // Frequency
             if ( IS_MIXED ) {
-                freq = this.getMixedFreq();
+                freq = this.REPO.getMixedFreq();
             }
             else
             if ( IS_MIGRAINE ) {
-                freq = this.getMigraineFreq();
+                freq = this.REPO.getMigraineFreq();
             } else {
-                freq = this.getTensionalFreq();
+                freq = this.REPO.getTensionalFreq();
             }
 
             TORET.append( ' ' );
@@ -306,7 +219,7 @@ public class Diagnostic {
                 }
             }
 
-            if ( this.shouldManCheckedDoctor() ) {
+            if ( this.shouldCheckDoctor() ) {
                 TORET.append( '\n' );
                 TORET.append( " (Síntoms relevantes. Consulte con su médico.)" );
                 TORET.append( '\n' );

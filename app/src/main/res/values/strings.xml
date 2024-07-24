@@ -10,7 +10,7 @@
     <string name="lbl_menu">menú</string>
     <string name="lbl_settings">Ajustes</string>
     <string name="lbl_actions">Acciones</string>
-    <string name="lbl_enquiry">Cuestionario</string>
+    <string name="lbl_test_migraine">Test migraña</string>
     <string name="lbl_details">Detalles</string>
     <string name="lbl_treatment">Tratamiento</string>
     <string name="lbl_about">Acerca de...</string>
@@ -29,16 +29,17 @@
     <string name="lbl_text_large">Texto grande</string>
     <string name="lbl_morbidity">Morbidity</string>
     <string name="lbl_show_notes_question">Pregunta sobre notas del paciente</string>
+    <string name="lbl_show_age_question">Pregunta sobre la edad del paciente</string>
+    <string name="lbl_show_size_questions">Preguntas sobre la talla del paciente</string>
+    <string name="lbl_show_pressure_questions">Preguntas sobre la tensión arterial del paciente</string>
     <string name="lbl_vademecum">Vademécum</string>
     <string name="lbl_medicine">Medicamento</string>
     <string name="lbl_medicine_group">Grupo de medicamentos</string>
-    <string name="lbl_minimum_dosage">Dosis mínima</string>
-    <string name="lbl_maximum_dosage">Dosis máxima</string>
-    <string name="lbl_recommended_dosage">Dosis recomendada</string>
+    <string name="lbl_posology">Posología</string>
     <string name="lbl_adverse_effects">Efectos adversos</string>
     <string name="lbl_pills">grajea(s)/unidade(s)</string>
-    <string name="lbl_compatible_medicines">Medicinas compatibles</string>
-    <string name="lbl_incompatible_medicines">Medicinas incompatibles</string>
+    <string name="lbl_compatible_medicines">Tratamientos recomendades</string>
+    <string name="lbl_incompatible_medicines">Tratamientos no recomendados</string>
     <string name="lbl_preventive_treatment">Tratamiento preventivo</string>
     <string name="lbl_symptomatic_treatment">Tratamiento sintomático</string>
     <string name="lbl_links">Enlaces</string>
@@ -46,22 +47,23 @@
     <!-- Messages -->
     <string name="msg_info">Información sobre la aplicación.</string>
     <string name="msg_faq">Preguntas frecuentes sobre la migraña.</string>
-    <string name="msg_treatment">Funcionalidad dedicada al facultativo.
-        Asistencia al tratamiento. Tomando los datos del anterior cuestionario,
-        o partiendo desde cero, se sugiere el tratamiento indicado según
-        las comorbilidades aportadas.
+    <string name="msg_treatment">
+        Asistencia al tratamiento: consulta de los tratamientos preventivos aconsejados
+        para las diferentes comorbilidades que presenten los pacientes con migraña.
     </string>
-    <string name="msg_test_migraine">Cuestionario principal: migraña.
+    <string name="msg_test_migraine">Test migraña.
     Una serie de preguntas entran en detalle en los síntomas del paciente para
     aportar, igualmente de forma detallada, un diagnóstico en cuanto al padecimiento
     de migrañas.</string>
-    <string name="msg_vademecum">Funcionalidad dedicada la facultativo.
-        Se trata de una infomración resumida de cada principio activo
-        para el tratamiento de migrañas, preventivo o sintomático.</string>
+    <string name="msg_vademecum">
+        Vademécum: Permite consultar la posología habitual de los fármacos empleados
+        en el tratamiento sintomático y preventivo de la migraña,
+        así como sus posibles efectos adversos.
+    </string>
     <string name="msg_test_hit">Test HIT. Este test realiza una serie reducida de preguntas
         al paciente para determinar el impacto de las migrañas en su vida.</string>
     <string name="msg_test_midas">Test MIDAS. Este test realiza una serie reducida de preguntas
-        al paciente para determinar un el grado de discapacidad provocado por las migrañas.</string>
+        al paciente para determinar el grado de discapacidad provocado por las migrañas.</string>
     <string name="msg_no_option_chosen">No option selected</string>
     <string name="msg_app_target">Aplicación para el diagnóstico diferencial de cefaleas migrañosas y tensionales.</string>
     <string name="msg_app_physician_mode">La app pasa ahora a estar en modo de soporte para facultativos, de modo

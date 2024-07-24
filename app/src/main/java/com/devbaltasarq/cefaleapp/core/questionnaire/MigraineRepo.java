@@ -17,6 +17,27 @@ import java.util.NoSuchElementException;
 
 /** Stores the information gathered from the patient. */
 public final class MigraineRepo {
+    private static final int IMC_OBESITY_LIMIT = 29;
+    private static final int IMC_ANOREXIC_LIMIT = 18;
+    private static final int PRESSURE_HIGH_SUPERIOR_LIMIT = 140;
+    private static final int PRESSURE_HIGH_INFERIOR_LIMIT = 90;
+    private static final int PRESSURE_LOW_SUPERIOR_LIMIT = 90;
+
+    public enum Frequency { ESPORADIC, LOW, HIGH, CHRONIC;
+        @Override
+        public String toString()
+        {
+            return STR_FREQ[ this.ordinal() ];
+        }
+
+        private static final String[] STR_FREQ = {
+                "esporádica",
+                "de baja frecuencia",
+                "de alta frecuencia",
+                "crónica"
+        };
+    }
+
     public enum Id {
         // Data branch
         NOTES,
@@ -144,6 +165,7 @@ public final class MigraineRepo {
         return this.data.get( ID );
     }
 
+    /** @return a string value depending on its existence, throws otherwise. */
     public String getStr(@NonNull Id id) throws NoSuchElementException
     {
         final Value TORET = this.getValue( id );
@@ -155,6 +177,7 @@ public final class MigraineRepo {
         return (String) TORET.get();
     }
 
+    /** @return an int value depending on its existence, throws otherwise. */
     public int getInt(@NonNull Id id) throws NoSuchElementException
     {
         final Value TORET = this.getValue( id );
@@ -166,6 +189,7 @@ public final class MigraineRepo {
         return (int) TORET.get();
     }
 
+    /** @return a bool value depending on its existence, throws otherwise. */
     public boolean getBool(@NonNull Id id) throws NoSuchElementException
     {
         final Value TORET = this.getValue( id );
@@ -183,6 +207,153 @@ public final class MigraineRepo {
         return this.data.isEmpty();
     }
 
+    /** @return the imc if weight and height are provided, Int.Min otherwise. */
+    public int calcIMC()
+    {
+        int toret = Integer.MIN_VALUE;
+
+        if ( this.exists( Id.HEIGHT )
+          && this.exists( Id.WEIGHT ) )
+        {
+            double height = ( (double) this.getInt( Id.HEIGHT ) ) / 100.0;
+            double weight = this.getInt( Id.WEIGHT );
+
+            toret = (int) ( weight / ( height * height ) );
+        }
+
+        return toret;
+    }
+
+    public boolean isDepressed()
+    {
+        return this.getBool( Id.ISDEPRESSED );
+    }
+
+    public boolean isObese()
+    {
+        int imc = this.calcIMC();
+
+        return ( imc > 0 ) && ( imc > IMC_OBESITY_LIMIT );
+    }
+
+    public boolean isAnorexic()
+    {
+        int imc = this.calcIMC();
+
+        return ( imc > 0 ) && ( imc  < IMC_ANOREXIC_LIMIT );
+    }
+
+    public boolean hasHyperTension()
+    {
+        boolean toret = false;
+
+        if ( this.exists( Id.LOWPRESSURE )
+          && this.exists( Id.HIGHPRESSURE ))
+        {
+            int pressureLow = this.getInt( Id.LOWPRESSURE );
+            int pressureHigh = this.getInt( Id.HIGHPRESSURE );
+
+            toret = ( pressureHigh >= PRESSURE_HIGH_SUPERIOR_LIMIT
+                    && pressureLow >= PRESSURE_LOW_SUPERIOR_LIMIT );
+        }
+
+        return toret;
+    }
+
+    public boolean hasHypoTension()
+    {
+        boolean toret = false;
+
+        if ( this.exists( Id.HIGHPRESSURE ) ) {
+            int pressureHigh = this.getInt( Id.HIGHPRESSURE );
+
+            toret = ( pressureHigh < PRESSURE_HIGH_INFERIOR_LIMIT );
+        }
+
+        return toret;
+    }
+
+    /** PCD_HOW_MANY_MIGRAINE_1151 and PCD-HOW_MANY_TENSIONAL-1147
+     * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
+     * - 4 to 7 days with migraine is labelled as "low frequency"
+     * - 8 to 14 days with migraine is labelled as "high frequency"
+     * - 15 or more days with migraine is labelled as "chronic frequency"
+     * @return a Frequency depending in the criteria above.
+     */
+    private Frequency frequencyFromEpisodes(int episodes)
+    {
+        Frequency toret = Frequency.ESPORADIC;
+
+        if ( episodes >= 15 ) {
+            toret = Frequency.CHRONIC;
+        }
+        else
+        if ( episodes >= 8 ) {
+            toret = Frequency.HIGH;
+        }
+        else
+        if ( episodes >= 4 ) {
+            toret = Frequency.LOW;
+        }
+
+        return toret;
+    }
+
+    /** @see MigraineRepo::frequencyFromEpisodes
+     * @return a Frequency for mixed migraines diagnostic,
+     *         depending on the criteria above.
+     */
+    public Frequency getMixedFreq()
+    {
+        return this.frequencyFromEpisodes(
+                this.getInt( MigraineRepo.Id.HOWMANYMIGRAINE )
+                        + this.getInt( MigraineRepo.Id.HOWMANYTENSIONAL ) );
+    }
+
+    /** @see MigraineRepo::frequencyFromEpisodes
+     * @return a Frequency for migraines diagnostic,
+     *         depending on the criteria above.
+     */
+    public Frequency getMigraineFreq()
+    {
+        return this.frequencyFromEpisodes(
+                this.getInt( Id.HOWMANYMIGRAINE ) );
+    }
+
+    /** @see MigraineRepo::frequencyFromEpisodes
+     * @return a Frequency for tensional cephaleas diagnostic,
+     *         following the above criteria.
+     */
+    public Frequency getTensionalFreq()
+    {
+        return this.frequencyFromEpisodes(
+                this.getInt( Id.HOWMANYTENSIONAL ) );
+    }
+
+    /** @return whether the pain (tensional or migraine) is perceived as intense. */
+    public boolean isPainIntense()
+    {
+        return this.getBool( Id.ISMIGRAINEINTENSE ) || this.getBool( Id.ISTENSIONALINTENSE );
+    }
+
+    /** @return true if patient is male, false otherwise. */
+    public boolean isMale()
+    {
+        return !this.getBool( MigraineRepo.Id.GENDER );
+    }
+
+    /** @return true if patient is female, false otherwise. */
+    public boolean isFemale()
+    {
+        return this.getBool( MigraineRepo.Id.GENDER );
+    }
+
+    /** @return whether the patient had an aura or not. */
+    public boolean hadAura()
+    {
+        return this.getBool( MigraineRepo.Id.HADAURA );
+    }
+
     public static MigraineRepo get()
     {
         if ( repo == null ) {
@@ -193,6 +364,5 @@ public final class MigraineRepo {
     }
 
     private static MigraineRepo repo;
-
     private final Map<Id, Value> data;
 }

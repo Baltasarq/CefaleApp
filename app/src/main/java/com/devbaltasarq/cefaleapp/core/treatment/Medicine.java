@@ -129,19 +129,14 @@ public class Medicine implements Identifiable {
     /** Creates a new medicine.
       * @param ID the id of this medicine.
       * @param GROUP_ID the id of the medicine group this medicine pertains to.
-      * @param MIN_DOSAGE the minimum dosage, or -1 if not given.
-      * @param REC_DOSAGE the recommended dosage, or -1 if not given.
-      * @param MAX_DOSAGE the maximum dosage, or -1 if not given.
       * @param adverseEffects adverse effects, as text.
       * @throws IllegalArgumentException if params are null or invalid.
       */
     public Medicine(final Id ID,
                       final MedicineGroup.Id GROUP_ID,
                       int groupPos,
-                      final Dosage MIN_DOSAGE,
-                      final Dosage REC_DOSAGE,
-                      final Dosage MAX_DOSAGE,
                       String adverseEffects,
+                      String posology,
                       String url)
     {
         if ( ID == null ) {
@@ -153,22 +148,18 @@ public class Medicine implements Identifiable {
                                                 + ": invalid id group" );
         }
 
-        if ( ( MIN_DOSAGE == null
-            || !MIN_DOSAGE.isValid() )
-          && ( REC_DOSAGE == null
-            || !REC_DOSAGE.isValid() )
-          && ( MAX_DOSAGE == null
-            || !MAX_DOSAGE.isValid() ) )
-        {
-            throw new IllegalArgumentException( "Medicine: " + ID
-                                                + ": no dosage specified" );
-        }
-
         if ( adverseEffects == null
           || adverseEffects.isEmpty() )
         {
             throw new IllegalArgumentException( "Medicine: " + ID
                                                 + " no adverse effects specified" );
+        }
+
+        if ( posology == null
+          || posology.isEmpty() )
+        {
+            throw new IllegalArgumentException( "Medicine: " + ID
+                    + " no posology specified" );
         }
 
         if ( url == null
@@ -181,10 +172,8 @@ public class Medicine implements Identifiable {
         this.id = ID;
         this.groupId = GROUP_ID;
         this.groupPos = groupPos;
-        this.minDosage = MIN_DOSAGE;
-        this.recDosage = REC_DOSAGE;
-        this.maxDosage = MAX_DOSAGE;
         this.adverseEffects = adverseEffects.trim();
+        this.posology = posology.trim();
         this.url = url;
     }
 
@@ -194,34 +183,16 @@ public class Medicine implements Identifiable {
         return this.id;
     }
 
-    /** Minimum dosage can be -1 if missing.
-      * @return the minimum dosage, as a double, in mg/day.
-      */
-    public Dosage getMinDosage()
-    {
-        return this.minDosage;
-    }
-
-    /** Recommended dosage can be -1 if missing.
-      * @return the recommended dosage, as a double, in mg/day.
-      */
-    public Dosage getRecommendedDosage()
-    {
-        return this.recDosage;
-    }
-    
-    /** Maximum dosage can be -1 if missing.
-      * @return the maximum dosage, as a double, in mg/day.
-      */
-    public Dosage getMaxDosage()
-    {
-        return this.maxDosage;
-    }
-    
     /** @return the list of adverse effects, as text. */
     public String getAdverseEffects()
     {
         return this.adverseEffects;
+    }
+
+    /** @return the posology, as text. */
+    public String getPosology()
+    {
+        return this.posology;
     }
 
     /** @return the group id this medicine pertains to. */
@@ -271,34 +242,15 @@ public class Medicine implements Identifiable {
     @Override
     public String toString()
     {
-        String lowDosage = "";
-        String higDosage = "";
-        String recDosage = "";
-        
-        if ( this.getMinDosage().isValid() ) {
-            lowDosage = "\nDosis mínima: " + this.getMinDosage();
-            
-        }
-        
-        if ( this.getMaxDosage().isValid() ) {
-            higDosage = "\nDosis máxima: " + this.getMaxDosage();
-            
-        }
-        
-        if ( this.getRecommendedDosage().isValid() ) {
-            recDosage = "\nDosis recomendada: " + this.getRecommendedDosage();
-            
-        }
-        
         return String.format( Locale.getDefault(),
                              """
-                             %s %s%s%s
+                             %s
+                             Posología:
+                             %s
                              Efectos adversos:
                              %s""",
                                      this.getId().toString(),
-                                     lowDosage,
-                                     recDosage,
-                                     higDosage,
+                                     this.getPosology(),
                                      this.getAdverseEffects()
         );
     }
@@ -319,7 +271,7 @@ public class Medicine implements Identifiable {
      * @see TreatmentXMLoader , Medicine::getAll
      * @param medicines all the medicine objects.
      */
-    public static void setAllMedicines(Map<Medicine.Id, Medicine> medicines)
+    public static void setAll(Map<Medicine.Id, Medicine> medicines)
     {
         if ( allMedicines == null ) {
             allMedicines = new HashMap<>( medicines );
@@ -334,10 +286,8 @@ public class Medicine implements Identifiable {
     private final Id id;
     private final int groupPos;
     private final MedicineGroup.Id groupId;
+    private final String posology;
     private final String adverseEffects;
-    private final Dosage minDosage;
-    private final Dosage recDosage;
-    private final Dosage maxDosage;
     private final String url;
     private static Map<Id, Medicine> allMedicines;
 }

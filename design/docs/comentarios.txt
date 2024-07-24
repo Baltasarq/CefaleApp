@@ -1,0 +1,29 @@
+
+# Documento de modificaciones
+
+- Pones: "Dexketoprofeno trometamol: 25-50 mg, oral (comprimido). %0mg via intramuscular.", supongo que faltan los miligramos. Quizás 50, que el 5 es la tecla del %, pero mejor pregunto.
+
+- Pones "3.3.3 Efectos adversos. Los problemas más frecuentes fueron dolor cervical, debilidad muscular, sensación de rigidez muscular, y ptosis palpebral. Está contraindicada en los pacientes con miastenia gravis."
+
+    Esto parece contradecirse con la info que ya había, que era:
+    
+    "Hipersensibilidad; miastenia grave, síndrome de Eaton Lambert
+    o esclerosis lateral amiotrófica; presencia de infección
+    o inflamación en los puntos a inyectar.
+    En el tratamiento de las disfunciones vesicales:
+    infección de las vías urinarias en el momento de tratamiento;
+    retención urinaria aguda; pacientes que no desean
+    o no pueden cateterizarse después del tratamiento en caso necesario."
+    
+¿Puedes redactar una combinación de las dos, o cuál es la correcta?
+
+    
+- Pones: "3.1. Hay que incluir al Rimegepant.
+            3.1.1. Las mismas indicaciones que los anticuerpos monoclonales en lo que se refiere al tratamiento preventivos y comorbilidades, pero NO contraindicado en la arteriopatía periférica/enfermedad de Raynaud."
+            
+    Por favor, necesito que seas más específico.
+    Lo que entiendo es que el Rimegepant, en preventivos, está contraindicado
+    cuando esté contraindicado el grupo de los anticuerpos monoclonales (grupo F),
+    excepto en el caso de la enfermedad de Raynaud. Sin embargo, el grupo F parece
+    que solo está contraindicado en el caso precisamente de Raynaud.
+    

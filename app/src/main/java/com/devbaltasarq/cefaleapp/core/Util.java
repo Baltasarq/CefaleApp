@@ -145,12 +145,12 @@ public class Util {
       * @param <T> The identifiable objects, i.e. Mordbity, Medicine...
       * @param <U> The id object, i.e. Medicine.Id, Morbidity.Id...
       */
-    public static <T extends Identifiable, U extends Nameable> List<T > objListFromIdList(
+    public static <T extends Identifiable, U extends Nameable> List<T> objListFromIdList(
                                         final Map<U, T> ALL,
                                         final Collection<U> IDS)
     {
         return IDS.stream().map( id
-                                    -> Objects.requireNonNull( ALL.get( id ) ) )
+                        -> Objects.requireNonNull( ALL.get( id ) ) )
                            .collect( Collectors.toList() );
     }
 }

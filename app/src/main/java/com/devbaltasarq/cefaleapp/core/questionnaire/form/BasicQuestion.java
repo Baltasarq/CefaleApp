@@ -8,17 +8,26 @@ import java.util.List;
 
 
 public abstract class BasicQuestion {
-    public BasicQuestion(String id, String gotoId)
+    public BasicQuestion(int num, String id, String gotoId)
     {
+        this.num = num;
         this.id = id;
         this.gotoId = gotoId;
     }
 
+    /** @return the id of this question. */
     public String getId()
     {
         return this.id;
     }
 
+    /** @return the question number. */
+    public int getNum()
+    {
+        return this.num;
+    }
+
+    /** @return the goto id for this question, i.e., next question¡s id. */
     public String getGotoId()
     {
         return this.gotoId;
@@ -39,6 +48,7 @@ public abstract class BasicQuestion {
     public abstract List<Option> getOptions();
     public abstract String getPic();
 
+    private final int num;
     private final String id;
     private final String gotoId;
 }

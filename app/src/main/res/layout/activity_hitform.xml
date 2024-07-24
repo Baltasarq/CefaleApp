@@ -6,11 +6,6 @@
     tools:context=".ui.tests.HITFormActivity"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/content_test_layout" />
-    </ScrollView>
+    <include layout="@layout/content_test_layout" />
 
 </LinearLayout>

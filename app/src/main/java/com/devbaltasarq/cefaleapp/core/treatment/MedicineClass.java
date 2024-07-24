@@ -213,7 +213,7 @@ public class MedicineClass implements Identifiable {
       * @see TreatmentXMLoader , MedicineGroup::getAll
       * @param medicineClasses all the medicine classes.
       */
-    public static void setAllClasses(Map<Id, MedicineClass> medicineClasses)
+    public static void setAll(Map<Id, MedicineClass> medicineClasses)
     {
         if ( allClasses == null ) {
             allClasses = new HashMap<>( medicineClasses );

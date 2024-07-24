@@ -20,9 +20,9 @@ public class MedicineGroup implements Identifiable {
           * @param key the char for the group.
           * @param name the name of the group.
           */
-        public Id(char key, String name)
+        public Id(String key, String name)
         {
-            final String KEY = Character.toString( Character.toUpperCase( key ) );
+            final String KEY = key.toUpperCase();
 
             // Store the id as a basic id, if not created before
             final BasicId BASIC_ID = createIdRepoIfNeeded().get( KEY );
@@ -35,10 +35,10 @@ public class MedicineGroup implements Identifiable {
             }
         }
 
-        /** @return the associated char (the key). */
-        public char getChar()
+        /** @return the associated key. */
+        public String getKey()
         {
-            return this.id.getKey().charAt( 0 );
+            return this.id.getKey();
         }
 
         /** @return the name of the group. */
@@ -76,9 +76,9 @@ public class MedicineGroup implements Identifiable {
          * @param key the given key.
          * @return the Id object with that key.
          */
-        public static Id get(char key)
+        public static Id get(String key)
         {
-            final String KEY = Character.toString( Character.toUpperCase( key ) );
+            final String KEY = key.toUpperCase();
             final BasicId TORET = createIdRepoIfNeeded().get( KEY );
 
             if ( TORET == null ) {
@@ -105,7 +105,7 @@ public class MedicineGroup implements Identifiable {
 
         private static Id IdFromBasicId(final BasicId BASIC_ID)
         {
-            return new Id( BASIC_ID.getKey().charAt( 0 ),
+            return new Id( BASIC_ID.getKey(),
                             BASIC_ID.getName() );
         }
 
@@ -240,7 +240,7 @@ public class MedicineGroup implements Identifiable {
       * @see TreatmentXMLoader , MedicineGroup::getAll
       * @param medicineGroups all the medicine groups.
       */
-    public static void setAllGroups(Map<Id, MedicineGroup> medicineGroups)
+    public static void setAll(Map<Id, MedicineGroup> medicineGroups)
     {
         if ( allGroups == null ) {
             allGroups = new HashMap<>( medicineGroups );

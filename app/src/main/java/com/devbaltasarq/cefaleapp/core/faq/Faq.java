@@ -4,6 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.faq;
 
 
+import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -81,45 +83,21 @@ public class Faq {
 
     public static void setAll(Map<String, Map<String, Faq>> allFaqs)
     {
-        if ( all == null ) {
-            all = new HashMap<>( allFaqs.size() );
-        }
-
-        all.clear();
-        all.putAll( allFaqs );
+        all = new MultiLanguageWrapper<>( allFaqs );
     }
 
-    /** Returns the FAQ entries for a given language.
-      * @param lang the language code, such as "es", "fr"...
-      * @return a Map<String, WebUrl> FAQ entries for that language.
-      */
-    public static Map<String, Faq> getForLang(String lang)
+    public static MultiLanguageWrapper<Map<String, Faq>> getAll()
     {
         if ( all == null ) {
-            throw new Error( "FAQ are not yet loaded." );
+            throw new Error( "FAQ entries not loaded yet" );
         }
 
-        Map<String, Faq> toret = all.get( lang );
-
-        // Default to es - spanish
-        if ( toret == null ) {
-            toret = Objects.requireNonNull( all.get( "es" ) );
-        }
-
-        return new HashMap<>( toret );
-    }
-
-    /** @return a set of all the available languages,
-                such as ["es", "en"...]
-      */
-    public static Set<String> getAvailableLanguages()
-    {
-        return new HashSet<>( all.keySet() );
+        return all;
     }
 
     private final String lang;
     private final String id;
     private final String q;
     private final String a;
-    private static Map<String, Map<String, Faq>> all = null;
+    private static MultiLanguageWrapper<Map<String, Faq>> all = null;
 }

@@ -42,7 +42,7 @@
 
         <q id="hit_headaches_frec_too_tired" type="score"
             summary="Frecuencia dolores de cabeza producen cansancio"
-            text="En las últimas 4 semanas, ¿con qué frecuencia se ha sentido demasiado cansada/o para trabajar o realizar las actividades diarias debido a su dolor de cabeza?"
+            text="En las últimas 4 semanas, ¿con qué frecuencia ha sentido demasiado cansancio como para trabajar o realizar las actividades diarias debido a su dolor de cabeza?"
             goto="hit_headaches_frec_irritant">
 
             <opt value="6" text="Nunca" />
@@ -54,7 +54,7 @@
 
         <q id="hit_headaches_frec_irritant" type="score"
             summary="Frecuencia dolores de cabeza producen irritación"
-            text="En las últimas 4 semanas, ¿con qué frecuencia se ha sentido harta/o o irritada/o debido a su dolor de cabeza?"
+            text="En las últimas 4 semanas, ¿con qué frecuencia ha sentido hartazgo o irritación con respecto a su dolor de cabeza?"
             goto="hit_headaches_frec_unfocused">
 
             <opt value="6" text="Nunca" />

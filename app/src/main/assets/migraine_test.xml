@@ -2,6 +2,7 @@
 <form head="data">
     <!-- Data of the patient -->
     <branch id="data" head="data_notes">
+        <!-- PCD_SHOWNOTES_2220 -->
         <q id="data_notes" type="str"
             summary="Notas"
             text="Notas libres a rellenar según los &lt;u>síntomas del paciente&lt;/u>."
@@ -13,12 +14,15 @@
             <opt value="true" text="Mujer" />
         </q>
 
+        <!-- PCD_SHOWAGE_0941 -->
         <q id="data_age" goto="data_height" type="int" text="¿Edad?" summary="Edad" />
 
+        <!-- PCD_SHOWSIZE_0942 -->
         <q id="data_height" type="int" text="¿Altura (&lt;i>centímetros&lt;/i>)?" goto="data_weight" summary="Altura" />
 
         <q id="data_weight" type="int" text="¿Peso (&lt;i>kilos&lt;/i>)?" goto="data_highPressure" summary="Peso" />
 
+        <!-- PCD_SHOWPRESSURE_0943 -->
         <q id="data_highPressure"
             type="int" text="¿Tensión máxima (&lt;i>sistólica&lt;/i> en mm HG, por ejemplo 120)?"
             goto="data_lowPressure"
@@ -184,7 +188,7 @@
 
         <q id="migraine_contraceptivesWorsens" type="bool" goto="migraine_howManyMigraine"
             text="En caso de haber tomado &lt;u>anticonceptivos orales&lt;/u>,
-                  ¿experimentó un &lt;i>empeoramiento&lt;/i> de las cefalesas en intensidad o frecuencia?"
+                  ¿experimentó un &lt;i>empeoramiento&lt;/i> de las cefaleas en intensidad o frecuencia?"
             summary="Anticonceptivos relacionados">
             <!-- PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
                  This is only asked if the patient is female. -->

@@ -29,6 +29,7 @@ import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentXMLoader;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
+import com.devbaltasarq.cefaleapp.core.treatment.advisor.TreatmentMessage;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.QuestionSettingsActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.TextSettingsActivity;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageView BT_INFO = this.findViewById( R.id.btInfo );
         final ImageView BT_LINKS = this.findViewById( R.id.btLinks );
         final ImageView BT_VADEMECUM = this.findViewById( R.id.btVademecum );
-        final ImageView BT_ENQUIRY = this.findViewById( R.id.btEnquiry );
+        final ImageView BT_ENQUIRY = this.findViewById( R.id.btTestMigraine);
         final ImageView BT_TREATMENT = this.findViewById( R.id.btTreatment );
         final ImageView BT_HIT = this.findViewById( R.id.btHIT );
         final ImageView BT_MIDAS = this.findViewById( R.id.btMIDAS );
@@ -204,10 +205,11 @@ public class MainActivity extends AppCompatActivity {
             // Load all treatment-related data
             final TreatmentXMLoader TR_LOADER = TreatmentXMLoader.loadFromXML(
                     this.getAssets().open( TREATMENT_DATA_ASSET ) );
-            Medicine.setAllMedicines( TR_LOADER.getMedicines() );
-            MedicineGroup.setAllGroups( TR_LOADER.getMedicineGroups() );
-            MedicineClass.setAllClasses( TR_LOADER.getMedicineClasses() );
-            Morbidity.setAllMorbidities( TR_LOADER.getMorbididties() );
+            Medicine.setAll( TR_LOADER.getMedicines() );
+            MedicineGroup.setAll( TR_LOADER.getMedicineGroups() );
+            MedicineClass.setAll( TR_LOADER.getMedicineClasses() );
+            Morbidity.setAll( TR_LOADER.getMorbididties() );
+            TreatmentMessage.setAll( TR_LOADER.getTreatmentMessages() );
 
             // Load all tests
             MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(

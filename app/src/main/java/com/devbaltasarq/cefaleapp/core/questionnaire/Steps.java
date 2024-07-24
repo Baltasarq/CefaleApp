@@ -19,8 +19,6 @@ public class Steps {
     private static final String ETQ_HEIGHT_UNITS = "cm.";
     private static final String ETQ_WEIGHT_UNITS = "kg.";
     private static final String ETQ_NO_VALUE = "n/a";
-    private static final int IMC_OBESITY_LIMIT = 29;
-    private static final int IMC_ANOREXIC_LIMIT = 18;
 
     public Steps(Form form, MigraineRepo repo)
     {
@@ -60,14 +58,6 @@ public class Steps {
         return this.Q_IDS.size();
     }
 
-    public int calcIMC()
-    {
-        double height = ( (double) this.REPO.getInt( MigraineRepo.Id.HEIGHT ) ) / 100.0;
-        double weight = this.REPO.getInt( MigraineRepo.Id.WEIGHT );
-
-        return (int) ( weight / ( height * height ) );
-    }
-
     /** Returns a string describing the units or an empty string.
      * @param ID The Repo.Id value.
      * @return a string with the corresponding units, or an empty string.
@@ -97,66 +87,42 @@ public class Steps {
         return toret;
     }
 
-    private String reportHypertension()
+    private String reportHypertensionIfPresent()
     {
-        String toret = "<b>Hipertensión</b>: ";
+        String toret = "";
 
-        if ( this.hasHyperTension() ) {
-            toret += "Sí (se aconseja comida sin sal y control periódico de presión)";
-        } else {
-            toret += "No";
+        if ( this.REPO.hasHyperTension() ) {
+            toret += "<b>Hipertensión</b>: "
+                     + "Sí (se aconseja comida sin sal "
+                     + "y control periódico de tensión)<br/>";
         }
 
-        toret += "<br/>";
         return toret;
     }
 
-    private String reportIMC()
+    private String reportIMCIfNeeded()
     {
-        int imc = this.calcIMC();
-        String toret = "<b>IMC</b>: " + imc + " " + ETQ_IMC_UNITS;
+        boolean isObese = this.REPO.isObese();
+        boolean isAnorexic = this.REPO.isAnorexic();
+        String toret = "";
 
-        if ( imc > IMC_OBESITY_LIMIT) {
-            toret += " <i>(sobrepeso, se aconseja dieta hipocalórica)</i>";
-        }
-        else
-        if ( imc < IMC_ANOREXIC_LIMIT) {
-            toret += " <i>(por debajo del peso apropiado, se aconseja dieta hipercalórica)</i>";
+        if ( isObese
+          || isAnorexic )
+        {
+            toret = "<b>IMC</b>: " + this.REPO.calcIMC() + " " + ETQ_IMC_UNITS;
+
+            if ( this.REPO.isObese() ) {
+                toret += " <i>(sobrepeso, se aconseja dieta hipocalórica)</i>";
+            }
+            else
+            if ( this.REPO.isAnorexic() ) {
+                toret += " <i>(por debajo del peso apropiado, se aconseja dieta hipercalórica)</i>";
+            }
+
+            toret += "<br/>";
         }
 
-        toret += "<br/>";
         return toret;
-    }
-
-    public boolean isDepressed()
-    {
-        return this.REPO.getBool( MigraineRepo.Id.ISDEPRESSED );
-    }
-
-    public boolean isObese()
-    {
-        return ( this.calcIMC() > IMC_OBESITY_LIMIT);
-    }
-
-    public boolean isAnorexic()
-    {
-        return ( this.calcIMC() < IMC_ANOREXIC_LIMIT);
-    }
-
-    public boolean hasHyperTension()
-    {
-        int pressureLow = this.REPO.getInt( MigraineRepo.Id.LOWPRESSURE );
-        int pressureHigh = this.REPO.getInt( MigraineRepo.Id.HIGHPRESSURE );
-
-        return ( pressureHigh >= 140
-              && pressureLow >= 90 );
-    }
-
-    public boolean hasHypoTension()
-    {
-        int pressureHigh = this.REPO.getInt( MigraineRepo.Id.HIGHPRESSURE );
-
-        return ( pressureHigh < 90 );
     }
 
     @Override
@@ -164,8 +130,8 @@ public class Steps {
     {
         final StringBuilder TORET = new StringBuilder();
 
-        TORET.append( this.reportHypertension() );
-        TORET.append( this.reportIMC() );
+        TORET.append( this.reportHypertensionIfPresent() );
+        TORET.append( this.reportIMCIfNeeded() );
 
         // Add all the steps
         for(final String RES_STEP: this.getQuestionHistory()) {

@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
@@ -197,7 +196,7 @@ public class VademecumActivity extends AppCompatActivity {
 
             if ( LY_SUB_ENTRIES.getChildCount() == 0 ) {
                 for(final Medicine MEDICINE: MEDICINES) {
-                    final View SUB_ENTRY_VIEW = INFLATER.inflate( R.layout.medicine_group_entry, null );
+                    final View SUB_ENTRY_VIEW = INFLATER.inflate( R.layout.medicine_entry, null );
                     final TextView SUB_TV = SUB_ENTRY_VIEW.findViewById( R.id.lblMedicine );
 
                     SUB_TV.setText( MEDICINE.getId().getName() );

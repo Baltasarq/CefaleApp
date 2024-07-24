@@ -11,6 +11,7 @@
 
     <!-- A letter identifies each group id. -->
     <medicineGroups>
+        <!-- A letter identifies each group id for preventive medicines. -->
         <medicineGroup id="A" classId="PRVNT" name="Antihipertensivos" />
         <medicineGroup id="B" classId="PRVNT" name="Betabloqueantes" />
         <medicineGroup id="C" classId="PRVNT" name="Bloqueadores de calcio" />
@@ -18,7 +19,15 @@
         <medicineGroup id="E" classId="PRVNT" name="Neuromoduladores" />
         <medicineGroup id="F" classId="PRVNT" name="Anticuerpos monoclonales (uso hospitalario)" />
         <medicineGroup id="G" classId="PRVNT" name="Toxina botulínica (uso hospitalario)" />
-        <medicineGroup id="I" classId="ANALG" name="Intervención: uso sintomático" />
+        <medicineGroup id="H" classId="PRVNT" name="Gepantes (antagonista del receptor CGRP oral)" />
+        <!-- Analgesics: AINE, Triptanes, Ergóticos y Gepantes. -->
+        <medicineGroup id="AINE" classId="ANALG" name="AINE (antiinflamatorios no esteroideos)" />
+        <medicineGroup id="TRIPTANES" classId="ANALG" name="Triptanes (agonistas del receptor de la serotonina)" />
+        <medicineGroup id="ERGOTICOS" classId="ANALG" name="Ergóticos (agonistas de receptores serotoninérgicos)" />
+        <medicineGroup id="GEPANTES" classId="ANALG" name="Gepantes (antagonista del receptor CGRP oral)" />
+        <medicineGroup id="DIPTANES" classId="ANALG" name="Diptanes (agonista del receptor hidroxitriptamina 1F oral)" />
+        <medicineGroup id="OPIACEOS" classId="ANALG" name="Opiáceos" />
+        <medicineGroup id="DIPIRONAS" classId="ANALG" name="Dipironas" />
     </medicineGroups>
 
     <medicines>
@@ -26,10 +35,11 @@
             id="ACIDO_VALPROICO"
             name="Ácido valproico"
             groupId="E"
-            posInGroup="3"
+            posInGroup="1"
             url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
-            <minDosage units="MG">300</minDosage>
-            <recDosage units="MG">600</recDosage>
+            <posology>
+                Dosis mínima 300 mg/día; dosis recomendada 600 mg/día.
+            </posology>
             <adverseEffects>
                 En mujeres en edad fértil, por sus efectos teratogénicos y
                 posibilidad de autismo, debe tomarse obligatoriamente
@@ -44,12 +54,34 @@
         <medicine
             id="ALMOTRIPTAN"
             name="Almotriptán"
-            groupId="I"
+            groupId="TRIPTANES"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-almotriptan-n02cc05-es">
-            <minDosage units="MG">12.5</minDosage>
-            <maxDosage units="PILLS">2</maxDosage>
-            <adverseEffects>ºº
+            <posology>
+                Dosis: 12.5 mg, oral. Tomar 1 comprimido al inicio del dolor,
+                y si alivia pero no cede, repetir a las 2 horas.
+                La dosis máxima son 2 comprimidos en 24 horas.
+            </posology>
+            <adverseEffects>
+                Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
+                náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
+                pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
+                enfermedad de Raynaud.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ELETRIPTAN"
+            name="Eletriptán"
+            groupId="TRIPTANES"
+            posInGroup="2"
+            url="https://www.vademecum.es/principios-activos-eletriptan-N02CC06-es">
+            <posology>
+                Comprimidos de 40 mg.
+                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
+                La dosis máxima son 2 comprimidos en 24 horas.
+            </posology>
+            <adverseEffects>
                 Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
                 náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
                 pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
@@ -63,8 +95,9 @@
             groupId="D"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-amitriptilina-n06aa09-es">
-            <minDosage units="MG">10</minDosage>
-            <recDosage units="MG">25</recDosage>
+            <posology>
+                Dosis mínima 10 mg/día; dosis recomendada 25 mg/día.
+            </posology>
             <adverseEffects>
                 Sequedad de boca, sabor metálico, estreñimiento retención urinaria,
                 visión borrosa, trastorno de la acomodación hipotensión postural, somnolencia,
@@ -76,12 +109,16 @@
         <medicine
             id="CAFERGOT"
             name="Cafergot"
-            groupId="I"
+            groupId="ERGOTICOS"
             posInGroup="2"
             url="https://www.vademecum.es/medicamento-cafergot+_570">
-            <minDosage units="PILLS">2</minDosage>
-            <recDosage units="PILLS">2</recDosage>
-            <maxDosage units="PILLS">6</maxDosage>
+            <posology>
+                Grageas de 1 mg. de tartrato de ergotamina.
+                En una crisis de migraña tomar 2 grageas al inicio del dolor,
+                y si no cede el dolor,
+                1 gragea adicional cada hora hasta un máximo de 6 grageas/día.
+                Tiene un máximo recomendado de 10 mg/semana.
+            </posology>
             <adverseEffects>
                 Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor,
                 Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica
@@ -95,8 +132,7 @@
             groupId="A"
             posInGroup="1"
             url="https://www.vademecum.es/medicamento-candesartan+alter_ficha_37176">
-            <minDosage units="MG">8</minDosage>
-            <recDosage units="MG">16</recDosage>
+            <posology>Dosis mínima 8mg/día; dosis recomendada 16 mg/día.</posology>
             <adverseEffects>
                 Mareo, insomnio, hipotensión sin taquicardia refleja, ortostatismo, hiperpotasemia,
                 insuficiencia renal, erupción cutánea, angioedema, tos, astenia, congestión nasal,
@@ -110,8 +146,7 @@
             groupId="C"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-flunarizina-N07CA03-es">
-            <minDosage units="MG">2.5</minDosage>
-            <recDosage units="MG">5</recDosage>
+            <posology>Dosis mínima 2.5 mg/día; dosis recomendada 5 mg/día.</posology>
             <adverseEffects>
                 Cefalea, astenia, somnolencia, sequedad oral, visión borrosa, dermatitis,
                 aumento de peso. Precaución con hipotensión. Contraindicada si hay depresión.
@@ -121,11 +156,16 @@
         <medicine
             id="HEMICRANEAL"
             name="Hemicraneal"
-            groupId="I"
+            groupId="ERGOTICOS"
             posInGroup="3"
             url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
-            <minDosage units="PILLS">2</minDosage>
-            <maxDosage units="PILLS">6</maxDosage>
+            <posology>
+                Grageas de 1mg de tartrato de ergotamina.
+                En una crisis de migraña tomar 2 grageas al inicio del dolor,
+                y si no cede el dolor,
+                1 gragea adicional cada hora hasta un máximo de 6 grageas/día.
+                Tiene un máximo recomendado de 10 mg/semana.
+            </posology>
             <adverseEffects>
                 Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
                 Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
@@ -139,11 +179,10 @@
             groupId="A"
             posInGroup="2"
             url="https://www.vademecum.es/principios-activos-lisinopril-c09aa03-es">
-            <minDosage units="MG">5</minDosage>
-            <recDosage units="MG">10</recDosage>
+            <posology>Dosis mínima 5 mg/día; dosis recomendada 10 mg/día.</posology>
             <adverseEffects>
                 Tos seca persistente, hipotensión, estomatitis, parestesias, erupción cutánea,
-                edema anioneurótico, disgeusia, hiperpotasemia, insuficiencia renal aguda
+                edema angioneurótico, disgeusia, hiperpotasemia, insuficiencia renal aguda
                 si existe estenosis bilateral de la arteria renal, artralgias.
             </adverseEffects>
         </medicine>
@@ -154,8 +193,7 @@
             groupId="B"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-metoprolol-C07AB02-es">
-            <minDosage units="MG">50</minDosage>
-            <recDosage units="MG">100</recDosage>
+            <posology>Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.</posology>
             <adverseEffects>
                 Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
                 astenia, disminución de la líbido, impotencia masculina,
@@ -169,8 +207,7 @@
             groupId="B"
             posInGroup="2"
             url="https://www.vademecum.es/principios-activos-propranolol-c07aa05-es">
-            <minDosage units="MG">30</minDosage>
-            <recDosage units="MG">60</recDosage>
+            <posology>Dosis mínima 30 mg/día; dosis recomendada 60 mg/día.</posology>
             <adverseEffects>
                 Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
                 astenia, disminución de la líbido, impotencia masculina,
@@ -181,11 +218,15 @@
         <medicine
             id="RIZATRIPTAN"
             name="Rizatriptán"
-            groupId="I"
-            posInGroup="4"
+            groupId="TRIPTANES"
+            posInGroup="3"
             url="https://www.vademecum.es/principios-activos-rizatriptan-n02cc04-es">
-            <recDosage units="MG">10</recDosage>
-            <maxDosage units="PILLS">2</maxDosage>
+            <posology>
+                10 mg, oral.
+                Existe un comprimido bucodispensable (liotab) de toma sublingual.
+                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
+                La dosis máxima son 2 comprimidos en 24 horas.
+            </posology>
             <adverseEffects>
                 Posible reacción cruzada con alérgicos y sulfamidas.
                 Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
@@ -197,11 +238,14 @@
         <medicine
             id="SUMATRIPTAN"
             name="Sumatriptán"
-            groupId="I"
-            posInGroup="5"
+            groupId="TRIPTANES"
+            posInGroup="4"
             url="https://www.vademecum.es/principios-activos-sumatriptan-N02CC01-es">
-            <recDosage units="MG">50</recDosage>
-            <maxDosage units="PILLS">2</maxDosage>
+            <posology>
+                50 mg, oral. 20 mg, nasal. 6 mg subcutáneo.
+                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
+                La dosis máxima son 2 comprimidos en 24 horas.
+            </posology>
             <adverseEffects>
                 Posible reacción cruzada con alérgicos y sulfamidas.
                 Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
@@ -214,10 +258,9 @@
             id="TOPIRAMATO"
             name="Topiramato"
             groupId="E"
-            posInGroup="1"
+            posInGroup="2"
             url="https://www.vademecum.es/medicamento-topiramato+aristo_ficha_40392">
-            <recDosage units="MG">50</recDosage>
-            <maxDosage units="PILLS">2</maxDosage>
+            <posology>Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.</posology>
             <adverseEffects>
                 Astenia, mareos, fatiga, torpeza mental, parestesias distales,
                 somnolencia, síntomas depresivos, diarrea, litiasis renal, glaucoma, pérdida de peso.
@@ -230,8 +273,7 @@
             groupId="D"
             posInGroup="2"
             url="https://www.vademecum.es/medicamento-venlafaxina+combix_ficha_29037">
-            <recDosage units="MG">37.5</recDosage>
-            <maxDosage units="MG">75</maxDosage>
+            <posology>Dosis mínima 37.5 mg/día; dosis recomendada 75 mg/día.</posology>
             <adverseEffects>
                 Astenia, fatiga, hipertensión arterial, sofocos,
                 anorexia, estreñimiento, náuseas, alteración de la líbido,
@@ -242,13 +284,34 @@
         </medicine>
 
         <medicine
+            id="ZOLMITRIPTAN"
+            name="Zolmitriptán"
+            posInGroup="5"
+            groupId="TRIPTANES"
+            url="https://www.vademecum.es/medicamentos-principio-activo-zolmitriptan_4731_solo_1">
+            <posology>
+                2.5 mg y 5 mg, oral. 10 mg, nasal.
+                Existe una forma bucodispensable (liotab) sublingual,
+                y otra en dosificación intranasal.
+                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
+                La dosis máxima son 2 comprimidos en 24 horas.
+            </posology>
+            <adverseEffects>
+                Posible reacción cruzada con alérgicos a sulfamidas.
+                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
+                Contraindicados en pacientes con cardiopatía isquémica,
+                hipertensión, enfermedad arterial periférica, enfermedad de Raynaud.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
             id="ZONISAMIDA"
             name="Zonisamida"
-            posInGroup="2"
+            posInGroup="3"
             groupId="E"
             url="https://www.vademecum.es/principios-activos-zonisamida-N03AX15-es">
-            <minDosage units="MG">50</minDosage>
-            <maxDosage units="PILLS">100</maxDosage>
+            <posology>Dosis mínima 50 mg/día; dosis recomendda 100 mg/día.</posology>
+            <maxDosage units="MG">100</maxDosage>
             <adverseEffects>
                 Anorexia, pérdida de peso, irritabilidad, agitación trastorno de la memoria,
                 depresión, mareos, ataxia, somnolencia, dipolopia, diarrea, anhidrosis, fiebre,
@@ -262,16 +325,16 @@
             groupId="G"
             posInGroup="1"
             url="https://www.vademecum.es/espana/medicamento/37401/botox-50-unidades-allergan-polvo-para-solucion-inyectable">
-            <minDosage units="PILLS">1</minDosage>
-            <adverseEffects>
+            <posology>
                 Medicamento de uso hospitalario.
-                Hipersensibilidad; miastenia grave, síndrome de Eaton Lambert
-                o esclerosis lateral amiotrófica; presencia de infección
-                o inflamación en los puntos a inyectar.
-                En el tratamiento de las disfunciones vesicales:
-                infección de las vías urinarias en el momento de tratamiento;
-                retención urinaria aguda; pacientes que no desean
-                o no pueden cateterizarse después del tratamiento en caso necesario.
+                Se administra en inyecciones subcutáneas de 5 unidades
+                en varios puntos del cuero cabelludo (protocolo PREEMPT).
+                El número de inyecciones oscila entre 31 puntos (155 U) y 39 puntos (195 U).
+            </posology>
+            <adverseEffects>
+                Los problemas más frecuentes fueron dolor cervical,
+                debilidad muscular, sensación de rigidez muscular, y ptosis palpebral.
+                Está contraindicada en los pacientes con miastenia gravis.
             </adverseEffects>
         </medicine>
 
@@ -281,11 +344,14 @@
             groupId="F"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-erenumab-n02cd01-es">
-            <minDosage units="PILLS">1</minDosage>
-            <adverseEffects>
+            <posology>
                 Medicamento de uso hospitalario.
-                Hipersensibilidad incluyendo erupción cutánea, inflamación/edema y urticaria;
-                estreñimiento; prurito; espasmos musculares; reacciones en el lugar de inyección.
+                Plumas de 70 mg. y 140 mg., administración cutánea mensual.
+            </posology>
+            <adverseEffects>
+                Reacciones locales en el punto de inyección
+                (dolor, endurecimiento, enrojecimiento, picor).
+                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
             </adverseEffects>
         </medicine>
 
@@ -295,11 +361,14 @@
             groupId="F"
             posInGroup="2"
             url="https://www.vademecum.es/principios-activos-galcanezumab-n02cd02-es">
-            <minDosage units="PILLS">1</minDosage>
+            <posology>
+                Plumas de 120 mg., administración subcutánea.
+                Primera dosis de 240 mg. (2 plumas), con mantenimiento de 120 mg/mes.
+            </posology>
             <adverseEffects>
-                Medicamento de uso hospitalario.
-                Vértigo; estreñimiento; prurito, erupción;
-                dolor en la zona de inyección, reacciones en la zona de inyección.
+                Reacciones locales en el punto de inyección
+                (dolor, endurecimiento, enrojecimiento, picor).
+                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
             </adverseEffects>
         </medicine>
 
@@ -309,16 +378,219 @@
             groupId="F"
             posInGroup="3"
             url="https://www.vademecum.es/principios-activos-fremanezumab-n02cd03-es">
-            <minDosage units="PILLS">1</minDosage>
+            <posology>
+                Jeringa precargada de 225 mg., inyección subcutánea.
+                Puede administrarse 1 inyección de 225 mg. mensual
+                o 3 inyecciones de 225 mg. juntas (675 mg.) con periodicidad trimestral.
+            </posology>
             <adverseEffects>
-                Medicamento de uso hospitalario.
-                En el lugar de inyección: dolor, induración, eritema, prurito y exantema.
+                Reacciones locales en el punto de inyección
+                (dolor, endurecimiento, enrojecimiento, picor).
+                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ASPIRINA"
+            name="Ácido acetil salicídico"
+            groupId="AINE"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-acetilsalicilico+acido-n02ba01">
+            <posology>500 – 1000 mg, oral (comprimido).</posology>
+            <adverseEffects>
+                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                Elevación de transaminasas. Alteración de la coagulación.
+                Descompensación de la presión arterial.
+                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
+                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
+                del ductus arteriosus.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="NAPROXENO-SODICO"
+            name="Naproxeno Sódico"
+            groupId="AINE"
+            posInGroup="2"
+            url="https://www.vademecum.es/medicamentos-principio-activo-naproxeno+sodico_1080_solo_1">
+            <posology>500 -1100 mg; oral (comprimido).</posology>
+            <adverseEffects>
+                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                Elevación de transaminasas. Alteración de la coagulación.
+                Descompensación de la presión arterial.
+                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
+                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
+                del ductus arteriosus.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="IBUPROFENO"
+            name="Ibuprofeno"
+            groupId="AINE"
+            posInGroup="3"
+            url="https://www.vademecum.es/principios-activos-ibuprofeno-M01AE01-es">
+            <posology>600-1200 mg, oral (comprimido).</posology>
+            <adverseEffects>
+                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                Elevación de transaminasas. Alteración de la coagulación.
+                Descompensación de la presión arterial.
+                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
+                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
+                del ductus arteriosus.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="DICLOFENACO-SODICO"
+            name="Diclofenaco sódico"
+            groupId="AINE"
+            posInGroup="4"
+            url="https://www.vademecum.es/espana/medicamento/20759/artrotec-50-mg-200-microgramos-comprimidos-recubiertos">
+            <posology>50-100 mg, oral (comprimido). 100 mg via rectal (supositorio).</posology>
+            <adverseEffects>
+                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                Elevación de transaminasas. Alteración de la coagulación.
+                Descompensación de la presión arterial.
+                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
+                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
+                del ductus arteriosus.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="DEXKETOPROFENO-TROMETAMOL"
+            name="Dexketoprofeno trometamol"
+            groupId="AINE"
+            posInGroup="5"
+            url="https://www.vademecum.es/medicamentos-principio-activo-dexketoprofeno+trometamol_2847_solo_1">
+            <posology>25-50 mg, oral (comprimido). 50mg via intramuscular.</posology>
+            <adverseEffects>
+                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                Elevación de transaminasas. Alteración de la coagulación.
+                Descompensación de la presión arterial.
+                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
+                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
+                del ductus arteriosus.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="METAMIZOL"
+            name="Metamizol (nolotil)"
+            groupId="DIPIRONAS"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-metamizol-sodico-N02BB02-es">
+            <posology>
+                Tomar dos cápsulas de 575 mg.
+                o una ampolla bebible de 2 g.</posology>
+            <adverseEffects>
+                Reacciones alérgicas. Hipotensión.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="TRAMADOL"
+            name="Tramadol"
+            groupId="OPIACEOS"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-tramadol-N02AX02-es">
+            <posology>50-100 mg.</posology>
+            <adverseEffects>
+                Mareos, vértigos, sudoración, hipotensión postural, somnolencia,
+                náuseas, vómitos, estreñimiento, sequedad de boca.
+                Recomendación: debe intentarse evitar este tratamiento en
+                los pacientes con migraña, que quedaría restringido a casos
+                refractarios al resto de tratamientos disponibles.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="LASMIDITAN"
+            name="Lasmiditan"
+            groupId="DIPTANES"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-lasmiditan-N02CC08-es">
+            <posology>Dosis inicial: 100 mg. Dosis máxima: 200 mg.</posology>
+            <adverseEffects>
+                Las reacciones adversas más frecuentes son mareos,
+                somnolencia, fatiga, parestesias, náuseas, vértigo, hipoestesia y debilidad
+                muscular. La mayoría de los eventos adversos mostraron una relación
+                dosis-respuesta.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="ATOGEPANT"
+            name="Atogepant"
+            groupId="H"
+            posInGroup="2"
+            url="https://www.vademecum.es/principios-activos-atogepant-N02CD07-es">
+            <posology>
+                Uso hospitalario.
+                Dosis normal: 60 mg./día. En caso de insuficiencia renal
+                con aclaramiento de creatinina &lt; 30 ml./min. la dosis es de 10 mg./día.
+            </posology>
+            <adverseEffects>
+                Se indica en pacientes con al menos  cuatro cefaleas al mes.
+                Las reacciones adversas más frecuentes son náuseas, estreñimiento,
+                fatiga, somnolencia, pérdida de apetito, disminución de peso.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="RIMEGEPANT"
+            name="Rimegepant"
+            groupId="GEPANTES"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-rimegepant-N02CD06-es">
+            <posology>
+                Uso hospitalario. Dosis de 1 comprimido de 75 mg
+                en comprimidos bucodispersables (sublingual).
+                Una toma cuando se precise en cualquier momento del día.
+            </posology>
+            <adverseEffects>
+                Medicamento financiado para el tratamiento preventivo de pacientes con migraña
+                con una frecuencia entre 8 y 14 días/mes,
+                y con al menos tres fracasos a tratamientos preventivos previos.
+                Los efectos adversos frecuentes son los gastrointestinales.
+                Pueden ocurrir una reacción de hipersensibilidad
+                (disnea, erupción cutánea) en menos del 1% de los casos.
+            </adverseEffects>
+        </medicine>
+
+        <medicine
+            id="PRVNT-RIMEGEPANT"
+            name="Rimegepant"
+            groupId="H"
+            posInGroup="1"
+            url="https://www.vademecum.es/principios-activos-rimegepant-N02CD06-es">
+            <posology>
+                Uso hospitalario. Dosis de 1 comprimido de 75 mg
+                en comprimidos bucodispersables (sublingual). Una toma en días alternos.
+            </posology>
+            <adverseEffects>
+                Medicamento financiado para el tratamiento preventivo de pacientes con migraña
+                con una frecuencia entre 8 y 14 días/mes,
+                y con al menos tres fracasos a tratamientos preventivos previos.
+                Los efectos adversos frecuentes son los gastrointestinales.
+                Pueden ocurrir una reacción de hipersensibilidad
+                (disnea, erupción cutánea) en menos del 1% de los casos.
             </adverseEffects>
         </medicine>
 
     </medicines>
 
     <morbidities>
+        <morbidity
+            id="PAIN_LOW_FREQUENCY"
+            name="Dolor esporádico o de baja frecuencia"
+            desc="El número de casos debe ser menor que 8 por mes." />
+
+        <morbidity
+            id="PAIN_INTENSE"
+            name="Dolor intenso"
+            desc="El dolor se describe como de alta intensidad." />
 
         <morbidity
             id="HYPERTENSION"
@@ -327,7 +599,7 @@
                   También se conoce como hipertensión. Con la presión arterial alta,
                   la fuerza que ejerce la sangre contra las paredes de las arterias
                   es muy alta constantemente. El corazón debe trabajar más para bombear sangre.
-                    Si la hipertensión no está tratada, el tratamiento indicada es con:
+                    Si la hipertensión no está tratada, el tratamiento indicado es con:
                     - Candesartán o Lisinopril.
                     - Propranolol o Metoprolol.
                     - Amitriptilina.
@@ -480,6 +752,7 @@
                      - Candesartán o lisinopril.">
             <medicalTreatment>
                 <incompatibleGroup>B</incompatibleGroup>
+                <incompatibleGroup>F</incompatibleGroup>
                 <advised>FLUNARIZINA</advised>
                 <advised>AMITRIPTILINA</advised>
                 <advised>VENLAFAXINA</advised>
@@ -488,6 +761,7 @@
                 <advised>ACIDO_VALPROICO</advised>
                 <advised>CANDESARTAN</advised>
                 <advised>LISINOPRIL</advised>
+                <advised>PRVNT-RIMEGEPANT</advised>
             </medicalTreatment>
         </morbidity>
 
@@ -526,7 +800,7 @@
         <morbidity
             id="OBESITY"
             name="Obesidad – Bulimia"
-            desc="IMC > 30 kg/m².
+            desc="Valor de IMC mayor que 30.
                   La obesidad es una enfermedad crónica que se caracteriza
                   por la acumulación excesiva del tejido adiposo en el cuerpo,
                   es decir, cuando la reserva natural de energía
@@ -797,5 +1071,45 @@
         </morbidity>
 
     </morbidities>
+
+    <treatmentMessages>
+        <!-- Weak pain -->
+        <treatmentMessage lang="ES" id="startWithAINE">
+            Empezar con medicamentos AINE.
+            Si tras dos horas el dolor se alivia pero no cede,
+            puede repetir la dosis.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="useTRIPTAN">Tomar medicamentos TRIPTANES.</treatmentMessage>
+        <treatmentMessage lang="ES" id="useErgoticsAfterAINE">
+            Si la migraña es esporádica de baja frecuencia, también se pueden usar ergóticos.
+            Puede combinarse con AINE.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="useRimegepantLasmiditan">
+            Si hay alérgia a las sulfamidas, o hay reacción adversa al Triptán.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="useMetamizol">
+            Otro analgésico, más potente, si las posibilidades anteriores no funcionan.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="useTramadolIfNothingElseWorks">
+            Analgésico mucho más potente, si nada funciona, pero tratar de evitar.
+        </treatmentMessage>
+
+        <!-- Severe pain -->
+        <treatmentMessage lang="ES" id="startWithTRIPTAN">
+            Empezar con medicamentos TRIPTAN, si no hay alergia a las sulfamidas.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="combineTRIPTANWithAINE">
+            Se puede combinar el TRIPTAN con un AINE si la respuesta al TRIPTAN es parcial.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="useERGOTICS">
+            Los ergóticos pueden ser útiles si la migraña es esporádica o de baja frecuencia.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="combineERGOTICSwithAINE">
+            Los ergóticos pueden ser combinados con AINE.
+        </treatmentMessage>
+        <treatmentMessage lang="ES" id="combineRimegepantLasmiditanWithAINE">
+            Rimegepant y Lasmiditán pueden ser combinados con AINE.
+        </treatmentMessage>
+    </treatmentMessages>
 
 </migraineTreatment>

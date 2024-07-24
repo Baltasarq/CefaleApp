@@ -132,6 +132,10 @@ public class Morbidity implements Identifiable {
     {
         this.id = id;
         this.desc = desc;
+        this.advisedGroups = new ArrayList<>();
+        this.advisedMedicines = new ArrayList<>();
+        this.incompatibleMedicines = new ArrayList<>();
+        this.incompatibleGroups = new ArrayList<>();
     }
 
     /** @return the id of this morbidity. */
@@ -151,7 +155,8 @@ public class Morbidity implements Identifiable {
       */
     public void setIncompatibleMedicineGroups(Collection<MedicineGroup.Id> ids)
     {
-        this.incompatibleGroups = new ArrayList<>( ids );
+        this.incompatibleGroups.clear();
+        this.incompatibleGroups.addAll( ids );
     }
 
     /** @return the part of the incompatible medicines: groups of medicines. */
@@ -165,7 +170,8 @@ public class Morbidity implements Identifiable {
       */
     public void setIncompatibleMedicines(Collection<Medicine.Id> ids)
     {
-        this.incompatibleMedicines = new ArrayList<>( ids );
+        this.incompatibleMedicines.clear();
+        this.incompatibleMedicines.addAll( ids );
     }
 
     /** @return part of the incompatible medicines: medicines. */
@@ -196,13 +202,14 @@ public class Morbidity implements Identifiable {
       */
     public void setAdvisedMedicineGroups(Collection<MedicineGroup.Id> ids)
     {
-        this.advisedMedicineGroups = new ArrayList<>( ids );
+        this.advisedGroups.clear();
+        this.advisedGroups.addAll( ids );
     }
 
     /** @return the advised medicine groups. */
     public List<MedicineGroup.Id> getAdvisedMedicineGroups()
     {
-        return new ArrayList<>( this.advisedMedicineGroups );
+        return new ArrayList<>( this.advisedGroups);
     }
 
     /** @return the advised medicines. */
@@ -213,7 +220,8 @@ public class Morbidity implements Identifiable {
 
     public void setAdvisedMedicines(Collection<Medicine.Id> ids)
     {
-        this.advisedMedicines = new ArrayList<>( ids );
+        this.advisedMedicines.clear();
+        this.advisedMedicines.addAll( ids );
     }
 
     /** @return all the incompatible medicines. */
@@ -222,7 +230,7 @@ public class Morbidity implements Identifiable {
         final List<Medicine.Id> TORET = new ArrayList<>( this.advisedMedicines );
 
         // Collect all the medicines from the advised groups.
-        for(MedicineGroup.Id groupId: this.advisedMedicineGroups) {
+        for(MedicineGroup.Id groupId: this.advisedGroups) {
             final MedicineGroup GROUP = MedicineGroup.getAll().get( groupId );
 
             for(Medicine medicine: GROUP.getMedicines()) {
@@ -256,7 +264,7 @@ public class Morbidity implements Identifiable {
      * @see TreatmentXMLoader , MedicineGroup::getAll
      * @param morbidities all the medicine groups.
      */
-    public static void setAllMorbidities(Map<Id, Morbidity> morbidities)
+    public static void setAll(Map<Id, Morbidity> morbidities)
     {
         if ( allMorbidities == null ) {
             allMorbidities = new HashMap<>( morbidities );
@@ -270,10 +278,10 @@ public class Morbidity implements Identifiable {
 
     private final Id id;
     private final String desc;
-    private List<MedicineGroup.Id> incompatibleGroups;
-    private List<MedicineGroup.Id> advisedMedicineGroups;
-    private List<Medicine.Id> incompatibleMedicines;
-    private List<Medicine.Id> advisedMedicines;
+    private final List<MedicineGroup.Id> incompatibleGroups;
+    private final List<MedicineGroup.Id> advisedGroups;
+    private final List<Medicine.Id> incompatibleMedicines;
+    private final List<Medicine.Id> advisedMedicines;
 
     private static Map<Morbidity.Id, Morbidity> allMorbidities = null;
 }

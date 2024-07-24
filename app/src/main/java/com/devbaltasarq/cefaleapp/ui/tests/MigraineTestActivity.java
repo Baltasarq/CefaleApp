@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ public class MigraineTestActivity extends TestActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        this.setContentView( R.layout.activity_migraine_enquiry );
+        this.setContentView( R.layout.activity_migraineform);
 
         final ActionBar ACTION_BAR = this.getSupportActionBar();
         final ImageView TEST_IMAGE = this.findViewById( R.id.imgTestIcon );
@@ -55,7 +57,7 @@ public class MigraineTestActivity extends TestActivity {
         this.setTitle( AppInfo.FULL_NAME );
 
         if ( ACTION_BAR != null ) {
-            ACTION_BAR.setTitle( R.string.lbl_enquiry );
+            ACTION_BAR.setTitle( R.string.lbl_test_migraine );
             ACTION_BAR.setDisplayHomeAsUpEnabled( true );
             ACTION_BAR.setLogo( R.drawable.cephalea );
         }
@@ -150,8 +152,9 @@ public class MigraineTestActivity extends TestActivity {
         super.showFormEnd();
 
         // Details
-        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest);
+        final LinearLayout LY_IMAGE = this.findViewById( R.id.lyImageTest );
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
+        final ImageButton BT_TALK = this.findViewById( R.id.btTalk );
         final MigraineFormPlayer PLAYER = (MigraineFormPlayer) this.getFormPlayer();
         final String FINAL_REPORT = PLAYER.getFinalReport();
         final StringBuilder END_TEXT = new StringBuilder();
@@ -162,6 +165,7 @@ public class MigraineTestActivity extends TestActivity {
         END_TEXT.append( FINAL_REPORT );
         this.setTextInTextView( LBL_QUESTION, END_TEXT.toString() );
 
+        BT_TALK.setVisibility( View.GONE );
         BT_SHARE.setOnClickListener( (v) -> {
             final Intent SEND_INTENT = new Intent();
             SEND_INTENT.setAction( Intent.ACTION_SEND );
@@ -173,9 +177,8 @@ public class MigraineTestActivity extends TestActivity {
         });
 
         this.uploadToCloud( this.saveJSON() );
-        this.launchSpeak( LBL_QUESTION.getText().toString() );
+        this.shutUp();
     }
-
 
     public static Form migraineForm;
     public static MigraineFormPlayer player;

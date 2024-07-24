@@ -27,72 +27,6 @@
                 app:tint="?colorSecondary"
                 app:srcCompat="@drawable/medicine" />
 
-            <LinearLayout       android:id="@+id/lyMedicineMinimumDosage"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:text="@string/lbl_minimum_dosage"
-                    android:textColor="?colorSecondary"
-                    android:layout_marginBottom="5dp" />
-
-                <TextView       android:id="@+id/lblMedicineMinimumDosage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            </LinearLayout>
-
-            <LinearLayout       android:id="@+id/lyMedicineRecommendedDosage"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:text="@string/lbl_recommended_dosage"
-                    android:textColor="?colorSecondary"
-                    android:layout_marginBottom="5dp" />
-
-                <TextView       android:id="@+id/lblMedicineRecommendedDosage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            </LinearLayout>
-
-            <LinearLayout       android:id="@+id/lyMedicineMaximumDosage"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:text="@string/lbl_maximum_dosage"
-                    android:textColor="?colorSecondary"
-                    android:layout_marginBottom="5dp" />
-
-                <TextView       android:id="@+id/lblMedicineMaximumDosage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            </LinearLayout>
-
             <LinearLayout       android:id="@+id/lyMedicineMedicineGroup"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -109,6 +43,28 @@
                     android:layout_marginBottom="5dp" />
 
                 <TextView       android:id="@+id/lblMedicineMedicineGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            </LinearLayout>
+
+            <LinearLayout       android:id="@+id/lyMedicinePosology"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:text="@string/lbl_posology"
+                    android:textColor="?colorSecondary"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView       android:id="@+id/lblMedicinePosology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />

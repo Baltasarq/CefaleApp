@@ -29,6 +29,9 @@ public class MigraineFormPlayer extends FormPlayer {
         public void reset()
         {
             this.showNotesQuestion = false;
+            this.showAgeQuestion = false;
+            this.showSizeQuestions = false;
+            this.showPressureQuestions = false;
         }
 
         public Settings clone()
@@ -45,6 +48,9 @@ public class MigraineFormPlayer extends FormPlayer {
         }
 
         public boolean showNotesQuestion;
+        public boolean showAgeQuestion;
+        public boolean showSizeQuestions;
+        public boolean showPressureQuestions;
     }
 
     public MigraineFormPlayer(final Form FORM)
@@ -93,12 +99,10 @@ public class MigraineFormPlayer extends FormPlayer {
         final MigraineRepo REPO = this.getRepo();
         boolean toret = false;
 
-        if ( this.getDiagnostic().isMale()
+        if ( REPO.isMale()
           && ( Q_ID.equals( "migraine_menstruationWorsens" )
             || Q_ID.equals( "migraine_contraceptivesWorsens" ) ) )
         {
-            // PCD_MENSTRUATIONWORSENS_NOTMALE_2017
-            // PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
             toret = true;
             Log.i( LOG_TAG, "PCD_MENSTRUATIONWORSENS_NOTMALE_2017"
                     + " or PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024"
@@ -108,15 +112,36 @@ public class MigraineFormPlayer extends FormPlayer {
         if ( Q_ID.equals( "data_notes" )
           && !settings.showNotesQuestion )
         {
-            // PCD_SHOWNOTES_2220
             toret = true;
-            Log.i( LOG_TAG, "PCD_SHOWNOTES_2220 skipping notes" );
+            Log.i( LOG_TAG, "PCD_SHOWNOTES_2220 skipping notes question" );
+        }
+        else
+        if ( Q_ID.equals( "data_age" )
+          && !settings.showAgeQuestion )
+        {
+            toret = true;
+            Log.i( LOG_TAG, "PCD_SHOWAGE_0941 skipping age question" );
+        }
+        else
+        if ( ( Q_ID.equals( "data_height" )
+            || Q_ID.equals( "data_weight" ) )
+          && !settings.showSizeQuestions )
+        {
+            toret = true;
+            Log.i( LOG_TAG, "PCD_SHOWSIZE_0942 skipping size questions" );
+        }
+        else
+        if ( ( Q_ID.equals( "data_highPressure" )
+            || Q_ID.equals( "data_lowPressure" ) )
+          && !settings.showPressureQuestions )
+        {
+            toret = true;
+            Log.i( LOG_TAG, "PCD_SHOWPRESSURE_0943 skipping blood pressure questions" );
         }
         else
         if ( MigraineRepo.Id.parse( Q_DATA ) == MigraineRepo.Id.EXERCISEWORSENS
           && REPO.exists( MigraineRepo.Id.EXERCISEWORSENS ) )
         {
-            // PCD_EXERCISEWORSENS_2222
             toret = true;
             Log.i( LOG_TAG, "PCD_EXERCISEWORSENS_2222"
                     + " already asked, skipping question" );
@@ -125,7 +150,6 @@ public class MigraineFormPlayer extends FormPlayer {
         if ( MigraineRepo.Id.parse( Q_DATA ) == MigraineRepo.Id.SOUNDPHOBIA
           && REPO.exists( MigraineRepo.Id.SOUNDPHOBIA ) )
         {
-            // PCD_SOUNDPHOBIA_2228
             toret = true;
             Log.i( LOG_TAG, "PCD_SOUNDPHOBIA_2228"
                     + " already asked, skipping question" );

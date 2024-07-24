@@ -7,6 +7,7 @@ package com.devbaltasarq.cefaleapp.core.treatment;
 import androidx.annotation.NonNull;
 
 import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.treatment.advisor.TreatmentMessage;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,13 +16,9 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -39,11 +36,9 @@ public class TreatmentXMLoader {
     private static final String ETQ_POS_IN_GROUP = "posInGroup";
     private static final String ETQ_GROUP_ID = "groupId";
     private static final String ETQ_URL = "url";
-    private static final String ETQ_UNITS = "units";
-    private static final String ETQ_MIN_DOSAGE = "minDosage";
-    private static final String ETQ_REC_DOSAGE = "recDosage";
-    private static final String ETQ_MAX_DOSAGE = "maxDosage";
+    private static final String ETQ_LANG = "lang";
     private static final String ETQ_ADVERSE_EFFECTS = "adverseEffects";
+    private static final String ETQ_POSOLOGY = "posology";
     private static final String ETQ_MORBIDITY = "morbidity";
     private static final String ETQ_MORBIDITIES = "morbidities";
     private static final String ETQ_DESC = "desc";
@@ -52,16 +47,20 @@ public class TreatmentXMLoader {
     private static final String ETQ_ADVISED = "advised";
     private static final String ETQ_INCOMPATIBLE_GROUP = "incompatibleGroup";
     private static final String ETQ_INCOMPATIBLE = "incompatible";
+    private static final String ETQ_TREATMENT_MSGS = "treatmentMessages";
+    private static final String ETQ_TREATMENT_MSG = "treatmentMessage";
 
     private TreatmentXMLoader(Map<Medicine.Id, Medicine> medicines,
                               Map<MedicineGroup.Id, MedicineGroup> medicineGroups,
                               Map<MedicineClass.Id, MedicineClass> medicineClasses,
-                              Map<Morbidity.Id, Morbidity> morbidities)
+                              Map<Morbidity.Id, Morbidity> morbidities,
+                              Map<String, Map<TreatmentMessage.Id, TreatmentMessage>> messages)
     {
         this.medicines = medicines;
         this.morbidities = morbidities;
         this.medicineGroups = medicineGroups;
         this.medicineClasses = medicineClasses;
+        this.treatmentMessages = messages;
     }
 
     /** @return all the loaded medicines, as a map of Id, Medicine. */
@@ -88,6 +87,10 @@ public class TreatmentXMLoader {
         return this.morbidities;
     }
 
+    public Map<String, Map<TreatmentMessage.Id, TreatmentMessage>>
+        getTreatmentMessages()
+        { return this.treatmentMessages; }
+
     public static TreatmentXMLoader loadFromXML(InputStream in)
             throws IOException
     {
@@ -104,14 +107,17 @@ public class TreatmentXMLoader {
                                             loadMedicineGroupsFromXML( DOC );
             final Map<Medicine.Id, Medicine> MEDICINES = loadMedicinesFromXML( DOC );
             final Map<Morbidity.Id, Morbidity> MORBIDITIES = loadMorbiditiesFromXML( DOC );
+            final Map<String, Map<TreatmentMessage.Id, TreatmentMessage>> MESSAGES = loadTreatmentMessages( DOC );
 
             assignMedicineGroupsToClasses( MEDICINE_GROUPS, MEDICINE_CLASSES );
             assignMedicinesToMedicineGroups( MEDICINES, MEDICINE_GROUPS );
+
             toret = new TreatmentXMLoader(
                                     MEDICINES,
                                     MEDICINE_GROUPS,
                                     MEDICINE_CLASSES,
-                                    MORBIDITIES );
+                                    MORBIDITIES,
+                                    MESSAGES );
         } catch(ParserConfigurationException | SAXException exc)
         {
             throw new IOException( exc.getMessage() );
@@ -120,7 +126,8 @@ public class TreatmentXMLoader {
         return toret;
     }
 
-    private static void assignMedicineGroupsToClasses(
+    private static void
+        assignMedicineGroupsToClasses(
             final Map<MedicineGroup.Id, MedicineGroup> MEDICINE_GROUPS,
             final Map<MedicineClass.Id, MedicineClass> MEDICINE_CLASSES)
     {
@@ -141,7 +148,8 @@ public class TreatmentXMLoader {
         return;
     }
 
-    private static void assignMedicinesToMedicineGroups(
+    private static void
+        assignMedicinesToMedicineGroups(
             final Map<Medicine.Id, Medicine> MEDICINES,
             final Map<MedicineGroup.Id, MedicineGroup> MEDICINE_GROUPS)
     {
@@ -169,9 +177,9 @@ public class TreatmentXMLoader {
       *         and values are the medicines groups themselves.
       */
     @NonNull
-    private static Map<MedicineGroup.Id, MedicineGroup> loadMedicineGroupsFromXML(
-            final Element DOC)
-            throws IOException
+    private static Map<MedicineGroup.Id, MedicineGroup>
+        loadMedicineGroupsFromXML(final Element DOC)
+        throws IOException
     {
         final Map<MedicineGroup.Id, MedicineGroup> TORET = new HashMap<>( 10 );
 
@@ -195,9 +203,9 @@ public class TreatmentXMLoader {
      *         and values are the medicines groups themselves.
      */
     @NonNull
-    private static Map<MedicineClass.Id, MedicineClass> loadMedicineClassesFromXML(
-            final Element DOC)
-            throws IOException
+    private static Map<MedicineClass.Id, MedicineClass>
+        loadMedicineClassesFromXML(final Element DOC)
+        throws IOException
     {
         final Map<MedicineClass.Id, MedicineClass> TORET = new HashMap<>( 10 );
 
@@ -220,8 +228,8 @@ public class TreatmentXMLoader {
       * @return a map in which the keys are Medicine.Id's, and values are the medicines themselves.
       */
     @NonNull
-    private static Map<Medicine.Id, Medicine> loadMedicinesFromXML(
-            final Element DOC)
+    private static Map<Medicine.Id, Medicine>
+        loadMedicinesFromXML(final Element DOC)
         throws IOException
     {
         final Map<Medicine.Id, Medicine> TORET = new HashMap<>( 10 );
@@ -244,36 +252,38 @@ public class TreatmentXMLoader {
       * @return a Medicine object.
       * @throws IOException if something goes wrong.
       */
-    private static Medicine loadMedicineFromXML(Element medicineElement)
-            throws IOException
+    private static Medicine
+        loadMedicineFromXML(Element medicineElement)
+        throws IOException
     {
         final String ID = Util.getXMLAttributeOrThrow( medicineElement, ETQ_ID );
         final String NAME = Util.getXMLAttributeOrThrow( medicineElement, ETQ_NAME );
         final String GROUP_ID = Util.getXMLAttributeOrThrow( medicineElement, ETQ_GROUP_ID );
         final String STR_POS_IN_GROUP = Util.getXMLAttributeOrThrow( medicineElement, ETQ_POS_IN_GROUP );
         final String URL = Util.getXMLAttributeOrThrow( medicineElement, ETQ_URL );
-        final Element ELEM_MIN_DOSAGE =
-                        Util.getXMLSubElement( medicineElement, ETQ_MIN_DOSAGE );
-        final Element ELEM_REC_DOSAGE =
-                Util.getXMLSubElement( medicineElement, ETQ_REC_DOSAGE );
-        final Element ELEM_MAX_DOSAGE =
-                Util.getXMLSubElement( medicineElement, ETQ_MAX_DOSAGE );
         final Element ELEM_ADVERSE_EFFECTS =
                 Util.getXMLSubElement( medicineElement, ETQ_ADVERSE_EFFECTS );
-        final Dosage MIN_DOSAGE = parseDosageElement( Dosage.Kind.MIN, ELEM_MIN_DOSAGE );
-        final Dosage REC_DOSAGE = parseDosageElement( Dosage.Kind.REC, ELEM_REC_DOSAGE );
-        final Dosage MAX_DOSAGE = parseDosageElement( Dosage.Kind.MAX, ELEM_MAX_DOSAGE );
+        final Element ELEM_POSOLOGY =
+                Util.getXMLSubElement( medicineElement, ETQ_POSOLOGY );
         int posInGroup = Integer.MIN_VALUE;
 
-        if ( ELEM_ADVERSE_EFFECTS == null ) {
-            throw new Error( "loading XML medicine: missing adverse effects info." );
+        // Adverse effects
+        if ( ELEM_ADVERSE_EFFECTS == null
+          || ELEM_POSOLOGY == null )
+        {
+            throw new Error( "loading XML medicine: missing posology or adverse effects info." );
         }
 
         final String ADVERSE_EFFECTS = formatMultilineValue(
                         ELEM_ADVERSE_EFFECTS.getFirstChild().getNodeValue() );
 
-        if ( ADVERSE_EFFECTS.isEmpty() ) {
-            throw new Error( "loading XML medicine: empty adverse effects info." );
+        final String POSOLOGY = formatMultilineValue(
+                ELEM_POSOLOGY.getFirstChild().getNodeValue() );
+
+        if ( ADVERSE_EFFECTS.isEmpty()
+          || POSOLOGY.isEmpty() )
+        {
+            throw new Error( "loading XML medicine: empty posology or adverse effects info." );
         }
 
         try {
@@ -286,12 +296,10 @@ public class TreatmentXMLoader {
 
         return new Medicine(
                         new Medicine.Id( ID, NAME ),
-                        MedicineGroup.Id.get( GROUP_ID.charAt( 0 ) ),
+                        MedicineGroup.Id.get( GROUP_ID ),
                         posInGroup,
-                        MIN_DOSAGE,
-                        REC_DOSAGE,
-                        MAX_DOSAGE,
                         ADVERSE_EFFECTS,
+                        POSOLOGY,
                         URL );
     }
 
@@ -301,9 +309,9 @@ public class TreatmentXMLoader {
      * @return a MedicineClass object.
      * @throws IOException if something goes wrong.
      */
-    private static MedicineClass loadMedicineClassFromXML(
-            Element medicineClassElement)
-            throws IOException
+    private static MedicineClass
+        loadMedicineClassFromXML(Element medicineClassElement)
+        throws IOException
     {
         final String ID = Util.getXMLAttributeOrThrow(
                 medicineClassElement, ETQ_ID );
@@ -319,9 +327,9 @@ public class TreatmentXMLoader {
      * @return a MedicineGroup object.
      * @throws IOException if something goes wrong.
      */
-    private static MedicineGroup loadMedicineGroupFromXML(
-            Element medicineGroupElement)
-            throws IOException
+    private static MedicineGroup
+        loadMedicineGroupFromXML(Element medicineGroupElement)
+        throws IOException
     {
         final String ID = Util.getXMLAttributeOrThrow(
                                     medicineGroupElement, ETQ_ID );
@@ -331,7 +339,7 @@ public class TreatmentXMLoader {
                                     medicineGroupElement, ETQ_NAME );
 
         return new MedicineGroup(
-                        new MedicineGroup.Id( ID.charAt( 0 ), NAME ),
+                        new MedicineGroup.Id( ID, NAME ),
                         new MedicineClass.Id( CLS_ID, NAME ));
     }
 
@@ -348,53 +356,10 @@ public class TreatmentXMLoader {
         return TORET.toString().trim();
     }
 
-    /** Parses the contents of a dosage element.
-      * It contains a numeric quqntity as value, and an attribute "kind"
-      * to distinguish between mg and number of pills.
-      * @param ELEMENT the element to parse.
-      * @return a Dosage object.
-      */
-    private static Dosage parseDosageElement(final Dosage.Kind KIND, final Element ELEMENT)
-            throws IOException
-    {
-        Dosage toret = Dosage.getInvalid();
-
-        if ( ELEMENT != null ) {
-            final String STR_UNITS = Util.getXMLAttributeOrThrow( ELEMENT, ETQ_UNITS );
-            Dosage.Units units = null;
-            double qtty = -1;
-
-            // Parse quantity
-            try {
-                final NumberFormat NF = NumberFormat.getInstance( Locale.US );
-
-                String txt = ELEMENT.getFirstChild().getNodeValue();
-                qtty = Objects.requireNonNull( NF.parse( txt ) ).doubleValue();
-            } catch(NullPointerException | ParseException exc) {
-                throw new IOException( "loading medicine from XML: "
-                                        + "dosage is not a number: "
-                                        + ELEMENT.getNodeValue() );
-            }
-
-            // Parse units
-            try {
-                units = Dosage.Units.valueOf( STR_UNITS );
-            } catch(IllegalArgumentException | NullPointerException exc)
-            {
-                throw new IOException( "loading medicine from XML:"
-                                        + "invalid units value" );
-            }
-
-            toret = new Dosage( KIND, qtty, units );
-        }
-
-        return toret;
-    }
-
     @NonNull
-    private static Map<Morbidity.Id, Morbidity> loadMorbiditiesFromXML(
-            final Element DOC)
-            throws IOException
+    private static Map<Morbidity.Id, Morbidity>
+        loadMorbiditiesFromXML(final Element DOC)
+        throws IOException
     {
         final Map<Morbidity.Id, Morbidity> TORET = new HashMap<>( 10 );
 
@@ -418,8 +383,9 @@ public class TreatmentXMLoader {
     }
 
     @NonNull
-    private static Morbidity loadMorbidityFromXML(final Element ELEMENT)
-            throws IOException
+    private static Morbidity
+        loadMorbidityFromXML(final Element ELEMENT)
+        throws IOException
     {
         final String ID = Util.getXMLAttributeOrThrow( ELEMENT, ETQ_ID );
         final String NAME = Util.getXMLAttributeOrThrow( ELEMENT, ETQ_NAME );
@@ -429,17 +395,17 @@ public class TreatmentXMLoader {
                                         formatMultilineValue( DESC ) );
         final NodeList NODE_TREATMENT = ELEMENT.getElementsByTagName( ETQ_MEDICAL_TREATMENT );
 
-        if ( NODE_TREATMENT.getLength() != 1 ) {
-            throw new Error( "Morbidity XML: missing medical treatment" );
+        if ( NODE_TREATMENT.getLength() > 0 ) {
+            loadMedicalTreatmentFromXML( (Element) NODE_TREATMENT.item( 0 ), MORBIDITY );
         }
 
-        loadMedicalTreatmentFromXML( (Element) NODE_TREATMENT.item( 0 ), MORBIDITY );
         return MORBIDITY;
     }
 
-    private static void loadMedicalTreatmentFromXML(
-                                            final Element ELEMENT,
-                                            final Morbidity MORBIDITY)
+    private static void
+        loadMedicalTreatmentFromXML(
+            final Element ELEMENT,
+            final Morbidity MORBIDITY)
     {
         final NodeList NODES_ADVISED_MEDICINES =
                             ELEMENT.getElementsByTagName( ETQ_ADVISED );
@@ -470,7 +436,7 @@ public class TreatmentXMLoader {
         // Set the advised medicine groups
         for(int i = 0; i < NODES_ADVISED_MEDICINE_GROUPS.getLength(); ++i) {
             final Element EAMG = (Element) NODES_ADVISED_MEDICINE_GROUPS.item( i );
-            final char STR_GROUP_ID = EAMG.getFirstChild().getNodeValue().charAt( 0 );
+            final String STR_GROUP_ID = EAMG.getFirstChild().getNodeValue();
             ADVISED_MEDICINE_GROUPS.add( MedicineGroup.Id.get( STR_GROUP_ID ) );
         }
 
@@ -488,15 +454,49 @@ public class TreatmentXMLoader {
         // Set the incompatible medicine groups
         for(int i = 0; i < NODES_INCOMPATIBLE_MEDICINE_GROUPS.getLength(); ++i) {
             final Element IMG = (Element) NODES_INCOMPATIBLE_MEDICINE_GROUPS.item( i );
-            final char STR_GROUP_ID = IMG.getFirstChild().getNodeValue().charAt( 0 );
+            final String STR_GROUP_ID = IMG.getFirstChild().getNodeValue();
             INCOMPATIBLE_MEDICINE_GROUPS.add( MedicineGroup.Id.get( STR_GROUP_ID ) );
         }
 
         MORBIDITY.setIncompatibleMedicineGroups( INCOMPATIBLE_MEDICINE_GROUPS );
     }
 
+    public static Map<String, Map<TreatmentMessage.Id, TreatmentMessage>>
+        loadTreatmentMessages(final Element ELEMENT)
+        throws IOException
+    {
+        final Map<String, Map<TreatmentMessage.Id, TreatmentMessage>> TORET = new HashMap<>( 5 );
+        final NodeList MESSAGE_NODES = ELEMENT.getElementsByTagName( ETQ_TREATMENT_MSG );
+
+        for(int i = 0; i < MESSAGE_NODES.getLength(); ++i) {
+            final TreatmentMessage MSG = loadTreatmentMessage( (Element) MESSAGE_NODES.item( i ) );
+            final Map<TreatmentMessage.Id, TreatmentMessage> MSGS_PER_LANG =
+                        TORET.getOrDefault( MSG.getLang(), new HashMap<>( 10 ));
+
+            if ( MSGS_PER_LANG.isEmpty() ) {
+                TORET.put( MSG.getLang(), MSGS_PER_LANG );
+            }
+
+            MSGS_PER_LANG.put( MSG.getId(), MSG );
+        }
+
+        return TORET;
+    }
+
+    private static TreatmentMessage
+        loadTreatmentMessage(final Element MSG_NODE)
+        throws IOException
+    {
+        final String ID = Util.getXMLAttributeOrThrow( MSG_NODE, ETQ_ID );
+        final String LANG = Util.getXMLAttributeOrThrow( MSG_NODE, ETQ_LANG );
+        final String MSG_TXT = MSG_NODE.getFirstChild().getNodeValue();
+
+        return new TreatmentMessage( new TreatmentMessage.Id( ID ), LANG, MSG_TXT );
+    }
+
     private final Map<Medicine.Id, Medicine> medicines;
     private final Map<Morbidity.Id, Morbidity> morbidities;
     private final Map<MedicineGroup.Id, MedicineGroup> medicineGroups;
     private final Map<MedicineClass.Id, MedicineClass> medicineClasses;
+    private final Map<String, Map<TreatmentMessage.Id, TreatmentMessage>> treatmentMessages;
 }

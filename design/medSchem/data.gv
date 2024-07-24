@@ -1,0 +1,223 @@
+
+digraph Meds {
+    
+subgraph a {
+    
+    a[shape=box, label="A"];
+
+    candesartan[shape=box, label="Candesartán"];
+
+    a -> candesartan[label=""];
+
+    lisinopril[shape=box, label="Lisinopril"];
+
+    a -> lisinopril[label=""];
+
+}
+
+subgraph aine {
+    
+    aine[shape=box, label="AINE"];
+
+    aspirina[shape=box, label="Ácido acetil salicídico"];
+
+    aine -> aspirina[label=""];
+
+    naproxeno_sodico[shape=box, label="Naproxeno Sódico"];
+
+    aine -> naproxeno_sodico[label=""];
+
+    ibuprofeno[shape=box, label="Ibuprofeno"];
+
+    aine -> ibuprofeno[label=""];
+
+    diclofenaco_sodico[shape=box, label="Diclofenaco sódico"];
+
+    aine -> diclofenaco_sodico[label=""];
+
+    dexketoprofeno_trometamol[shape=box, label="Dexketoprofeno trometamol"];
+
+    aine -> dexketoprofeno_trometamol[label=""];
+
+}
+
+subgraph b {
+    
+    b[shape=box, label="B"];
+
+    metoprolol[shape=box, label="Metoprolol"];
+
+    b -> metoprolol[label=""];
+
+    propranolol[shape=box, label="Propranolol"];
+
+    b -> propranolol[label=""];
+
+}
+
+subgraph c {
+    
+    c[shape=box, label="C"];
+
+    flunarizina[shape=box, label="Flunarizina"];
+
+    c -> flunarizina[label=""];
+
+}
+
+subgraph d {
+    
+    d[shape=box, label="D"];
+
+    amitriptilina[shape=box, label="Amitriptilina"];
+
+    d -> amitriptilina[label=""];
+
+    venlafaxina[shape=box, label="Venlafaxina"];
+
+    d -> venlafaxina[label=""];
+
+}
+
+subgraph dipironas {
+    
+    dipironas[shape=box, label="DIPIRONAS"];
+
+    metamizol[shape=box, label="Metamizol (nolotil)"];
+
+    dipironas -> metamizol[label=""];
+
+}
+
+subgraph diptanes {
+    
+    diptanes[shape=box, label="DIPTANES"];
+
+    lasmiditan[shape=box, label="Lasmiditan"];
+
+    diptanes -> lasmiditan[label=""];
+
+}
+
+subgraph e {
+    
+    e[shape=box, label="E"];
+
+    acido_valproico[shape=box, label="Ácido valproico"];
+
+    e -> acido_valproico[label=""];
+
+    topiramato[shape=box, label="Topiramato"];
+
+    e -> topiramato[label=""];
+
+    zonisamida[shape=box, label="Zonisamida"];
+
+    e -> zonisamida[label=""];
+
+}
+
+subgraph ergoticos {
+    
+    ergoticos[shape=box, label="ERGOTICOS"];
+
+    cafergot[shape=box, label="Cafergot"];
+
+    ergoticos -> cafergot[label=""];
+
+    hemicraneal[shape=box, label="Hemicraneal"];
+
+    ergoticos -> hemicraneal[label=""];
+
+}
+
+subgraph f {
+    
+    f[shape=box, label="F"];
+
+    erenumab[shape=box, label="Erenumab"];
+
+    f -> erenumab[label=""];
+
+    galcanezumab[shape=box, label="Galcanezumab"];
+
+    f -> galcanezumab[label=""];
+
+    fremanezumab[shape=box, label="Fremanezumab"];
+
+    f -> fremanezumab[label=""];
+
+}
+
+subgraph g {
+    
+    g[shape=box, label="G"];
+
+    botox[shape=box, label="Bótox"];
+
+    g -> botox[label=""];
+
+}
+
+subgraph gepantes {
+    
+    gepantes[shape=box, label="GEPANTES"];
+
+    rimegepant[shape=box, label="Rimegepant"];
+
+    gepantes -> rimegepant[label=""];
+
+}
+
+subgraph h {
+    
+    h[shape=box, label="H"];
+
+    atogepant[shape=box, label="Atogepant"];
+
+    h -> atogepant[label=""];
+
+    prvnt_rimegepant[shape=box, label="Rimegepant"];
+
+    h -> prvnt_rimegepant[label=""];
+
+}
+
+subgraph opiaceos {
+    
+    opiaceos[shape=box, label="OPIACEOS"];
+
+    tramadol[shape=box, label="Tramadol"];
+
+    opiaceos -> tramadol[label=""];
+
+}
+
+subgraph triptanes {
+    
+    triptanes[shape=box, label="TRIPTANES"];
+
+    almotriptan[shape=box, label="Almotriptán"];
+
+    triptanes -> almotriptan[label=""];
+
+    eletriptan[shape=box, label="Eletriptán"];
+
+    triptanes -> eletriptan[label=""];
+
+    rizatriptan[shape=box, label="Rizatriptán"];
+
+    triptanes -> rizatriptan[label=""];
+
+    sumatriptan[shape=box, label="Sumatriptán"];
+
+    triptanes -> sumatriptan[label=""];
+
+    zolmitriptan[shape=box, label="Zolmitriptán"];
+
+    triptanes -> zolmitriptan[label=""];
+
+}
+
+}
+

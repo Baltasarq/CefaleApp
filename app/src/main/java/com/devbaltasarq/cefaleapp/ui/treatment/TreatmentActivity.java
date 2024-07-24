@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Util;
-import com.devbaltasarq.cefaleapp.core.questionnaire.Steps;
+import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineRepo;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
@@ -58,7 +58,7 @@ public class TreatmentActivity extends AppCompatActivity {
         this.entries = new HashMap<>();
         this.prepareMorbidityIds();
         this.populateLayout( LY_MORBIDITIES, Morbidity.getAll() );
-        this.buildDependencies();
+        this.buildCheckboxDependencies();
         this.loadFromMigraineRepo();
     }
 
@@ -66,11 +66,15 @@ public class TreatmentActivity extends AppCompatActivity {
     {
         final Map<Morbidity.Id, Morbidity> MORBIDITIES = Morbidity.getAll();
 
+        final Morbidity.Id ID_PAIN_INTENSE = Morbidity.Id.get( "PAIN_INTENSE" );
+        final Morbidity.Id ID_PAIN_LOW_FREQUENCY = Morbidity.Id.get( "PAIN_LOW_FREQUENCY" );
         final Morbidity.Id ID_HIPOTENSION = Morbidity.Id.get( "HIPOTENSION" );
         final Morbidity.Id ID_HYPERTENSION = Morbidity.Id.get( "HYPERTENSION" );
         final Morbidity.Id ID_OBESITY = Morbidity.Id.get( "OBESITY" );
         final Morbidity.Id ID_ANOREXIA = Morbidity.Id.get( "ANOREXIA" );
 
+        this.painIntense = Objects.requireNonNull( MORBIDITIES.get( ID_PAIN_INTENSE ) );
+        this.painLowFrequency = Objects.requireNonNull( MORBIDITIES.get( ID_PAIN_LOW_FREQUENCY ) );
         this.hypotension = Objects.requireNonNull( MORBIDITIES.get( ID_HIPOTENSION ) );
         this.hypertension = Objects.requireNonNull( MORBIDITIES.get( ID_HYPERTENSION ) );
         this.obesity = Objects.requireNonNull( MORBIDITIES.get( ID_OBESITY ) );
@@ -165,7 +169,7 @@ public class TreatmentActivity extends AppCompatActivity {
         return ENTRY.findViewById( R.id.chkMorbidity );
     }
 
-    private void buildDependencies()
+    private void buildCheckboxDependencies()
     {
         final CheckBox CHK_HYPER = this.getCheckBoxFor( this.hypertension.getId() );
         final CheckBox CHK_HYPO = this.getCheckBoxFor( this.hypotension.getId() );
@@ -225,20 +229,34 @@ public class TreatmentActivity extends AppCompatActivity {
 
     private void loadFromMigraineRepo()
     {
-        final Steps STEPS = MigraineTestActivity.player.getSteps();
+        final MigraineRepo REPO = MigraineTestActivity.player.getRepo();
 
-        if ( !STEPS.isEmpty() ) {
-            final CheckBox CHK_HYPER = this.getCheckBoxFor( this.hypertension.getId() );
-            final CheckBox CHK_HYPO = this.getCheckBoxFor( this.hypotension.getId() );
-            final CheckBox CHK_OBESITY = this.getCheckBoxFor( this.obesity.getId() );
-            final CheckBox CHK_ANOREXIA = this.getCheckBoxFor( this.anorexia.getId() );
-            final CheckBox CHK_DEPRESSION = this.getCheckBoxFor( Morbidity.Id.get( "DEPRESSION" ) );
+        if ( !REPO.isEmpty() ) {
+            final CheckBox CHK_PAIN_INTENSE = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.painIntense.getId() ));
+            final CheckBox CHK_PAIN_LOW_FREQ = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.painLowFrequency.getId() ));
+            final CheckBox CHK_HYPER = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.hypertension.getId() ));
+            final CheckBox CHK_HYPO = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.hypotension.getId() ));
+            final CheckBox CHK_OBESITY = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.obesity.getId() ));
+            final CheckBox CHK_ANOREXIA = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.anorexia.getId() ));
+            final CheckBox CHK_DEPRESSION = Objects.requireNonNull(
+                                        this.getCheckBoxFor( Morbidity.Id.get( "DEPRESSION" ) ));
 
-            CHK_HYPER.setChecked( STEPS.hasHyperTension() );
-            CHK_HYPO.setChecked( STEPS.hasHypoTension() );
-            CHK_OBESITY.setChecked( STEPS.isObese() );
-            CHK_ANOREXIA.setChecked( STEPS.isAnorexic() );
-            CHK_DEPRESSION.setChecked( STEPS.isDepressed() );
+            CHK_PAIN_LOW_FREQ.setChecked(
+                        REPO.getMixedFreq() == MigraineRepo.Frequency.ESPORADIC
+                        || REPO.getMixedFreq() == MigraineRepo.Frequency.LOW );
+
+            CHK_PAIN_INTENSE.setChecked( REPO.isPainIntense() );
+            CHK_HYPER.setChecked( REPO.hasHyperTension() );
+            CHK_HYPO.setChecked( REPO.hasHypoTension() );
+            CHK_OBESITY.setChecked( REPO.isObese() );
+            CHK_ANOREXIA.setChecked( REPO.isAnorexic() );
+            CHK_DEPRESSION.setChecked( REPO.isDepressed() );
         }
 
         return;
@@ -260,8 +278,10 @@ public class TreatmentActivity extends AppCompatActivity {
         // Launch activity
         final Intent INTENT = new Intent( this, TreatmentResultActivity.class );
         final TreatmentAdvisor ADVISOR = new TreatmentAdvisor( MORBIDITY_IDS );
+        final MigraineRepo REPO = MigraineTestActivity.player.getRepo();
 
-        TreatmentResultActivity.medicineList = ADVISOR.determineMedicines();
+        TreatmentResultActivity.medicineList = ADVISOR.determinePrevMedicines();
+        TreatmentResultActivity.treatmentSteps = ADVISOR.determineAnalgMedicines( REPO );
         this.startActivity( INTENT );
     }
 
@@ -275,6 +295,8 @@ public class TreatmentActivity extends AppCompatActivity {
         return super.onOptionsItemSelected( item );
     }
 
+    private Morbidity painIntense;
+    private Morbidity painLowFrequency;
     private Morbidity anorexia;
     private Morbidity obesity;
     private Morbidity hypotension;

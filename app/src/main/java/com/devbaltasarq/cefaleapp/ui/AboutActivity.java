@@ -6,21 +6,17 @@ package com.devbaltasarq.cefaleapp.ui;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.text.HtmlCompat;
 
-import android.content.res.loader.AssetsProvider;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.AppInfo;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -36,7 +32,9 @@ public class AboutActivity extends AppCompatActivity {
         final WebView LBL_APP_INFO = this.findViewById( R.id.lbl_app_info );
 
         if ( ACTION_BAR != null ) {
-            ACTION_BAR.setTitle( R.string.lbl_about );
+            ACTION_BAR.setTitle(
+                    this.getString( R.string.lbl_about )
+                    + " " + AppInfo.NAME );
             ACTION_BAR.setDisplayHomeAsUpEnabled( true );
             ACTION_BAR.setLogo( R.drawable.medicine );
         }
@@ -58,25 +56,25 @@ public class AboutActivity extends AppCompatActivity {
         final TableLayout LY_TABLE = this.findViewById( R.id.tblAppInfo );
 
         if ( v == BT_INFO ) {
-            BT_INFO.setAlpha( 1f );
-            BT_ABOUT.setAlpha( 0.25f );
-            BT_DETAIL.setAlpha( 0.25f );
+            BT_INFO.setAlpha( 0.25f );
+            BT_ABOUT.setAlpha( 1f );
+            BT_DETAIL.setAlpha( 1f );
             LY_ABOUT.setVisibility( View.GONE );
             LY_INFO.setVisibility( View.VISIBLE );
             LY_TABLE.setVisibility( View.GONE );
         }
         else
         if ( v == BT_ABOUT ) {
-            BT_INFO.setAlpha( 0.25f );
-            BT_ABOUT.setAlpha( 1f );
-            BT_DETAIL.setAlpha( 0.25f );
+            BT_INFO.setAlpha( 1f );
+            BT_ABOUT.setAlpha( 0.25f );
+            BT_DETAIL.setAlpha( 1f );
             LY_ABOUT.setVisibility( View.VISIBLE );
             LY_INFO.setVisibility( View.GONE );
             LY_TABLE.setVisibility( View.GONE );
         } else {
-            BT_INFO.setAlpha( 0.25f );
-            BT_ABOUT.setAlpha( 0.25f );
-            BT_DETAIL.setAlpha( 1f );
+            BT_INFO.setAlpha( 1f );
+            BT_ABOUT.setAlpha( 1f );
+            BT_DETAIL.setAlpha( 0.25f );
             LY_ABOUT.setVisibility( View.GONE );
             LY_INFO.setVisibility( View.GONE );
             LY_TABLE.setVisibility( View.VISIBLE );

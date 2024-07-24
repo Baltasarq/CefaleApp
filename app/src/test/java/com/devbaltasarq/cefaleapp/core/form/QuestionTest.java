@@ -135,7 +135,7 @@ public class QuestionTest extends TestCase {
                 .setValueType( ValueType.BOOL.toString() )
                 .setGotoId( "/" )
                 .setText( "¿Duele?" )
-                .addOption( new Option( "Sí", 1.0, "true" ) )
+                .addOption( new Option( "Sí", "true" ) )
                 .addOption( new Option( "No", "false" ) );
 
         this.q3 = BUILD.create();
