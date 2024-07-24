@@ -19,11 +19,11 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdk 29
         targetSdk 34
-        versionCode 1
+        versionCode 2
         versionName '2.0'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '20240124'
+        versionNameSuffix '20240711'
     }
 
     buildTypes {
