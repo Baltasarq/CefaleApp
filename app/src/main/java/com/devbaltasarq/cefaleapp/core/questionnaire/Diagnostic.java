@@ -10,6 +10,8 @@ import android.util.Log;
 public class Diagnostic {
     private static final String LOG_TAG = Diagnostic.class.getSimpleName();
 
+    public enum MixedCephalea { NOT_MIXED, MIXED_PREDOMINANT_TENSIONAL, MIXED_PREDOMINANT_MIGRAINE }
+
     public Diagnostic(final MigraineRepo REPO)
     {
         this.REPO = REPO;
@@ -44,7 +46,7 @@ public class Diagnostic {
     }
 
     /** return true if the patient has migraines, false otherwise. */
-    private boolean isMigraine()
+    public boolean isMigraine()
     {
         boolean toret = false;
         final boolean PHOTO = this.getBool( MigraineRepo.Id.HADPHOTOPHOBIA );
@@ -54,8 +56,7 @@ public class Diagnostic {
                                 MigraineRepo.Id.ISCEPHALEAONESIDED,
                                 MigraineRepo.Id.ISPULSATING,
                                 MigraineRepo.Id.ISMIGRAINEINTENSE,
-                                MigraineRepo.Id.EXERCISEWORSENS
-        });
+                                MigraineRepo.Id.EXERCISEWORSENS });
 
         if ( mainCriteria == 4 ) {
             toret = ( ( NAUSEA || ( PHOTO && SOUND ) )
@@ -85,6 +86,81 @@ public class Diagnostic {
         return toret;
     }
 
+    /** return true if the patient has tensional cephaleas, false otherwise. */
+    public boolean isTensional()
+    {
+        boolean toret = this.calcSumOf( new MigraineRepo.Id[]{
+                MigraineRepo.Id.ISSTABBING,
+                MigraineRepo.Id.ISTENSIONALWORSEONAFTERNOONS,
+                MigraineRepo.Id.ISTENSIONALRELATEDTOSTRESS,
+                MigraineRepo.Id.ISTENSIONALBETTERWHENDISTRACTED,
+                MigraineRepo.Id.SOUNDPHOBIA,
+                MigraineRepo.Id.INSOMNIA }) > 1;
+
+        if ( !toret ) {
+            toret = this.getBool( MigraineRepo.Id.WHOLEHEAD )
+                    && this.getBool( MigraineRepo.Id.ISCEPHALEAHELMET )
+                    && !this.getBool( MigraineRepo.Id.ISTENSIONALINTENSE )
+                    && this.getBool( MigraineRepo.Id.SAD )
+                    && this.getBool( MigraineRepo.Id.ISDEPRESSED );
+        }
+
+        return toret;
+    }
+
+    /** @return true if the patient has tensional cephalics or migraines, false otherwise. */
+    public boolean isMixed()
+    {
+        return this.isMigraine() || this.isTensional();
+    }
+
+    /** @return a MixedCephalea value of:
+      *     NOT_MIXED if the cephalea is not mixed between migrain and tensional.
+      *     MIXED_PREDOMINANT_TENSIONAL if the cephalea is mixed and tensional predominant.
+      *     MIXED_PREDOMINANT_MIGRAINE if the cephalea is mixed and migraine predominant.
+      */
+    public MixedCephalea getMixedPredominant()
+    {
+        MixedCephalea toret = MixedCephalea.NOT_MIXED;
+
+        if ( this.isMixed() ) {
+            toret = MixedCephalea.MIXED_PREDOMINANT_TENSIONAL;
+
+            if ( this.REPO.getNumMigraines() > this.REPO.getNumTensionalCephaleas() )
+            {
+                toret = MixedCephalea.MIXED_PREDOMINANT_MIGRAINE;
+            }
+        }
+
+        return toret;
+    }
+
+    /** @return a string describing the mixed cephalea of the parameter.
+      * @param mixedCephalea the type of mixed cephalea.
+      */
+    private String stringFromMixedPredominant(MixedCephalea mixedCephalea)
+    {
+        String toret = "cefalea";
+
+        if ( mixedCephalea != MixedCephalea.NOT_MIXED ) {
+            toret = "cefalea mixta con predominio ";
+
+            if ( mixedCephalea == MixedCephalea.MIXED_PREDOMINANT_MIGRAINE ) {
+                toret += "migrañoso";
+            } else {
+                toret += "tensional";
+            }
+        }
+
+        return toret;
+    }
+
+    /** @return a string describing the mixed cephalea. */
+    public String stringFromMixedPredominant()
+    {
+        return this.stringFromMixedPredominant( this.getMixedPredominant() );
+    }
+
     public boolean shouldCheckDoctor()
     {
         int mainCriteria = this.calcSumOf( new MigraineRepo.Id[] {
@@ -98,28 +174,6 @@ public class Diagnostic {
               && this.REPO.isMale()
               && mainCriteria >= 1
               && this.getBool( MigraineRepo.Id.HASHISTORY ) );
-    }
-
-    /** return true if the patient has tensional cephaleas, false otherwise. */
-    private boolean isTensional()
-    {
-        boolean toret = this.calcSumOf( new MigraineRepo.Id[]{
-                                MigraineRepo.Id.ISSTABBING,
-                                MigraineRepo.Id.ISTENSIONALWORSEONAFTERNOONS,
-                                MigraineRepo.Id.ISTENSIONALRELATEDTOSTRESS,
-                                MigraineRepo.Id.ISTENSIONALBETTERWHENDISTRACTED,
-                                MigraineRepo.Id.SOUNDPHOBIA,
-                                MigraineRepo.Id.INSOMNIA }) > 1;
-
-        if ( !toret ) {
-            toret = this.getBool( MigraineRepo.Id.WHOLEHEAD )
-                    && this.getBool( MigraineRepo.Id.ISCEPHALEAHELMET )
-                    && !this.getBool( MigraineRepo.Id.ISTENSIONALINTENSE )
-                    && this.getBool( MigraineRepo.Id.SAD )
-                    && this.getBool( MigraineRepo.Id.ISDEPRESSED );
-        }
-
-        return toret;
     }
 
     /** @return a boolean value given its id, assuming not existing means "false" */
@@ -155,7 +209,7 @@ public class Diagnostic {
         final StringBuilder TORET = new StringBuilder();
         final boolean IS_MIGRAINE = this.isMigraine();
         final boolean IS_TENSIONAL = this.isTensional();
-        final boolean IS_MIXED = IS_MIGRAINE && IS_TENSIONAL;
+        final boolean IS_MIXED = this.isMixed();
         MigraineRepo.Frequency freq;
 
         // No cephalea
@@ -167,7 +221,7 @@ public class Diagnostic {
             TORET.append( "<b>" );
             // Kind of cephalea
             if ( IS_MIXED ) {
-                TORET.append( "cefalea mixta" );
+                TORET.append( this.stringFromMixedPredominant() );
             }
             else
             if ( IS_MIGRAINE ) {
