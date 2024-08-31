@@ -6,6 +6,7 @@ package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 import androidx.annotation.NonNull;
 
+import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 import java.util.ArrayList;
@@ -53,8 +54,8 @@ public final class MigraineRepo {
 
         // Screening
         WASCEPHALEALIMITANT,
-        HADPHOTOPHOBIA,
-        HADNAUSEA,
+        PHOTOPHOBIA,
+        NAUSEA,
 
         // Migraine
         HADMORETHANFIVEEPISODES,
@@ -168,37 +169,49 @@ public final class MigraineRepo {
     /** @return a string value depending on its existence, throws otherwise. */
     public String getStr(@NonNull Id id) throws NoSuchElementException
     {
-        final Value TORET = this.getValue( id );
+        Value toret = this.getValue( id );
 
-        if ( TORET == null ) {
-            throw new NoSuchElementException( id.toString() );
+        if ( toret == null ) {
+            if ( Util.DEBUG ) {
+                throw new NoSuchElementException( id.toString() );
+            } else {
+                toret = Value.StrDefault;
+            }
         }
 
-        return (String) TORET.get();
+        return (String) toret.get();
     }
 
     /** @return an int value depending on its existence, throws otherwise. */
     public int getInt(@NonNull Id id) throws NoSuchElementException
     {
-        final Value TORET = this.getValue( id );
+        Value toret = this.getValue( id );
 
-        if ( TORET == null ) {
-            throw new NoSuchElementException( id.toString() );
+        if ( toret == null ) {
+            if ( Util.DEBUG ) {
+                throw new NoSuchElementException( id.toString() );
+            } else {
+                toret = Value.IntDefault;
+            }
         }
 
-        return (int) TORET.get();
+        return (int) toret.get();
     }
 
     /** @return a bool value depending on its existence, throws otherwise. */
     public boolean getBool(@NonNull Id id) throws NoSuchElementException
     {
-        final Value TORET = this.getValue( id );
+        Value toret = this.getValue( id );
 
-        if ( TORET == null ) {
-            throw new NoSuchElementException( id.toString() );
+        if ( toret == null ) {
+            if ( Util.DEBUG ) {
+                throw new NoSuchElementException( id.toString() );
+            } else {
+                toret = Value.BoolDefault;
+            }
         }
 
-        return (boolean) TORET.get();
+        return (boolean) toret.get();
     }
 
     /** @return True if there is no data, false otherwise. */
@@ -224,11 +237,19 @@ public final class MigraineRepo {
         return toret;
     }
 
+    /** Whether the patient is depressed or not.
+      * It also returns false if the depressed data piece is not found.
+      * @return true if depressed, false if not or not found.
+      */
     public boolean isDepressed()
     {
-        return this.getBool( Id.ISDEPRESSED );
+        return ( this.exists( Id.ISDEPRESSED )
+                && this.getBool( Id.ISDEPRESSED ) );
     }
 
+    /** @return whether the patient is obese or not.
+      *         false if size data not found, either.
+      */
     public boolean isObese()
     {
         int imc = this.calcIMC();
@@ -236,6 +257,9 @@ public final class MigraineRepo {
         return ( imc > 0 ) && ( imc > IMC_OBESITY_LIMIT );
     }
 
+    /** @return whether the patient is anorexic or not.
+      *         false if size data not found, either.
+      */
     public boolean isAnorexic()
     {
         int imc = this.calcIMC();
@@ -243,6 +267,9 @@ public final class MigraineRepo {
         return ( imc > 0 ) && ( imc  < IMC_ANOREXIC_LIMIT );
     }
 
+    /** @return whether the patient has hypertension or not.
+      *         false if tension data not found, either.
+      */
     public boolean hasHyperTension()
     {
         boolean toret = false;
@@ -260,6 +287,9 @@ public final class MigraineRepo {
         return toret;
     }
 
+    /** @return whether the patient has hypotension or not.
+      *         false if tension data not found, either.
+      */
     public boolean hasHypoTension()
     {
         boolean toret = false;
@@ -274,12 +304,12 @@ public final class MigraineRepo {
     }
 
     /** PCD_HOW_MANY_MIGRAINE_1151 and PCD-HOW_MANY_TENSIONAL-1147
-     * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
-     * - 4 to 7 days with migraine is labelled as "low frequency"
-     * - 8 to 14 days with migraine is labelled as "high frequency"
-     * - 15 or more days with migraine is labelled as "chronic frequency"
-     * @return a Frequency depending in the criteria above.
-     */
+      * - 1 to 3 days with migraine is labelled as "occasional" and it's no treated.
+      * - 4 to 7 days with migraine is labelled as "low frequency"
+      * - 8 to 14 days with migraine is labelled as "high frequency"
+      * - 15 or more days with migraine is labelled as "chronic frequency"
+      * @return a Frequency depending in the criteria above.
+      */
     private Frequency frequencyFromEpisodes(int episodes)
     {
         Frequency toret = Frequency.ESPORADIC;
@@ -324,9 +354,9 @@ public final class MigraineRepo {
     }
 
     /** @see MigraineRepo::frequencyFromEpisodes
-     * @return a Frequency for mixed migraines diagnostic,
-     *         depending on the criteria above.
-     */
+      * @return a Frequency for mixed migraines diagnostic,
+      *         depending on the criteria above.
+      */
     public Frequency getMixedFreq()
     {
         return this.frequencyFromEpisodes(
@@ -335,18 +365,18 @@ public final class MigraineRepo {
     }
 
     /** @see MigraineRepo::frequencyFromEpisodes
-     * @return a Frequency for migraines diagnostic,
-     *         depending on the criteria above.
-     */
+      * @return a Frequency for migraines diagnostic,
+      *         depending on the criteria above.
+      */
     public Frequency getMigraineFreq()
     {
         return this.frequencyFromEpisodes( this.getNumMigraines() );
     }
 
     /** @see MigraineRepo::frequencyFromEpisodes
-     * @return a Frequency for tensional cephaleas diagnostic,
-     *         following the above criteria.
-     */
+      * @return a Frequency for tensional cephaleas diagnostic,
+      *         following the above criteria.
+      */
     public Frequency getTensionalFreq()
     {
         return this.frequencyFromEpisodes( this.getNumTensionalCephaleas() );
@@ -355,7 +385,14 @@ public final class MigraineRepo {
     /** @return whether the pain (tensional or migraine) is perceived as intense. */
     public boolean isPainIntense()
     {
-        return this.getBool( Id.ISMIGRAINEINTENSE ) || this.getBool( Id.ISTENSIONALINTENSE );
+        boolean migraineIntense =
+                    this.exists( Id.ISMIGRAINEINTENSE )
+                    && this.getBool( Id.ISMIGRAINEINTENSE );
+        boolean tensionalIntense =
+                    this.exists( Id.ISTENSIONALINTENSE )
+                    && this.getBool( Id.ISTENSIONALINTENSE );
+
+        return ( migraineIntense || tensionalIntense );
     }
 
     /** @return true if patient is male, false otherwise. */
@@ -376,6 +413,15 @@ public final class MigraineRepo {
         return this.getBool( Id.HADAURA );
     }
 
+    /** @return whether certain female conditions are present or not. */
+    public boolean areFemaleConditionsPresent()
+    {
+        return this.isFemale()
+                && this.getBool( Id.HASHISTORY )
+                && ( this.getBool( Id.MENSTRUATIONWORSENS )
+                  || this.getBool( Id.CONTRACEPTIVESWORSENS ) );
+    }
+
     public static MigraineRepo get()
     {
         if ( repo == null ) {
@@ -385,6 +431,6 @@ public final class MigraineRepo {
         return repo;
     }
 
-    private static MigraineRepo repo;
     private final Map<Id, Value> data;
+    private static MigraineRepo repo;
 }

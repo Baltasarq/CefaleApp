@@ -44,7 +44,7 @@ public class MigraineTestActivity extends TestActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        this.setContentView( R.layout.activity_migraineform);
+        this.setContentView( R.layout.activity_migraineform );
 
         final ActionBar ACTION_BAR = this.getSupportActionBar();
         final ImageView TEST_IMAGE = this.findViewById( R.id.imgTestIcon );

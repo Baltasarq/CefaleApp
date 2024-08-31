@@ -60,17 +60,8 @@ public class ValueTest extends TestCase {
 
     public void testToString()
     {
-        final String EXPECTED_STR_V1 = "/"
-                + this.v1.getValueType()
-                + " value: "
-                + this.v1.get()
-                + ".";
-
-        final String EXPECTED_STR_V2 = "/"
-                + this.v2.getValueType()
-                + " value: "
-                + this.v2.get()
-                + ".";
+        final String EXPECTED_STR_V1 = "Sí";
+        final String EXPECTED_STR_V2 = this.v2.get().toString();
 
         Assert.assertEquals( EXPECTED_STR_V1, this.v1.toString() );
         Assert.assertEquals( EXPECTED_STR_V2, this.v2.toString() );

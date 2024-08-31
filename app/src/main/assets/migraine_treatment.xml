@@ -650,7 +650,7 @@
         </morbidity>
 
         <morbidity
-            id="ALLERGY_ACETILSALILICO_ACID"
+            id="ALLERGY_ACETILSALICIDIC_ACID"
             name="Alergia al ácido acetil salicílico"
             desc="Una alergia o hipersensibilidad al AAS (ácido acetil salicílico),
                   y a los AINE (medicamentos antinflamatorios no esteroideos),
@@ -664,7 +664,7 @@
         </morbidity>
 
         <morbidity
-            id="ALLERGY_ANTIBIOTIC"
+            id="ALLERGY_SULFAMID"
             name="Alergia a las sulfamidas"
             desc="Los antibióticos que contienen sustancias químicas denominadas sulfonamidas
                   pueden desencadenar una reacción si se tiene una alergia a sulfamidas.

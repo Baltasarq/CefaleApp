@@ -28,7 +28,7 @@ public class QuestionSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        this.setContentView( R.layout.activity_question_settings);
+        this.setContentView( R.layout.activity_question_settings );
 
         final ActionBar ACTION_BAR = this.getSupportActionBar();
 

@@ -70,7 +70,7 @@
          3. PCD-JZ-TENSIONAL-1511: only the tensional branch.
     -->
     <branch id="screen" head="screen_wasCephaleaLimitant">
-        <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_hadPhotoPhobia"
+        <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_photoPhobia"
             summary="Limitante"
             text="En cuanto a lo &lt;b>limitante&lt;/b> del dolor de cabeza
                   en los últimos &lt;u>tres meses&lt;/u>,
@@ -81,14 +81,14 @@
             <opt value="true" text="Sí." />
         </q>
 
-        <q id="screen_hadPhotoPhobia" type="bool" goto="screen_hadNausea"
+        <q id="screen_photoPhobia" type="bool" goto="screen_nausea"
             text="Con el dolor de cabeza, ¿le molesta la luz &lt;u>más de lo habitual&lt;/u>?"
             summary="Fotofobia">
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
 
-        <q id="screen_hadNausea" type="bool" goto="/"
+        <q id="screen_nausea" type="bool" goto="/"
             text="Con el dolor de cabeza, ¿ha sentido &lt;i>náuseas&lt;/i> o &lt;i>vómitos&lt;/i>?"
             summary="Náuseas/vómitos">
             <opt value="false" text="No." />

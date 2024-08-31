@@ -7,6 +7,10 @@ package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 import androidx.annotation.NonNull;
 
 public class Value {
+    public final static Value StrDefault = new Value( "", ValueType.STR );
+    public final static Value BoolDefault = new Value( false, ValueType.BOOL );
+    public final static Value IntDefault = new Value( 0, ValueType.INT );
+
     public Value(Object value, ValueType dtype)
     {
         this.VALUE = value.toString().trim();

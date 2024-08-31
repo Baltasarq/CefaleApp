@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.treatment.TreatmentActivity"
+    tools:context=".ui.treatment.PreventiveTreatmentActivity"
     android:orientation="vertical"
     android:padding="5dp"
     android:layout_width="match_parent"

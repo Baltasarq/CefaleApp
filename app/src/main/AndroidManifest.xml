@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Use the text-to-speech engine -->
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
-    </queries>
-
-    <!-- Permissions -->
+    </queries> <!-- Permissions -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
@@ -26,11 +23,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CefaleApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.treatment.SymptomaticTreatmentResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.treatment.PreventiveTreatmentResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.treatment.SymptomaticTreatmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.treatment.TreatmentDeliverActivity"
+            android:exported="false"
+            android:label="@string/lbl_treatment" />
         <activity
             android:name=".ui.treatment.TreatmentResultActivity"
             android:exported="false"
-            android:label="@string/lbl_treatment"/>
+            android:label="@string/lbl_treatment" />
         <activity
             android:name=".ui.treatment.MorbidityActivity"
             android:exported="false"
@@ -62,13 +71,13 @@
         <activity
             android:name=".ui.treatment.VademecumActivity"
             android:exported="false"
-            android:label="@string/lbl_about" />
+            android:label="@string/lbl_vademecum" />
         <activity
             android:name=".ui.tests.MigraineTestActivity"
             android:exported="false"
             android:label="@string/lbl_test_migraine" />
         <activity
-            android:name=".ui.treatment.TreatmentActivity"
+            android:name=".ui.treatment.PreventiveTreatmentActivity"
             android:exported="false"
             android:label="@string/lbl_treatment" />
         <activity
@@ -85,8 +94,10 @@
             android:theme="@style/Theme.CefaleApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

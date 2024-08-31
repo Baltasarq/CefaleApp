@@ -36,7 +36,7 @@ import com.devbaltasarq.cefaleapp.ui.settings.TextSettingsActivity;
 import com.devbaltasarq.cefaleapp.ui.tests.HITFormActivity;
 import com.devbaltasarq.cefaleapp.ui.tests.MIDASFormActivity;
 import com.devbaltasarq.cefaleapp.ui.tests.TestActivity;
-import com.devbaltasarq.cefaleapp.ui.treatment.TreatmentActivity;
+import com.devbaltasarq.cefaleapp.ui.treatment.TreatmentDeliverActivity;
 import com.devbaltasarq.cefaleapp.ui.treatment.VademecumActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,7 +49,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     public enum TextSize { SMALL, MEDIUM, LARGE }
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private final static String LOG_TAG = MainActivity.class.getSimpleName();
     private final static String MIGRAINE_FORM_DATA_ASSET = "migraine_test.xml";
     private final static String HIT_FORM_DATA_ASSET = "hit_test.xml";
     private final static String MIDAS_FORM_DATA_ASSET = "midas_test.xml";
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             if ( item.getItemId() == R.id.op_start_treatment ) {
-                this.gotoActivity( TreatmentActivity.class );
+                this.gotoActivity( TreatmentDeliverActivity.class );
             }
             else
             if ( item.getItemId() == R.id.op_start_vademecum ) {
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         BT_INFO.setOnClickListener( v -> this.gotoActivity( InfoActivity.class ));
         BT_LINKS.setOnClickListener( v -> this.gotoActivity( LinksActivity.class ));
         BT_VADEMECUM.setOnClickListener( v-> this.gotoActivity( VademecumActivity.class ));
-        BT_TREATMENT.setOnClickListener( v-> this.gotoActivity( TreatmentActivity.class ));
+        BT_TREATMENT.setOnClickListener( v-> this.gotoActivity( TreatmentDeliverActivity.class ));
         BT_HIT.setOnClickListener( v-> this.onLaunchHitForm() );
         BT_MIDAS.setOnClickListener( v-> this.onLaunchMidasForm() );
     }

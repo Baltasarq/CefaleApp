@@ -148,7 +148,7 @@ public class Steps {
             final MigraineRepo.Id ID = MigraineRepo.Id.parse( Q.getDataFromId() );
 
             if ( ID == MigraineRepo.Id.NOTES
-                    || ID == MigraineRepo.Id.AREYOUSURE )
+              || ID == MigraineRepo.Id.AREYOUSURE )
             {
                 continue;
             }
@@ -184,6 +184,7 @@ public class Steps {
         TORET.append( this.reportHypotensionIfPresent() );
         TORET.append( this.reportHypertensionIfPresent() );
         TORET.append( this.reportIMCIfNeeded() );
+        TORET.append( this.stringFromAllSteps() );
 
         return TORET.toString();
     }

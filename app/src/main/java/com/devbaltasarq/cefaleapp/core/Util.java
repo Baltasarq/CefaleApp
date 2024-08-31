@@ -31,6 +31,9 @@ import java.util.stream.Collectors;
 
 
 public class Util {
+    // Uncomment for more throws
+    public final static boolean DEBUG = false;
+
     /** @return a serial string, based on the ISO-8601 form: YYYY-MM-DD. */
     public static String buildSerial()
     {
