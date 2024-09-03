@@ -6,6 +6,8 @@ package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
+import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 
@@ -33,8 +35,12 @@ public class PreventiveTreatmentAdvisor extends TreatmentAdvisor {
     public List<Medicine> createResultList()
     {
         if ( this.advisedMedicineIds.isEmpty() ) {
-            // Add all existing medicines
-            this.advisedMedicineIds.addAll( Medicine.getAll().keySet() );
+            final MedicineClass PREV_MED_CLASS = Objects.requireNonNull(
+                    MedicineClass.getAll().get( MedicineClass.Id.get( "PRVNT" ) ));
+
+            // Add all preventive medicines
+            this.advisedMedicineIds.addAll(
+                    this.getMedicineIdsFromGroupList( PREV_MED_CLASS.getGroups() ));
 
             for (final Morbidity.Id MORBIDITY_ID: this.getMorbidities()) {
                 final Morbidity MORBIDITY = Objects.requireNonNull(

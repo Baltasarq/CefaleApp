@@ -54,8 +54,6 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     MedicineGroup.Id.get( "ERGOTICOS" ) );
             final Medicine.Id ID_METAMIZOL = Objects.requireNonNull(
                     Medicine.Id.get( "METAMIZOL" ) );
-            final Medicine.Id ID_TRAMADOL = Objects.requireNonNull(
-                    Medicine.Id.get( "TRAMADOL" ) );
             final Medicine.Id ID_RIMEGEPANT = Objects.requireNonNull(
                     Medicine.Id.get( "RIMEGEPANT" ) );
             final Medicine.Id ID_LASMIDITAN = Objects.requireNonNull(
@@ -70,8 +68,6 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     TreatmentMessage.getFor( LANG_ES, "useRimegepantLasmiditan" ));
             final TreatmentMessage MSG_USE_METAMIZOL = Objects.requireNonNull(
                     TreatmentMessage.getFor( LANG_ES, "useMetamizol" ));
-            final TreatmentMessage MSG_USE_TRAMADOL_IF_NOTHING_ELSE_WORKS = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useTramadolIfNothingElseWorks" ));
             final TreatmentMessage MSG_START_WITH_TRIPTAN = Objects.requireNonNull(
                     TreatmentMessage.getFor( LANG_ES, "startWithTRIPTAN" ));
             final TreatmentMessage MSG_COMBINE_TRIPTAN_WITH_AINE = Objects.requireNonNull(
@@ -152,11 +148,6 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
             this.treatmentSteps.add(
                     new TreatmentStep( MSG_USE_METAMIZOL,
                             new Medicine.Id[]{ ID_METAMIZOL } ) );
-
-            // If nothing else works, Tramadol (try not)
-            this.treatmentSteps.add(
-                    new TreatmentStep( MSG_USE_TRAMADOL_IF_NOTHING_ELSE_WORKS,
-                            new Medicine.Id[]{ ID_TRAMADOL } ) );
         }
 
         return new ArrayList<>( this.treatmentSteps );

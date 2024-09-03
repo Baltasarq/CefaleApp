@@ -26,7 +26,6 @@
         <medicineGroup id="ERGOTICOS" classId="ANALG" name="Ergóticos (agonistas de receptores serotoninérgicos)" />
         <medicineGroup id="GEPANTES" classId="ANALG" name="Gepantes (antagonista del receptor CGRP oral)" />
         <medicineGroup id="DIPTANES" classId="ANALG" name="Diptanes (agonista del receptor hidroxitriptamina 1F oral)" />
-        <medicineGroup id="OPIACEOS" classId="ANALG" name="Opiáceos" />
         <medicineGroup id="DIPIRONAS" classId="ANALG" name="Dipironas" />
     </medicineGroups>
 
@@ -490,22 +489,6 @@
         </medicine>
 
         <medicine
-            id="TRAMADOL"
-            name="Tramadol"
-            groupId="OPIACEOS"
-            posInGroup="1"
-            url="https://www.vademecum.es/principios-activos-tramadol-N02AX02-es">
-            <posology>50-100 mg.</posology>
-            <adverseEffects>
-                Mareos, vértigos, sudoración, hipotensión postural, somnolencia,
-                náuseas, vómitos, estreñimiento, sequedad de boca.
-                Recomendación: debe intentarse evitar este tratamiento en
-                los pacientes con migraña, que quedaría restringido a casos
-                refractarios al resto de tratamientos disponibles.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
             id="LASMIDITAN"
             name="Lasmiditan"
             groupId="DIPTANES"
@@ -584,12 +567,12 @@
     <morbidities>
         <morbidity
             id="PAIN_LOW_FREQUENCY"
-            name="Dolor esporádico o de baja frecuencia"
-            desc="El número de casos debe ser menor que 8 por mes." />
+            name="Dolor esporádico"
+            desc="El número de casos debe ser menor que 3 por mes." />
 
         <morbidity
             id="PAIN_INTENSE"
-            name="Dolor intenso"
+            name="Dolor de intensidad severa"
             desc="El dolor se describe como de alta intensidad." />
 
         <morbidity
@@ -1085,13 +1068,11 @@
             Puede combinarse con AINE.
         </treatmentMessage>
         <treatmentMessage lang="ES" id="useRimegepantLasmiditan">
-            Si hay alérgia a las sulfamidas, o hay reacción adversa al Triptán.
+            Si hay alergia a las sulfamidas, o hay reacción adversa al Triptán,
+            o falta de eficacia del Triptán.
         </treatmentMessage>
         <treatmentMessage lang="ES" id="useMetamizol">
-            Otro analgésico, más potente, si las posibilidades anteriores no funcionan.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="useTramadolIfNothingElseWorks">
-            Analgésico mucho más potente, si nada funciona, pero tratar de evitar.
+            Otra alternativa es el Metamizol, si las posibilidades anteriores no funcionan.
         </treatmentMessage>
 
         <!-- Severe pain -->

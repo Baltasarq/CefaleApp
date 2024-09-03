@@ -183,16 +183,6 @@ subgraph h {
 
 }
 
-subgraph opiaceos {
-    
-    opiaceos[shape=box, label="OPIACEOS"];
-
-    tramadol[shape=box, label="Tramadol"];
-
-    opiaceos -> tramadol[label=""];
-
-}
-
 subgraph triptanes {
     
     triptanes[shape=box, label="TRIPTANES"];
