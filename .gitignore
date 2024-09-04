@@ -1,3 +1,5 @@
+app/release
+
 # Secrets
 secrets.xml
 manual-cefaleapp-backup.odt
