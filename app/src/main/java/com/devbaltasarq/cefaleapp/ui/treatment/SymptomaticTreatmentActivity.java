@@ -7,12 +7,10 @@ package com.devbaltasarq.cefaleapp.ui.treatment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.transition.Transition;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineRepo;
@@ -49,10 +47,10 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
         final Map<Morbidity.Id, Morbidity> MORBIDITIES = Morbidity.getAll();
 
         final Morbidity.Id ID_PAIN_INTENSE = Morbidity.Id.get( "PAIN_INTENSE" );
-        final Morbidity.Id ID_PAIN_LOW_FREQUENCY = Morbidity.Id.get( "PAIN_LOW_FREQUENCY" );
+        final Morbidity.Id ID_PAIN_MODERATE = Morbidity.Id.get( "PAIN_MODERATE" );
 
         this.painIntense = Objects.requireNonNull( MORBIDITIES.get( ID_PAIN_INTENSE ) );
-        this.painLowFrequency = Objects.requireNonNull( MORBIDITIES.get( ID_PAIN_LOW_FREQUENCY ) );
+        this.painModerate = Objects.requireNonNull( MORBIDITIES.get( ID_PAIN_MODERATE ) );
     }
 
     @Override
@@ -72,7 +70,7 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
         MORBIDITIES.clear();
 
         MORBIDITIES.put( this.painIntense.getId(), this.painIntense );
-        MORBIDITIES.put( this.painLowFrequency.getId(), this.painLowFrequency );
+        MORBIDITIES.put( this.painModerate.getId(), this.painModerate);
         MORBIDITIES.put( ID_SULFAMID_ALLERGY, SULFAMID_ALLERGY );
         MORBIDITIES.put( ID_ASPIRIN_ALLERGY, ASPIRIN_ALLERGY );
 
@@ -99,7 +97,7 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
             final CheckBox CHK_PAIN_INTENSE = Objects.requireNonNull(
                     this.getCheckBoxFor( this.painIntense.getId() ));
             final CheckBox CHK_PAIN_LOW_FREQ = Objects.requireNonNull(
-                    this.getCheckBoxFor( this.painLowFrequency.getId() ));
+                    this.getCheckBoxFor( this.painModerate.getId() ));
 
             CHK_PAIN_LOW_FREQ.setChecked(
                     REPO.getMixedFreq() == MigraineRepo.Frequency.ESPORADIC
@@ -122,5 +120,5 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
     }
 
     private Morbidity painIntense;
-    private Morbidity painLowFrequency;
+    private Morbidity painModerate;
 }

@@ -19,11 +19,11 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdk 29
         targetSdk 34
-        versionCode 4
-        versionName '3.1'
+        versionCode 5
+        versionName '3.2'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '20240903'
+        versionNameSuffix '20240905'
     }
 
     buildTypes {
@@ -42,7 +42,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.dropbox.core:dropbox-core-sdk:7.0.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

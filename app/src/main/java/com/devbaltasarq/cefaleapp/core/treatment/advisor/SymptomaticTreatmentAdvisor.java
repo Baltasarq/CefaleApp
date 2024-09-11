@@ -35,8 +35,8 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
         if ( this.treatmentSteps.isEmpty() ) {
             final MultiLanguageWrapper.Lang LANG_ES = MultiLanguageWrapper.Lang.es;
             final List<Morbidity.Id> MORBIDITIES = this.getMorbidities();
-            final boolean IS_PAIN_LOW_FREQUENCY = MORBIDITIES.contains(
-                    Morbidity.Id.get( "PAIN_LOW_FREQUENCY" ) );
+            final boolean IS_PAIN_MODERATE = MORBIDITIES.contains(
+                    Morbidity.Id.get( "PAIN_MODERATE" ) );
 
             final boolean IS_PAIN_INTENSE = MORBIDITIES.contains(
                     Morbidity.Id.get( "PAIN_INTENSE" ) );
@@ -90,7 +90,7 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                             new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
 
                     // Ergotics can be usefult if migraine is esporadic or of low frequency.
-                    if ( IS_PAIN_LOW_FREQUENCY ) {
+                    if ( IS_PAIN_MODERATE ) {
                         this.treatmentSteps.add(
                                 new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
                     }
@@ -122,7 +122,7 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     }
                 } else {
                     // Ergotics might be useful if migraine is esporadic or of low frequency.
-                    if ( IS_PAIN_LOW_FREQUENCY ) {
+                    if ( IS_PAIN_MODERATE ) {
                         this.treatmentSteps.add(
                                 new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
                     }

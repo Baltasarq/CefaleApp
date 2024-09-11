@@ -7,11 +7,12 @@ package com.devbaltasarq.cefaleapp.core.questionnaire;
 import android.util.Log;
 
 import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
+import com.devbaltasarq.cefaleapp.core.questionnaire.form.ValueType;
 
 
 public class Diagnostic {
     private static final String LOG_TAG = Diagnostic.class.getSimpleName();
-    private static final String MSG_NO_CEPHALEA_EVIDENCE = "Sin evidencias de cefaleas.";
     private static final String MSG_MIGRAINE = "migraña";
     private static final String MSG_TENSIONAL = "cefalea tensional";
     private static final String MSG_WITH_AURA = "con aura";
@@ -33,15 +34,14 @@ public class Diagnostic {
         y debe consultar con su Médico de Familia o con su neurólogo.""";
 
     public enum Conclusion {
-        NO_EVIDENCE( MSG_NO_CEPHALEA_EVIDENCE ),
+        NO_CONCLUSION( "" ),
+        MIGRAINE_COMPATIBLE_SIT3( MSG_SIT3_TXT ),
+        MIGRAINE_COMPATIBLE_SIT2( MSG_SIT2_TXT ),
+        MIGRAINE_COMPATIBLE_SIT1( MSG_SIT1_TXT ),
         TENSIONAL( MSG_TENSIONAL ),
         MIGRAINE( MSG_MIGRAINE ),
         MIXED_TENSIONAL( MSG_MIXED_TENSIONAL ),
-        MIXED_MIGRAINE( MSG_MIXED_MIGRAINE ),
-        MIGRAINE_COMPATIBLE_SIT1( MSG_SIT1_TXT ),
-        MIGRAINE_COMPATIBLE_SIT2( MSG_SIT2_TXT ),
-        MIGRAINE_COMPATIBLE_SIT3( MSG_SIT3_TXT ),
-        INCONCLUSIVE( MSG_CHK_DOCTOR );
+        MIXED_MIGRAINE( MSG_MIXED_MIGRAINE );
 
         Conclusion(String desc)
         {
@@ -50,6 +50,10 @@ public class Diagnostic {
 
         public String getDesc()
         {
+            if ( this == NO_CONCLUSION ) {
+                throw new Error( "tried to use Conclusion.NO_CONCLUSION !!" );
+            }
+
             return this.desc;
         }
 
@@ -124,7 +128,8 @@ public class Diagnostic {
         if ( MAIN_CRITERIA == 2
           || MAIN_CRITERIA == 3 )
         {
-            toret = ( NAUSEA
+            toret = ( this.REPO.areFemaleConditionsPresent()
+                    || NAUSEA
                     || ( PHOTO && SOUND )
                     || ( NAUSEA && PHOTO )
                     || ( NAUSEA && SOUND )
@@ -176,18 +181,17 @@ public class Diagnostic {
     public Conclusion calcMigraineCompatibility()
     {
         final int MAIN_CRITERIA = this.calcMainCriteria();
-        Conclusion toret = Conclusion.NO_EVIDENCE;
+        Conclusion toret = Conclusion.NO_CONCLUSION;
 
         if ( MAIN_CRITERIA == 1 ) {
+            toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
+
             if ( this.isMigraineCompatSIT1() ) {
                 toret = Conclusion.MIGRAINE_COMPATIBLE_SIT1;
-            } else {
-                if ( this.isMigraineCompatSIT2() ) {
-                    toret = Conclusion.MIGRAINE_COMPATIBLE_SIT2;
-                }
-                else {
-                    toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
-                }
+            }
+            else
+            if ( this.isMigraineCompatSIT2() ) {
+                toret = Conclusion.MIGRAINE_COMPATIBLE_SIT2;
             }
         }
 
@@ -199,11 +203,8 @@ public class Diagnostic {
         boolean toret = false;
 
         if ( this.calcMainCriteria() == 1 ) {
-            Conclusion conclusion = this.calcMigraineCompatibility();
-
-            toret = ( ( conclusion == Conclusion.MIGRAINE_COMPATIBLE_SIT1 )
-                    || ( conclusion == Conclusion.MIGRAINE_COMPATIBLE_SIT2 )
-                    || ( conclusion == Conclusion.MIGRAINE_COMPATIBLE_SIT3 ));
+            toret = ( this.calcMigraineCompatibility()
+                                            != Conclusion.NO_CONCLUSION );
         }
 
         return toret;
@@ -238,13 +239,13 @@ public class Diagnostic {
     }
 
     /** @return a MixedCephalea value of:
-      *     NO_EVIDENCE if the cephalea is not mixed between migrain and tensional.
+      *     MIGRAINE_COMPATIBLE_SIT3 if the cephalea is not mixed between migrain and tensional.
       *     MIXED_TENSIONAL if the cephalea is mixed and tensional predominant.
       *     MIXED_MIGRAINE if the cephalea is mixed and migraine predominant.
       */
     public Conclusion getMixedPredominant()
     {
-        Conclusion toret = Conclusion.NO_EVIDENCE;
+        Conclusion toret = Conclusion.NO_CONCLUSION;
 
         if ( this.isMixed() ) {
             toret = Conclusion.MIXED_TENSIONAL;
@@ -289,17 +290,48 @@ public class Diagnostic {
         return toret;
     }
 
+    /** Apply initial rules before taking a decision. */
+    private void preDecide()
+    {
+        boolean INTENSE_PAIN = REPO.getBool( MigraineRepo.Id.ISMIGRAINEINTENSE );
+        boolean IN_DARK = REPO.getBool( MigraineRepo.Id.BETTERINDARKNESS );
+        boolean IS_LIMITANT = REPO.getBool( MigraineRepo.Id.WASCEPHALEALIMITANT );
+
+        // -- PCD-PATIENTS_MINIMIZE_PAIN-0910
+        if ( !INTENSE_PAIN
+          && IN_DARK
+          && IS_LIMITANT )
+        {
+            REPO.setValue( MigraineRepo.Id.ISMIGRAINEINTENSE,
+                    new Value( true, ValueType.BOOL ));
+        }
+    }
+
+    /** Decides what kind of migraine the patient has.
+      * @return The conclusion of the decision.
+      * @see Diagnostic::Conclusion
+      */
     public Conclusion decide()
+    {
+        this.preDecide();
+        return this.makeDecision();
+    }
+
+    private Conclusion makeDecision()
     {
         final boolean IS_MIGRAINE = this.isMigraine();
         final boolean IS_TENSIONAL = this.isTensional();
         final boolean IS_MIXED = this.isMixed();
-        Conclusion toret = Conclusion.NO_EVIDENCE;
+        Conclusion toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
 
         if ( !IS_MIGRAINE
           && !IS_TENSIONAL )
         {
             toret = this.calcMigraineCompatibility();
+
+            if ( toret == Conclusion.NO_CONCLUSION ) {
+                toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
+            }
         } else {
             // Kind of cephalea
             if ( IS_MIXED ) {
@@ -322,7 +354,7 @@ public class Diagnostic {
     public boolean hasAura()
     {
         return ( ( this.isMigraine()
-                || this.calcMigraineCompatibility() != Conclusion.NO_EVIDENCE )
+                || this.calcMigraineCompatibility() != Conclusion.MIGRAINE_COMPATIBLE_SIT3 )
               && this.REPO.hadAura() );
     }
 

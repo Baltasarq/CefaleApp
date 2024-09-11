@@ -5,37 +5,22 @@ package com.devbaltasarq.cefaleapp.ui.tests;
 
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
-import com.devbaltasarq.cefaleapp.core.Util;
-import com.devbaltasarq.cefaleapp.core.questionnaire.DropboxUsrClient;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
-import com.devbaltasarq.cefaleapp.core.questionnaire.FormJSONSaver;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
-import com.dropbox.core.DbxException;
-
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
 public class MigraineTestActivity extends TestActivity {
@@ -93,58 +78,6 @@ public class MigraineTestActivity extends TestActivity {
         return super.onOptionsItemSelected( item );
     }
 
-    private File saveJSON()
-    {
-        final File INTERNAL_DIR = this.getCacheDir();
-        final String FN = "enq-" + Util.buildSerial() + ".json";
-        final File TORET = new File( INTERNAL_DIR, FN );
-
-        try (FileOutputStream f = new FileOutputStream( TORET ) ) {
-            final DataOutputStream STREAM = new DataOutputStream( f );
-            final PrintWriter WR = new PrintWriter( STREAM );
-            final MigraineFormPlayer PLAYER = (MigraineFormPlayer) this.getFormPlayer();
-
-            new FormJSONSaver( PLAYER.getRepo(), PLAYER.getSteps() )
-                    .saveToJSON( WR );
-            WR.flush();
-            WR.close();
-            STREAM.close();
-        } catch (IOException e) {
-            final String ERR_MSG = this.getString( R.string.err_io );
-            Log.e( this.getLogTag(), ERR_MSG );
-            Toast.makeText( this, ERR_MSG, Toast.LENGTH_LONG ).show();
-        }
-
-        return TORET;
-    }
-
-    private void uploadToCloud(File fin)
-    {
-        final HandlerThread HANDLER_THREAD = new HandlerThread( "dropbox_backup" );
-        final AppCompatActivity SELF = this;
-
-        HANDLER_THREAD.start();
-
-        final Handler HANDLER = new Handler( HANDLER_THREAD.getLooper() );
-        HANDLER.post( () -> {
-            try {
-                drpbxClient.uploadFile( fin );
-                SELF.runOnUiThread( () -> {
-                    Log.i( this.getLogTag(), "Enquiry data uploaded" );
-                });
-            } catch(DbxException exc) {
-                SELF.runOnUiThread( () -> {
-                    Log.e( this.getLogTag(), "Error uploading: " + exc.getMessage() );
-                });
-            } finally {
-                HANDLER.removeCallbacksAndMessages( null );
-                HANDLER_THREAD.quit();
-            }
-        });
-
-        return;
-    }
-
     @Override
     public void showFormEnd()
     {
@@ -167,8 +100,7 @@ public class MigraineTestActivity extends TestActivity {
 
         BT_TALK.setVisibility( View.GONE );
         BT_SHARE.setOnClickListener( (v) -> {
-            final Intent SEND_INTENT = new Intent();
-            SEND_INTENT.setAction( Intent.ACTION_SEND );
+            final Intent SEND_INTENT = new Intent( Intent.ACTION_SEND );
             SEND_INTENT.putExtra( Intent.EXTRA_TEXT, FINAL_REPORT );
             SEND_INTENT.setType( "text/html" );
 
@@ -176,12 +108,10 @@ public class MigraineTestActivity extends TestActivity {
             this.startActivity( SHARE_INTENT );
         });
 
-        this.uploadToCloud( this.saveJSON() );
         this.shutUp();
     }
 
     public static Form migraineForm;
     public static MigraineFormPlayer player;
     public static MigraineFormPlayer.Settings playerSettings;
-    public static DropboxUsrClient drpbxClient;
 }

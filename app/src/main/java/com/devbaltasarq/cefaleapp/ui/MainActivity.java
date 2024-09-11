@@ -19,7 +19,6 @@ import com.devbaltasarq.cefaleapp.core.faq.Faq;
 import com.devbaltasarq.cefaleapp.core.faq.FaqXMLLoader;
 import com.devbaltasarq.cefaleapp.core.links.WebUrl;
 import com.devbaltasarq.cefaleapp.core.links.WebUrlXMLLoader;
-import com.devbaltasarq.cefaleapp.core.questionnaire.DropboxUsrClient;
 import com.devbaltasarq.cefaleapp.core.questionnaire.HITFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MIDASFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView( R.layout.activity_main );
 
         this.initDefaults();
-        this.prepareDropboxClient();
         this.setButtonListeners();
         this.setNavViewOptionListener();
         this.loadData();
@@ -74,11 +72,6 @@ public class MainActivity extends AppCompatActivity {
     {
         MigraineTestActivity.playerSettings = new MigraineFormPlayer.Settings();
         textSize = TextSize.MEDIUM;
-    }
-
-    private void prepareDropboxClient()
-    {
-        MigraineTestActivity.drpbxClient = new DropboxUsrClient( this );
     }
 
     private void setNavViewOptionListener()

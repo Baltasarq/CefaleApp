@@ -566,8 +566,8 @@
 
     <morbidities>
         <morbidity
-            id="PAIN_LOW_FREQUENCY"
-            name="Dolor esporádico"
+            id="PAIN_MODERATE"
+            name="Dolor de intensidad moderada"
             desc="El número de casos debe ser menor que 3 por mes." />
 
         <morbidity

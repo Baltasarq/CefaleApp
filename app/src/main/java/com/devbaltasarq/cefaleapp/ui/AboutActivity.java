@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
@@ -30,6 +31,7 @@ public class AboutActivity extends AppCompatActivity {
         final ImageView BT_INFO = this.findViewById( R.id.btAboutInfo );
         final ImageView BT_DETAIL = this.findViewById( R.id.btAboutDetailsInfo );
         final WebView LBL_APP_INFO = this.findViewById( R.id.lbl_app_info );
+        final TextView TV_VERSION = this.findViewById( R.id.tvVersion );
 
         if ( ACTION_BAR != null ) {
             ACTION_BAR.setTitle(
@@ -39,6 +41,7 @@ public class AboutActivity extends AppCompatActivity {
             ACTION_BAR.setLogo( R.drawable.medicine );
         }
 
+        TV_VERSION.setText( AppInfo.FULL_NAME );
         LBL_APP_INFO.loadUrl( "file:///android_asset/about.html" );
         BT_ABOUT.setOnClickListener( this::buttonPressed );
         BT_INFO.setOnClickListener( this::buttonPressed );
