@@ -118,8 +118,9 @@ public class Diagnostic {
         final int MAIN_CRITERIA = this.calcMainCriteria();
         boolean toret = false;
 
-        if ( MAIN_CRITERIA == 4 ) {
-            toret = ( ( NAUSEA || ( PHOTO && SOUND ) )
+        if ( MAIN_CRITERIA >= 4 ) {
+            toret = ( this.REPO.areFemaleConditionsPresent()
+                    || ( NAUSEA || ( PHOTO && SOUND ) )
                     || ( NAUSEA && PHOTO )
                     || ( NAUSEA && SOUND )
                     || SOUND );
