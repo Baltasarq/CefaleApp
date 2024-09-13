@@ -82,7 +82,7 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
             // Create a list with all analgesic medicines
             this.treatmentSteps.clear();
 
-            if ( !IS_PAIN_INTENSE ) {
+            if ( IS_PAIN_MODERATE ) {
                 // Moderate pain
                 if ( !AINE_ALLERGY ) {
                     // Start with AINE
@@ -90,10 +90,8 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                             new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
 
                     // Ergotics can be usefult if migraine is esporadic or of low frequency.
-                    if ( IS_PAIN_MODERATE ) {
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
-                    }
+                    this.treatmentSteps.add(
+                            new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
                 } else {
                     // Allergy to AAS or AINE
                     if ( !SULFAMID_ALLERGY ) {
@@ -102,13 +100,13 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                                 new TreatmentStep( MSG_USE_TRIPTAN, GRP_TRIPTAN_ID ) );
                     }
 
-                    // If Triptan goes sideways or sulfamyd allergy present.
-                    // Rimegepant, Lasmiditán
+                    // Ergotics can be usefult if migraine is esporadic or of low frequency.
                     this.treatmentSteps.add(
-                            new TreatmentStep( MSG_USE_RIMEGEPANT_LASMIDITAN,
-                                    new Medicine.Id[]{ ID_RIMEGEPANT, ID_LASMIDITAN } ) );
+                            new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
                 }
-            } else {
+            }
+            else
+            if ( IS_PAIN_INTENSE ) {
                 // Intense pain
                 if ( !SULFAMID_ALLERGY ) {
                     // Start with triptán
@@ -122,29 +120,22 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     }
                 } else {
                     // Ergotics might be useful if migraine is esporadic or of low frequency.
-                    if ( IS_PAIN_MODERATE ) {
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
-                    }
-
-                    if ( !AINE_ALLERGY ) {
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_COMBINE_ERGOTICS_WITH_AINE, GRP_AINE_ID ) );
-                    }
-
-                    // Rimegepant, Lasmiditán
                     this.treatmentSteps.add(
-                            new TreatmentStep( MSG_USE_RIMEGEPANT_LASMIDITAN,
-                                    new Medicine.Id[]{ ID_RIMEGEPANT, ID_LASMIDITAN } ) );
+                            new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
 
                     if ( !AINE_ALLERGY ) {
                         this.treatmentSteps.add(
-                                new TreatmentStep( MSG_COMBINE_RIMEGEPANT_LASMIDITAN_WITH_AINE, GRP_AINE_ID ) );
+                                new TreatmentStep( MSG_COMBINE_RIMEGEPANT_LASMIDITAN_WITH_AINE,
+                                        new Medicine.Id[]{ ID_RIMEGEPANT, ID_LASMIDITAN }));
                     }
                 }
             }
 
-            // Other analgesics: Metamizol
+            // Other analgesics: Lasmisitan, rimegepant, metamizol
+            this.treatmentSteps.add(
+                    new TreatmentStep( MSG_USE_RIMEGEPANT_LASMIDITAN,
+                            new Medicine.Id[]{ ID_RIMEGEPANT, ID_LASMIDITAN } ) );
+
             this.treatmentSteps.add(
                     new TreatmentStep( MSG_USE_METAMIZOL,
                             new Medicine.Id[]{ ID_METAMIZOL } ) );

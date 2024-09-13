@@ -42,6 +42,17 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if ( item.getItemId() == android.R.id.home ) {
+            this.finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected( item );
+    }
+
+    @Override
     protected void prepareMorbidityIds()
     {
         final Map<Morbidity.Id, Morbidity> MORBIDITIES = Morbidity.getAll();
@@ -77,33 +88,57 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
         super.populateLayout( LY, MORBIDITIES );
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    protected void buildCheckboxDependencies()
     {
-        if ( item.getItemId() == android.R.id.home ) {
-            this.finish();
-            return true;
-        }
+        final CheckBox CHK_INTENSE_PAIN = this.getCheckBoxFor( this.painIntense.getId() );
+        final CheckBox CHK_MODERATE_PAIN = this.getCheckBoxFor( this.painModerate.getId() );
 
-        return super.onOptionsItemSelected( item );
+        CHK_INTENSE_PAIN.setOnCheckedChangeListener( (view, checked) -> {
+            if ( checked ) {
+                CHK_MODERATE_PAIN.setChecked( false );
+                CHK_MODERATE_PAIN.setEnabled( false );
+            }
+            else
+            if ( !checked ) {
+                CHK_MODERATE_PAIN.setChecked( true );
+                CHK_MODERATE_PAIN.setEnabled( true );
+                CHK_INTENSE_PAIN.setChecked( false );
+                CHK_INTENSE_PAIN.setEnabled( false );
+            }
+        });
+
+        CHK_MODERATE_PAIN.setOnCheckedChangeListener( (view, checked) -> {
+            if ( checked ) {
+                CHK_INTENSE_PAIN.setChecked( false );
+                CHK_INTENSE_PAIN.setEnabled( false );
+            }
+            else
+            if ( !checked ) {
+                CHK_INTENSE_PAIN.setChecked( true );
+                CHK_INTENSE_PAIN.setEnabled( true );
+                CHK_MODERATE_PAIN.setChecked( false );
+                CHK_MODERATE_PAIN.setEnabled( false );
+            }
+        });
+
+        return;
     }
 
     @Override
     protected void loadFromMigraineRepo()
     {
+        final CheckBox CHK_PAIN_INTENSE = Objects.requireNonNull(
+                this.getCheckBoxFor( this.painIntense.getId() ));
+        final CheckBox CHK_PAIN_MODERATE = Objects.requireNonNull(
+                this.getCheckBoxFor( this.painModerate.getId() ));
         final MigraineRepo REPO = MigraineTestActivity.player.getRepo();
 
         if ( !REPO.isEmpty() ) {
-            final CheckBox CHK_PAIN_INTENSE = Objects.requireNonNull(
-                    this.getCheckBoxFor( this.painIntense.getId() ));
-            final CheckBox CHK_PAIN_LOW_FREQ = Objects.requireNonNull(
-                    this.getCheckBoxFor( this.painModerate.getId() ));
-
-            CHK_PAIN_LOW_FREQ.setChecked(
-                    REPO.getMixedFreq() == MigraineRepo.Frequency.ESPORADIC
-                    || REPO.getMixedFreq() == MigraineRepo.Frequency.LOW );
-
+            CHK_PAIN_MODERATE.setChecked( !REPO.isPainIntense() );
             CHK_PAIN_INTENSE.setChecked( REPO.isPainIntense() );
+        } else {
+            CHK_PAIN_MODERATE.setChecked( true );
+            CHK_PAIN_INTENSE.setChecked( false );
         }
 
         return;

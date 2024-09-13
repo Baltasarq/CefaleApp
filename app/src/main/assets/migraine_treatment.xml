@@ -568,7 +568,7 @@
         <morbidity
             id="PAIN_MODERATE"
             name="Dolor de intensidad moderada"
-            desc="El número de casos debe ser menor que 3 por mes." />
+            desc="El dolor se describe como de moderada intensidad." />
 
         <morbidity
             id="PAIN_INTENSE"
@@ -634,12 +634,15 @@
 
         <morbidity
             id="ALLERGY_ACETILSALICIDIC_ACID"
-            name="Alergia al ácido acetil salicílico"
+            name="Intolerancia o fallo de respuesta al ácido acetil salicílico"
             desc="Una alergia o hipersensibilidad al AAS (ácido acetil salicílico),
                   y a los AINE (medicamentos antinflamatorios no esteroideos),
                   puede provocar cualquiera de los siguientes efectos:
                   ronchas, picazón, inflamación, falta de aire, congestión nasal,
                   sibilancia, debilidad o incluso desmayos.
+                  Otro problema puede ser el de simple intolerancia gástrica.
+                  También puede marcarse esta opción en caso de falta de
+                  respuesta a AINE.
                   Contraindicados:
                     - Todos los AINE.">
             <medicalTreatment>
@@ -1065,11 +1068,10 @@
         <treatmentMessage lang="ES" id="useTRIPTAN">Tomar medicamentos TRIPTANES.</treatmentMessage>
         <treatmentMessage lang="ES" id="useErgoticsAfterAINE">
             Si la migraña es esporádica de baja frecuencia, también se pueden usar ergóticos.
-            Puede combinarse con AINE.
+            Puede combinarse con AINE (si no hay intolerancia).
         </treatmentMessage>
         <treatmentMessage lang="ES" id="useRimegepantLasmiditan">
-            Si hay alergia a las sulfamidas, o hay reacción adversa al Triptán,
-            o falta de eficacia del Triptán.
+            Una posibilidad es el uso de Lasmiditan y Rimegepant.
         </treatmentMessage>
         <treatmentMessage lang="ES" id="useMetamizol">
             Otra alternativa es el Metamizol, si las posibilidades anteriores no funcionan.

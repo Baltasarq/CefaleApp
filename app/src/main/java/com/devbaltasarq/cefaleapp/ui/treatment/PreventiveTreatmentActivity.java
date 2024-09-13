@@ -90,26 +90,14 @@ public class PreventiveTreatmentActivity extends TreatmentActivity {
     @Override
     protected void buildCheckboxDependencies()
     {
-        final CheckBox CHK_HYPER = this.getCheckBoxFor( this.hypertension.getId() );
-        final CheckBox CHK_HYPO = this.getCheckBoxFor( this.hypotension.getId() );
-        final CheckBox CHK_OBESITY = this.getCheckBoxFor( this.obesity.getId() );
-        final CheckBox CHK_ANOREXIA = this.getCheckBoxFor( this.anorexia.getId() );
-
-        if ( CHK_HYPER == null ) {
-            throw new Error( "missing hypertension checkbox" );
-        }
-
-        if ( CHK_HYPO == null ) {
-            throw new Error( "missing hypotension checkbox" );
-        }
-
-        if ( CHK_OBESITY == null ) {
-            throw new Error( "missing obesity checkbox" );
-        }
-
-        if ( CHK_ANOREXIA == null ) {
-            throw new Error( "missing anorexia checkbox" );
-        }
+        final CheckBox CHK_HYPER = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.hypertension.getId() ));
+        final CheckBox CHK_HYPO = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.hypotension.getId() ));
+        final CheckBox CHK_OBESITY = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.obesity.getId() ));
+        final CheckBox CHK_ANOREXIA = Objects.requireNonNull(
+                                        this.getCheckBoxFor( this.anorexia.getId() ));
 
         CHK_HYPER.setOnCheckedChangeListener( (view, checked) -> {
             CHK_HYPO.setEnabled( !checked );
