@@ -19,6 +19,7 @@
                 android:id="@+id/op_enquiry_settings"
                 android:title="@string/lbl_enquiry_settings"
                 android:icon="@drawable/question"
+                android:visible="false"
                 app:showAsAction="never" />
         </group>
     <item android:title="@string/lbl_actions"
