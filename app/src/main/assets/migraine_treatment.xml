@@ -650,7 +650,7 @@
         </morbidity>
 
         <morbidity
-            id="ALLERGY_SULFAMID"
+            id="ALLERGY_SULFADRUG"
             name="Alergia a las sulfamidas"
             desc="Los antibióticos que contienen sustancias químicas denominadas sulfonamidas
                   pueden desencadenar una reacción si se tiene una alergia a sulfamidas.

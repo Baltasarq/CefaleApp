@@ -68,11 +68,11 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
     protected void populateLayout(final LinearLayout LY,
                                   final Map<Morbidity.Id, Morbidity> MORBIDITIES)
     {
-        final Morbidity.Id ID_SULFAMID_ALLERGY = Morbidity.Id.get( "ALLERGY_SULFAMID" );
+        final Morbidity.Id ID_SULFADRUG_ALLERGY = Morbidity.Id.get( "ALLERGY_SULFADRUG" );
         final Morbidity.Id ID_ASPIRIN_ALLERGY = Morbidity.Id.get( "ALLERGY_ACETILSALICIDIC_ACID" );
 
-        final Morbidity SULFAMID_ALLERGY = Objects.requireNonNull(
-                                                MORBIDITIES.get( ID_SULFAMID_ALLERGY ));
+        final Morbidity SULFADRUG_ALLERGY = Objects.requireNonNull(
+                                                MORBIDITIES.get( ID_SULFADRUG_ALLERGY ));
         final Morbidity ASPIRIN_ALLERGY = Objects.requireNonNull(
                                                 MORBIDITIES.get( ID_ASPIRIN_ALLERGY ));
 
@@ -82,7 +82,7 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
 
         MORBIDITIES.put( this.painIntense.getId(), this.painIntense );
         MORBIDITIES.put( this.painModerate.getId(), this.painModerate);
-        MORBIDITIES.put( ID_SULFAMID_ALLERGY, SULFAMID_ALLERGY );
+        MORBIDITIES.put( ID_SULFADRUG_ALLERGY, SULFADRUG_ALLERGY );
         MORBIDITIES.put( ID_ASPIRIN_ALLERGY, ASPIRIN_ALLERGY );
 
         super.populateLayout( LY, MORBIDITIES );

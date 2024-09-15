@@ -43,9 +43,9 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
             final boolean AINE_ALLERGY =
                     MORBIDITIES.contains(
                             Morbidity.Id.get( "ALLERGY_ACETILSALICIDIC_ACID" ) );
-            final boolean SULFAMID_ALLERGY =
+            final boolean SULFADRUG_ALLERGY =
                     MORBIDITIES.contains(
-                            Morbidity.Id.get( "ALLERGY_SULFAMID" ) );
+                            Morbidity.Id.get( "ALLERGY_SULFADRUG" ) );
             final MedicineGroup.Id GRP_AINE_ID = Objects.requireNonNull(
                     MedicineGroup.Id.get( "AINE" ) );
             final MedicineGroup.Id GRP_TRIPTAN_ID = Objects.requireNonNull(
@@ -89,12 +89,12 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
 
-                    // Ergotics can be usefult if migraine is esporadic or of low frequency.
+                    // Ergotics can be useful if migraine is esporadic or of low frequency.
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
                 } else {
-                    // Allergy to AAS or AINE
-                    if ( !SULFAMID_ALLERGY ) {
+                    // Allergy to sulf-drug
+                    if ( !SULFADRUG_ALLERGY ) {
                         // Empezar con Triptán
                         this.treatmentSteps.add(
                                 new TreatmentStep( MSG_USE_TRIPTAN, GRP_TRIPTAN_ID ) );
@@ -108,7 +108,7 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
             else
             if ( IS_PAIN_INTENSE ) {
                 // Intense pain
-                if ( !SULFAMID_ALLERGY ) {
+                if ( !SULFADRUG_ALLERGY ) {
                     // Start with triptán
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_START_WITH_TRIPTAN, GRP_TRIPTAN_ID ) );
@@ -119,15 +119,15 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                                 new TreatmentStep( MSG_COMBINE_TRIPTAN_WITH_AINE, GRP_AINE_ID ) );
                     }
                 } else {
+                    if ( !AINE_ALLERGY ) {
+                        // Start with AINE
+                        this.treatmentSteps.add(
+                                new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
+                    }
+
                     // Ergotics might be useful if migraine is esporadic or of low frequency.
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
-
-                    if ( !AINE_ALLERGY ) {
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_COMBINE_RIMEGEPANT_LASMIDITAN_WITH_AINE,
-                                        new Medicine.Id[]{ ID_RIMEGEPANT, ID_LASMIDITAN }));
-                    }
                 }
             }
 

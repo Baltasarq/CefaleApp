@@ -81,7 +81,7 @@ public class PreventiveTreatmentActivity extends TreatmentActivity {
         // Remove the uninteresting ones for preventive treatment
         MORBIDITIES.remove( Morbidity.Id.get( "PAIN_INTENSE" ) );
         MORBIDITIES.remove( Morbidity.Id.get( "PAIN_MODERATE" ) );
-        MORBIDITIES.remove( Morbidity.Id.get( "ALLERGY_SULFAMID" ) );
+        MORBIDITIES.remove( Morbidity.Id.get( "ALLERGY_SULFADRUG" ) );
         MORBIDITIES.remove( Morbidity.Id.get( "ALLERGY_ACETILSALICIDIC_ACID" ) );
 
         super.populateLayout( LY, MORBIDITIES );
