@@ -94,31 +94,11 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
         final CheckBox CHK_MODERATE_PAIN = this.getCheckBoxFor( this.painModerate.getId() );
 
         CHK_INTENSE_PAIN.setOnCheckedChangeListener( (view, checked) -> {
-            if ( checked ) {
-                CHK_MODERATE_PAIN.setChecked( false );
-                CHK_MODERATE_PAIN.setEnabled( false );
-            }
-            else
-            if ( !checked ) {
-                CHK_MODERATE_PAIN.setChecked( true );
-                CHK_MODERATE_PAIN.setEnabled( true );
-                CHK_INTENSE_PAIN.setChecked( false );
-                CHK_INTENSE_PAIN.setEnabled( false );
-            }
+            CHK_MODERATE_PAIN.setChecked( !checked );
         });
 
         CHK_MODERATE_PAIN.setOnCheckedChangeListener( (view, checked) -> {
-            if ( checked ) {
-                CHK_INTENSE_PAIN.setChecked( false );
-                CHK_INTENSE_PAIN.setEnabled( false );
-            }
-            else
-            if ( !checked ) {
-                CHK_INTENSE_PAIN.setChecked( true );
-                CHK_INTENSE_PAIN.setEnabled( true );
-                CHK_MODERATE_PAIN.setChecked( false );
-                CHK_MODERATE_PAIN.setEnabled( false );
-            }
+            CHK_INTENSE_PAIN.setChecked( !checked );
         });
 
         return;
@@ -134,11 +114,13 @@ public class SymptomaticTreatmentActivity extends TreatmentActivity {
         final MigraineRepo REPO = MigraineTestActivity.player.getRepo();
 
         if ( !REPO.isEmpty() ) {
-            CHK_PAIN_MODERATE.setChecked( !REPO.isPainIntense() );
-            CHK_PAIN_INTENSE.setChecked( REPO.isPainIntense() );
+            boolean painIntense = REPO.isPainIntense();
+
+            CHK_PAIN_INTENSE.setChecked( painIntense );
+            CHK_PAIN_MODERATE.setChecked( !painIntense );
         } else {
-            CHK_PAIN_MODERATE.setChecked( true );
             CHK_PAIN_INTENSE.setChecked( false );
+            CHK_PAIN_MODERATE.setChecked( true );
         }
 
         return;
