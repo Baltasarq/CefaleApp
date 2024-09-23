@@ -83,7 +83,7 @@
             x > 60 Severe impact: your headaches are deeply impacting your life.
             56 < x < 59: Important impact: your headaches are limiting your life.
             50 < x < 55: Somewhat impacting: your headaches are conditioning your life.
-            x > 49: Small or no impact: your headaches are not limiting your life.
+            x < 49: Small or no impact: your headaches are not limiting your life.
         -->
     </branch>
 </form>
