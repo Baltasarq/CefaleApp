@@ -8,5 +8,6 @@ An Android app to aid in the diagnosis of migraine, allowing to distinguish betw
 
 ## Institutions
 
-Servicio de neurología del Hospital CHUO, Ourense.
-ESEI (Escuela Superior de Ingeniería Informática).
+- Servicio de neurología del Hospital CHUO, Ourense.
+
+- ESEI (Escuela Superior de Ingeniería Informática).
