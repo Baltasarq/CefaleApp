@@ -14,4 +14,4 @@ An Android app to aid in the diagnosis of migraine, allowing to distinguish betw
 
 ## Links
 
-- ![CefaleAPP en Google](docs/res/google-badge)
+- ![CefaleAPP en Google](docs/res/google-badge.png)
