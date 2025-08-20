@@ -12,6 +12,4 @@ An Android app to aid in the diagnosis of migraine, allowing to distinguish betw
 
 - ESEI (Escuela Superior de Ingeniería Informática).
 
-## Links
-
-- ![CefaleAPP en Google](docs/res/google-badge.png)
+![CefaleAPP en Google](docs/res/google-badge.png)
