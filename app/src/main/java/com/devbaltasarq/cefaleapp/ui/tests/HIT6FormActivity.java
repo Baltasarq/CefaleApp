@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
-import com.devbaltasarq.cefaleapp.core.questionnaire.HITFormPlayer;
+import com.devbaltasarq.cefaleapp.core.questionnaire.HIT6FormPlayer;
 
 
-public class HITFormActivity extends TestActivity {
-    private static final String LOG_TAG = HITFormActivity.class.getSimpleName();
+public class HIT6FormActivity extends TestActivity {
+    private static final String LOG_TAG = HIT6FormActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +60,14 @@ public class HITFormActivity extends TestActivity {
         super.init();
 
         if ( player == null ) {
-            player = new HITFormPlayer( HITForm );
+            player = new HIT6FormPlayer( HITForm );
         }
 
         player.reset();
     }
 
     @Override
-    public HITFormPlayer getFormPlayer()
+    public HIT6FormPlayer getFormPlayer()
     {
         return player;
     }
@@ -116,5 +116,5 @@ public class HITFormActivity extends TestActivity {
     }
 
     public static Form HITForm;
-    public static HITFormPlayer player;
+    public static HIT6FormPlayer player;
 }

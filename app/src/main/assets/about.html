@@ -1,43 +1,154 @@
 <html>
 <head>
-    <title>Acerca de...</title>
     <meta charset="utf-8" />
+    <script>
+        const DOC_TITLE = {
+            "es": "Acerca de...",
+            "en": "About...",
+            "pt": "Sobre..."
+        };
+
+        function show(strLang)
+        {
+            strLang = strLang.trim().toLowerCase();
+
+            const LANG_TITLE = "title_" + strLang;
+            const LANG_INFO = "info_" + strLang;
+            const TITLES = document.getElementsByClassName( LANG_TITLE );
+            const INFOS = document.getElementsByClassName( LANG_INFO );
+
+            for(let element of TITLES) {
+                element.style.display = "block";
+            }
+
+            for(let element of INFOS) {
+                element.style.display = "block";
+            }
+
+            document.title = DOC_TITLE[ strLang ];
+            document.documentElement.lang = strLang;
+        }
+
+        window.onload = function() { show( "$LANG" ); }
+    </script>
 </head>
 <body style="font-size: 20">
 
-<h2>Diagnóstico</h2>
-<p>Esta aplicación está diseñada para concienciar a la población general
-    sobre qué son las cefaleas, y en concreto,
-    para orientar una cefalea en una persona
-    hacia el <u>diagnóstico</u> de una <b>migraña</b>.
-    Para este fin el usuario deberá responder
-    a las <u>preguntas</u> secuenciales que le presenta la aplicación.
-    Se emitirá un <u>diagnóstico</u> que podrá ser de <b>migraña</b>,
-    de <b>cefalea tensional</b> o de <b>cefalea mixta</b>.
-    Si no cumple con los criterios clínicos
-    para emitir un <u>diagnóstico final</u>,
-    la aplicación le informará al respecto para que
-    acuda a su médico de familia y/o a su neurólogo.
-    Un segundo apartado, en función de las <u>comorbilidades</u> del paciente,
-    permite la aproximación al tratamiento preventivo más adecuado.
+<h2>
+    <span class="title_es" style="display:none">Diagnóstico</span>
+    <span class="title_en" style="display:none">Diagnosis</span>
+    <span class="title_pt" style="display:none">Diagnóstico</span>
+</h2>
+
+<p>
+    <span class="info_es" style="display:none">
+        Esta aplicación está diseñada para concienciar a la población general
+        sobre qué son las cefaleas, y en concreto,
+        para orientar a una persona
+        hacia el <u>diagnóstico</u> de una <b>migraña</b>.
+        Para este fin el usuario deberá responder
+        a las <u>preguntas</u> secuenciales que le presenta la aplicación.
+        Se emitirá un <u>diagnóstico</u> que podrá ser de <b>migraña</b>,
+        de <b>cefalea tensional</b> o de <b>cefalea mixta</b>.
+        Si no cumple con los criterios clínicos
+        para emitir un <u>diagnóstico final</u>,
+        la aplicación le informará al respecto para que
+        acuda a su médico de familia y/o a su neurólogo.
+        Un segundo apartado, en función de las <u>comorbilidades</u> del paciente,
+        permite la aproximación al tratamiento preventivo más adecuado.
+    </span>
+    <span class="info_en" style="display:none">
+        This application is designed to raise awareness among
+        the general population about what headaches are, and specifically,
+        to guide a person toward the <u>diagnosis</u>
+        of a <b>migraine</b>. For this purpose, the user must answer
+        the sequential <u>questions</u> presented by the application.
+        A <u>diagnosis</u> will be issued, which may be <b>migraine</b>,
+        <b>tension headache</b>, or <b>mixed headache</b>.
+        If the criteria for a <u>final diagnosis</u> are not met,
+        the application will inform the user accordingly,
+        advising them to consult their family doctor and/or neurologist.
+        A second section, based on the patient's <u>comorbidities</u>,
+        allows for an approach to the most suitable preventive treatment.
+    </span>
+    <span class="info_pt" style="display:none">
+        Este aplicativo foi projetado para conscientizar a população geral
+        sobre o que são as dores de cabeça e, especificamente,
+        para orientar a uma pessoa
+        ao <u>diagnóstico</u> de uma <b>enxaqueca</b>.
+        Para esse fim, o usuário deverá responder às <u>perguntas</u>
+        sequenciais apresentadas pelo aplicativo.
+        Será emitido um <u>diagnóstico</u>, que poderá ser
+        de <b>enxaqueca</b>, <b>cefaleia tensional</b>
+        ou <b>cefaleia mista</b>.
+        Se não atender aos critérios clínicos para um <u>diagnóstico final</u>,
+        o aplicativo informará o usuário, recomendando
+        que consulte seu médico de família e/ou neurologista.
+        Uma segunda seção, com base nas <u>comorbidades</u> do paciente,
+        permite a abordagem do tratamento preventivo mais adequado.
+    </span>
 </p>
 
-<h2>Impacto</h2>
+<h2>
+    <span class="title_es" style="display:none">Impacto</span>
+    <span class="title_en" style="display:none">Impact</span>
+    <span class="title_pt" style="display:none">Impacto</span>
+</h2>
+
 <p>
-    Además, dispone de varias funciones que permitirán al usuario
-    conocer la respuesta a preguntas frecuentes relacionadas con la migraña,
-    conocer los tratamientos actualmente disponibles
-    para el <u>tratamiento sintomático</u>
-    y <u>preventivo</u> de la <b>migraña</b>,
-    y cumplimentar los test para conocer el impacto de la <b>migraña</b>
-    en la calidad de vida del paciente.
+    <span class="info_es" style="display:none">
+        Además, dispone de varias funciones que permitirán al usuario
+        conocer la respuesta a preguntas frecuentes relacionadas con la migraña,
+        conocer los tratamientos actualmente disponibles
+        para el <u>tratamiento sintomático</u>
+        y <u>preventivo</u> de la <b>migraña</b>,
+        y cumplimentar los test para conocer el impacto de la <b>migraña</b>
+        en la calidad de vida del paciente.
+    </span>
+
+    <span class="info_en" style="display:none">
+        Additionally, it includes several features that will allow users
+        to find answers to frequently asked questions about migraine,
+        learn about currently available treatments
+        for <u>symptomatic treatment</u>
+        and <u>preventive</u> treatment of <b>migraine</b>,
+        and complete tests to assess the impact of <b>migraine</b>
+        on the patient’s quality of life.
+    </span>
+
+    <span class="info_pt" style="display:none">
+        Além disso, dispõe de várias funções que permitirão ao usuário
+        conhecer a resposta a perguntas frequentes relacionadas à enxaqueca,
+        conhecer os tratamentos atualmente disponíveis
+        para o <u>tratamento sintomático</u>
+        e <u>preventivo</u> da <b>enxaqueca</b>,
+        e preencher testes para avaliar o impacto da <b>enxaqueca</b>
+        na qualidade de vida do paciente.
+    </span>
 </p>
 
-<h2>Divulgación</h2>
+<h2>
+    <span class="title_es" style="display:none">Divulgación</span>
+    <span class="title_en" style="display:none">Outreach</span>
+    <span class="title_pt" style="display:none">Divulgação</span>
+</h2>
+
 <p>
-    Finalmente, el usuario tendrá a su disposición diverso contenido
-    divulgativo relacionado con el entorno de la <b>migraña</b>
-    y de las <b>cefaleas</b> en general.
+    <span class="info_es" style="display:none">
+        Finalmente, el usuario tendrá a su disposición diverso contenido
+        divulgativo relacionado con el entorno de la <b>migraña</b>
+        y de las <b>cefaleas</b> en general.
+    </span>
+    <span class="info_en" style="display:none">
+        Finally, the user will have access to various informational contents
+        related to the field of <b>migraine</b>
+        and <b>headaches</b> in general.
+    </span>
+    <span class="info_pt" style="display:none">
+        Finalmente, o usuário terá à disposição diversos conteúdos divulgativos
+        relacionados ao universo da <b>enxaqueca</b>
+        e das <b>cefaleias</b> em geral.
+    </span>
 </p>
 
 </body>

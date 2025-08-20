@@ -1,154 +1,1416 @@
 <?xml version="1.0" encoding="utf-8"?>
 <faq>
     <entry id="faq1">
-        <txt lang="es"
-            q="¿Cefalea y migraña es lo mismo?"
-            a="Cefalea significa simplemente dolor de cabeza. La migraña es un tipo de cefalea. Hay muchos tipos de cefaleas, pero las más conocidas son la migraña, la cefalea tensional y la cefalea en racimos o cefalea de Horton. Todas las cefaleas tienen unos criterios clínicos para su diagnóstico, que se basan fundamentalmente en la intensidad del dolor, en su localización, en su duración, y otros síntomas o características acompañantes."/>
+        <q>
+            <text lang="es">¿Cefalea y migraña es lo mismo?</text>
+            <text lang="en">Is a headache the same as a migraine?</text>
+            <text lang="pt">Dor de cabeça e enxaqueca são a mesma coisa?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Cefalea significa simplemente dolor de cabeza.
+                La migraña es un tipo de cefalea. Hay muchos tipos de cefaleas,
+                pero las más conocidas son la migraña, la cefalea tensional
+                y la cefalea en racimos o cefalea de Horton.
+                Todas las cefaleas tienen unos criterios clínicos
+                para su diagnóstico, que se basan fundamentalmente
+                en la intensidad del dolor, en su localización,
+                en su duración, y otros síntomas o características acompañantes.
+            </text>
+            <text lang="en">
+                Headache simply means pain in the head.
+                Migraine is a type of headache.
+                There are many types of headaches, but the most well-known
+                are migraine, tension headache, and cluster headache
+                or Horton's headache. All headaches have specific
+                clinical criteria for diagnosis, which are primarily based on
+                pain intensity, location, duration, and other accompanying symptoms
+                or characteristics.
+            </text>
+            <text lang="pt">
+                Cefaleia significa simplesmente dor de cabeça.
+                Enxaqueca é um tipo de cefaleia.
+                Existem muitos tipos de cefaleias, mas as mais conhecidas
+                são a enxaqueca, a cefaleia tensional e a cefaleia
+                em salvas ou cefaleia de Horton.
+                Todas as cefaleias possuem critérios clínicos
+                para seu diagnóstico, que se baseiam principalmente
+                na intensidade da dor, localização, duração e outros sintomas
+                ou características associadas.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq2">
-        <txt lang="es"
-            q="¿Las cefaleas se relacionan con el sexo de la persona?"
-            a="La prevalencia de las cefaleas varia con el sexo. La migraña es tres veces más frecuente en las mujeres que en los hombres, en la población general, y esta prevalencia aumenta entre las personas que consultan en Neurología donde el 80% son mujeres. Las pacientes con migraña pueden tener crisis en el periodo menstrual, suelen empeorar con la toma de anticonceptivos hormonales, y suelen mejorar sus migrañas con la menopausia. En los hombres, la cefalea en racimos es tres veces más frecuente que en las mujeres."/>
+        <q>
+            <text lang="es">
+                ¿Las cefaleas se relacionan con el sexo de la persona?
+            </text>
+            <text lang="en">Are headaches related to a person's sex?</text>
+            <text lang="pt">
+                As cefaleias estão relacionadas ao sexo da pessoa?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La prevalencia de las cefaleas varia con el sexo.
+                La migraña es tres veces más frecuente en las mujeres
+                que en los hombres, en la población general,
+                y esta prevalencia aumenta entre las personas
+                que consultan en Neurología donde el 80% son mujeres.
+                Las pacientes con migraña pueden
+                tener crisis en el periodo menstrual,
+                suelen empeorar con la toma de anticonceptivos hormonales,
+                y suelen mejorar sus migrañas con la menopausia.
+                En los hombres, la cefalea en racimos es
+                tres veces más frecuente que en las mujeres.
+            </text>
+            <text lang="en">
+                The prevalence of headaches varies by sex.
+                Migraine is three times more common in women than in men
+                in the general population, and this prevalence
+                increases among people who consult Neurology departments,
+                where 80% are women. Female migraine patients may experience
+                attacks during their menstrual period, often worsen with
+                hormonal contraceptive use, and typically see improvement
+                in their migraines with menopause. In men, cluster headaches
+                are three times more frequent than in women.
+            </text>
+            <text lang="pt">
+                A prevalência das cefaleias varia conforme o sexo.
+                A enxaqueca é três vezes mais frequente em mulheres
+                do que em homens na população geral, e essa prevalência
+                aumenta entre as pessoas que consultam em Neurologia,
+                onde 80% são mulheres. Pacientes com enxaqueca podem
+                ter crises no período menstrual, costumam piorar
+                com o uso de anticoncepcionais hormonais
+                e geralmente apresentam melhora das enxaquecas com a menopausa.
+                Nos homens, a cefaleia em salvas
+                é três vezes mais frequente do que nas mulheres.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq3">
-        <txt lang="es"
-            q="¿Las migrañas se heredan?"
-            a="No hay un gen que transmita la migraña, pero si hay una predisposición genética familiar en al menos el 60% de los pacientes afectados. En ocasiones los pacientes comentan que sus padres no padecen de migraña, pero si la padecía algunos de los abuelos, o de los tíos o de los primos. Hay una migraña especial, la llamada migraña hemipléjica familiar, que se caracteriza por acompañarse de una clínica motora en forma de hemiplejía transitoria y que está genéticamente determinada a través de mutaciones en el gen CACNA1A en el cromosoma 19."/>
+        <q>
+            <text lang="es">¿Las migrañas se heredan?</text>
+            <text lang="en">Are migraines inherited?</text>
+            <text lang="pt">As enxaquecas são hereditárias?</text>
+        </q>
+        <a>
+            <text lang="es">
+                No hay un gen que transmita la migraña,
+                pero si hay una predisposición genética familiar
+                en al menos el 60% de los pacientes afectados.
+                En ocasiones los pacientes comentan que sus padres
+                no padecen de migraña, pero si la padecía algunos de los abuelos,
+                o de los tíos o de los primos.
+                Hay una migraña especial, la llamada migraña hemipléjica familiar,
+                que se caracteriza por acompañarse de una clínica motora
+                en forma de hemiplejía transitoria
+                y que está genéticamente determinada a través de mutaciones
+                en el gen CACNA1A en el cromosoma 19.
+            </text>
+            <text lang="en">
+                There isn't a single gene that causes migraines,
+                but there is a family genetic predisposition in at least 60%
+                of affected patients. Sometimes patients mention that
+                their parents don't suffer from migraines,
+                but some of their grandparents, uncles, or cousins did.
+                There is a special type called familial hemiplegic migraine,
+                which is characterized by accompanying motor symptoms
+                like transient hemiplegia and is genetically determined
+                through mutations in the CACNA1A gene on chromosome 19.
+            </text>
+            <text lang="pt">
+                Não existe um único gene que transmita a enxaqueca,
+                mas há uma predisposição genética familiar em pelo menos
+                60% dos pacientes afetados. Às vezes, os pacientes comentam
+                que seus pais não sofrem de enxaqueca, mas alguns avós,
+                tios ou primos sofriam. Existe um tipo especial,
+                chamado enxaqueca hemiplégica familiar,
+                que se caracteriza por apresentar sintomas motores
+                como hemiplegia transitória e é geneticamente determinada
+                por mutações no gene CACNA1A no cromossomo 19.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq4">
-        <txt lang="es"
-            q="¿Es lo mismo jaqueca que migraña?"
-            a="Jaqueca es la forma popular en que se conoce a la migraña. Otras veces se le conoce como hemicránea, y que indica que es un dolor que afecta a una mitad del cráneo y que es la localización más típica del dolor de la migraña."/>
+        <q>
+            <text lang="es">¿Es lo mismo jaqueca que migraña?</text>
+            <text lang="en">Is a headache the same as a migraine?</text>
+            <text lang="pt">A dor de cabeça é o mesmo que a enxaqueca?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Jaqueca es la forma popular en que se conoce a la migraña.
+                Otras veces se le conoce como hemicránea,
+                y que indica que es un dolor que afecta a una mitad del cráneo,
+                y que es la localización más típica del dolor de la migraña.
+            </text>
+            <text lang="en">
+                Splitting headache is the popular term for migraine.
+                It is sometimes also called hemicrania, indicating that
+                it is a pain affecting one half of the skull,
+                which is the most typical location of migraine pain.
+            </text>
+            <text lang="pt">
+                Dor de cabeça é o termo popular para enxaqueca.
+                Às vezes também é chamada de hemicrania,
+                indicando que é uma dor que afeta metade do crânio,
+                sendo esta a localização mais típica da dor da enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq5">
-        <txt lang="es"
-            q="¿Qué es una migraña?"
-            a="La migraña es un tipo de cefalea. Se diagnostica por criterios clínicos. Sus principales características son la de un dolor de horas de duración, de intensidad moderada-severa, con una cualidad pulsátil y un predominio hemicraneal, es frecuente la presencia de intolerancia a la luz y al ruido, y puede presentar náuseas y/o vómitos. Otra característica es el agravamiento con la actividad física."/>
+        <q>
+            <text lang="es">¿Qué es una migraña?</text>
+            <text lang="en">What is a migraine?</text>
+            <text lang="pt">O que é uma enxaqueca?</text>
+        </q>
+        <a>
+            <text lang="es">
+                La migraña es un tipo de cefalea.
+                Se diagnostica por criterios clínicos.
+                Sus principales características son la de un dolor
+                de horas de duración, de intensidad moderada-severa,
+                con una cualidad pulsátil y un predominio hemicraneal,
+                es frecuente la presencia de intolerancia a la luz y al ruido,
+                y puede presentar náuseas y/o vómitos.
+                Otra característica es el agravamiento con la actividad física.
+            </text>
+            <text lang="en">
+                Migraine is a type of headache.
+                It is diagnosed by clinical criteria. Its main characteristics
+                include pain lasting for hours, of moderate to severe intensity,
+                with a pulsating quality and typically
+                affecting one side of the head.
+                Light and sound sensitivity are common,
+                and it may present with nausea and/or vomiting.
+                Another characteristic is worsening with physical activity.
+            </text>
+            <text lang="pt">
+                A enxaqueca é um tipo de cefaleia.
+                É diagnosticada por critérios clínicos.
+                Suas principais características são dor com duração de horas,
+                de intensidade moderada a severa, com qualidade pulsátil
+                e predominância hemicraniana. É frequente a presença
+                de intolerância à luz e ao ruído, e pode apresentar
+                náuseas e/ou vômitos.
+                Outra característica é o agravamento com a atividade física.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq6">
-        <txt lang="es"
-            q="¿Qué es un aura de migraña?"
-            a="El aura es un síntoma neurológico que precede al inicio del dolor de la migraña. Suele durar entre 5 a 60 minutos. Las auras de la migraña pueden ser visuales (lucecitas, líneas en zig-zag, un espectro de fortificación, una zona oscura en el campo visual -llamada escotoma-), sensitivas (sensación de hormigueos en la mano y alrededor de la boca), del lenguaje (dificultad para expresarse), y motoras (pérdida de fuerza en un lado del cuerpo)."/>
+        <q>
+            <text lang="es">¿Qué es un aura de migraña?</text>
+            <text lang="en">What is a migraine aura?</text>
+            <text lang="pt">O que é aura de enxaqueca?</text>
+        </q>
+        <a>
+            <text lang="es">
+                El aura es un síntoma neurológico que precede
+                al inicio del dolor de la migraña.
+                Suele durar entre 5 a 60 minutos.
+                Las auras de la migraña pueden ser visuales (lucecitas, líneas
+                en zig-zag, un espectro de fortificación, una zona oscura
+                en el campo visual -llamada escotoma-), sensitivas
+                (sensación de hormigueos en la mano y alrededor de la boca),
+                del lenguaje (dificultad para expresarse),
+                y motoras (pérdida de fuerza en un lado del cuerpo).
+            </text>
+            <text lang="en">
+                The aura is a neurological symptom that precedes
+                the onset of migraine pain.
+                It typically lasts between 5 to 60 minutes.
+                Migraine auras can be visual (flashing lights, zigzag lines,
+                a fortification spectrum, a dark area in the visual
+                field—called a scotoma), sensory (tingling sensations
+                in the hand or around the mouth),
+                language-related (difficulty speaking),
+                or motor-related (loss of strength on one side of the body)
+            </text>
+            <text lang="pt">
+                A aura é um sintoma neurológico que precede
+                o início da dor da enxaqueca. Geralmente dura
+                entre 5 a 60 minutos. As auras da enxaqueca podem ser visuais
+                (luzinhas piscando, linhas em zigue-zague,
+                um espectro de fortificação,
+                uma área escura no campo visual — chamada escotoma),
+                sensitivas (formigamentos na mão ou ao redor da boca),
+                de linguagem (dificuldade para se expressar),
+                ou motoras (perda de força em um lado do corpo).
+            </text>
+        </a>
     </entry>
 
     <entry id="faq7">
-        <txt lang="es"
-            q="¿Qué son los pródromos de la migraña?"
-            a="Los síntomas prodrómicos son aquellos que predicen que puede ocurrir una enfermedad. En el caso de la migraña los pacientes suelen referir en las 24 horas previas a una crisis, cambios en el humor con irritabilidad, falta de concentración, cansancio, bostezos, fotosensibilidad y cambios en el apetito con apetencia por los dulces."/>
+        <q>
+            <text lang="es">¿Qué son los pródromos de la migraña?</text>
+            <text lang="en">What are migraine prodromes?</text>
+            <text lang="pt">O que são os pródromos da enxaqueca?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Los síntomas prodrómicos son aquellos que predicen
+                que puede ocurrir una enfermedad. En el caso de la migraña
+                los pacientes suelen referir en las 24 horas
+                previas a una crisis, cambios en el humor con irritabilidad,
+                falta de concentración, cansancio, bostezos,
+                fotosensibilidad y cambios en el apetito con apetencia
+                por los dulces.
+            </text>
+            <text lang="en">
+                Prodromal symptoms are those that predict the possible onset
+                of an illness. In the case of migraines,
+                patients often report experiencing certain symptoms
+                in the 24 hours preceding an attack, including mood changes
+                with irritability, lack of concentration, fatigue, yawning,
+                photosensitivity,
+                and appetite changes with cravings for sweets.
+            </text>
+            <text lang="pt">
+                Os sintomas prodrômicos são aqueles que preveem
+                o possível início de uma doença. No caso da enxaqueca,
+                os pacientes frequentemente relatam,
+                nas 24 horas anteriores a uma crise, alterações de humor
+                com irritabilidade, falta de concentração,
+                cansaço, bocejos, fotossensibilidade e mudanças no apetite
+                com desejo por doces.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq8">
-        <txt lang="es"
-            q="¿Qué es una migraña de alta frecuencia y una migraña crónica?"
-            a="Una migraña de alta frecuencia es aquella en la que los días de cefalea se sitúan entre 8 y 14 días al mes, durante al menos 3 meses consecutivos. Y la migraña crónica implica tener más de 15 días de cefalea al mes durante al menos 3 meses consecutivos. Por tanto, es muy importante que los pacientes se acostumbren a llevar un calendario de migraña donde anotará los días de cefalea, su intensidad y los analgésicos consumidos. El tratamiento precoz de la migraña es la mejor medida para evitar la cronificación de la migraña."/>
+        <q>
+            <text lang="es">
+                ¿Qué es una migraña de alta frecuencia y una migraña crónica?
+            </text>
+            <text lang="en">
+                What is high-frequency migraine and chronic migraine?
+            </text>
+            <text lang="pt">
+                O que é enxaqueca de alta frequência e enxaqueca crônica?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Una migraña de alta frecuencia es aquella en la que
+                los días de cefalea se sitúan entre 8 y 14 días al mes,
+                durante al menos 3 meses consecutivos.
+                Y la migraña crónica implica tener más de 15 días
+                de cefalea al mes durante al menos 3 meses consecutivos.
+                Por tanto, es muy importante que los pacientes
+                se acostumbren a llevar un calendario de migraña
+                donde anotará los días de cefalea, su intensidad
+                y los analgésicos consumidos.
+                El tratamiento precoz de la migraña es la mejor
+                medida para evitar la cronificación de la migraña.
+            </text>
+            <text lang="en">
+                High-frequency migraine is when headache days occur
+                between 8 and 14 days per month for at least
+                3 consecutive months. Chronic migraine involves
+                having more than 15 headache days per month for
+                at least 3 consecutive months. Therefore, it is crucial
+                for patients to get accustomed to keeping
+                a migraine calendar, where they will record headache days,
+                their intensity, and painkillers taken.
+                Early treatment of migraine is the best measure
+                to prevent its chronification.
+            </text>
+            <text lang="pt">
+                A enxaqueca de alta frequência é aquela em que os dias
+                de cefaleia ocorrem entre 8 e 14 dias por mês,
+                durante pelo menos 3 meses consecutivos.
+                Já a enxaqueca crônica envolve mais de 15 dias de cefaleia
+                por mês durante pelo menos 3 meses consecutivos.
+                Por isso, é muito importante que os pacientes se habituem
+                a manter um calendário da enxaqueca, anotando os dias com dor,
+                sua intensidade e os analgésicos consumidos.
+                O tratamento precoce da enxaqueca é a melhor medida
+                para evitar sua cronificação.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq9">
-        <txt lang="es"
-            q="¿Cuándo está indicado realizar una prueba de imagen en la migraña?"
-            a="La migraña es un diagnóstico clínico. Se realiza con una historia clínica detallada identificando las características del dolor y realizando un diagnóstico diferencial con otros tipos de cefaleas tanto primarias como secundarias. En una migraña la exploración neurológica tiene que ser normal. Por tanto, el neurólogo solicitará una prueba en caso de no cumplir estrictamente los criterios diagnósticos o por presentar anomalías en la exploración neurológica, o la respuesta al tratamiento no es la esperable. Sin embargo, una resonancia magnética cerebral se indicará en el caso de una cefalea en racimos o cefalea de Horton y en las neuralgias del trigémino para identificar una causa orgánica responsable de la cefalea."/>
+        <q>
+            <text lang="es">
+                ¿Cuándo está indicado realizar una prueba de imagen en la migraña?
+            </text>
+            <text lang="en">
+                When is imaging testing indicated for migraine?
+            </text>
+            <text lang="pt">
+                Quando está indicado realizar um exame de imagem na enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La migraña es un diagnóstico clínico. Se realiza con una
+                historia clínica detallada identificando
+                las características del dolor y realizando un
+                diagnóstico diferencial con otros tipos de cefaleas
+                tanto primarias como secundarias.
+                En una migraña la exploración neurológica
+                tiene que ser normal. Por tanto, el neurólogo solicitará
+                una prueba en caso de no cumplir estrictamente
+                los criterios diagnósticos o por presentar anomalías
+                en la exploración neurológica, o la respuesta
+                al tratamiento no es la esperable.
+                Sin embargo, una resonancia magnética cerebral
+                se indicará en el caso de una cefalea en racimos
+                o cefalea de Horton y en las neuralgias del trigémino
+                para identificar una causa orgánica responsable de la cefalea.
+            </text>
+            <text lang="en">
+                Migraine is a clinical diagnosis. It is made through
+                a detailed medical history identifying the characteristics
+                of the pain and performing a differential diagnosis
+                with other types of headaches, both primary and secondary.
+                In migraine, the neurological examination must be normal.
+                Therefore, a neurologist will order imaging only
+                if the patient does not strictly meet diagnostic criteria,
+                presents abnormalities in the neurological exam,
+                or shows an unexpected response to treatment.
+                However, a brain MRI will be indicated in cases
+                of cluster headache (Horton's headache)
+                or trigeminal neuralgia to identify
+                an organic cause of the headache.
+            </text>
+            <text lang="pt">
+                A enxaqueca é um diagnóstico clínico. É realizado através
+                de uma história médica detalhada, identificando
+                as características da dor e fazendo um diagnóstico diferencial
+                com outros tipos de cefaleias,
+                tanto primárias quanto secundárias.
+                Na enxaqueca, o exame neurológico deve ser normal.
+                Por isso, o neurologista só solicitará um exame de imagem
+                se o paciente não atender estritamente
+                aos critérios diagnósticos,
+                apresentar anomalias no exame neurológico ou tiver
+                uma resposta inesperada ao tratamento.
+                No entanto, uma ressonância magnética cerebral
+                será indicada em casos de cefaleia em salvas
+                (cefaleia de Horton) ou neuralgia do trigêmeo
+                para identificar uma causa orgânica responsável pela cefaleia.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq10">
-        <txt lang="es"
-            q="¿Cuándo está indicado realizar un electroencefalograma?"
-            a="Epidemiológicamente la epilepsia es más frecuente entre los pacientes con migraña que en la población general, sin embargo, el estudio electroencefalográfico no está indicado en la valoración clínica de las cefaleas. En ocasiones los pacientes con migraña presentan un predominio de las auras, y en este caso se debe realizar un diagnóstico diferencial con la epilepsia y se solicitará un electroencefalograma."/>
+        <q>
+            <text lang="es">
+                ¿Cuándo está indicado realizar un electroencefalograma o EEG?
+            </text>
+            <text lang="en">
+                When is an electroencephalogram (EEG) indicated?
+            </text>
+            <text lang="pt">
+                Quando está indicado realizar um eletroencefalograma (EEG)?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Epidemiológicamente la epilepsia es más frecuente entre
+                los pacientes con migraña que en la población general,
+                sin embargo, el estudio electroencefalográfico
+                no está indicado en la valoración
+                clínica de las cefaleas.
+                En ocasiones los pacientes con migraña presentan
+                un predominio de las auras, y en este caso se
+                debe realizar un diagnóstico diferencial con
+                la epilepsia y se solicitará un electroencefalograma.
+            </text>
+            <text lang="en">
+                Epidemiologically, epilepsy is more frequent
+                among migraine patients than in the general population.
+                However, electroencephalographic testing is not indicated
+                in the clinical evaluation of headaches.
+                Sometimes migraine patients experience predominant auras,
+                and in these cases, a differential diagnosis with epilepsy
+                should be made and an electroencephalogram should be requested.
+            </text>
+            <text lang="pt">
+                Epidemiologicamente, a epilepsia é mais frequente
+                entre pacientes com enxaqueca do que na população geral.
+                No entanto, o estudo eletroencefalográfico não está indicado
+                na avaliação clínica das cefaleias. Em algumas ocasiões,
+                pacientes com enxaqueca apresentam predomínio de auras,
+                e neste caso deve-se realizar um diagnóstico diferencial
+                com epilepsia e solicitar um eletroencefalograma.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq11">
-        <txt lang="es"
-            q="¿Qué relación hay entre migraña y epilepsia?"
-            a="La epilepsia es más prevalente entre los pacientes con migraña que en la población general, y aunque las cifras son dispersas, se puede considerar que la mediana de prevalencia de la epilepsia es de un 6% entre los pacientes con migraña, mientras que en la población general la prevalencia es menor del 1%. La migralepsia es un concepto clínico controvertido que hace referencia a las crisis epilépticas que ocurren durante un episodio de migraña."/>
+        <q>
+            <text lang="es">
+                ¿Qué relación hay entre migraña y epilepsia?
+            </text>
+            <text lang="en">
+                What is the relationship between migraine and epilepsy?
+            </text>
+            <text lang="pt">
+                Qual é a relação entre enxaqueca e epilepsia?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La epilepsia es más prevalente entre los pacientes con migraña
+                que en la población general, y aunque las cifras son dispersas,
+                se puede considerar que la mediana de prevalencia de la epilepsia
+                es de un 6% entre los pacientes con migraña, mientras que en la
+                población general la prevalencia es menor del 1%. La migralepsia
+                es un concepto clínico controvertido que hace referencia a las
+                crisis epilépticas que ocurren durante un episodio de migraña.
+            </text>
+            <text lang="en">
+                Epilepsy is more prevalent among migraine patients
+                than in the general population.
+                Although reported figures vary, median epilepsy prevalence
+                is estimated at 6% in migraine patients, compared to
+                less than 1% in the general population.
+                Migralepsy is a controversial clinical concept referring to
+                epileptic seizures occurring during a migraine episode.
+            </text>
+            <text lang="pt">
+                A epilepsia é mais prevalente entre pacientes com enxaqueca
+                do que na população geral. Embora os dados variem,
+                considera-se que a prevalência mediana da epilepsia é de 6%
+                em pacientes com enxaqueca,
+                enquanto na população geral é inferior a 1%.
+                A migralepsia é um conceito clínico controverso que se refere
+                a crises epilépticas que ocorrem durante um episódio de enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq12">
-        <txt lang="es"
-            q="¿Hay alimentos que provocan migraña?"
-            a="Una relación entre ciertos alimentos y una crisis de migraña puede estar presente en el 10–20% de los pacientes con migraña. Los alimentos que más se han implicado son el chocolate, los frutos secos, el plátano, las fresas, el vino tinto (sulfitos), los quesos curados, edulcorantes artificiales (aspartamo), el glutamato monosódico (es un aditivo que se emplea como conservante de las comidas, y se relacionó con la cefalea tras una comida en un restaurante chino), la tiramina (presente en quesos con el feta, parmesano y queso azul). Cada paciente debe identificar si hay algún alimento que le pueda generar una crisis migraña y evitarlo. No hay que olvidar que el ayuno también puede ocasionar una crisis de migraña."/>
+        <q>
+            <text lang="es">¿Hay alimentos que provocan migraña?</text>
+            <text lang="en">Are there foods that trigger migraines?</text>
+            <text lang="pt">Existem alimentos que provocam enxaqueca?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Una relación entre ciertos alimentos y una crisis de migraña
+                puede estar presente en el 10–20% de los pacientes con migraña.
+                Los alimentos que más se han implicado son el chocolate, los
+                frutos secos, el plátano, las fresas, el vino tinto (sulfitos),
+                los quesos curados, edulcorantes artificiales (aspartamo), el
+                glutamato monosódico (es un aditivo que se emplea como
+                conservante de las comidas, y se relacionó con la cefalea tras
+                una comida en un restaurante chino), la tiramina (presente en
+                quesos con el feta, parmesano y queso azul). Cada paciente debe
+                identificar si hay algún alimento que le pueda generar una crisis
+                migraña y evitarlo. No hay que olvidar que el ayuno también
+                puede ocasionar una crisis de migraña.
+            </text>
+            <text lang="en">
+                A link between certain foods and migraine attacks
+                may be present in 10-20% of migraine patients.
+                The most commonly implicated foods are chocolate, nuts,
+                bananas, strawberries, red wine (sulfites), aged cheeses,
+                artificial sweeteners (aspartame),
+                and monosodium glutamate (an additive used as a
+                food preservative that was linked to headaches
+                after eating Chinese restaurant food).
+                Tyramine (found in cheeses like feta,
+                parmesan, and blue cheese) is another trigger.
+                Each patient should identify if any particular food
+                may trigger their migraines and avoid it.
+                It's important to remember that fasting
+                can also trigger migraine attacks.
+            </text>
+            <text lang="pt">
+                Uma relação entre certos alimentos
+                e uma crise de enxaqueca pode estar presente em 10-20%
+                dos pacientes com enxaqueca. Os alimentos mais frequentemente
+                implicados são o chocolate, as nozes, a banana, o morango,
+                o vinho tinto (sulfitos), os queijos curados,
+                adoçantes artificiais (aspartame), o glutamato monossódico
+                (é um aditivo utilizado como conservante de alimentos
+                e foi relacionado à cefaleia após uma refeição
+                em um restaurante chinês),
+                a tiramina (presente em queijos como feta, parmesão
+                e queijo azul). Cada paciente deve identificar
+                se há algum alimento que possa desencadear
+                uma crise de enxaqueca e evitá-lo.
+                Não se deve esquecer que o jejum também pode causar
+                uma crise de enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq13">
-        <txt lang="es"
-            q="¿Qué relación hay entre el déficit de DAO y la migraña?"
-            a="Esta relación no está reconocida por la Sociedad Española de Neurología que ha emitido una nota informativa en este sentido.
-        Por el interés divulgativo, transcribimos la información que se registra en la página web de ADN-Institut sobre DAO y migraña. El déficit de DAO, también denominado intolerancia a la histamina o histaminosis alimentaria, es una alteración metabólica caracterizada por una disminución en la capacidad de degradación de la histamina procedente de la dieta. Se debe a una disminución en la actividad de la enzima diaminooxidasa (DAO), encargada de metabolizar la histamina. Se calcula que el déficit de DAO afecta al 12% de la población, con una mayor prevalencia en mujeres. En las personas con una actividad normal de DAO, la histamina de los alimentos es degradada rápidamente, pero aquellas que tienen una disminución en la actividad de esta enzima acumulan altos niveles de histamina en sangre (histaminosis). Esto aumenta la probabilidad de presentar efectos adversos como migraña, síntomas gastrointestinales, piel seca o atópica o fatiga crónica, entre otros. El déficit de DAO es el principal responsable de la migraña alimentaria.
-        A partir de un test simple y no invasivo, las personas que sufren migraña pueden conocer si esta dolencia es debida a un trastorno en la metabolización de la histamina presente en ciertos alimentos ricos en esta sustancia como por ejemplo los embutidos, leches y derivados lácticos, alimentos precocinados y bollería industrial, entre otros."/>
+        <q>
+            <text lang="es">
+                ¿Qué relación hay entre el déficit de DAO y la migraña?
+            </text>
+            <text lang="en">
+                What is the relationship between DAO deficiency and migraine?
+            </text>
+            <text lang="pt">
+                Qual é a relação entre a deficiência de DAO e a enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Esta relación no está reconocida por la Sociedad Española de
+                Neurología que ha emitido una nota informativa en este sentido.
+                Por el interés divulgativo, transcribimos la información que se
+                registra en la página web de ADN-Institut sobre DAO y migraña. El
+                déficit de DAO, también denominado intolerancia a la histamina o
+                histaminosis alimentaria, es una alteración metabólica
+                caracterizada por una disminución en la capacidad de degradación
+                de la histamina procedente de la dieta. Se debe a una disminución
+                en la actividad de la enzima diaminooxidasa (DAO), encargada de
+                metabolizar la histamina. Se calcula que el déficit de DAO afecta
+                al 12% de la población, con una mayor prevalencia en mujeres. En
+                las personas con una actividad normal de DAO, la histamina de los
+                alimentos es degradada rápidamente, pero aquellas que tienen una
+                disminución en la actividad de esta enzima acumulan altos
+                niveles de histamina en sangre (histaminosis). Esto aumenta la
+                probabilidad de presentar efectos adversos como migraña,
+                síntomas gastrointestinales, piel seca o atópica o fatiga
+                crónica, entre otros. El déficit de DAO es el principal
+                responsable de la migraña alimentaria. A partir de un test simple
+                y no invasivo, las personas que sufren migraña pueden conocer si
+                esta dolencia es debida a un trastorno en la metabolización de la
+                histamina presente en ciertos alimentos ricos en esta sustancia
+                como por ejemplo los embutidos, leches y derivados lácticos,
+                alimentos precocinados y bollería industrial, entre otros.
+            </text>
+            <text lang="en">
+                This relationship is not recognized by
+                the Spanish Society of Neurology, which has issued
+                an informative note on this matter. For educational purposes,
+                we transcribe the information recorded on the ADN-Institut
+                website regarding DAO and migraine.
+                DAO deficiency, also called histamine intolerance
+                or dietary histaminosis, is a metabolic disorder characterized
+                by a reduced capacity to break down dietary histamine.
+                It results from decreased activity of the diamine oxidase (DAO)
+                enzyme responsible for metabolizing histamine.
+                It is estimated that DAO deficiency affects 12%
+                of the population, with higher prevalence in women.
+                In people with normal DAO activity,
+                dietary histamine is rapidly degraded,
+                but those with reduced enzyme activity accumulate
+                high blood histamine levels (histaminosis).
+                This increases the likelihood of adverse effects like migraines,
+                gastrointestinal symptoms, dry or atopic skin, or chronic fatigue,
+                among others. DAO deficiency is the main cause
+                of dietary-related migraine. Through a simple,
+                non-invasive test, migraine sufferers can determine
+                if their condition is due to impaired metabolism
+                of histamine from certain histamine-rich foods
+                like processed meats, milk and dairy products,
+                ready-made meals, and industrial baked goods, among others.
+            </text>
+            <text lang="pt">
+                Esta relação não é reconhecida pela
+                Sociedade Espanhola de Neurologia,
+                que emitiu uma nota informativa nesse sentido.
+                Para fins educativos, transcrevemos as informações registradas
+                no site do ADN-Institut sobre DAO e enxaqueca.
+                O déficit de DAO, também chamado de intolerância à histamina
+                ou histaminose alimentar, é uma alteração
+                metabólica caracterizada pela redução na capacidade de degradar
+                a histamina da dieta. Deve-se à diminuição da atividade
+                da enzima diamino oxidase (DAO), responsável por metabolizar
+                a histamina. Estima-se que o déficit de DAO
+                afete 12% da população, com maior prevalência em mulheres.
+                Em pessoas com atividade normal de DAO, a histamina alimentar
+                é degradada rapidamente, mas aquelas com atividade enzimática
+                reduzida acumulam altos níveis de histamina no sangue (histaminose).
+                Isso aumenta a probabilidade de efeitos adversos como enxaqueca,
+                sintomas gastrointestinais, pele seca ou atópica ou fadiga crônica,
+                entre outros. O déficit de DAO é o principal responsável
+                pela enxaqueca alimentar. Por meio de um teste simples
+                e não invasivo, pessoas com enxaqueca podem saber se sua condição
+                se deve a um distúrbio no metabolismo da histamina presente
+                em certos alimentos ricos nessa substância,
+                como embutidos, leites e derivados lácteos,
+                alimentos pré-cozidos e produtos de padaria industrial,
+                entre outros.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq14">
-        <txt lang="es"
-            q="¿Qué relación hay entre la migraña y la menstruación?"
-            a="La migraña puede guardar una relación con el periodo menstrual de dos maneras. La primera es que durante el ciclo menstrual las migrañas sean más frecuentes o intensas, y la segunda es que la migraña se presente exclusivamente durante el período menstrual (es la migraña catamenial). La migraña puede ocurrir premenstrual, durante el menstruo y postmenstrual. No hay diferencias clínicas entre la migraña menstrual y la migraña fuera del ciclo, pero si es habitual que sean más intensas y con menos respuesta a los tratamientos analgésicos."/>
+        <q>
+            <text lang="es">
+                ¿Qué relación hay entre la migraña y la menstruación?
+            </text>
+            <text lang="en">
+                What is the relationship between migraines and menstruation?
+            </text>
+            <text lang="pt">
+                Qual é a relação entre enxaqueca e menstruação?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La migraña puede guardar una relación con el periodo menstrual de
+                dos maneras. La primera es que durante el ciclo menstrual las
+                migrañas sean más frecuentes o intensas, y la segunda es que la
+                migraña se presente exclusivamente durante el período menstrual
+                (es la migraña catamenial). La migraña puede ocurrir
+                premenstrual, durante el menstruo y postmenstrual. No hay
+                diferencias clínicas entre la migraña menstrual y la migraña
+                fuera del ciclo, pero si es habitual que sean más intensas y con
+                menos respuesta a los tratamientos analgésicos.
+            </text>
+            <text lang="en">
+                Migraines can be related to the menstrual period in two ways.
+                The first is that migraines may become more frequent or intense
+                during the menstrual cycle, and the second is that migraines
+                occur exclusively during the menstrual period
+                (this is called catamenial migraine).
+                Migraines can happen premenstrually, during menstruation,
+                or postmenstrually.
+                There are no clinical differences between menstrual migraines
+                and migraines outside the cycle, but they tend to be more severe
+                and less responsive to painkiller treatments.
+            </text>
+            <text lang="pt">
+                A enxaqueca pode estar relacionada ao período menstrual
+                de duas formas. A primeira é que, durante o ciclo menstrual,
+                as enxaquecas podem se tornar mais frequentes ou intensas,
+                e a segunda é que a enxaqueca ocorre exclusivamente
+                durante o período menstrual (é a chamada enxaqueca catamenial).
+                A enxaqueca pode acontecer no período pré-menstrual,
+                durante a menstruação ou pós-menstrual.
+                Não há diferenças clínicas entre a enxaqueca menstrual
+                e a enxaqueca fora do ciclo, mas é comum que elas
+                sejam mais intensas e tenham menor resposta
+                aos tratamentos analgésicos.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq15">
-        <txt lang="es"
-            q="¿Es cierto que dejaré de tener migrañas en la menopausia?"
-            a="La norma es que el 70% de las mujeres experimentarán una mejoría o un cese de sus migrañas en la fase de menopausia. Evidentemente si la migraña tenía una alta influencia menstrual y ovulatoria estos factores quedan ahora eliminados. Algunas mujeres pueden experimentar una cronificación de la migraña, es decir, la intensidad de la migraña se reduce, pero la cefalea ocurre más a diario. También conocemos algunos casos de cefalea de perfil migrañoso que se han iniciado en la postmenopausia. Finalmente, recordar que la terapia hormonal sustitutiva para el control de los síntomas de la menopausia y de la osteoporosis también se ha relacionado con la migraña."/>
+        <q>
+            <text lang="es">
+                ¿Es cierto que dejaré de tener migrañas en la menopausia?
+            </text>
+            <text lang="en">
+                Is it true that I'll stop having migraines during menopause?
+            </text>
+            <text lang="pt">
+                É verdade que vou parar de ter enxaquecas na menopausia?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La norma es que el 70% de las mujeres experimentarán una mejoría
+                o un cese de sus migrañas en la fase de menopausia.
+                Evidentemente si la migraña tenía una alta influencia menstrual y
+                ovulatoria estos factores quedan ahora eliminados. Algunas
+                mujeres pueden experimentar una cronificación de la migraña, es
+                decir, la intensidad de la migraña se reduce, pero la cefalea
+                ocurre más a diario. También conocemos algunos casos de cefalea
+                de perfil migrañoso que se han iniciado en la postmenopausia.
+                Finalmente, recordar que la terapia hormonal sustitutiva para el
+                control de los síntomas de la menopausia y de la osteoporosis
+                también se ha relacionado con la migraña.
+            </text>
+            <text lang="en">
+                The general rule is that 70% of women will experience
+                improvement or complete cessation of their migraines
+                during menopause. Naturally, if migraines were
+                heavily influenced by menstrual and ovulatory factors,
+                these triggers are now eliminated. Some women may experience
+                chronic migraines, meaning the intensity decreases
+                but headaches occur more frequently.
+                We also know of cases where migraine-like headaches
+                first appear in postmenopause. Finally, it's important
+                to note that hormone replacement therapy (HRT)
+                for managing menopausal symptoms and osteoporosis
+                has also been linked to migraines.
+            </text>
+            <text lang="pt">
+                A norma é que 70% das mulheres terão melhora ou cessação
+                de suas enxaquecas na menopausa.
+                Evidentemente, se a enxaqueca tinha forte
+                influência menstrual e ovulatória, esses fatores agora
+                são eliminados. Algumas mulheres podem experimentar
+                uma cronificação da enxaqueca, ou seja,
+                a intensidade diminui, mas a cefaleia passa
+                a ocorrer diariamente. Também conhecemos casos de cefaleia
+                com perfil enxaquecoso que surgiram na pós-menopausa.
+                Por fim, é importante lembrar que a
+                terapia hormonal substitutiva (THS) para controle
+                dos sintomas da menopausa e osteoporose
+                também tem relação com a enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq16">
-        <txt lang="es"
-            q="¿Puedo tomar anticonceptivos con hormonas  (“la píldora”), si tengo migraña?"
-            a="Está bien reconocido que los anticonceptivos hormonales empeoran la migraña, tanto la frecuencia como la intensidad de la crisis. No obstante, un 30% de las mujeres no refieren este empeoramiento con los anticonceptivos. Siempre debe usarse el anticonceptivo con la menor dosis de estrógeno posible. Evidentemente si la indicación del empleo es como anticonceptivo y se produce un agravamiento de la migraña, este debería ser retirado, aunque es una decisión compartida con la paciente. Si la indicación es por un problema ginecológico (endometriosis, dismenorrea, metrorragias) y su uso es obligatorio para el control de la patología, el neurólogo buscará el método más eficaz para intentar controlar la migraña."/>
+        <q>
+            <text lang="es">
+                ¿Puedo tomar anticonceptivos con hormonas (“la píldora”), si tengo migraña?
+            </text>
+            <text lang="en">
+                Can I take hormonal contraceptives ('the pill') if I have migraines?
+            </text>
+            <text lang="pt">
+                Posso tomar anticoncepcionais hormonais ('a pílula') se tenho enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Está bien reconocido que los anticonceptivos hormonales empeoran
+                la migraña, tanto la frecuencia como la intensidad de la crisis.
+                No obstante, un 30% de las mujeres no refieren este empeoramiento
+                con los anticonceptivos. Siempre debe usarse el anticonceptivo
+                con la menor dosis de estrógeno posible. Evidentemente si la
+                indicación del empleo es como anticonceptivo y se produce un
+                agravamiento de la migraña, este debería ser retirado, aunque es
+                una decisión compartida con la paciente. Si la indicación es por
+                un problema ginecológico (endometriosis, dismenorrea,
+                metrorragias), y su uso es obligatorio para el control de la
+                patología, el neurólogo buscará el método más eficaz para
+                intentar controlar la migraña.
+            </text>
+            <text lang="en">
+                It is well recognized that hormonal contraceptives
+                worsen migraines, both in frequency and intensity of attacks.
+                However, about 30% of women don't report this worsening
+                with contraceptives. The contraceptive with the
+                lowest possible estrogen dose should always be used.
+                Obviously, if the medication is being used
+                for contraception and causes worsening of migraines,
+                it should be discontinued,
+                though this should be a shared decision with the patient.
+                If it's prescribed for a gynecological condition
+                (endometriosis, dysmenorrhea, metrorrhagia),
+                and its use is essential for managing the condition,
+                the neurologist will seek the most effective method
+                to try to control the migraines.
+            </text>
+            <text lang="pt">
+                Está bem reconhecido que os anticoncepcionais hormonais
+                pioram a enxaqueca, tanto na frequência quanto na intensidade
+                das crises. No entanto, cerca de 30% das mulheres não relatam
+                essa piora com os anticoncepcionais.
+                Deve-se sempre usar o anticoncepcional com a menor
+                dose possível de estrogênio.
+                Evidentemente, se a indicação é para contracepção
+                e ocorre agravamento da enxaqueca, ele deve ser suspenso,
+                embora essa seja uma decisão compartilhada com a paciente.
+                Se a indicação é por um problema ginecológico
+                (endometriose, dismenorreia, metrorragia),
+                e seu uso é obrigatório para o controle da patologia,
+                o neurologista buscará o método mais eficaz
+                para tentar controlar a enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq17">
-        <txt lang="es"
-            q="¿Qué puedo usar para tratar la migraña si estoy embarazada?"
-            a="Siempre en el embarazo hay que buscar el equilibrio entre el riesgo y el beneficio de los tratamientos. Consensuar los tratamientos con el obstetra es la mejor práctica médica. Medidas no farmacológicas como el reposo a oscuras y en silencio y con el empleo de frio local pueden resultar de alivio. Analgésicos como paracetamol o el metamizol pueden ser empleados durante el embarazo, y también los antiinflamatorios no esteroideos (ibuprofeno, naproxeno) con seguridad hasta el segundo trimestre de la gestación. El sumatriptán es un tratamiento específico para la migraña sin aparente riesgo para su uso en la gestación. Una pauta corta de prednisona también podría valorarse. Si precisáramos emplear un tratamiento preventivo por una alta frecuencia de migrañas incapacitantes, si no hay contraindicaciones, el propanolol es el indicado."/>
+        <q>
+            <text lang="es">
+                ¿Qué puedo usar para tratar la migraña si estoy embarazada?
+            </text>
+            <text lang="en">
+                What can I use to treat migraines if I'm pregnant?
+            </text>
+            <text lang="pt">
+                O que posso usar para tratar enxaqueca se estou grávida?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Siempre en el embarazo hay que buscar el equilibrio entre el
+                riesgo y el beneficio de los tratamientos. Consensuar los
+                tratamientos con el obstetra es la mejor práctica médica. Medidas
+                no farmacológicas como el reposo a oscuras y en silencio y con el
+                empleo de frio local pueden resultar de alivio. Analgésicos como
+                paracetamol o el metamizol pueden ser empleados durante el
+                embarazo, y también los antiinflamatorios no esteroideos
+                (ibuprofeno, naproxeno), con seguridad hasta el segundo trimestre
+                de la gestación. El sumatriptán es un tratamiento específico
+                para la migraña sin aparente riesgo para su uso en la gestación.
+                Una pauta corta de prednisona también podría valorarse. Si
+                precisáramos emplear un tratamiento preventivo por una alta
+                frecuencia de migrañas incapacitantes, si no hay
+                contraindicaciones, el propanolol es el indicado.
+            </text>
+            <text lang="en">
+                During pregnancy, it's always essential to balance
+                the risks and benefits of treatments.
+                Coordinating treatment plans with the obstetrician represents
+                the best medical practice. Non-pharmacological measures such as
+                resting in a dark, quiet environment
+                with local cold application can provide relief.
+                Analgesics like paracetamol or metamizole may be used
+                during pregnancy, as can non-steroidal anti-inflammatory drugs
+                (ibuprofen, naproxen), safely through the second trimester.
+                Sumatriptan is a specific migraine treatment
+                with no apparent risk for use during pregnancy.
+                A short course of prednisone could also be considered.
+                If preventive treatment becomes necessary
+                for frequent disabling migraines, propranolol
+                is the recommended option when no contraindications exist.
+            </text>
+            <text lang="pt">
+                Na gravidez, é sempre fundamental equilibrar os riscos
+                e benefícios dos tratamentos. Consensuar os tratamentos
+                com o obstetra representa a melhor prática médica.
+                Medidas não farmacológicas como repouso em ambiente escuro
+                e silencioso com aplicação local de frio podem
+                proporcionar alívio. Analgésicos como paracetamol
+                ou dipirona podem ser utilizados durante a gravidez,
+                assim como anti-inflamatórios não esteroides
+                (ibuprofeno, naproxeno), com segurança até
+                o segundo trimestre de gestação.
+                O sumatriptano é um tratamento específico para enxaqueca
+                sem riscos aparentes durante a gestação.
+                Um regime curto de prednisona também poderia ser considerado.
+                Caso seja necessário um tratamento preventivo devido
+                à alta frequência de enxaquecas incapacitantes,
+                o propranolol é o indicado na ausência de contraindicações.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq18">
-        <txt lang="es"
-            q="¿Hay un riesgo entre tener migraña y los ictus cerebrales?"
-            a="La migraña se ha identificado como un factor de riesgo independiente para la ocurrencia de un ictus isquémico. Estamos hablando de incidencias muy bajas, no hay que generar temor, pero una mujer debe estar informada de los riesgos que se asumen con el uso de los anticonceptivos. Esta relación es más relevante en mujeres y en presencia de migraña con aura. El riesgo de ictus aumenta en presencia de otros factores asociados, de forma que se incrementa más de 3 veces en las pacientes con migraña con hábito tabáquico y más de 4 veces en las que consumen anticonceptivos orales (y a mayor dosis de estrógenos contenidos en la píldora anticonceptiva, mayor riesgo de ictus). Otro concepto es el infarto migrañoso que es el que ocurre durante una crisis de migraña, y que suele ocurrir en mujeres menores de 45 años y que combinan el hábito tabáquico y el uso de anticonceptivos. Hay otra patología que se ha identificado como más prevalente en los pacientes con migraña y que son las disecciones arteriales, y que pueden dar lugar a la ocurrencia de un ictus. Finalmente, comentar que los anticonceptivos hormonales se han relacionado con un mayor riesgo de presentar una trombosis venosa -incluida la cerebral-, y este riesgo se ha relacionado con un déficit en algún factor de la coagulación, y que debe estudiarse antes de la prescripción de los anticonceptivos."/>
+        <q>
+            <text lang="es">
+                ¿Hay una relación entre tener migraña y los ictus cerebrales?
+            </text>
+            <text lang="en">
+                Are migraines associated with an increased risk of stroke?
+            </text>
+            <text lang="pt">
+                Há uma ligação entre enxaqueca e derrame cerebral (ACV)?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                La migraña se ha identificado como un factor de riesgo
+                independiente para la ocurrencia de un ictus isquémico. Estamos
+                hablando de incidencias muy bajas, no hay que generar temor, pero
+                una mujer debe estar informada de los riesgos que se asumen con
+                el uso de los anticonceptivos. Esta relación es más relevante en
+                mujeres y en presencia de migraña con aura. El riesgo de ictus
+                aumenta en presencia de otros factores asociados, de forma que
+                se incrementa más de 3 veces en las pacientes con migraña con
+                hábito tabáquico y más de 4 veces en las que consumen
+                anticonceptivos orales (y a mayor dosis de estrógenos contenidos
+                en la píldora anticonceptiva, mayor riesgo de ictus). Otro
+                concepto es el infarto migrañoso que es el que ocurre durante una
+                crisis de migraña, y que suele ocurrir en mujeres menores de 45
+                años y que combinan el hábito tabáquico y el uso de
+                anticonceptivos. Hay otra patología que se ha identificado como
+                más prevalente en los pacientes con migraña y que son las
+                disecciones arteriales, y que pueden dar lugar a la ocurrencia de
+                un ictus. Finalmente, comentar que los anticonceptivos
+                hormonales se han relacionado con un mayor riesgo de presentar
+                una trombosis venosa -incluida la cerebral-, y este riesgo se
+                ha relacionado con un déficit en algún factor de la coagulación,
+                y que debe estudiarse antes de la prescripción de los
+                anticonceptivos.
+            </text>
+            <text lang="en">
+                Migraine has been identified as an independent risk factor
+                for ischemic stroke. We're discussing very low incidence rates
+                (there's no need for alarm), but women should be informed about
+                the risks associated with contraceptive use.
+                This association is most relevant for women
+                with migraine with aura. Stroke risk increases in the presence
+                of other factors, rising more than 3-fold in migraine patients
+                who smoke and over 4-fold in those taking oral contraceptives
+                (with higher estrogen doses correlating
+                with greater stroke risk). Another concept is
+                migrainous infarction, which occurs during a migraine attack,
+                typically affecting women under 45 who both smoke
+                and use contraceptives. Arterial dissections
+                have also been identified as more prevalent in migraine patients
+                and may lead to stroke. Finally, hormonal contraceptives
+                have been associated with increased risk of venous thrombosis
+                (including cerebral venous thrombosis), particularly
+                in women with coagulation factor deficiencies,
+                which should be evaluated before prescribing contraceptives.
+            </text>
+            <text lang="pt">
+                A enxaqueca foi identificada como fator de risco independente
+                para acidente vascular cerebral (AVC) isquémico.
+                Falamos de incidências muito baixas (não há motivo para alarme),
+                mas as mulheres devem estar informadas sobre
+                os riscos associados ao uso de contracetivos.
+                Esta relação é mais relevante em mulheres com enxaqueca com aura.
+                O risco de AVC aumenta na presença de outros fatores,
+                elevando-se mais de 3 vezes em doentes com enxaqueca
+                que fumam e mais de 4 vezes naquelas
+                que tomam contracetivos orais (sendo que doses mais elevadas
+                de estrogénio aumentam o risco). Outro conceito é
+                o enfarte migranoso, que ocorre durante uma crise de enxaqueca,
+                geralmente em mulheres com menos de 45 anos que
+                combinam tabagismo e contraceção. As dissecções arteriais
+                também são mais prevalentes em doentes com enxaqueca e podem
+                causar AVC. Por fim, os contracetivos hormonais
+                foram associados a maior risco de trombose venosa
+                (incluindo trombose venosa cerebral),
+                especialmente em mulheres com défices de fatores de coagulação,
+                que devem ser avaliados antes da prescrição.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq19">
-        <txt lang="es"
-            q="¿Puedo tomar cualquier calmante para aliviar mi migraña?"
-            a="En principio si puede, pero siempre con la supervisión de su médico de atención primaria. El dolor de la migraña suele ser de una intensidad moderada o grave, y los analgésicos que están más indicados son los antiinflamatorios no esteroideos (AINEs), entre los que se encuentran el ibuprofeno, el diclofenaco, el naproxeno y el dexketoprofeno. Lo importante es tomar el analgésico al inicio del dolor, ya que si la migraña ya está instaurada la respuesta a la medicación es parcial. Si la cefalea es de intensidad severa el mejor tratamiento sintomático son los llamados triptanes. Lo que siempre se debe evitar son los fármacos que combinan analgésicos y la toma de medicación opiácea. Hay que evitar el abuso de los analgésicos ya que se ha relacionado con la cronificación de la migraña."/>
+        <q>
+            <text lang="es">
+                ¿Puedo tomar cualquier calmante para aliviar mi migraña?
+            </text>
+            <text lang="en">
+                Can I take any painkiller to relieve my migraine?
+            </text>
+            <text lang="pt">
+                Posso tomar qualquer analgésico para aliviar a minha enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                En principio si puede, pero siempre con la supervisión de su
+                médico de atención primaria. El dolor de la migraña suele ser de
+                una intensidad moderada o grave, y los analgésicos que están más
+                indicados son los antiinflamatorios no esteroideos (AINEs),
+                entre los que se encuentran el ibuprofeno, el diclofenaco, el
+                naproxeno y el dexketoprofeno. Lo importante es tomar el
+                analgésico al inicio del dolor, ya que si la migraña ya está
+                instaurada la respuesta a la medicación es parcial. Si la
+                cefalea es de intensidad severa el mejor tratamiento sintomático
+                son los llamados triptanes. Lo que siempre se debe evitar son los
+                fármacos que combinan analgésicos y la toma de medicación
+                opiácea. Hay que evitar el abuso de los analgésicos ya que se ha
+                relacionado con la cronificación de la migraña.
+            </text>
+            <text lang="en">
+                In principle yes, but always under the supervision
+                of your primary care physician. Migraine pain is typically
+                moderate to severe in intensity, and the most recommended
+                painkillers are non-steroidal anti-inflammatory drugs (NSAIDs),
+                which include ibuprofen, diclofenac, naproxen and dexketoprofen.
+                The key is to take the painkiller at the onset of pain,
+                as medication response is only partial once the migraine
+                is fully established. For severe headache intensity,
+                the best symptomatic treatment are so-called triptans.
+                What should always be avoided are drugs that combine analgesics
+                with opioid medication. Analgesic overuse must be avoided,
+                as it has been linked to migraine chronification.
+            </text>
+            <text lang="pt">
+                Em princípio sim, mas sempre sob supervisão
+                do seu médico de família. A dor da enxaqueca costuma
+                ser de intensidade moderada ou grave,
+                e os analgésicos mais indicados são os anti-inflamatórios
+                não esteroides (AINEs), entre os quais se encontram o
+                ibuprofeno, o diclofenaco, o naproxeno e o dexketoprofeno.
+                O importante é tomar o analgésico no início da dor,
+                pois se a enxaqueca já estiver instalada,
+                a resposta à medicação é parcial. Se a cefaleia
+                for de intensidade severa, o melhor tratamento sintomático
+                são os chamados triptanos. O que se deve sempre evitar
+                são os fármacos que combinam analgésicos com medicação opiácea.
+                É preciso evitar o abuso de analgésicos, pois isso
+                tem sido relacionado com a cronificação da enxaqueca.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq20">
-        <txt lang="es"
-            q="¿Qué son los triptanes?"
-            a="Los triptanes son un grupo de medicamentos específicos para el tratamiento de la migraña. Son los de mayor eficacia. Son también medicamentos seguros, y sólo se contraindican en los pacientes con cardiopatía isquémica, con antecedentes de ictus o con hipertensión arterial mal controlada. Además, no se recomiendan en unos tipos especiales de migraña como son la hemipléjica familiar y la migraña basilar. Como efectos adversos frecuentes está una sensación transitoria de malestar torácico. Los principios activos son el sumatriptán (Imigran), zolmitriptán (Zomig), rizatriptán (Maxalt), almotriptán (Almogran), eletriptán (Relert), naratriptán (Naramig) y frovatriptán (Forvey). Zomig y Maxalt tienen una formulación “flas” que permite su utilización sublingual, útil en el caso de presentar nauseas o vómitos, al igual que las formulaciones intranasales de Imigran y Zomig."/>
+        <q>
+            <text lang="es">¿Qué son los triptanes?</text>
+            <text lang="en">What are triptans?</text>
+            <text lang="pt">O que são os triptanos?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Los triptanes son un grupo de medicamentos específicos para el
+                tratamiento de la migraña. Son los de mayor eficacia. Son también
+                medicamentos seguros, y sólo se contraindican en los pacientes
+                con cardiopatía isquémica, con antecedentes de ictus o con
+                hipertensión arterial mal controlada. Además, no se recomiendan
+                en unos tipos especiales de migraña como son la hemipléjica
+                familiar y la migraña basilar. Como efectos adversos frecuentes
+                está una sensación transitoria de malestar torácico. Los
+                principios activos son el sumatriptán (Imigran), zolmitriptán
+                (Zomig), rizatriptán (Maxalt), almotriptán (Almogran),
+                eletriptán (Relert), naratriptán (Naramig) y frovatriptán
+                (Forvey). Zomig y Maxalt tienen una formulación "flash" que
+                permite su utilización sublingual, útil en el caso de presentar
+                nauseas o vómitos, al igual que las formulaciones intranasales
+                de Imigran y Zomig.
+            </text>
+            <text lang="en">
+                Triptans are a group of medications specifically
+                for migraine treatment. They are the most effective option.
+                They are also safe medications, only contraindicated
+                in patients with ischemic heart disease, history of stroke,
+                or uncontrolled hypertension.
+                Additionally, they are not recommended for special migraine
+                types like familial hemiplegic migraine and basilar migraine.
+                Common side effects include transient chest discomfort.
+                The active ingredients are sumatriptan (Imigran),
+                zolmitriptan (Zomig), rizatriptan (Maxalt),
+                almotriptan (Almogran), eletriptan (Relert),
+                naratriptan (Naramig), and frovatriptan (Forvey).
+                Zomig and Maxalt have a "flash" formulation for sublingual use,
+                helpful when experiencing nausea or vomiting, similar to
+                the intranasal formulations of Imigran and Zomig.
+            </text>
+            <text lang="pt">
+                Os triptanos são um grupo de medicamentos específicos
+                para o tratamento da enxaqueca. São os mais eficazes.
+                Também são medicamentos seguros,
+                sendo contraindicados apenas em pacientes
+                com cardiopatia isquêmica, histórico de AVC
+                ou hipertensão arterial não controlada.
+                Além disso, não são recomendados para tipos especiais
+                de enxaqueca como a hemiplégica familiar e a enxaqueca basilar.
+                Como efeitos adversos frequentes está uma sensação
+                transitória de desconforto torácico.
+                Os princípios ativos são sumatriptana (Imigran),
+                zolmitriptana (Zomig), rizatriptana (Maxalt),
+                almotriptana (Almogran), eletriptana (Relert),
+                naratriptana (Naramig) e frovatriptana (Forvey).
+                Zomig e Maxalt possuem uma formulação "flash"
+                que permite uso sublingual, útil em caso de náuseas ou vômitos,
+                assim como as formulações intranasais de Imigran e Zomig.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq21">
-        <txt lang="es"
-            q="¿Puedo tomar Hemicraneal o Cafergot?"
-            a="Son medicamentos indicados para el tratamiento de la migraña. Son de la clase farmacológica conocida como ergóticos, ya que contienen ergotamina, una sustancia que produce vasoconstricción arterial, y por esta posible complicación no debe abusarse de ellos. Para migrañas muy esporádicas es una opción de tratamiento sintomático, pero no deben emplearse como tratamientos preventivos. No se pueden combinar con la toma de los triptanes. Siempre bajo prescripción médica, la dosis inicial es de 2 comprimidos, y luego 1 comprimido cada hora hasta un máximo de 6 comprimido/día, y sin exceder de 10 comprimidos/semana."/>
+        <q>
+            <text lang="es">¿Puedo tomar Hemicraneal o Cafergot?</text>
+            <text lang="en">Can I take Hemicraneal or Cafergot?</text>
+            <text lang="pt">Posso tomar Hemicraneal ou Cafergot?</text>
+        </q>
+        <a>
+            <text lang="es">
+                Son medicamentos indicados para el tratamiento de la migraña. Son
+                de la clase farmacológica conocida como ergóticos, ya que
+                contienen ergotamina, una sustancia que produce vasoconstricción
+                arterial; y por esta posible complicación no debe abusarse de
+                ellos. Para migrañas muy esporádicas es una opción de tratamiento
+                sintomático, pero no deben emplearse como tratamientos
+                preventivos. No se pueden combinar con la toma de los triptanes.
+                Siempre bajo prescripción médica, la dosis inicial es de 2
+                comprimidos, y luego 1 comprimido cada hora hasta un máximo de 6
+                comprimido/día, y sin exceder de 10 comprimidos/semana.
+            </text>
+            <text lang="en">
+                These are medications indicated for migraine treatment.
+                They belong to the pharmacological class known as ergotics,
+                as they contain ergotamine, a substance that causes
+                arterial vasoconstriction; and because of this
+                potential complication, they should not be overused.
+                For very sporadic migraines, they can be an option
+                for symptomatic treatment, but should not be used
+                as preventive treatments. They cannot be combined with triptans.
+                Always requiring medical prescription, the initial dose
+                is 2 tablets, followed by 1 tablet every hour up to a maximum
+                of 6 tablets/day, and not exceeding 10 tablets/week.
+            </text>
+            <text lang="pt">
+                Estes são medicamentos indicados para o tratamento da enxaqueca.
+                Pertencem à classe farmacológica conhecida como ergóticos,
+                pois contêm ergotamina, uma substância que provoca
+                vasoconstrição arterial; e devido a esta possível complicação,
+                não devem ser utilizados em excesso.
+                Para enxaquecas muito esporádicas,
+                são uma opção de tratamento sintomático,
+                mas não devem ser usados como tratamento preventivo.
+                Não podem ser combinados com triptanos.
+                Sempre sob prescrição médica, a dose inicial é de 2 comprimidos,
+                seguidos de 1 comprimido por hora até
+                no máximo 6 comprimidos/dia, sem exceder 10 comprimidos/semana.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq22">
-        <txt lang="es"
-            q="¿Cuándo debo tomar un tratamiento preventivo?"
-            a="En general los tratamientos preventivos de la migraña se recomiendan cuando hay más de tres episodios de migraña invalidantes por la intensidad y duración del dolor al mes. Los tratamientos preventivos más usados son el propranolol, la amitriptilina, la flunaricina, y el topiramato. La elección de los mismos va a depender de la presencia de otras patologías o comorbilidades que pueda tener la persona con migraña (hipotensión, asma, bradicardias, obesidad, anorexia, depresión, cálculos renales, glaucoma, fibromialgia). Una vez instaurados se suelen mantener durante unos 6 meses para ver la evolución. El objetivo realista de su empleo es conseguir al menos una reducción superior al 50% en los días de cefalea, y también de la intensidad de la misma. En ocasiones se precisa mantenerlos durante años para controlar la frecuencia de las migrañas."/>
+        <q>
+            <text lang="es">
+                ¿Cuándo debo tomar un tratamiento preventivo?
+            </text>
+            <text lang="en">
+                When should I take preventive treatment?
+            </text>
+            <text lang="pt">
+                Quando devo tomar um tratamento preventivo?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                En general los tratamientos preventivos de la migraña se
+                recomiendan cuando hay más de tres episodios de migraña
+                invalidantes por la intensidad y duración del dolor al mes. Los
+                tratamientos preventivos más usados son el propranolol, la
+                amitriptilina, la flunaricina, y el topiramato. La elección de
+                los mismos va a depender de la presencia de otras patologías o
+                comorbilidades que pueda tener la persona con migraña
+                (hipotensión, asma, bradicardias, obesidad, anorexia, depresión,
+                cálculos renales, glaucoma, fibromialgia). Una vez instaurados se
+                suelen mantener durante unos 6 meses para ver la evolución. El
+                objetivo realista de su empleo es conseguir al menos una
+                reducción superior al 50% en los días de cefalea, y también de la
+                intensidad de la misma. En ocasiones se precisa mantenerlos
+                durante años para controlar la frecuencia de las migrañas.
+            </text>
+            <text lang="en">
+                Generally, preventive treatments for migraines are recommended
+                when there are more than three disabling migraine episodes
+                per month due to pain intensity and duration.
+                The most commonly used preventive treatments are propranolol,
+                amitriptyline, flunarizine, and topiramate.
+                The choice depends on other conditions or comorbidities
+                the migraine patient may have (hypotension, asthma,
+                bradycardia, obesity, anorexia, depression, kidney stones,
+                glaucoma, fibromyalgia). Once started, they are typically
+                maintained for about 6 months to assess progress.
+                The realistic goal is to achieve at least a 50% reduction
+                in headache days and intensity. Sometimes they need
+                to be maintained for years to control migraine frequency.
+            </text>
+            <text lang="pt">
+                Em geral, os tratamentos preventivos para enxaqueca
+                são recomendados quando há mais de três episódios
+                incapacitantes por mês devido à intensidade e duração da dor.
+                Os preventivos mais utilizados são propranolol, amitriptilina,
+                flunarizina e topiramato.
+                A escolha depende de outras patologias ou comorbidades
+                que a pessoa com enxaqueca possa ter
+                (hipotensão, asma, bradicardia, obesidade, anorexia, depressão,
+                cálculos renais, glaucoma, fibromialgia).
+                Uma vez iniciados, costumam ser mantidos por cerca de 6 meses
+                para avaliação. O objetivo realista é alcançar pelo menos
+                50% de redução nos dias de cefaleia e na sua intensidade.
+                Às vezes precisam ser mantidos por anos para controlar
+                a frequência das enxaquecas.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq23">
-        <txt lang="es"
-            q="¿Cuándo me pueden prescribir el tratamiento con Botox?"
-            a="Botox es el nombre comercial de la toxina botulínica que está aprobada para el tratamiento de la migraña crónica. Su administración es hospitalaria en las consultas de Neurología, en forma de inyecciones subcutáneas en varios puntos dispersos por el cuero cabelludo. Salvo dolor en algún punto de inyección es un tratamiento bien tolerado. Al menos el 50% de los pacientes con migraña crónica son respondedores al Botox. Si la migraña es de alta frecuencia, y no ha respondido a los preventivos habituales, la opción de tratamiento son los anticuerpos monoclonales contra el CGRP."/>
+        <q>
+            <text lang="es">
+                ¿Cuándo me pueden prescribir el tratamiento con Botox?
+            </text>
+            <text lang="en">
+                When might I be prescribed Botox treatment?
+            </text>
+            <text lang="pt">
+                Quando posso receber prescrição de tratamento com Botox?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Botox es el nombre comercial de la toxina botulínica que está
+                aprobada para el tratamiento de la migraña crónica. Su
+                administración es hospitalaria en las consultas de Neurología, en
+                forma de inyecciones subcutáneas en varios puntos dispersos por
+                el cuero cabelludo. Salvo dolor en algún punto de inyección es un
+                tratamiento bien tolerado. Al menos el 50% de los pacientes con
+                migraña crónica son respondedores al Botox. Si la migraña es de
+                alta frecuencia, y no ha respondido a los preventivos habituales,
+                la opción de tratamiento son los anticuerpos monoclonales contra
+                el CGRP.
+            </text>
+            <text lang="en">
+                Botox is the brand name of botulinum toxin approved
+                for chronic migraine treatment. It is administered
+                in hospital neurology clinics through subcutaneous injections
+                at multiple points across the scalp.
+                Apart from possible pain at injection sites,
+                it is generally well-tolerated.
+                At least 50% of chronic migraine patients respond to Botox.
+                For high-frequency migraines unresponsive
+                to conventional preventives, the treatment alternative
+                is monoclonal antibodies against CGRP.
+            </text>
+            <text lang="pt">
+                Botox é o nome comercial da toxina botulínica aprovada
+                para tratamento da enxaqueca crônica.
+                Sua administração é hospitalar, em consultórios
+                de Neurologia, através de injeções subcutâneas
+                em vários pontos do couro cabeludo.
+                Exceto por possível dor em algum ponto de aplicação,
+                é um tratamento bem tolerado.
+                Pelo menos 50% dos pacientes com enxaqueca crônica
+                respondem ao Botox. Se a enxaqueca for de alta frequência e
+                não responder aos preventivos habituais,
+                a opção são os anticorpos monoclonais contra o CGRP.
+            </text>
+        </a>
     </entry>
 
     <entry id="faq24">
-        <txt lang="es"
-            q="¿Qué son los anticuerpos monoclonales para la migraña?"
-            a="Son un tratamiento muy específico para la prevención de la migraña. Se basan en bloquear la acción de una sustancia implicada en el desarrollo del dolor en la migraña conocida como CGRP. Están aprobados para el tratamiento de la migraña a partir de al menos 4 días de cefalea al mes, pero a día de hoy sólo se financian para aquellos pacientes que tienen 8 o más días de migraña al mes. Por lo tanto, se está indicando actualmente en la migraña episódica de alta frecuencia y en la migraña crónica. La administración es subcutánea, con una inyección mensual. Además de pequeñas molestias locales, el estreñimiento es el efecto adverso más frecuente (10% de los pacientes tratados). Una precaución especial hay que poner con los pacientes diagnosticados de cardiopatía isquémica. Los principios activos con erenumab (Aimovig), galcanezumab (Emgality) y fremanezumab (Ajovy)."/>
+        <q>
+            <text lang="es">
+                ¿Qué son los anticuerpos monoclonales en el tratamiento de la migraña?
+            </text>
+            <text lang="en">
+                What are monoclonal antibodies in migraine treatment?
+            </text>
+            <text lang="pt">
+                O que são os anticorpos monoclonais no tratamento da enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Son un tratamiento muy específico para la prevención de la
+                migraña. Se basan en bloquear la acción de una sustancia
+                implicada en el desarrollo del dolor en la migraña conocida como
+                CGRP. Están aprobados para el tratamiento de la migraña a partir
+                de al menos 4 días de cefalea al mes, pero a día de hoy sólo se
+                financian para aquellos pacientes que tienen 8 o más días de
+                migraña al mes. Por lo tanto, se está indicando actualmente en
+                la migraña episódica de alta frecuencia y en la migraña crónica.
+                La administración es subcutánea, con una inyección mensual.
+                Además de pequeñas molestias locales, el estreñimiento es el
+                efecto adverso más frecuente (10% de los pacientes tratados). Una
+                precaución especial hay que poner con los pacientes diagnosticados
+                de cardiopatía isquémica. Los principios activos con erenumab
+                (Aimovig), galcanezumab (Emgality) y fremanezumab (Ajovy).
+            </text>
+            <text lang="en">
+                They are a highly specific treatment for migraine prevention.
+                They work by blocking the action of a substance involved in
+                migraine pain development known as CGRP.
+                They are approved for migraine treatment starting from
+                at least 4 headache days per month, but currently are only
+                funded for patients with 8 or more migraine days monthly.
+                Therefore, they are currently indicated for high-frequency
+                episodic migraine and chronic migraine.
+                Administration is subcutaneous, with monthly injections.
+                Besides minor local discomfort, constipation is the most
+                frequent side effect (occurring in 10% of treated patients).
+                Special caution is required for patients diagnosed
+                with ischemic heart disease.
+                The active agents are erenumab (Aimovig),
+                galcanezumab (Emgality), and fremanezumab (Ajovy).
+            </text>
+            <text lang="pt">
+                Eles são um tratamento altamente específico para prevenção
+                da enxaqueca. Atuam bloqueando a ação de uma substância
+                envolvida no desenvolvimento da dor da enxaqueca,
+                conhecida como CGRP. Estão aprovados para tratamento
+                da enxaqueca a partir de 4 dias de cefaleia por mês,
+                mas atualmente só são financiados para pacientes com 8
+                ou mais dias de enxaqueca mensais. Portanto,
+                estão indicados atualmente para enxaqueca
+                episódica de alta frequência e enxaqueca crônica.
+                A administração é subcutânea, com injeções mensais.
+                Além de pequenos desconfortos locais, a constipação
+                é o efeito adverso mais frequente (ocorre em 10%
+                dos pacientes tratados). É necessário cuidado especial
+                em pacientes diagnosticados com cardiopatia isquêmica.
+                Os princípios ativos são erenumabe (Aimovig),
+                galcanezumabe (Emgality) e fremanezumabe (Ajovy).
+            </text>
+        </a>
     </entry>
 
     <entry id="faq25">
-        <txt lang="es"
-            q="¿Hay terapias no farmacológicas para el tratamiento de la migraña?"
-            a="Dada la influencia del estrés como factor desencadenante de las crisis de migraña, las terapias cognitivo-conductuales, fundamentalmente las de biofeedback y relajación, son de utilidad en la disminución de los días de cefalea en los pacientes con migraña crónica o de alta frecuencia. La acupuntura es otra de las técnicas más usadas en la migraña que intenta inactivar los puntos gatillo miofasciales. Sin embargo, no se dispone de evidencia científica concluyente sobre el uso de esta técnica para mejorar los síntomas de la migraña. Una variación sería la colocación del piercing en la oreja, que utiliza el conocimiento de la acupuntura, de forma que con el piercing se destruye el punto que se estimula en la acupuntura para aliviar la cefalea. La neuromodulación no invasiva es un campo creciente en el tratamiento de la migraña, consiste en aplicar corrientes eléctricas o magnéticas a través de la piel y podrían utilizarse tanto para el tratamiento sintomático agudo como para la prevención a largo plazo. Un dispositivo de neuromodulación es CEFALY que funciona a través de la estimulación eléctrica externa del nervio trigémino con el objetivo de desensibilizar el nervio trigémino a lo largo del tiempo. Suplementos alimenticios como el magnesio, la riboflavina y la coenzyma Q10 también han demostrado alguna eficacia. El tratamiento con oxigeno hiperbárico podría ser de utilidad en los pacientes con migraña crónica, para disminuir los días de migraña."/>
+        <q>
+            <text lang="es">
+                ¿Hay terapias no farmacológicas para el tratamiento de la migraña?
+            </text>
+            <text lang="en">
+                Are there non-drug therapies for migraine treatment?
+            </text>
+            <text lang="pt">
+                Existem terapias não farmacológicas para tratar enxaqueca?
+            </text>
+        </q>
+        <a>
+            <text lang="es">
+                Dada la influencia del estrés como factor desencadenante de las
+                crisis de migraña, las terapias cognitivo-conductuales,
+                fundamentalmente las de biofeedback y relajación, son de utilidad
+                en la disminución de los días de cefalea en los pacientes con
+                migraña crónica o de alta frecuencia. La acupuntura es otra de
+                las técnicas más usadas en la migraña que intenta inactivar los
+                puntos gatillo miofasciales. Sin embargo, no se dispone de
+                evidencia científica concluyente sobre el uso de esta técnica
+                para mejorar los síntomas de la migraña. Una variación sería la
+                colocación del piercing en la oreja, que utiliza el conocimiento
+                de la acupuntura, de forma que con el piercing se destruye el
+                punto que se estimula en la acupuntura para aliviar la cefalea.
+                La neuromodulación no invasiva es un campo creciente en el
+                tratamiento de la migraña, consiste en aplicar corrientes
+                eléctricas o magnéticas a través de la piel y podrían
+                utilizarse tanto para el tratamiento sintomático agudo como para
+                la prevención a largo plazo. Un dispositivo de neuromodulación
+                es CEFALY que funciona a través de la estimulación eléctrica
+                externa del nervio trigémino con el objetivo de desensibilizar
+                el nervio trigémino a lo largo del tiempo. Suplementos
+                alimenticios como el magnesio, la riboflavina y la coenzyma Q10
+                también han demostrado alguna eficacia. El tratamiento con oxigeno
+                hiperbárico podría ser de utilidad en los pacientes con migraña
+                crónica, para disminuir los días de migraña.
+            </text>
+            <text lang="en">
+                Given the influence of stress as a trigger for migraine attacks,
+                cognitive-behavioral therapies (primarily biofeedback
+                and relaxation techniques), are useful for reducing headache days
+                in patients with chronic or high-frequency migraines.
+                Acupuncture is another commonly used technique for migraines
+                that aims to deactivate myofascial trigger points.
+                However, there is no conclusive scientific evidence about
+                this technique's effectiveness for improving migraine symptoms.
+                One variation is ear piercing,
+                which applies acupuncture knowledge by permanently disrupting
+                the headache-relief pressure point.
+                Non-invasive neuromodulation is a growing field in migraine
+                treatment, involving the application of electrical
+                or magnetic currents through the skin that can be used
+                for both acute symptom relief and long-term prevention.
+                The CEFALY device is one neuromodulation option
+                that works through external electrical stimulation
+                of the trigeminal nerve to gradually desensitize it.
+                Dietary supplements like magnesium, riboflavin,
+                and coenzyme Q10 have also shown some efficacy.
+                Hyperbaric oxygen therapy may help reduce migraine days
+                in chronic migraine patients.
+            </text>
+            <text lang="pt">
+                Considerando a influência do estresse como fator desencadeante
+                das crises de enxaqueca, as terapias cognitivo-comportamentais
+                (principalmente biofeedback e técnicas de relaxamento),
+                são úteis para reduzir dias de cefaleia em pacientes
+                com enxaqueca crônica ou de alta frequência.
+                A acupuntura é outra técnica frequentemente usada na enxaqueca
+                que busca desativar pontos-gatilho miofasciais.
+                Porém, não há evidência científica conclusiva sobre
+                sua eficácia para melhorar os sintomas da enxaqueca.
+                Uma variação é o piercing na orelha,
+                que aplica conhecimentos da acupuntura
+                ao destruir permanentemente o ponto de pressão
+                para alívio da cefaleia. A neuromodulação não invasiva
+                é uma área em crescimento no tratamento da enxaqueca,
+                envolvendo aplicação de correntes elétricas ou magnéticas
+                através da pele, podendo ser usada tanto para alívio agudo
+                quanto prevenção a longo prazo. O dispositivo CEFALY
+                é uma opção de neuromodulação que funciona através da
+                estimulação elétrica externa do nervo trigêmeo
+                para dessensibilizá-lo gradualmente.
+                Suplementos alimentares como magnésio, riboflavina e
+                coenzima Q10 também demonstraram certa eficácia.
+                A oxigenoterapia hiperbárica pode ajudar a reduzir
+                dias de enxaqueca em pacientes com enxaqueca crônica.
+            </text>
+        </a>
     </entry>
 </faq>

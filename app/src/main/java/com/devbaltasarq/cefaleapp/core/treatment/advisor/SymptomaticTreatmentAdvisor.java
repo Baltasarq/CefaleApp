@@ -4,7 +4,7 @@
 package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 
-import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+import com.devbaltasarq.cefaleapp.core.Language;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
@@ -33,7 +33,6 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
     public List<TreatmentStep> createResultList()
     {
         if ( this.treatmentSteps.isEmpty() ) {
-            final MultiLanguageWrapper.Lang LANG_ES = MultiLanguageWrapper.Lang.es;
             final List<Morbidity.Id> MORBIDITIES = this.getMorbidities();
             final boolean IS_PAIN_MODERATE = MORBIDITIES.contains(
                     Morbidity.Id.get( "PAIN_MODERATE" ) );
@@ -59,25 +58,25 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
             final Medicine.Id ID_LASMIDITAN = Objects.requireNonNull(
                     Medicine.Id.get( "LASMIDITAN" ) );
             final TreatmentMessage MSG_USE_TRIPTAN = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useTRIPTAN" ));
+                    TreatmentMessage.getFor( "useTRIPTAN" ));
             final TreatmentMessage MSG_START_WITH_AINE = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "startWithAine" ));
+                    TreatmentMessage.getFor( "startWithAine" ));
             final TreatmentMessage MSG_USE_ERGOTICS_AFTER_AINE = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useErgoticsAfterAINE" ));
+                    TreatmentMessage.getFor( "useErgoticsAfterAINE" ));
             final TreatmentMessage MSG_USE_RIMEGEPANT_LASMIDITAN = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useRimegepantLasmiditan" ));
+                    TreatmentMessage.getFor( "useRimegepantLasmiditan" ));
             final TreatmentMessage MSG_USE_METAMIZOL = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useMetamizol" ));
+                    TreatmentMessage.getFor( "useMetamizol" ));
             final TreatmentMessage MSG_START_WITH_TRIPTAN = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "startWithTRIPTAN" ));
+                    TreatmentMessage.getFor( "startWithTRIPTAN" ));
             final TreatmentMessage MSG_COMBINE_TRIPTAN_WITH_AINE = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "combineTRIPTANWithAINE" ));
+                    TreatmentMessage.getFor( "combineTRIPTANWithAINE" ));
             final TreatmentMessage MSG_USE_ERGOTICS = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "useERGOTICS" ));
+                    TreatmentMessage.getFor( "useERGOTICS" ));
             final TreatmentMessage MSG_COMBINE_ERGOTICS_WITH_AINE = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "combineERGOTICSWithAINE" ));
+                    TreatmentMessage.getFor( "combineERGOTICSWithAINE" ));
             final TreatmentMessage MSG_COMBINE_RIMEGEPANT_LASMIDITAN_WITH_AINE = Objects.requireNonNull(
-                    TreatmentMessage.getFor( LANG_ES, "combineRimegepantLasmiditanWithAINE" ));
+                    TreatmentMessage.getFor( "combineRimegepantLasmiditanWithAINE" ));
 
             // Create a list with all analgesic medicines
             this.treatmentSteps.clear();

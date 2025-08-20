@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  It's supposed to be in: http://www.headachetest.com -->
+<form head="hit6">
+    <!-- HIT6 questions for migraine score -->
+    <branch id="hit6" head="hit_headaches_frec_intense">
+
+        <!-- 1 -->
+        <q id="hit_headaches_frec_intense"
+            type="score"
+            goto="hit_headaches_frec_limitant">
+
+            <summary>
+                <text lang="es">Frecuencia dolores de cabeza intensos</text>
+                <text lang="en">Intense headaches frequency</text>
+                <text lang="pt">Frequência das cefálias fortes</text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    Cuando usted tiene dolor de cabeza,
+                    ¿con qué frecuencia el dolor es intenso?
+                </text>
+
+                <text lang="en">
+                    When you have headaches, how often is the pain severe?
+                </text>
+
+                <text lang="pt">
+                    Quando você tem dor de cabeça,
+                    com que frequência a dor é forte?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!-- 2 -->
+        <q id="hit_headaches_frec_limitant"
+            type="score"
+            goto="hit_headaches_frec_lie_down">
+
+            <summary>
+                <text lang="es">"Frecuencia dolores de cabeza limitantes</text>
+                <text lang="en">Limiting headaches frequency</text>
+                <text lang="pt">Frequência das cefálias limitantes</text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    ¿Con qué frecuencia el dolor de cabeza limita
+                    su capacidad para realizar actividades diarias habituales
+                    como las tareas domésticas, el trabajo,
+                    los estudios o actividades sociales?
+                </text>
+
+                <text lang="en">
+                    How often do headaches limit your ability
+                    to do usual daily activities including
+                    household work, work, school or social activities?
+                </text>
+
+                <text lang="pt">
+                    Com que frequência as dores de cabeça limitam sua capacidade
+                    de realizar suas atividades diárias habituais,
+                    incluindo cuidar da casa, trabalho,
+                    estudos ou atividades sociais?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!-- 3 -->
+        <q id="hit_headaches_frec_lie_down"
+            type="score"
+            goto="hit_headaches_frec_too_tired">
+
+            <summary>
+                <text lang="es">
+                    Frecuencia dolores de cabeza precisan acostarse
+                </text>
+                <text lang="en">How often headaches put you to bed</text>
+                <text lang="pt">
+                    Frequência das cefálias precisam de deitarse
+                </text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    Cuando tiene dolor de cabeza,
+                    ¿con qué frecuencia desearía poder acostarse?
+                </text>
+
+                <text lang="en">
+                    When you have a headache,
+                    how often do you wish you could lie down?
+                </text>
+
+                <text lang="pt">
+                    Quando você tem dor de cabeça,
+                    com que frequência você gostaria de poder se
+                    deitar para descansar?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!--4 -->
+        <q id="hit_headaches_frec_too_tired"
+            type="score"
+            goto="hit_headaches_frec_irritant">
+
+            <summary>
+                <text lang="es">
+                    Frecuencia dolores de cabeza producen cansancio
+                </text>
+                <text lang="en">How often headaches provoke tiring</text>
+                <text lang="pt">
+                    Frequência das cefálias produzem fatiga
+                </text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    En las últimas 4 semanas, ¿con qué frecuencia ha sentido
+                    demasiado cansancio como para trabajar o realizar
+                    las actividades diarias debido a su dolor de cabeza?
+                </text>
+
+                <text lang="en">
+                    In the past four weeks, how often have you felt too tired
+                    to do work or daily activities because of your headaches?
+                </text>
+
+                <text lang="pt">
+                    Durante as últimas 4 semanas, com que frequência
+                    você se sentiu cansado(a) demais para trabalhar
+                    ou para realizar suas atividades diárias, por
+                    causa de suas dores de cabeça?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!-- 5 -->
+        <q id="hit_headaches_frec_irritant"
+            type="score"
+            goto="hit_headaches_frec_unfocused">
+
+            <summary>
+                <text lang="es">
+                    Frecuencia dolores de cabeza producen irritación
+                </text>
+                <text lang="en">How often headaches provoke irritation</text>
+                <text lang="pt">
+                    Frequência cefálias produzem irritação
+                </text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    En las últimas 4 semanas,
+                    ¿con qué frecuencia ha sentido hartazgo o irritación
+                    con respecto a su dolor de cabeza?
+                </text>
+
+                <text lang="en">
+                    In the past four weeks, how often have you felt fed up
+                    or irritated because of your headaches?
+                </text>
+
+                <text lang="pt">
+                    Durante as últimas 4 semanas,
+                    com que frequência você sentia que não estava
+                    mais aguentando ou se sentia irritado(a) por
+                    causa de suas dores de cabeça?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!-- 6 -->
+        <q id="hit_headaches_frec_unfocused"
+            type="score"
+            goto="\">
+
+            <summary>
+                <text lang="es">
+                    Frecuencia dolores de cabeza producen desconcentración
+                </text>
+                <text lang="en">How often headaches provoke distraction</text>
+                <text lang="pt">
+                    Frequência cefálias produzem desconncentração
+                </text>
+            </summary>
+
+            <contents>
+                <text lang="es">
+                    En las últimas 4 semanas,
+                    ¿con qué frecuencia el dolor de cabeza ha limitado
+                    su capacidad para concentrarse en el trabajo
+                    o en las actividades diarias?
+                </text>
+
+                <text lang="en">
+                    In the past four weeks,
+                    how often did headaches limit your ability
+                    to concentrate on work or daily activities?
+                </text>
+
+                <text lang="pt">
+                    Durante as últimas 4 semanas,
+                    com que frequência as suas dores de cabeça
+                    limitaram sua capacidade de se concentrar em seu
+                    trabalho ou em suas atividades diárias?
+                </text>
+            </contents>
+
+            <opt value="6">
+                <text lang="es">Nunca</text>
+                <text lang="en">Never</text>
+                <text lang="pt">Nunca</text>
+            </opt>
+
+            <opt value="8">
+                <text lang="es">Pocas veces</text>
+                <text lang="en">Rarely</text>
+                <text lang="pt">Raramente</text>
+            </opt>
+
+            <opt value="10">
+                <text lang="es">A veces</text>
+                <text lang="en">Sometimes</text>
+                <text lang="pt">As vezes</text>
+            </opt>
+
+            <opt value="11">
+                <text lang="es">Muy a menudo</text>
+                <text lang="en">Very often</text>
+                <text lang="pt">Com muita frequência</text>
+            </opt>
+
+            <opt value="13">
+                <text lang="es">Siempre</text>
+                <text lang="en">Always</text>
+                <text lang="pt">Sempre</text>
+            </opt>
+        </q>
+
+        <!--
+            Test result
+            PCD-SUM_UP-HIT-2148: Find x (the final int), adding up each int for a question.
+
+            x > 60 Severe impact: your headaches are deeply impacting your life.
+            56 < x < 59: Important impact: your headaches are limiting your life.
+            50 < x < 55: Somewhat impacting: your headaches are conditioning your life.
+            x < 49: Small or no impact: your headaches are not limiting your life.
+        -->
+    </branch>
+</form>

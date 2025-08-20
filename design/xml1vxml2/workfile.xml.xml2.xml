@@ -1,0 +1,70 @@
+<qs>
+    <q id="data_highPressure" goto="data_lowPressure" type="int">
+        <summary>
+            <text lang="es">Sistólica</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="es">¿Tensión máxima (&lt;i&gt;sistólica&lt;/i&gt; en mm HG, por ejemplo 120)?</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </contents>
+    </q>
+    <q id="data_lowPressure" goto="data_hasHistory" type="int">
+        <summary>
+            <text lang="es">Diastólica</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="es">¿Tensión mínima (&lt;i&gt;diastólica&lt;/i&gt; en mm HG, por ejemplo 80)?</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </contents>
+    </q>
+    <q id="data_hasHistory" goto="data_forMoreThanOneYear" type="bool">
+        <summary>
+            <text lang="es">Antecedentes</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="es">¿En cuanto a antecedentes &lt;u&gt;familiares&lt;/u&gt; de migraña?</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </contents>
+        <opt value="false">
+            <text lang="es">No los hay.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </opt>
+        <opt value="true">
+            <text lang="es">Sí los hay.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </opt>
+    </q>
+    <q id="data_forMoreThanOneYear" goto="data_isDepressed" type="bool">
+        <summary>
+            <text lang="es">Con cefaleas &gt;1 año</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="es">¿Lleva más de &lt;u&gt;un año&lt;/u&gt; con cefaleas?</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </contents>
+        <opt value="false">
+            <text lang="es">No.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </opt>
+        <opt value="true">
+            <text lang="es">Sí.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </opt>
+    </q>
+</qs>

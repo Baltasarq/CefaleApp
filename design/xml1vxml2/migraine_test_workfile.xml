@@ -1,210 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form head="data">
-    <!-- Data of the patient -->
-    <branch id="data" head="data_notes">
-        <!-- PCD_SHOWNOTES_2220 -->
-        <q id="data_notes" type="str"
-            goto="data_gender">
-
-            <summary>
-                <text lang="es">Notas</text>
-                <text lang="en">Notes</text>
-                <text lang="pt">Notas</text>
-            </summary>
-
-            <contents>
-                <text lang="es">
-                    Notas libres a rellenar según
-                    los &lt;u>síntomas del paciente&lt;/u>.
-                </text>
-                <text lang="en">
-                    Free notes to fill out according
-                    to the &lt;u>patient's symptoms&lt;/u>.
-                </text>
-                <text lang="pt">
-                    Notas livres para preencher de acordo
-                    com os &lt;u>sintomas do paciente&lt;/u>.
-                </text>
-            </contents>
-        </q>
-
-        <q id="data_gender" goto="data_age" pic="pic_gender"
-            type="bool">
-
-            <summary>
-                <text lang="es">Sexo</text>
-                <text lang="en">Sex</text>
-                <text lang="pt">Sexo</text>
-            </summary>
-
-            <contents>
-                <text lang="es">
-                    ¿&lt;b>Hombre&lt;/b> o &lt;b>mujer&lt;/b>?
-                </text>
-                <text lang="en">
-                    ¿&lt;b>Man&lt;/b> or &lt;b>woman&lt;/b>?
-                </text>
-                <text lang="pt">
-                    ¿&lt;b>Homem&lt;/b> ou &lt;b>mulher&lt;/b>?
-                </text>
-            </contents>
-
-            <opt value="false" text="Hombre">
-                <text lang="es">Hombre</text>
-                <text lang="en">Man</text>
-                <text lang="pt">Home</text>
-            </opt>
-            <opt value="true" text="Mujer">
-                <text lang="es">Mujer</text>
-                <text lang="en">Woman</text>
-                <text lang="pt">Mulher</text>
-            </opt>
-        </q>
-
-        <!-- PCD_SHOWAGE_0941 -->
-        <q id="data_age" goto="data_height" type="int">
-            <summary>
-                <text lang="es">Edad</text>
-                <text lang="en">Age</text>
-                <text lang="pt">Idade</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Edad?</text>
-                <text lang="en">How old are you?</text>
-                <text lang="pt">Idade?</text>
-            </contents>
-        </q>
-
-        <!-- PCD_SHOWSIZE_0942 -->
-        <q id="data_height" goto="data_weight" type="int">
-            <summary>
-                <text lang="es">Altura</text>
-                <text lang="en">Height</text>
-                <text lang="pt">Altura</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Altura (&lt;i&gt;centímetros&lt;/i&gt;)?</text>
-                <text lang="en">Height (&lt;i&gt;centimeters&lt;/i&gt;)?</text>
-                <text lang="pt">Altura (&lt;i&gt;centímetros&lt;/i&gt;)?</text>
-            </contents>
-        </q>
-        <q id="data_weight" goto="data_highPressure" type="int">
-            <summary>
-                <text lang="es">Peso</text>
-                <text lang="en">Weight</text>
-                <text lang="pt">Em Portugués!!!</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Peso (&lt;i&gt;kilos&lt;/i&gt;)?</text>
-                <text lang="en">Weight (&lt;i&gt;kilos&lt;/i&gt;)?</text>
-                <text lang="pt">Peso (&lt;i&gt;kilos&lt;/i&gt;)?!</text>
-            </contents>
-        </q>
-
-        <!-- PCD_SHOWPRESSURE_0943 -->
-        <q id="data_highPressure" goto="data_lowPressure" type="int">
-            <summary>
-                <text lang="es">Sistólica</text>
-                <text lang="en">Systolic<text>
-                <text lang="pt">Sistólica</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Tensión máxima (&lt;i&gt;sistólica&lt;/i&gt; en mm HG, por ejemplo 120)?</text>
-                <text lang="en">Maximum pressure (&lt;i&gt;systolic&lt;/i&gt; in mm Hg, for example 120)?</text>
-                <text lang="pt">Pressão máxima (&lt;i&gt;sistólica&lt;/i&gt; em mm Hg, por exemplo 120)?</text>
-            </contents>
-        </q>
-        <q id="data_lowPressure" goto="data_hasHistory" type="int">
-            <summary>
-                <text lang="es">Diastólica</text>
-                <text lang="en">Diastolic</text>
-                <text lang="pt">Diastólica</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Tensión mínima (&lt;i&gt;diastólica&lt;/i&gt; en mm HG, por ejemplo 80)?</text>
-                <text lang="en">Minimum pressure (&lt;i&gt;diastolic&lt;/i&gt; in mm Hg, for example 80)?</text>
-                <text lang="pt">Pressão mínima (&lt;i&gt;diastólica&lt;/i&gt; em mm Hg, por exemplo 80)?</text>
-            </contents>
-        </q>
-        <q id="data_hasHistory" goto="data_forMoreThanOneYear" type="bool">
-            <summary>
-                <text lang="es">Antecedentes</text>
-                <text lang="en">History</text>
-                <text lang="pt">Antecedentes</text>
-            </summary>
-            <contents>
-                <text lang="es">¿En cuanto a antecedentes &lt;u&gt;familiares&lt;/u&gt; de migraña?</text>
-                <text lang="en">Regarding &lt;u&gt;family&lt;/u&gt; history of migraines?</text>
-                <text lang="pt">Quanto a antecedentes &lt;u&gt;familiares&lt;/u&gt; de enxaqueca?</text>
-            </contents>
-            <opt value="false">
-                <text lang="es">No los hay.</text>
-                <text lang="en">There are none.</text>
-                <text lang="pt">Não existem</text>
-            </opt>
-            <opt value="true">
-                <text lang="es">Sí los hay.</text>
-                <text lang="en">Yes there are.</text>
-                <text lang="pt">Sim existem.</text>
-            </opt>
-        </q>
-        <q id="data_forMoreThanOneYear" goto="data_isDepressed" type="bool">
-            <summary>
-                <text lang="es">Con cefaleas &gt;1 año</text>
-                <text lang="en">With headaches for >1 year</text>
-                <text lang="pt">Com cefaleias >1 ano</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Lleva más de &lt;u&gt;un año&lt;/u&gt; con cefaleas?</text>
-                <text lang="en">Have you had headaches for over &lt;u&gt;a year&lt;/u&gt;?</text>
-                <text lang="pt">Você tem tido dores de cabeça há mais de &lt;u&gt;um ano&lt;/u&gt;?</text>
-            </contents>
-            <opt value="false">
-                <text lang="es">No.</text>
-                <text lang="en">No.</text>
-                <text lang="pt">Non.</text>
-            </opt>
-            <opt value="true">
-                <text lang="es">Sí.</text>
-                <text lang="en">Yes.</text>
-                <text lang="pt">Sím.</text>
-            </opt>
-        </q>
-    
-        <!-- PCD-JMP_SCREENING-1316 -->
-        <q id="data_isDepressed" goto="/"
-            type="bool">
-            <summary>
-                <text lang="es">Depresión</text>
-                <text lang="en">Depression</text>
-                <text lang="pt">Depressão</text>
-            </summary>
-            <contents>
-                <text lang="es">¿Está diagnosticado de &lt;u>depresión&lt;/u>, o toma medicación para ello?</text>
-                <text lang="en"></text>
-                <text lang="pt">É diagnosticado com &lt;u> depressão&lt;/u>, ou você toma medicação para isso?</text>
-            </contents>
-            <opt value="false">
-                <text lang="es">No.</text>
-                <text lang="en">No.</text>
-                <text lang="pt">Non.</text>
-            </opt>
-            <opt value="true">
-                <text lang="es">Sí.</text>
-                <text lang="en">Yes.</text>
-                <text lang="pt">Sím.</text>
-            </opt>
-        </q>
-    </branch>
-
-    <!-- Screening
-         1. PCD-JGTE_2-MIGRAINE-1559: Two or three of them true: > 60%, branch to migraine.
-                                      if ISDEPRESSED, include the tensional branch.
-         2. PCD-JE_1-MIGRAINE+TENSIONAL-1602: 1 of them true: 23%, first take the migraine branch
-                                              and then the tensional one.
-         3. PCD-JZ-TENSIONAL-1511: only the tensional branch.
-    -->
-    <branch id="screen" head="screen_wasCephaleaLimitant">
+<qs>
         <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_photoPhobia"
             summary="Limitante"
             text="En cuanto a lo &lt;b>limitante&lt;/b> del dolor de cabeza
@@ -229,10 +24,8 @@
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
-    </branch>
 
     <!--- Branch migraine, specific questions -->
-    <branch id="migraine" head="migraine_hadMoreThanFiveEpisodes" >
         <q id="migraine_hadMoreThanFiveEpisodes" type="bool"
             goto="migraine_migraineDuration"
             text="¿Ha tenido &lt;u>cinco o más episodios&lt;/u> &lt;i>similares&lt;/i> de dolor de cabeza?"
@@ -341,13 +134,7 @@
             text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
                   tiene &lt;u>al mes&lt;/u>?"
             summary="Migrañas/mes" />
-    </branch>
 
-    <!--- Branch tensional, specific questions
-          In this branch we ask questions to advance into
-          a tensional cephalea profile (stress, anxiety, depression, worrying).
-    -->
-    <branch id="tensional" head="tensional_wholeHead">
         <q id="tensional_wholeHead" type="bool" goto="tensional_isCephaleaHelmet"
             summary="Toda la cabeza"
             text="¿En general, el &lt;i>dolor&lt;/i> afecta a &lt;u>toda la cabeza&lt;/u>?"
@@ -371,11 +158,6 @@
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
-
-        <!-- PCD_EXERCISEWORSENS_2222 -->
-        <q id="migraine_exerciseWorsens" is_ref="true"
-           text="/" summary="/"
-           goto="tensional_isStabbing" />
 
         <q id="tensional_isStabbing" type="bool" goto="tensional_isTensionalWorseOnAfternoons"
             summary="Hormigueo/punzadas"
@@ -408,11 +190,6 @@
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
-
-        <!-- PCD_SOUNDPHOBIA_2228 -->
-        <q id="migraine_soundPhobia" is_ref="true"
-           text="/" summary="/"
-           goto="tensional_insomnia" />
 
         <q id="tensional_insomnia" type="bool" goto="tensional_sad"
             summary="Insomnio"
@@ -447,11 +224,7 @@
             text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
                   tiene por &lt;u>mes&lt;/u>?" >
         </q>
-    </branch>
-    <!--- The "Do you want to continue?" branch
-          (There is only one question here.)
-    -->
-    <branch id="continue" head="continue_areYouSure">
+
         <!-- PCD-CONTINUE-1338 -->
         <q id="continue_areYouSure" type="bool" goto="/" summary="Continuar"
             text="Además de lo comentado previamente,
@@ -459,5 +232,4 @@
             <opt value="false" text="No." />
             <opt value="true" text="Sí." />
         </q>
-    </branch>
-</form>
+</qs>

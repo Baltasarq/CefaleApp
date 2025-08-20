@@ -4,6 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 
 
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +20,8 @@ public class Question extends BasicQuestion {
             this.num = 0;
             this.gotoId = "";
             this.pic = "";
-            this.summary = "";
+            this.summary = new LocalizedText();
+            this.text = new LocalizedText();
             this.type = ValueType.BOOL;
             this.options = new ArrayList<>();
         }
@@ -41,15 +44,15 @@ public class Question extends BasicQuestion {
             return this;
         }
 
-        public Builder setSummary(String id)
+        public Builder setSummary(LocalizedText summary)
         {
-            this.summary = id.trim();
+            this.summary = summary;
             return this;
         }
 
-        public Builder setValueType(String id)
+        public Builder setValueType(String value)
         {
-            this.type = ValueType.parse( id.trim() );
+            this.type = ValueType.parse( value.trim() );
             return this;
         }
 
@@ -65,9 +68,9 @@ public class Question extends BasicQuestion {
             return this;
         }
 
-        public Builder setText(String text)
+        public Builder setText(LocalizedText text)
         {
-            this.text = text.trim();
+            this.text = text;
             return this;
         }
 
@@ -93,16 +96,16 @@ public class Question extends BasicQuestion {
         private int num;
         private String id;
         private String pic;
-        private String summary;
         private String gotoId;
-        private String text;
+        private LocalizedText summary;
+        private LocalizedText text;
         private ValueType type;
         private final List<Option> options;
     }
 
     /** Creates a regular question. */
     protected Question(int num, String id, String gotoId, ValueType dtype,
-                       String text, String pic, String summary,
+                       LocalizedText text, String pic, LocalizedText summary,
                        Collection<Option> options)
     {
         super( num, id, gotoId );
@@ -117,17 +120,19 @@ public class Question extends BasicQuestion {
     /** @return is this a reference? Objects of Question are never.
       * @see BasicQuestion, ReferenceQuestion
       */
+    @Override
     public boolean isReference()
     {
         return false;
     }
 
-    public String getText()
+    @Override
+    public LocalizedText getText()
     {
         return this.TEXT;
     }
 
-    public String getSummary()
+    public LocalizedText getSummary()
     {
         return this.SUMMARY;
     }
@@ -297,7 +302,7 @@ public class Question extends BasicQuestion {
 
     private final ValueType TYPE;
     private final String PIC;
-    private final String TEXT;
-    private final String SUMMARY;
+    private final LocalizedText TEXT;
+    private final LocalizedText SUMMARY;
     private final List<Option> OPTS;
 }

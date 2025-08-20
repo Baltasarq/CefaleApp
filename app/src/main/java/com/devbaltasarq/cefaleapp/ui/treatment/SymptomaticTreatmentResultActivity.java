@@ -15,6 +15,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.Language;
 import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
@@ -56,6 +57,7 @@ public class SymptomaticTreatmentResultActivity extends AppCompatActivity {
     {
         final LinearLayout LY_SYMPTOMATIC = this.findViewById( R.id.lySymptomaticTreatment);
         final LayoutInflater INFLATER = this.getLayoutInflater();
+        final Language LANG = Language.langFromDefaultLocale();
 
         int stepNum = 1;
         for(final TreatmentStep STEP: treatmentStepList) {
@@ -65,7 +67,9 @@ public class SymptomaticTreatmentResultActivity extends AppCompatActivity {
             final List<Medicine> MEDICINES = Util.objListFromIdList( Medicine.getAll(), STEP.getMedicineIds() );
             final String NUM = "<p><b>" + stepNum + "</b>.&nbsp;";
 
-            LBL_DESC.setText( Util.richTextFromHtml( NUM + STEP.getDesc()  + "</p>") );
+            LBL_DESC.setText( Util.richTextFromHtml(
+                                    NUM + STEP.getDesc().get( LANG )
+                                    + "</p>") );
             ++stepNum;
 
             for(final Medicine MEDICINE: MEDICINES) {

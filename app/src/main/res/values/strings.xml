@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">CefaleApp</string>
+    <string name="app_name" translatable="false">CefaleApp</string>
     <string name="esei_name">Escuela Superior de Ingeniería Informática. Universidad de Vigo</string>
     <string name="neurologia_name">Servicio de Neurología. Complejo Hospitalario Universitario de Ourense</string>
     <string name="esei_name_short">Escuela Superior de Ingeniería Informática. UVigo.</string>
     <string name="neurologia_name_short">Servicio de Neurolgía. CHUO.</string>
 
     <!-- Labels -->
-    <string name="lbl_next">next</string>
+    <string name="lbl_next">siguiente</string>
     <string name="lbl_menu">menú</string>
     <string name="lbl_settings">Ajustes</string>
     <string name="lbl_actions">Acciones</string>
@@ -27,7 +27,6 @@
     <string name="lbl_text_small">Texto pequeño</string>
     <string name="lbl_text_medium">Texto mediano</string>
     <string name="lbl_text_large">Texto grande</string>
-    <string name="lbl_morbidity">Morbidity</string>
     <string name="lbl_show_notes_question">Pregunta sobre notas del paciente</string>
     <string name="lbl_show_age_question">Pregunta sobre la edad del paciente</string>
     <string name="lbl_show_size_questions">Preguntas sobre la talla del paciente</string>
@@ -64,15 +63,11 @@
         al paciente para determinar el impacto de las migrañas en su vida.</string>
     <string name="msg_test_midas">Test MIDAS. Este test realiza una serie reducida de preguntas
         al paciente para determinar el grado de discapacidad provocado por las migrañas.</string>
-    <string name="msg_no_option_chosen">No option selected</string>
     <string name="msg_app_target">Aplicación para el diagnóstico diferencial de cefaleas migrañosas y tensionales.</string>
-    <string name="msg_app_physician_mode">La app pasa ahora a estar en modo de soporte para facultativos, de modo
-                                     que está disponible funcionalidad relacionada con la asistencia al tratamiento
-                                     de migrañas mediante medicamentos. Recuerde que solo un médico está en condiciones
-                                     de comprender y aplicar correctamente estas recomendaciones.
-                                     La toma de medicamentos sin supervisión médica es peligrosa para la salud.
-                                      </string>
+
     <!-- Errors -->
-    <string name="err_io">Unexpected error</string>
-    <string name="err_unexpected">Unexpected error</string>
+    <string name="err_io">Error de E/S</string>
+    <string name="err_unexpected">Error inesperado</string>
+    <string name="lbl_morbidity">Morbilidad</string>
+    <string name="msg_no_option_chosen">Escoja una opción</string>
 </resources>

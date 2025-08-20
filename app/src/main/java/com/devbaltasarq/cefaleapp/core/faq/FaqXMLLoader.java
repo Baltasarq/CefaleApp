@@ -4,7 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.faq;
 
 
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+import com.devbaltasarq.cefaleapp.core.XMLToolBox;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,9 +14,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -25,15 +24,13 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class FaqXMLLoader {
     private static final String ETQ_ENTRY = "entry";
-    private static final String ETQ_TXT = "txt";
     private static final String ETQ_ID = "id";
-    private static final String ETQ_LANG = "lang";
     private static final String ETQ_QUESTION = "q";
     private static final String ETQ_ANSWER = "a";
 
-    public static Map<String, Map<String, Faq>> loadFrom(InputStream in) throws IOException
+    public static Map<String, Faq> loadFrom(InputStream in) throws IOException
     {
-        final Map<String, Map<String, Faq>> TORET = new HashMap<>( 5 );
+        final Map<String, Faq> TORET = new HashMap<>( 5 );
 
         try {
             final DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
@@ -43,17 +40,9 @@ public class FaqXMLLoader {
             final NodeList ENTRY_NODES = DOC.getElementsByTagName( ETQ_ENTRY );
 
             for(int i = 0; i < ENTRY_NODES.getLength(); ++i) {
-                final List<Faq> FAQ_ENTRIES = loadEntries( (Element) ENTRY_NODES.item( i ) );
-
-                for(final Faq FAQ_ENTRY: FAQ_ENTRIES) {
-                    final Map<String, Faq> ENTRIES = TORET.getOrDefault( FAQ_ENTRY.getLang(),
-                                                        new HashMap<>( 30 ) );
-
-                    if ( ENTRIES.isEmpty() ) {
-                        TORET.put( FAQ_ENTRY.getLang(), ENTRIES );
-                    }
-
-                    ENTRIES.put( FAQ_ENTRY.getId(), FAQ_ENTRY );
+                if ( ENTRY_NODES.item( i ) instanceof Element ELEMENT ) {
+                    final Faq FAQ_ENTRY = loadEntry( ELEMENT );
+                    TORET.put( FAQ_ENTRY.getId(), FAQ_ENTRY );
                 }
             }
         } catch(ParserConfigurationException | SAXException exc)
@@ -64,21 +53,26 @@ public class FaqXMLLoader {
         return TORET;
     }
 
-    private static List<Faq> loadEntries(final Element ENTRY_NODE) throws IOException
+    private static Faq loadEntry(final Element ENTRY_NODE) throws IOException
     {
-        final String ID = Util.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_ID );
-        final List<Faq> TORET = new ArrayList<>( 5 );
-        final NodeList TXT_NODES = ENTRY_NODE.getElementsByTagName( ETQ_TXT );
+        final String ID = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_ID );
+        final Element Q_NODE = XMLToolBox.getXMLSubElement( ENTRY_NODE, ETQ_QUESTION );
+        final Element A_NODE = XMLToolBox.getXMLSubElement( ENTRY_NODE, ETQ_ANSWER );
 
-        for(int i = 0; i < TXT_NODES.getLength(); ++i) {
-            final Element NODE = (Element) TXT_NODES.item( i );
-            final String LANG = Util.getXMLAttributeOrThrow( NODE, ETQ_LANG );
-            final String QUESTION = Util.getXMLAttributeOrThrow( NODE, ETQ_QUESTION );
-            final String ANSWER = Util.getXMLAttributeOrThrow( NODE, ETQ_ANSWER );
-
-            TORET.add( new Faq( LANG, ID, QUESTION, ANSWER ) );
+        if ( Q_NODE == null ) {
+            throw new IOException( "missing question for id: " + ID );
         }
 
-        return TORET;
+        if ( A_NODE == null ) {
+            throw new IOException( "missing answer, for id: " + ID );
+        }
+
+        final LocalizedText QUESTION_L10n_TEXT =
+                                XMLToolBox.readXMLL10nText( Q_NODE );
+
+        final LocalizedText ANSWER_L10N_TEXT =
+                                XMLToolBox.readXMLL10nText( A_NODE );
+
+        return new Faq( ID, QUESTION_L10n_TEXT, ANSWER_L10N_TEXT );
     }
 }

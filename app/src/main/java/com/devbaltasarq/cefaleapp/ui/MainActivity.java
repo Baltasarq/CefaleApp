@@ -19,7 +19,7 @@ import com.devbaltasarq.cefaleapp.core.faq.Faq;
 import com.devbaltasarq.cefaleapp.core.faq.FaqXMLLoader;
 import com.devbaltasarq.cefaleapp.core.links.WebUrl;
 import com.devbaltasarq.cefaleapp.core.links.WebUrlXMLLoader;
-import com.devbaltasarq.cefaleapp.core.questionnaire.HITFormPlayer;
+import com.devbaltasarq.cefaleapp.core.questionnaire.HIT6FormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MIDASFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormXMLLoader;
@@ -32,7 +32,7 @@ import com.devbaltasarq.cefaleapp.core.treatment.advisor.TreatmentMessage;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.QuestionSettingsActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.TextSettingsActivity;
-import com.devbaltasarq.cefaleapp.ui.tests.HITFormActivity;
+import com.devbaltasarq.cefaleapp.ui.tests.HIT6FormActivity;
 import com.devbaltasarq.cefaleapp.ui.tests.MIDASFormActivity;
 import com.devbaltasarq.cefaleapp.ui.tests.TestActivity;
 import com.devbaltasarq.cefaleapp.ui.treatment.TreatmentDeliverActivity;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public enum TextSize { SMALL, MEDIUM, LARGE }
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
     private final static String MIGRAINE_FORM_DATA_ASSET = "migraine_test.xml";
-    private final static String HIT_FORM_DATA_ASSET = "hit_test.xml";
+    private final static String HIT_FORM_DATA_ASSET = "hit6_test.xml";
     private final static String MIDAS_FORM_DATA_ASSET = "midas_test.xml";
     private final static String TREATMENT_DATA_ASSET = "migraine_treatment.xml";
     private final static String FAQ_DATA_ASSET = "faq.xml";
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onLaunchHitForm()
     {
-        this.gotoActivity( HITFormActivity.class );
+        this.gotoActivity( HIT6FormActivity.class );
     }
 
     private void onLaunchMidasForm()
@@ -204,16 +204,20 @@ public class MainActivity extends AppCompatActivity {
             Morbidity.setAll( TR_LOADER.getMorbididties() );
             TreatmentMessage.setAll( TR_LOADER.getTreatmentMessages() );
 
-            // Load all tests
-            MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(
+            // Load main test
+/*            MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIGRAINE_FORM_DATA_ASSET ) );
             MigraineTestActivity.player = new MigraineFormPlayer( MigraineTestActivity.migraineForm );
+*/
+            // Load the MIDAS test
             MIDASFormActivity.MIDASForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIDAS_FORM_DATA_ASSET ) );
             MIDASFormActivity.player = new MIDASFormPlayer( MIDASFormActivity.MIDASForm );
-            HITFormActivity.HITForm = FormXMLLoader.loadFrom(
+
+            // Load the HIT6 test
+            HIT6FormActivity.HITForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( HIT_FORM_DATA_ASSET ) );
-            HITFormActivity.player = new HITFormPlayer( HITFormActivity.HITForm );
+            HIT6FormActivity.player = new HIT6FormPlayer( HIT6FormActivity.HITForm );
 
             // Load FAQ entries
             Faq.setAll( FaqXMLLoader.loadFrom( this.getAssets().open( FAQ_DATA_ASSET ) ) );
@@ -223,10 +227,11 @@ public class MainActivity extends AppCompatActivity {
         } catch(IOException exc) {
             final TextView TV_STATUS = this.findViewById( R.id.tvErrorStatus );
             final LinearLayout LY_MAIN = this.findViewById( R.id.lyMain );
+            final String IO_ERROR = this.getString( R.string.err_io );
 
             LY_MAIN.setVisibility( View.GONE );
             TV_STATUS.setVisibility( View.VISIBLE );
-            TV_STATUS.setText( "i/o error: " + exc.getMessage() );
+            TV_STATUS.setText( IO_ERROR + ": " + exc.getMessage() );
             Log.e( LOG_TAG, "error loading asset data: " + exc.getMessage() );
         }
 

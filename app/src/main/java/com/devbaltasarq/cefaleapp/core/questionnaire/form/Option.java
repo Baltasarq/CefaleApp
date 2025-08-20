@@ -4,10 +4,12 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 
 
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.Locale;
 
 public class Option {
-    public Option(String text, String value)
+    public Option(LocalizedText text, String value)
     {
         this.TEXT = text;
         this.VALUE = value;
@@ -18,7 +20,7 @@ public class Option {
         return this.VALUE;
     }
 
-    public String getText()
+    public LocalizedText getText()
     {
         return this.TEXT;
     }
@@ -55,6 +57,6 @@ public class Option {
                     this.getValue() );
     }
 
-    private final String TEXT;
+    private final LocalizedText TEXT;
     private final String VALUE;
 }

@@ -13,11 +13,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+import com.devbaltasarq.cefaleapp.core.Language;
 import com.devbaltasarq.cefaleapp.core.faq.Faq;
 
 import java.util.ArrayList;
@@ -45,9 +44,9 @@ public class InfoActivity extends AppCompatActivity {
 
     private void showFAQ()
     {
-        final MultiLanguageWrapper.Lang LANG_ES = MultiLanguageWrapper.Lang.es;
+        final Language LANG = Language.langFromDefaultLocale();
         final LinearLayout LY_FAQ = this.findViewById( R.id.lyFAQContainer );
-        final List<Faq> FAQ_ENTRIES= new ArrayList<>( Faq.getAll().getForLang( LANG_ES ).values() );
+        final List<Faq> FAQ_ENTRIES= new ArrayList<>( Faq.getAll().values() );
         final LayoutInflater INFLATER = this.getLayoutInflater();
 
         FAQ_ENTRIES.sort( Comparator.comparing( Faq::getId ) );
@@ -58,8 +57,8 @@ public class InfoActivity extends AppCompatActivity {
             final TextView LBL_QUESTION = FAQ_VIEW.findViewById( R.id.lblFaqQuestion );
             final TextView LBL_ANSWER = FAQ_VIEW.findViewById( R.id.lblFaqAnswer );
 
-            LBL_QUESTION.setText( FAQ.getQuestion() );
-            LBL_ANSWER.setText( FAQ.getAnswer() );
+            LBL_QUESTION.setText( FAQ.getQuestion().get( LANG ) );
+            LBL_ANSWER.setText( FAQ.getAnswer().get( LANG ) );
             LY_FAQ.addView( FAQ_VIEW );
 
             LBL_QUESTION.setOnClickListener( (v) -> {

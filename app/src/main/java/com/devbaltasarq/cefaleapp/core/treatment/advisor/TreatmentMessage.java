@@ -4,12 +4,14 @@
 package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 
-import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+import com.devbaltasarq.cefaleapp.core.Language;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
 import com.devbaltasarq.cefaleapp.core.treatment.BasicId;
 import com.devbaltasarq.cefaleapp.core.treatment.IdsRepo;
 import com.devbaltasarq.cefaleapp.core.treatment.Nameable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -117,9 +119,8 @@ public class TreatmentMessage {
         private static IdsRepo ids = null;
     }
 
-    public TreatmentMessage(Id msgId, String lang, String msg)
+    public TreatmentMessage(Id msgId, LocalizedText msg)
     {
-        this.lang = lang.trim().toLowerCase();
         this.msgId = msgId;
         this.msg = msg;
     }
@@ -130,16 +131,12 @@ public class TreatmentMessage {
         return this.msgId;
     }
 
-    /** @return the message for treatment itself. */
-    public String getMsg()
+    /** @return the message for treatment itself.
+      * @see LocalizedText
+      */
+    public LocalizedText getMsg()
     {
         return this.msg;
-    }
-
-    /** @return the lang for this message entry. */
-    public String getLang()
-    {
-        return this.lang;
     }
 
     @Override
@@ -165,18 +162,19 @@ public class TreatmentMessage {
         return Objects.hash( this.getId(), this.getMsg() );
     }
 
+    /** @return the treatment message for the current locale. */
     @Override
     public String toString()
     {
-        return this.getMsg();
+        return this.getMsg().get( Language.langFromDefaultLocale() );
     }
 
-    public static void setAll(Map<String, Map<Id, TreatmentMessage>> allMsgs)
+    public static void setAll(Map<Id, TreatmentMessage> allMsgs)
     {
-        all = new MultiLanguageWrapper<>( allMsgs );
+        all = new HashMap<>( allMsgs );
     }
 
-    public static MultiLanguageWrapper<Map<Id, TreatmentMessage>> getAll()
+    public static Map<Id, TreatmentMessage> getAll()
     {
         if ( all == null ) {
             throw new Error( "Treatment message entries not loaded yet" );
@@ -185,16 +183,15 @@ public class TreatmentMessage {
         return all;
     }
 
-    /** return a treatment message, given its id and the languahe. */
-    public static TreatmentMessage getFor(MultiLanguageWrapper.Lang lang, String descTxtId)
+    /** return a treatment message, given its id. */
+    public static TreatmentMessage getFor(String descTxtId)
     {
         final TreatmentMessage.Id DESC_ID = TreatmentMessage.Id.get( descTxtId );
 
-        return TreatmentMessage.getAll().getForLang( lang ).get( DESC_ID );
+        return TreatmentMessage.getAll().get( DESC_ID );
     }
 
     private final Id msgId;
-    private final String lang;
-    private final String msg;
-    private static MultiLanguageWrapper<Map<TreatmentMessage.Id, TreatmentMessage>> all = null;
+    private final LocalizedText msg;
+    private static Map<TreatmentMessage.Id, TreatmentMessage> all = null;
 }

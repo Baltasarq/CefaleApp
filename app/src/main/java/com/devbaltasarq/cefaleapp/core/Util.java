@@ -15,11 +15,6 @@ import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.Nameable;
 import com.devbaltasarq.cefaleapp.ui.treatment.MedicineActivity;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import java.io.IOException;
 import java.text.Collator;
 import java.util.Calendar;
 import java.util.Collection;
@@ -49,55 +44,6 @@ public class Util {
                 TODAY.get( Calendar.MILLISECOND ));
     }
 
-    public static String getXMLAttributeOrThrow(final Element ELEMENT, final String ETQ_ATTR)
-            throws IOException
-    {
-        String toret = null;
-
-        if ( ELEMENT != null ) {
-            toret = ELEMENT.getAttribute( ETQ_ATTR );
-
-            if ( toret == null ) {
-                throw new IOException( "XML attribute: '"
-                        + ETQ_ATTR + "' not found in: "
-                        + ELEMENT.getTagName() );
-            }
-
-            toret = toret.trim();
-            if ( toret.isEmpty() ) {
-                throw new IOException( "XML attribute: '"
-                                        + ETQ_ATTR + "' empty in: "
-                                        + ELEMENT.getTagName() );
-            }
-        } else {
-            throw new IOException( "XML attribute: "
-                                    + ETQ_ATTR + " searched in null element" );
-        }
-
-        return toret;
-    }
-
-    /** Get one sub element with the given name.
-      * @param ELEMENT the element to look for the subelement in.
-      * @param ETQ_ELEM the name of the subelement.
-      * @return null if no subelement found, or the first one otherwise.
-      */
-    public static Element getXMLSubElement(final Element ELEMENT, final String ETQ_ELEM)
-    {
-        final NodeList NODE_LIST = ELEMENT.getElementsByTagName( ETQ_ELEM );
-        Element toret = null;
-
-        if ( NODE_LIST.getLength() > 0 ) {
-            final Node NODE = NODE_LIST.item( 0 );
-
-            if ( NODE instanceof final Element SUB_ELEMENT ) {
-                toret = SUB_ELEMENT;
-            }
-        }
-
-        return toret;
-    }
-
     /** Converts HTML to rich text understandable
      * by Android's TextView.
      * @param txt The text with html tags to convert.
@@ -116,8 +62,8 @@ public class Util {
                         .replace( "-", "&mdash;" ));
     }
 
-    /** Shos the medicine activity with the given medicine loaded.
-      * @param CTX the activity this call is originated.
+    /** Shows the medicine activity with the given medicine loaded.
+      * @param CTX the activity this call is originated from.
       * @param M the given medicine to show.
       */
     public static void showMedicine(final Context CTX, final Medicine M)

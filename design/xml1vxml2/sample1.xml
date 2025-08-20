@@ -1,0 +1,22 @@
+<qs>
+
+	<q
+	   id="q1"
+	   goto="q2"
+	   type="int"
+	   summary="edad"
+	   text="¿Cuántos años tienes?" />
+       
+    <q id="data_notes" type="str"
+            summary="Notas"
+            text="Notas libres a rellenar según los &lt;u>síntomas del paciente&lt;/u>."
+            goto="data_gender" />
+
+    <q id="data_gender" goto="data_age" pic="pic_gender"
+        type="bool"
+        text="¿&lt;b>Hombre&lt;/b> o &lt;b>mujer&lt;/b>?"
+        summary="Sexo">
+        <opt value="false" text="Hombre" />
+        <opt value="true" text="Mujer" />
+    </q>
+</qs>

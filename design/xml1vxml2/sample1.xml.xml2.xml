@@ -1,0 +1,48 @@
+<qs>
+    <q id="q1" goto="q2" type="int">
+        <summary>
+            <text lang="ES">edad</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="ES">¿Cuántos años tienes?</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </contents>
+    </q>
+    <q id="data_notes" goto="data_gender" type="str">
+        <summary>
+            <text lang="ES">Notas</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="ES">Notas libres a rellenar según los &lt;u&gt;síntomas del paciente&lt;/u&gt;.</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </contents>
+    </q>
+    <q id="data_gender" goto="data_age" type="bool">
+        <summary>
+            <text lang="ES">Sexo</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="ES">¿&lt;b&gt;Hombre&lt;/b&gt; o &lt;b&gt;mujer&lt;/b&gt;?</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </contents>
+        <opt value="false">
+            <text lang="ES">Hombre</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </opt>
+        <opt value="true">
+            <text lang="ES">Mujer</text>
+            <text lang="EN">In English!!!</text>
+            <text lang="PT">Em Portugués!!!</text>
+        </opt>
+    </q>
+</qs>

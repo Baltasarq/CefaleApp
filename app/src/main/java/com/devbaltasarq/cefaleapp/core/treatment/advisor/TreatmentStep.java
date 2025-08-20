@@ -4,7 +4,7 @@
 package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 
-import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 
@@ -64,10 +64,10 @@ public class TreatmentStep {
         this.medicineIds.add( MED_ID );
     }
 
-    /** @return the description of this itep. */
-    public String getDesc()
+    /** @return the description of this step. */
+    public LocalizedText getDesc()
     {
-        return this.desc.toString();
+        return this.desc.getMsg();
     }
 
     /** @return the medicine id's for this step. */

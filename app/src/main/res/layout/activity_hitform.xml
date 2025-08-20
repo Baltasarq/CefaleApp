@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tests.HITFormActivity"
+    tools:context=".ui.tests.HIT6FormActivity"
     android:orientation="vertical">
 
     <include layout="@layout/content_test_layout" />

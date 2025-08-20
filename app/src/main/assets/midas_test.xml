@@ -3,30 +3,142 @@
     <!-- MIDAS questions for migraine score -->
     <branch id="midas" head="midas_headaches_avoid_working">
 
-        <q id="midas_headaches_avoid_working" type="int"
-            summary="Frecuencia cefaleas ha impedido trabajar"
-            text="¿Cuántos días en los últimos 3 meses no ha podido ir a trabajar por su cefalea?"
-            goto="midas_headaches_halves_productivity"/>
+        <q id="midas_headaches_avoid_working"
+            type="int"
+            goto="midas_headaches_halves_productivity">
+            <summary>
+                <text lang="es">Frecuencia cefaleas ha impedido trabajar</text>
+                <text lang="en">How often cephaleas have prevented work</text>
+                <text lang="pt">Frequência cefálias impediram o trabalho</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    ¿Cuántos días en los últimos 3 meses no ha podido ir a
+                    trabajar por su cefalea?
+                </text>
+                <text lang="en">
+                    On how many days in the last 3 months did you miss
+                    work or school because of your headaches?
+                </text>
+                <text lang="pt">
+                    Em quantos dias nos últimos 3 meses você faltou ao trabalho ou a
+                    escola por causa de suas dores de cabeça?
+                </text>
+            </contents>
+        </q>
 
-        <q id="midas_headaches_halves_productivity" type="int"
-            summary="Frecuencia cefaleas ha reducido productividad"
-            text="¿Cuántos días en los últimos tres meses se redujo por la mitad su productividad en el trabajo por sus cefaleas? (No incluya los días que ha incluido en la pregunta anterior)"
-            goto="midas_headaches_prevents_chores"/>
+        <q id="midas_headaches_halves_productivity"
+            type="int"
+            goto="midas_headaches_prevents_chores">
+            <summary>
+                <text lang="es">Frecuencia cefaleas ha reducido productividad</text>
+                <text lang="en">How often cephaleas reduced your productivity</text>
+                <text lang="pt">Frequência cefálias reduziu sua produtividade</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    ¿Cuántos días en los últimos tres meses se redujo por la
+                    mitad su productividad en el trabajo por sus cefaleas? (No
+                    incluya los días que ha incluido en la pregunta anterior)
+                </text>
+                <text lang="en">
+                    How many days in the last 3 months was your productivity
+                    at work or school reduced by half or more
+                    because of your headaches? (Do not include days you counted
+                    in question 1 where you missed work or school.)
+                </text>
+                <text lang="pt">
+                    Em quantos dias nos últimos 3 meses sua produtividade no trabalho
+                    ou na escola foi reduzida pela metade ou mais por causa de suas
+                    dores de cabeça? (Não inclua os dias que você contou na pergunta 1
+                    em que faltou ao trabalho ou a escola.)
+                </text>
+            </contents>
+        </q>
 
-        <q id="midas_headaches_prevents_chores" type="int"
-            summary="Frecuencia cefaleas ha impedido tareas domésticas"
-            text="¿Cuántos días en los últimos 3 meses no ha realizado sus tareas domésticas por sus cefaleas?"
-            goto="midas_headaches_halves_domestic_productivity"/>
+        <q id="midas_headaches_prevents_chores"
+            type="int"
+            goto="midas_headaches_halves_domestic_productivity">
+            <summary>
+                <text lang="es">Frecuencia cefaleas ha impedido tareas domésticas</text>
+                <text lang="en">How often cephaleas prevented you of doing your chores</text>
+                <text lang="pt">Frequência cefálias o impediram de fazer suas tarefas</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    ¿Cuántos días en los últimos 3 meses no ha realizado sus
+                    tareas domésticas por sus cefaleas?
+                </text>
+                <text lang="en">
+                    On how many days in the last 3 months did you not do
+                    household work (such as housework, home
+                    repairs and maintenance, shopping, caring for children
+                    and relatives) because of your headaches?
+                </text>
+                <text lang="pt">
+                    ¿Em quantos dias nos últimos 3 meses você não
+                    realizou trabalhos domésticos (tarefas domésticas,
+                    consertos e manutenção em casa, compras, cuidados
+                    com crianças e parentes) por causa de suas dores de cabeça?
+                </text>
+            </contents>
+        </q>
 
-        <q id="midas_headaches_halves_domestic_productivity" type="int"
-            summary="Frecuencia cefaleas ha reducido tareas domésticas"
-            text="¿Cuántos días en los últimos 3 meses se redujo por la mitad su productividad en la realización de tareas domésticas por la presencia de cefalea? (No incluya los días mencionados en la pregunta anterior)"
-            goto="midas_headaches_prevented_social"/>
+        <q id="midas_headaches_halves_domestic_productivity"
+            type="int"
+            goto="midas_headaches_prevented_social">
+            <summary>
+                <text lang="es">Frecuencia cefaleas ha reducido tareas domésticas</text>
+                <text lang="en">How often cephaleas reduced your domestic chores</text>
+                <text lang="pt">Frequência cefálias reduziram suas tarefas</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    ¿Cuántos días en los últimos 3 meses se redujo por la mitad
+                    su productividad en la realización de tareas domésticas por
+                    la presencia de cefalea? (No incluya los días mencionados en
+                    la pregunta anterior)
+                </text>
+                <text lang="en">
+                    How many days in the last 3 months was your productivity
+                    in household work reduced by half of more because of
+                    your headaches? (Do not include days you counted
+                    in question 3 where you did not do household work.)
+                </text>
+                <text lang="pt">
+                    Em quantos dias nos últimos 3 meses sua produtividade
+                    no trabalho doméstico, foi reduzida pela metade ou mais,
+                    por causa de suas dores de cabeça? (Não inclua os dias
+                    que você contou na pergunta 3 em que não realizou
+                    o trabalho doméstico.)
+                </text>
+            </contents>
+        </q>
 
-        <q id="midas_headaches_prevented_social" type="int"
-            summary="Frecuencia cefaleas ha impedido ocio"
-            text="¿Cuántos días en los últimos 3 meses se perdió actividades familiares, sociales o lúdicas por sus cefaleas?"
-            goto="/"/>
+        <q id="midas_headaches_prevented_social"
+            type="int"
+            goto="/">
+            <summary>
+                <text lang="es">Frecuencia cefaleas ha impedido ocio</text>
+                <text lang="en">How often cephaleas prevented you of your leisure</text>
+                <text lang="pt">Frequência cefálias o impediram de seu lazer</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    ¿Cuántos días en los últimos 3 meses se perdió actividades
+                    familiares, sociales o lúdicas por sus cefaleas?
+                </text>
+                <text lang="en">
+                    On how many days in the last 3 months did you miss family,
+                    social or leisure activities because of your headaches?
+                </text>
+                <text lang="pt">
+                    Em quantos dias nos últimos 3 meses você perdeu atividades
+                    familiares, sociais ou de lazer por causa de
+                    suas dores de cabeça?
+                </text>
+            </contents>
+        </q>
 
         <!--Test result
             PCD-SUM_UP-MIDAS-1230: Find the final score, adding up all answers.

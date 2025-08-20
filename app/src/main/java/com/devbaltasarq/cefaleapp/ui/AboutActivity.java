@@ -18,6 +18,12 @@ import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
+import com.devbaltasarq.cefaleapp.core.Language;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -41,12 +47,48 @@ public class AboutActivity extends AppCompatActivity {
             ACTION_BAR.setLogo( R.drawable.medicine );
         }
 
+        // Prepare
+        LBL_APP_INFO.getSettings().setJavaScriptEnabled( true );
+        this.loadL10nHTML( LBL_APP_INFO );
         TV_VERSION.setText( AppInfo.FULL_NAME );
-        LBL_APP_INFO.loadUrl( "file:///android_asset/about.html" );
         BT_ABOUT.setOnClickListener( this::buttonPressed );
         BT_INFO.setOnClickListener( this::buttonPressed );
         BT_DETAIL.setOnClickListener( this::buttonPressed );
         this.buttonPressed( BT_DETAIL );
+    }
+
+    private void loadL10nHTML(final WebView WV)
+    {
+        String aboutHTML;
+
+        try {
+            InputStream reader =
+                    this.getResources().getAssets().open("about.html");
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+            while ((bytesRead = reader.read(buffer)) != -1) {
+                output.write(buffer, 0, bytesRead);
+            }
+
+            aboutHTML = new String( output.toByteArray(), StandardCharsets.UTF_8 );
+        } catch(IOException exc)
+        {
+            aboutHTML = "Loading about.html: "
+                                    + this.getString( R.string.err_io );
+            aboutHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + exc.getClass().getSimpleName();
+            aboutHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + exc.getMessage();
+        }
+
+        aboutHTML = aboutHTML
+                        .replace( "$LANG",
+                                Language.langFromDefaultLocale().toString() );
+
+        // Set the HTML
+        WV.loadData( aboutHTML,
+                "text/html",
+                "UTF-8" );
     }
 
     private void buttonPressed(View v)

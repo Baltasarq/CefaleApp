@@ -4,6 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 
 
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.List;
 
 
@@ -21,7 +23,7 @@ public class ReferenceQuestion extends BasicQuestion {
     }
 
     @Override
-    public String getText()
+    public LocalizedText getText()
     {
         throw new Error( "tried to access getText() in a Reference" );
     }

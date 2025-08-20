@@ -7,8 +7,8 @@ package com.devbaltasarq.cefaleapp.core.questionnaire;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 
-public class HITFormPlayer extends FormPlayer {
-    public HITFormPlayer(final Form FORM)
+public class HIT6FormPlayer extends FormPlayer {
+    public HIT6FormPlayer(final Form FORM)
     {
         super( FORM );
     }

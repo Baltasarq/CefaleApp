@@ -18,6 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.Language;
 import com.devbaltasarq.cefaleapp.core.links.WebUrl;
 
 import java.util.ArrayList;
@@ -47,7 +48,8 @@ public class LinksActivity extends AppCompatActivity {
     {
         final LinearLayout LY_ENTRIES = this.findViewById( R.id.lyLinkEntries );
         final LayoutInflater INFLATER = this.getLayoutInflater();
-        final List<WebUrl> LINKS = new ArrayList<>( WebUrl.getAll().values() );
+        final Language LANG = Language.langFromDefaultLocale();
+        final List<WebUrl> LINKS = new ArrayList<>( WebUrl.getAll( LANG ).values() );
 
         LINKS.sort( Comparator.comparing( WebUrl::getSource ) );
 

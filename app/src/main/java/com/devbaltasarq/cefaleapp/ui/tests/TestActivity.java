@@ -32,6 +32,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.Language;
 import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
@@ -210,6 +211,7 @@ public abstract class TestActivity extends AppCompatActivity {
     protected void showCurrentQuestion()
     {
         final Question Q = this.getCurrentQuestion();
+        final Language LANG = Language.langFromDefaultLocale();
         final FrameLayout FRM_END = this.findViewById( R.id.frmEnd );
         final LinearLayout LY_NEXT = this.findViewById( R.id.lyNext );
         final TextView LBL_QUESTION = this.findViewById( R.id.lblQuestion );
@@ -220,7 +222,7 @@ public abstract class TestActivity extends AppCompatActivity {
         LY_NEXT.setVisibility( View.VISIBLE );
 
         // Question attributes
-        this.setTextInTextView( LBL_QUESTION, Q.getText() );
+        this.setTextInTextView( LBL_QUESTION, Q.getText().get( LANG ) );
         this.buildAnswerSupportFor( Q );
         this.buildImageFor( Q );
         this.showingEnd = false;
@@ -308,6 +310,7 @@ public abstract class TestActivity extends AppCompatActivity {
 
     protected void buildRadioGroup(final Question Q)
     {
+        final Language LANG = Language.langFromDefaultLocale();
         final RadioGroup RADIO_GROUP = this.findViewById( R.id.rgOptions );
         final EditText TEXT_AREA = this.findViewById( R.id.edTextArea );
         final EditText NUM_INPUT = this.findViewById( R.id.edInputNum );
@@ -326,7 +329,7 @@ public abstract class TestActivity extends AppCompatActivity {
             final Option OPT = OPTS.get( i );
 
             this.buildRadioButton(
-                    BUTTON_ID_BASE + i, RADIO_GROUP, OPT.getText() );
+                    BUTTON_ID_BASE + i, RADIO_GROUP, OPT.getText().get( LANG ) );
         }
 
         this.hideKeyboard( RADIO_GROUP );

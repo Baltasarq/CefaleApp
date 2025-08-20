@@ -1,5 +1,7 @@
 package com.devbaltasarq.cefaleapp.core.form;
 
+import com.devbaltasarq.cefaleapp.core.Language;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.ValueType;
@@ -26,7 +28,15 @@ public class QuestionTest extends TestCase {
 
     public void testGetText()
     {
-        String[] questionTexts = { "¿Tu nombre?", "¿Tu sexo?", "¿Duele?" };
+        final LocalizedText TXT_MSG1 = new LocalizedText();
+        final LocalizedText TXT_MSG2 = new LocalizedText();
+        final LocalizedText TXT_MSG3 = new LocalizedText();
+
+        TXT_MSG1.add( Language.es, "¿Tu nombre?" );
+        TXT_MSG2.add( Language.es, "¿Tu sexo?" );
+        TXT_MSG3.add( Language.es, "¿Duele?" );
+
+        final LocalizedText[] questionTexts = { TXT_MSG1, TXT_MSG2, TXT_MSG3 };
 
         for(int i = 0; i < this.qs.size(); ++i) {
             Assert.assertEquals( questionTexts[ i ], this.qs.get( i ).getText() );
@@ -107,10 +117,12 @@ public class QuestionTest extends TestCase {
     private void createQ1()
     {
         final Question.Builder BUILD = new Question.Builder();
+        final LocalizedText TXT_MSG = new LocalizedText();
 
+        TXT_MSG.add( Language.es, "¿Tu nombre?" );
         BUILD.setId( "data_name" )
                 .setValueType( ValueType.STR.toString() )
-                .setText( "¿Tu nombre?" );
+                .setText( TXT_MSG );
 
         this.q1 = BUILD.create();
     }
@@ -118,11 +130,14 @@ public class QuestionTest extends TestCase {
     private void createQ2()
     {
         final Question.Builder BUILD = new Question.Builder();
+        final LocalizedText TXT_MSG = new LocalizedText();
+
+        TXT_MSG.add( Language.es, "¿Tu sexo?" );
 
         BUILD.setId( "migraine_gender" )
                 .setGotoId( "migraine_age" )
                 .setValueType( ValueType.BOOL.toString() )
-                .setText( "¿Tu sexo?" );
+                .setText( TXT_MSG );
 
         this.q2 = BUILD.create();
     }
@@ -130,13 +145,20 @@ public class QuestionTest extends TestCase {
     private void createQ3()
     {
         final Question.Builder BUILD = new Question.Builder();
+        final LocalizedText TXT_MSG = new LocalizedText();
+        final LocalizedText TXT_SI = new LocalizedText();
+        final LocalizedText TXT_NO = new LocalizedText();
+
+        TXT_MSG.add( Language.es, "¿Duele?" );
+        TXT_SI.add( Language.es, "Sí" );
+        TXT_NO.add( Language.es, "No" );
 
         BUILD.setId( "migraine_pain" )
                 .setValueType( ValueType.BOOL.toString() )
                 .setGotoId( "/" )
-                .setText( "¿Duele?" )
-                .addOption( new Option( "Sí", "true" ) )
-                .addOption( new Option( "No", "false" ) );
+                .setText( TXT_MSG )
+                .addOption( new Option( TXT_SI, "true" ) )
+                .addOption( new Option( TXT_NO, "false" ) );
 
         this.q3 = BUILD.create();
     }

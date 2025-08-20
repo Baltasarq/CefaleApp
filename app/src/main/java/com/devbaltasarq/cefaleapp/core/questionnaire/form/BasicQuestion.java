@@ -4,6 +4,8 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire.form;
 
 
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.List;
 
 
@@ -37,7 +39,7 @@ public abstract class BasicQuestion {
      *         false otherwise (regular quesiton). */
     public abstract boolean isReference();
 
-    public abstract String getText();
+    public abstract LocalizedText getText();
 
     public abstract ValueType getValueType();
 

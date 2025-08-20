@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <links>
     <link
-        id="url1"
-        src="Novartis"
-        url="https://www.novartis.com/ar-es/news/migrana-mucho-mas-que-un-dolor-de-cabeza"
-        desc="Estudio de la migraña."/>
-
+        id="url_wikipedia_es"
+        src="Wikipedia"
+        lang="es"
+        desc="Descripción básica de la migraña."
+        url="https://es.wikipedia.org/wiki/Migraña" />
     <link
-        id="url2"
-        src="Clínica Mayo"
-        url="https://www.mayoclinic.org/es/diseases-conditions/migraine-headache/diagnosis-treatment/drc-20360207"
-        desc="Introducción a la migraña."/>
+        id="url_wikipedia_en"
+        src="Wikipedia"
+        lang="en"
+        desc="Basic description of migraines."
+        url="https://en.wikipedia.org/wiki/Migraine" />
+    <link
+        id="url_wikipedia_pt"
+        src="Wikipedia"
+        lang="pt"
+        desc="Descrição básica da enxaqueca."
+        url="https://pt.wikipedia.org/wiki/Enxaqueca" />
+    <link
+        id="url_novartis_es"
+        src="Novartis"
+        lang="es"
+        desc="Estudio de la migraña."
+        url="https://www.novartis.com/ar-es/news/migrana-mucho-mas-que-un-dolor-de-cabeza" />
+    <link
+        id="url_mayo_clinic"
+        src="Mayo Clinic"
+        lang="en"
+        desc="Migraine study."
+        url="https://www.mayoclinic.org/diseases-conditions/migraine-headache/symptoms-causes/syc-20360201" />
 </links>

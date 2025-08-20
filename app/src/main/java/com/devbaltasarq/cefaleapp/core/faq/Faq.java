@@ -4,13 +4,11 @@
 package com.devbaltasarq.cefaleapp.core.faq;
 
 
-import com.devbaltasarq.cefaleapp.core.MultiLanguageWrapper;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 
 /** Represents a FAQ entry with its question and answer. */
@@ -19,18 +17,17 @@ public class Faq {
       * @param id the id of this entry.
       * @param q the question of this entry.
       * @param a the answer of this entry.
+      * @see LocalizedText support for L10n text.
       */
-    public Faq(String lang, String id, String q, String a)
+    public Faq(String id, LocalizedText q, LocalizedText a)
     {
-        assert lang != null && !lang.isBlank(): "missing FAQ's id";
         assert id != null && !id.isBlank(): "missing FAQ's id";
-        assert q != null && !q.isBlank(): "missing FAQ's question";
-        assert a != null && !a.isBlank(): "missing FAQ's answer";
+        assert q != null: "missing l10n texts for the question";
+        assert a != null: "missing l10n texts for the answer";
 
-        this.lang = lang;
         this.id = id.trim();
-        this.q = q.trim();
-        this.a = a.trim();
+        this.q = q;
+        this.a = a;
     }
 
     /** @return the id of this faq entry. */
@@ -40,21 +37,15 @@ public class Faq {
     }
 
     /** @return the question of this faq entry. */
-    public String getQuestion()
+    public LocalizedText getQuestion()
     {
         return this.q;
     }
 
     /** @return the answer of this faq entry. */
-    public String getAnswer()
+    public LocalizedText getAnswer()
     {
         return this.a;
-    }
-
-    /** @return the lang for this faq entry. */
-    public String getLang()
-    {
-        return this.lang;
     }
 
     @Override
@@ -81,12 +72,12 @@ public class Faq {
         return Objects.hash( this.getId(), this.getQuestion(), this.getAnswer() );
     }
 
-    public static void setAll(Map<String, Map<String, Faq>> allFaqs)
+    public static void setAll(Map<String, Faq> allFaqs)
     {
-        all = new MultiLanguageWrapper<>( allFaqs );
+        all = new HashMap<>( allFaqs );
     }
 
-    public static MultiLanguageWrapper<Map<String, Faq>> getAll()
+    public static Map<String, Faq> getAll()
     {
         if ( all == null ) {
             throw new Error( "FAQ entries not loaded yet" );
@@ -95,9 +86,8 @@ public class Faq {
         return all;
     }
 
-    private final String lang;
     private final String id;
-    private final String q;
-    private final String a;
-    private static MultiLanguageWrapper<Map<String, Faq>> all = null;
+    private final LocalizedText q;
+    private final LocalizedText a;
+    private static Map<String, Faq> all = null;
 }
