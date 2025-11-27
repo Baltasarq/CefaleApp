@@ -1,0 +1,108 @@
+# XML converter (c) 2025 Baltasar MIT License <jbgarcia@uvigo.es>
+# This is part of the CefaleApp project.
+# Its purpose is to convert XML for morbidities
+# from version 1 (just Spanish) to version 2 (multilingual).
+
+"""
+<morbidity
+    id="PAIN_MODERATE"
+    name="Dolor de intensidad moderada"
+    desc="El dolor se describe como de moderada intensidad." />
+
+# This is converted to:
+
+ <morbidity id="PAIN_MODERATE">
+    <name>
+        <text lang="es">Dolor de intensidad moderada</text>
+        <text lang="en">In English!!</text>
+        <text lang="pt">In Portuguese!!!</text>
+    </name>
+    <desc>
+        <text lang="es">El dolor se describe como de moderada intensidad.</text>
+        <text lang="en">In English!!!</text>
+        <text lang="pt">In portuguese!!!</text>
+    </desc>
+</morbidity>
+"""
+
+
+import sys
+import xml.etree.ElementTree as ET
+import copy
+
+
+def transform_text(q_node, sub_node, tag):
+    """Converts a given node from Spanish only to multilingual.
+        :param q_node: the question "q" node.
+        :param sub_node: the new subnode to be filled, e.g. "contents"
+        :param tag: the tag to extract from q's attributes. e.g. "text"
+    """
+    text_es = ET.SubElement(sub_node, "text", attrib={"lang":"es"})
+    text_en = ET.SubElement(sub_node, "text", attrib={"lang":"en"})
+    text_pt = ET.SubElement(sub_node, "text", attrib={"lang":"pt"})
+
+    contents = q_node.attrib[tag]
+    text_es.text = contents
+    text_en.text = "In English!!!"
+    text_pt.text = "Em Portugués!!!"
+
+    if (contents.lower()[:2] == "si"
+     or contents.lower()[:2] == "sí"):
+        text_en.text = "Yes."
+        text_pt.text = "Sím."
+    ...
+
+    if contents.lower()[:2] == "no":
+        text_en.text = "No."
+        text_pt.text = "Non."
+    ...
+...
+
+
+def xml12xml2(data):
+    """Converts the whole XML from Spanish only to multilingual.
+        :param data: the data in ElementTree objects.
+        :return: the data converted, as ElementTree objects.
+    """
+    toret = ET.Element("ms")
+    
+    for child in data.getroot():
+        if child.tag == "morbidity":
+            q_node = ET.SubElement(toret, "morbidity")
+            q_node.attrib["id"] = child.attrib["id"]
+
+            # Name
+            name = ET.SubElement(q_node, "name")
+            transform_text(child, name, "name")
+            
+            # Desc
+            desc = ET.SubElement(q_node, "desc")
+            transform_text(child, desc, "desc")
+        ...
+
+        for sub_child in child:
+            q_node.append(copy.deepcopy(sub_child))
+        ...
+    ...
+    
+    return ET.ElementTree(toret)
+...
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("[ERR] missing file name.")
+        sys.exit(-1)
+    ...
+    
+    print("Parsing & converting...")
+    fn = sys.argv[1]
+    xml_data = ET.parse(fn)
+    xml_data2 = xml12xml2(xml_data)
+
+    print("Writing...")
+    ET.indent(xml_data2, space="    ", level=0) 
+    with open(fn + ".xml2.xml", "wt") as f:
+        xml_data2.write(f, encoding="unicode")
+    ...
+...

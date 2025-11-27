@@ -26,6 +26,7 @@ public class TreatmentDeliverActivity extends AppCompatActivity {
         final ActionBar ACTION_BAR = this.getSupportActionBar();
         final Button BT_PREVENTIVE = this.findViewById( R.id.btPreventiveTreatment );
         final Button BT_SYMPTOMATIC = this.findViewById( R.id.btSymptomaticTreatment );
+        final Button BT_PREGNANCY = this.findViewById( R.id.btPregnancyTreatment );
 
         // Back
         if ( ACTION_BAR != null ) {
@@ -35,7 +36,8 @@ public class TreatmentDeliverActivity extends AppCompatActivity {
         }
 
         BT_PREVENTIVE.setOnClickListener( (v) -> this.launchPreventiveTreatment() );
-        BT_SYMPTOMATIC.setOnClickListener( (v) -> this.lanchSymptomaticTreatment() );
+        BT_SYMPTOMATIC.setOnClickListener( (v) -> this.launchSymptomaticTreatment() );
+        BT_PREGNANCY.setOnClickListener( (v) -> this.launchPregnancyTreatment() );
     }
 
     public boolean onOptionsItemSelected(MenuItem item)
@@ -54,9 +56,15 @@ public class TreatmentDeliverActivity extends AppCompatActivity {
                 new Intent( this, PreventiveTreatmentActivity.class ) );
     }
 
-    private void lanchSymptomaticTreatment()
+    private void launchSymptomaticTreatment()
     {
         this.startActivity(
                 new Intent( this, SymptomaticTreatmentActivity.class ) );
+    }
+
+    private void launchPregnancyTreatment()
+    {
+        this.startActivity(
+                new Intent( this, PregnancyTreatmentActivity.class ) );
     }
 }

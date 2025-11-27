@@ -53,4 +53,5 @@
     <string name="msg_test_hit">Teste HIT. Este teste realiza uma série reduzida de perguntas ao paciente para determinar o impacto das enxaquecas em sua vida.</string>
     <string name="msg_treatment">Assistente do tratamento: consulta dos tratamentos preventivos recomendados para as diferentes comorbidades apresentadas por pacientes com enxaqueca.</string>
     <string name="msg_test_migraine">Teste de Enxaqueca. Uma série de perguntas analisa detalhadamente os sintomas do paciente para fornecer, com igual detalhe, um diagnóstico quanto ao sofrimento de enxaquecas</string>
+    <string name="lbl_pregnancy_treatment">Gravidez e lactação</string>
 </resources>

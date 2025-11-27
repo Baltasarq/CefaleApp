@@ -6,63 +6,42 @@ package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 import android.util.Log;
 
-import com.devbaltasarq.cefaleapp.core.Util;
+import java.util.Map;
+import java.util.EnumMap;
+import java.util.Objects;
+import java.util.function.Function;
+
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.ValueType;
+import com.devbaltasarq.cefaleapp.core.Message;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
 
 
 public class Diagnostic {
     private static final String LOG_TAG = Diagnostic.class.getSimpleName();
-    private static final String MSG_MIGRAINE = "migraña";
-    private static final String MSG_TENSIONAL = "cefalea tensional";
-    private static final String MSG_WITH_AURA = "con aura";
-    private static final String MSG_MIXED_TENSIONAL = "cefalea mixta con predominio tensional";
-    private static final String MSG_MIXED_MIGRAINE = "cefalea mixta con predominio migrañoso";
-    private static final String MSG_CHK_DOCTOR = "Consulte con su médico";
-    private static final String MSG_SIT1_TXT = """
-        Su cefalea podría ser una migraña.
-        No cumple estrictamente los criterios clínicos para una confirmación
-        diagnóstica, por lo que debe consultar con su Médico de Familia
-        o con su neurólogo.""";
-    private static final String MSG_SIT2_TXT = """
-        Su cefalea es clínicamente compatible con una cefalea migrañosa.
-        No cumple estrictamente los criterios clínicos
-        para una confirmación diagnóstica, por lo que debe consultar
-        con su Médico de Familia o con su neurólogo.""";
-    private static final String MSG_SIT3_TXT = """
-        Su cefalea no cumple con los criterios clínicos de migraña,
-        y debe consultar con su Médico de Familia o con su neurólogo.""";
+    private static final String MSG_ID_WITH_AURA = "conclusionMsgWithAura";
+    private static final String MSG_ID_CHK_DOCTOR = "conclusionMsgChkDoctor";
 
-    public enum Conclusion {
-        NO_CONCLUSION( "" ),
-        MIGRAINE_COMPATIBLE_SIT3( MSG_SIT3_TXT ),
-        MIGRAINE_COMPATIBLE_SIT2( MSG_SIT2_TXT ),
-        MIGRAINE_COMPATIBLE_SIT1( MSG_SIT1_TXT ),
-        TENSIONAL( MSG_TENSIONAL ),
-        MIGRAINE( MSG_MIGRAINE ),
-        MIXED_TENSIONAL( MSG_MIXED_TENSIONAL ),
-        MIXED_MIGRAINE( MSG_MIXED_MIGRAINE );
-
-        Conclusion(String desc)
-        {
-            this.desc = desc;
-        }
-
-        public String getDesc()
-        {
-            if ( this == NO_CONCLUSION ) {
-                throw new Error( "tried to use Conclusion.NO_CONCLUSION !!" );
-            }
-
-            return this.desc;
-        }
-
-        private final String desc;
+    public enum ConclusionId {
+        NO_CONCLUSION,
+        MIGRAINE_COMPATIBLE_SIT3,
+        MIGRAINE_COMPATIBLE_SIT2,
+        MIGRAINE_COMPATIBLE_SIT1,
+        TENSIONAL,
+        MIGRAINE,
+        MIXED_TENSIONAL,
+        MIXED_MIGRAINE
     }
 
     public Diagnostic(final MigraineRepo REPO)
     {
+        this( REPO, Message::getFor );
+    }
+
+    public Diagnostic(final MigraineRepo REPO, Function<String, Message> getMsg)
+    {
         this.REPO = REPO;
+        this.getMsg = getMsg;
     }
 
     /** Determines the total of various bool questions.
@@ -179,20 +158,20 @@ public class Diagnostic {
     }
 
     /** @return the degree of migraine compatibility. */
-    public Conclusion calcMigraineCompatibility()
+    public ConclusionId calcMigraineCompatibility()
     {
         final int MAIN_CRITERIA = this.calcMainCriteria();
-        Conclusion toret = Conclusion.NO_CONCLUSION;
+        ConclusionId toret = ConclusionId.NO_CONCLUSION;
 
         if ( MAIN_CRITERIA == 1 ) {
-            toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
+            toret = ConclusionId.MIGRAINE_COMPATIBLE_SIT3;
 
             if ( this.isMigraineCompatSIT1() ) {
-                toret = Conclusion.MIGRAINE_COMPATIBLE_SIT1;
+                toret = ConclusionId.MIGRAINE_COMPATIBLE_SIT1;
             }
             else
             if ( this.isMigraineCompatSIT2() ) {
-                toret = Conclusion.MIGRAINE_COMPATIBLE_SIT2;
+                toret = ConclusionId.MIGRAINE_COMPATIBLE_SIT2;
             }
         }
 
@@ -205,7 +184,7 @@ public class Diagnostic {
 
         if ( this.calcMainCriteria() == 1 ) {
             toret = ( this.calcMigraineCompatibility()
-                                            != Conclusion.NO_CONCLUSION );
+                                            != ConclusionId.NO_CONCLUSION );
         }
 
         return toret;
@@ -244,16 +223,16 @@ public class Diagnostic {
       *     MIXED_TENSIONAL if the cephalea is mixed and tensional predominant.
       *     MIXED_MIGRAINE if the cephalea is mixed and migraine predominant.
       */
-    public Conclusion getMixedPredominant()
+    public ConclusionId getMixedPredominant()
     {
-        Conclusion toret = Conclusion.NO_CONCLUSION;
+        ConclusionId toret = ConclusionId.NO_CONCLUSION;
 
         if ( this.isMixed() ) {
-            toret = Conclusion.MIXED_TENSIONAL;
+            toret = ConclusionId.MIXED_TENSIONAL;
 
             if ( this.REPO.getNumMigraines() > this.REPO.getNumTensionalCephaleas() )
             {
-                toret = Conclusion.MIXED_MIGRAINE;
+                toret = ConclusionId.MIXED_MIGRAINE;
             }
         }
 
@@ -283,7 +262,7 @@ public class Diagnostic {
         if ( this.REPO.exists( id ) ) {
             toret = this.REPO.getBool( id );
         } else {
-            if ( Util.DEBUG ) {
+            if ( this.REPO.isInDebugMode() ) {
                 Log.e( LOG_TAG, "missing from REPO " + id );
             }
         }
@@ -312,26 +291,26 @@ public class Diagnostic {
       * @return The conclusion of the decision.
       * @see Diagnostic::Conclusion
       */
-    public Conclusion decide()
+    public ConclusionId decide()
     {
         this.preDecide();
         return this.makeDecision();
     }
 
-    private Conclusion makeDecision()
+    private ConclusionId makeDecision()
     {
         final boolean IS_MIGRAINE = this.isMigraine();
         final boolean IS_TENSIONAL = this.isTensional();
         final boolean IS_MIXED = this.isMixed();
-        Conclusion toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
+        ConclusionId toret = ConclusionId.MIGRAINE_COMPATIBLE_SIT3;
 
         if ( !IS_MIGRAINE
           && !IS_TENSIONAL )
         {
             toret = this.calcMigraineCompatibility();
 
-            if ( toret == Conclusion.NO_CONCLUSION ) {
-                toret = Conclusion.MIGRAINE_COMPATIBLE_SIT3;
+            if ( toret == ConclusionId.NO_CONCLUSION ) {
+                toret = ConclusionId.MIGRAINE_COMPATIBLE_SIT3;
             }
         } else {
             // Kind of cephalea
@@ -340,11 +319,11 @@ public class Diagnostic {
             }
             else
             if ( IS_MIGRAINE ) {
-                toret = Conclusion.MIGRAINE;
+                toret = ConclusionId.MIGRAINE;
             }
             else
             if ( IS_TENSIONAL ) {
-                toret = Conclusion.TENSIONAL;
+                toret = ConclusionId.TENSIONAL;
             }
 
         }
@@ -355,7 +334,7 @@ public class Diagnostic {
     public boolean hasAura()
     {
         return ( ( this.isMigraine()
-                || this.calcMigraineCompatibility() != Conclusion.MIGRAINE_COMPATIBLE_SIT3 )
+                || this.calcMigraineCompatibility() != ConclusionId.MIGRAINE_COMPATIBLE_SIT3 )
               && this.REPO.hadAura() );
     }
 
@@ -379,26 +358,30 @@ public class Diagnostic {
     public String toString()
     {
         final StringBuilder TORET = new StringBuilder();
-        final Conclusion CONCLUSION = this.decide();
+        final ConclusionId CONCLUSION = this.decide();
+        final ConclusionMessage CONCLUSION_MSG = new ConclusionMessage( this.getMsg );
+        final String MSG_ID_EXPL_LESS_FIVE_EPISODES = "conclusionMsgExplLessFiveEpisodes";
+        final String MSG_ID_EXPL_DOES_NOT_FULFILL = "conclusionMsgExplDoesNotFulfill";
+        final String MSG_ID_EXPL_RELEVANT_SYMPTOMS = "conclusionMsgExplRelevantSymptoms";
         MigraineRepo.Frequency freq = this.getFreq();
 
         TORET.append( "<b>" );
 
         // Diagnostic
-        TORET.append( CONCLUSION.getDesc() );
+        TORET.append( CONCLUSION_MSG.getFor( CONCLUSION ).getForCurrentLanguage() );
 
         if ( !this.isJustMigraineCompatible() ) {
             // Has aura?
-            if ( CONCLUSION == Conclusion.MIGRAINE
-              || CONCLUSION == Conclusion.MIGRAINE_COMPATIBLE_SIT1 )
+            if ( CONCLUSION == ConclusionId.MIGRAINE
+              || CONCLUSION == ConclusionId.MIGRAINE_COMPATIBLE_SIT1 )
             {
                 if ( this.hasAura() ) {
-                    TORET.append( " " + MSG_WITH_AURA );
+                    TORET.append( " " + this.getMsg.apply( MSG_ID_WITH_AURA ) );
                 }
             }
 
             // Frequency
-            if ( CONCLUSION == Conclusion.MIGRAINE ) {
+            if ( CONCLUSION == ConclusionId.MIGRAINE ) {
                 TORET.append( " " );
                 TORET.append( freq.toString() );
             }
@@ -411,23 +394,29 @@ public class Diagnostic {
             {
                 if ( !this.REPO.getBool( MigraineRepo.Id.HADMORETHANFIVEEPISODES ) ) {
                     TORET.append( '\n' );
-                    TORET.append( " (Probable, migraña de menos de cinco episodios. " );
-                    TORET.append( MSG_CHK_DOCTOR + ".)" );
+                    TORET.append( " ("
+                                + this.getMsg.apply( MSG_ID_EXPL_LESS_FIVE_EPISODES )
+                                + " " );
+                    TORET.append( this.getMsg.apply( MSG_ID_CHK_DOCTOR ) + ".)" );
                     TORET.append( '\n' );
                 }
 
                 if ( !this.REPO.getBool( MigraineRepo.Id.MIGRAINEDURATION ) ) {
                     TORET.append( '\n' );
-                    TORET.append( " (No cumple con la duración de un episodio de migraña. " );
-                    TORET.append( MSG_CHK_DOCTOR + ".)" );
+                    TORET.append( " ("
+                                + this.getMsg.apply( MSG_ID_EXPL_DOES_NOT_FULFILL )
+                                + " " );
+                    TORET.append( this.getMsg.apply( MSG_ID_CHK_DOCTOR ) + ".)" );
                     TORET.append( '\n' );
                 }
             }
 
             if ( this.shouldCheckDoctor() ) {
                 TORET.append( '\n' );
-                TORET.append( " (Síntomas relevantes. ");
-                TORET.append( MSG_CHK_DOCTOR + ".)" );
+                TORET.append( " ("
+                            + this.getMsg.apply( MSG_ID_EXPL_RELEVANT_SYMPTOMS )
+                            + " " );
+                TORET.append( this.getMsg.apply( MSG_ID_CHK_DOCTOR ) + ".)" );
                 TORET.append( '\n' );
             }
 
@@ -439,5 +428,47 @@ public class Diagnostic {
         return TORET.toString();
     }
 
+    final private Function<String, Message> getMsg;
     final private MigraineRepo REPO;
+
+    public static class ConclusionMessage {
+        private static final String MSG_ID_MIGRAINE = "conclusionMsgMigraine";
+        private static final String MSG_ID_TENSIONAL = "conclusionMsgTensional";
+        private static final String MSG_ID_MIXED_TENSIONAL = "conclusionMsgMixedTensional";
+        private static final String MSG_ID_MIXED_MIGRAINE = "conclusionMsgMixedMigraine";
+        private static final String MSG_ID_SIT1_TXT = "conclusionMsgSit1";
+        private static final String MSG_ID_SIT2_TXT = "conclusionMsgSit2";
+        private static final String MSG_ID_SIT3_TXT = "conclusionMsgSit3";
+
+        public ConclusionMessage()
+        {
+            this( Message::getFor );
+        }
+
+        public ConclusionMessage(Function<String, Message> getMsg)
+        {
+            this.msg = new EnumMap<>( ConclusionId.class );
+            this.msg.putAll( Map.of(
+                    ConclusionId.NO_CONCLUSION, Message.EMPTY,
+                    ConclusionId.MIGRAINE_COMPATIBLE_SIT3, getMsg.apply( MSG_ID_SIT3_TXT ),
+                    ConclusionId.MIGRAINE_COMPATIBLE_SIT2, getMsg.apply( MSG_ID_SIT2_TXT ),
+                    ConclusionId.MIGRAINE_COMPATIBLE_SIT1, getMsg.apply( MSG_ID_SIT1_TXT ),
+                    ConclusionId.TENSIONAL, getMsg.apply( MSG_ID_TENSIONAL ),
+                    ConclusionId.MIGRAINE, getMsg.apply( MSG_ID_MIGRAINE ),
+                    ConclusionId.MIXED_TENSIONAL, getMsg.apply( MSG_ID_MIXED_TENSIONAL ),
+                    ConclusionId.MIXED_MIGRAINE, getMsg.apply( MSG_ID_MIXED_MIGRAINE) ));
+        }
+
+        public LocalizedText getFor(ConclusionId conclusionId)
+        {
+            if ( conclusionId == ConclusionId.NO_CONCLUSION ) {
+                throw new Error( "tried to use Conclusion.NO_CONCLUSION !!" );
+            }
+
+            final Message MSG = Objects.requireNonNull( this.msg.get( conclusionId ) );
+            return MSG.getMsg();
+        }
+
+        private final Map<ConclusionId, Message> msg;
+    }
 }

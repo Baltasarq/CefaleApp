@@ -28,7 +28,7 @@ import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentXMLoader;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
-import com.devbaltasarq.cefaleapp.core.treatment.advisor.TreatmentMessage;
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.QuestionSettingsActivity;
 import com.devbaltasarq.cefaleapp.ui.settings.TextSettingsActivity;
@@ -202,13 +202,13 @@ public class MainActivity extends AppCompatActivity {
             MedicineGroup.setAll( TR_LOADER.getMedicineGroups() );
             MedicineClass.setAll( TR_LOADER.getMedicineClasses() );
             Morbidity.setAll( TR_LOADER.getMorbididties() );
-            TreatmentMessage.setAll( TR_LOADER.getTreatmentMessages() );
+            Message.setAll( TR_LOADER.getTreatmentMessages() );
 
             // Load main test
-/*            MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(
+            MigraineTestActivity.migraineForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIGRAINE_FORM_DATA_ASSET ) );
             MigraineTestActivity.player = new MigraineFormPlayer( MigraineTestActivity.migraineForm );
-*/
+
             // Load the MIDAS test
             MIDASFormActivity.MIDASForm = FormXMLLoader.loadFrom(
                                     this.getAssets().open( MIDAS_FORM_DATA_ASSET ) );

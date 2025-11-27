@@ -5,7 +5,7 @@ package com.devbaltasarq.cefaleapp.core.links;
 
 
 import com.devbaltasarq.cefaleapp.core.Language;
-import com.devbaltasarq.cefaleapp.core.XMLToolBox;
+import com.devbaltasarq.cefaleapp.core.XMLLoader;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -63,11 +63,11 @@ public class WebUrlXMLLoader {
 
     private static WebUrl loadLink(final Element ENTRY_NODE) throws IOException
     {
-        final String ID = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_ID );
-        final String LANG = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_LANG );
-        final String SRC = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_SRC );
-        final String URL = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_URL );
-        final String DESC = XMLToolBox.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_DESC );
+        final String ID = XMLLoader.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_ID );
+        final String LANG = XMLLoader.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_LANG );
+        final String SRC = XMLLoader.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_SRC );
+        final String URL = XMLLoader.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_URL );
+        final String DESC = XMLLoader.getXMLAttributeOrThrow( ENTRY_NODE, ETQ_DESC );
 
         return new WebUrl( ID, LANG, SRC, URL, DESC );
     }

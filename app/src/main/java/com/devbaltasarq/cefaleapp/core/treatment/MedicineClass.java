@@ -6,6 +6,9 @@ package com.devbaltasarq.cefaleapp.core.treatment;
 
 import androidx.annotation.NonNull;
 
+import com.devbaltasarq.cefaleapp.core.Identifiable;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +22,7 @@ public class MedicineClass implements Identifiable {
          * @param key the string id for the class.
          * @param name the name of the class.
          */
-        public Id(String key, String name)
+        public Id(String key, LocalizedText name)
         {
             // Store the id as a basic id, if not created before
             final BasicId BASIC_ID = createIdRepoIfNeeded().get( key );
@@ -40,7 +43,7 @@ public class MedicineClass implements Identifiable {
 
         /** @return the name of the class. */
         @Override
-        public String getName()
+        public LocalizedText getName()
         {
             return this.id.getName();
         }

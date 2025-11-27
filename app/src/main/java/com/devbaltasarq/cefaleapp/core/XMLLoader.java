@@ -6,22 +6,42 @@ package com.devbaltasarq.cefaleapp.core;
 
 import androidx.annotation.NonNull;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
-public class XMLToolBox {
+public class XMLLoader {
     private final static String ETQ_TEXT = "text";
     private final static String ETQ_LANG = "lang";
+
+    public Element load(InputStream in) throws IOException
+    {
+        try {
+            final DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
+            final DocumentBuilder DB = DBF.newDocumentBuilder();
+            final Document DOM = DB.parse( in );
+
+            return DOM.getDocumentElement();
+        } catch(SAXException | ParserConfigurationException exc) {
+            throw new IOException( exc );
+        }
+    }
 
     /** Text can have repeated spaces in the middle that must be removed.
       * @param TEXT the text to eliminate duplicated spaces from.
       * @return a new String with just single spaces.
       */
-    public static @NonNull String removeInnerSpaces(@NonNull final String TEXT)
+    public @NonNull static String removeInnerSpaces(@NonNull final String TEXT)
     {
         enum Status { OnSpace, OnText }
         String text = TEXT.trim();
@@ -52,7 +72,7 @@ public class XMLToolBox {
       * @return a map associating languages and text.
       * @throws IOException if the lang attribute is not found.
       */
-    public static @NonNull LocalizedText readXMLL10nText(@NonNull final Element CONTENTS)
+    public @NonNull static LocalizedText readXMLL10nText(@NonNull final Element CONTENTS)
             throws IOException
     {
         final var TORET = new LocalizedText();
@@ -131,5 +151,23 @@ public class XMLToolBox {
         }
 
         return toret;
+    }
+
+    /** Get one sub element with the given name.
+     * @param ELEMENT the element to look for the subelement in.
+     * @param ETQ_ELEM the name of the subelement.
+     * @return the first one with than name.
+     * @throws IOException if not found.
+     */
+    public static Element getXMLSubElementOrThrow(final Element ELEMENT, final String ETQ_ELEM)
+            throws IOException
+    {
+        final Element TORET = getXMLSubElement( ELEMENT, ETQ_ELEM );
+
+        if ( TORET == null ) {
+            throw new IOException( "missing subelement: " + ETQ_ELEM );
+        }
+
+        return TORET;
     }
 }

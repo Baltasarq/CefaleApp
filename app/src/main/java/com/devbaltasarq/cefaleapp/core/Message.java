@@ -1,11 +1,9 @@
 // CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
 
 
-package com.devbaltasarq.cefaleapp.core.treatment.advisor;
+package com.devbaltasarq.cefaleapp.core;
 
 
-import com.devbaltasarq.cefaleapp.core.Language;
-import com.devbaltasarq.cefaleapp.core.LocalizedText;
 import com.devbaltasarq.cefaleapp.core.treatment.BasicId;
 import com.devbaltasarq.cefaleapp.core.treatment.IdsRepo;
 import com.devbaltasarq.cefaleapp.core.treatment.Nameable;
@@ -17,8 +15,10 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class TreatmentMessage {
+public class Message {
     public static final class Id implements Nameable {
+        public static Id EMPTY = new Id( "#ERROR!!" );
+
         /** Creates a new class id.
           * @param key the string id for the class.
           */
@@ -28,7 +28,7 @@ public class TreatmentMessage {
             final BasicId BASIC_ID = createIdRepoIfNeeded().get( key );
 
             if ( BASIC_ID == null ) {
-                this.id = new BasicId( key, key );
+                this.id = new BasicId( key, new LocalizedText( key ) );
                 ids.add( this.id );
             } else {
                 this.id = BASIC_ID;
@@ -43,7 +43,7 @@ public class TreatmentMessage {
 
         /** @return the name of the class. */
         @Override
-        public String getName()
+        public LocalizedText getName()
         {
             return this.id.getName();
         }
@@ -59,7 +59,7 @@ public class TreatmentMessage {
         {
             boolean toret = false;
 
-            if ( obj instanceof TreatmentMessage.Id treatmentMessageId ) {
+            if ( obj instanceof Message.Id treatmentMessageId ) {
                 toret = this.id.equals( treatmentMessageId.id );
             }
 
@@ -76,7 +76,7 @@ public class TreatmentMessage {
          * @param key the given key.
          * @return the Id object with that key.
          */
-        public static TreatmentMessage.Id get(String key)
+        public static Message.Id get(String key)
         {
             final BasicId TORET = createIdRepoIfNeeded().get( key );
 
@@ -90,9 +90,9 @@ public class TreatmentMessage {
         /** Returns a list with all class ids, ordered by the Id's key.
          * @return a list with all the created id's.
          */
-        public static List<TreatmentMessage.Id> getAll()
+        public static List<Message.Id> getAll()
         {
-            final List<TreatmentMessage.Id> TORET = new ArrayList<>( createIdRepoIfNeeded().size() );
+            final List<Message.Id> TORET = new ArrayList<>( createIdRepoIfNeeded().size() );
 
             for(final BasicId BASIC_ID: ids.getAll()) {
                 TORET.add( IdFromBasicId( BASIC_ID ) );
@@ -101,9 +101,9 @@ public class TreatmentMessage {
             return TORET;
         }
 
-        private static TreatmentMessage.Id IdFromBasicId(final BasicId BASIC_ID)
+        private static Message.Id IdFromBasicId(final BasicId BASIC_ID)
         {
-            return new TreatmentMessage.Id( BASIC_ID.getKey() );
+            return new Message.Id( BASIC_ID.getKey() );
         }
 
         private static IdsRepo createIdRepoIfNeeded()
@@ -119,7 +119,9 @@ public class TreatmentMessage {
         private static IdsRepo ids = null;
     }
 
-    public TreatmentMessage(Id msgId, LocalizedText msg)
+    public static Message EMPTY = new Message( Id.EMPTY, LocalizedText.EMPTY );
+
+    public Message(Id msgId, LocalizedText msg)
     {
         this.msgId = msgId;
         this.msg = msg;
@@ -148,7 +150,7 @@ public class TreatmentMessage {
             toret = true;
         }
         else
-        if ( o instanceof TreatmentMessage other ) {
+        if ( o instanceof Message other ) {
             toret = Objects.equals( this.getId(), other.getId() )
                     && Objects.equals( this.getMsg(), other.getMsg() );
         }
@@ -166,15 +168,15 @@ public class TreatmentMessage {
     @Override
     public String toString()
     {
-        return this.getMsg().get( Language.langFromDefaultLocale() );
+        return this.getMsg().getForCurrentLanguage();
     }
 
-    public static void setAll(Map<Id, TreatmentMessage> allMsgs)
+    public static void setAll(Map<Id, Message> allMsgs)
     {
         all = new HashMap<>( allMsgs );
     }
 
-    public static Map<Id, TreatmentMessage> getAll()
+    public static Map<Id, Message> getAll()
     {
         if ( all == null ) {
             throw new Error( "Treatment message entries not loaded yet" );
@@ -184,14 +186,12 @@ public class TreatmentMessage {
     }
 
     /** return a treatment message, given its id. */
-    public static TreatmentMessage getFor(String descTxtId)
+    public static Message getFor(String descTxtId)
     {
-        final TreatmentMessage.Id DESC_ID = TreatmentMessage.Id.get( descTxtId );
-
-        return TreatmentMessage.getAll().get( DESC_ID );
+        return Message.getAll().get( Message.Id.get( descTxtId ) );
     }
 
     private final Id msgId;
     private final LocalizedText msg;
-    private static Map<TreatmentMessage.Id, TreatmentMessage> all = null;
+    private static Map<Message.Id, Message> all = null;
 }

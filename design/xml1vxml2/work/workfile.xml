@@ -1,0 +1,12 @@
+<qs>
+
+
+<q id="continue_areYouSure" type="bool" goto="/" summary="Continuar"
+            text="Además de lo comentado previamente,
+                  ¿tiene otros dolores de cabeza que quiera comentar?">
+            <opt value="false" text="No." />
+            <opt value="true" text="Sí." />
+        </q>
+
+
+</qs>

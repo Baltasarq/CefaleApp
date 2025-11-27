@@ -1,0 +1,14 @@
+<qs>
+    <morbidity>
+        <name>
+            <text lang="es">Hipertensión</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </name>
+        <desc>
+            <text lang="es">La presión arterial alta es una enfermedad común que afecta a las arterias del cuerpo.                   También se conoce como hipertensión. Con la presión arterial alta,                   la fuerza que ejerce la sangre contra las paredes de las arterias                   es muy alta constantemente. El corazón debe trabajar más para bombear sangre.                     Si la hipertensión no está tratada, el tratamiento indicado es con:                     - Candesartán o Lisinopril.                     - Propranolol o Metoprolol.                     - Amitriptilina.                     - Topiramato o zonisamida.                     Si la hipertensión ya está tratada y controlada, valorar tratamiento con:                     - Flunarizina.                     - Amitriptilina.                     - Topiramato o zonisamida.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </desc>
+    </morbidity>
+</qs>

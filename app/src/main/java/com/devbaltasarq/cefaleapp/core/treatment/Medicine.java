@@ -6,6 +6,10 @@ package com.devbaltasarq.cefaleapp.core.treatment;
 
 import androidx.annotation.NonNull;
 
+import com.devbaltasarq.cefaleapp.core.Identifiable;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+import com.devbaltasarq.cefaleapp.core.Message;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +24,7 @@ public class Medicine implements Identifiable {
          * @param key the char for the group.
          * @param name the name of the group.
          */
-        public Id(String key, String name)
+        public Id(String key, LocalizedText name)
         {
             if ( key == null
               || key.isBlank() )
@@ -49,7 +53,7 @@ public class Medicine implements Identifiable {
 
         /** @return the name of the group. */
         @Override
-        public String getName()
+        public LocalizedText getName()
         {
             return this.id.getName();
         }
@@ -135,8 +139,8 @@ public class Medicine implements Identifiable {
     public Medicine(final Id ID,
                       final MedicineGroup.Id GROUP_ID,
                       int groupPos,
-                      String adverseEffects,
-                      String posology,
+                      LocalizedText adverseEffects,
+                      LocalizedText posology,
                       String url)
     {
         if ( ID == null ) {
@@ -172,8 +176,8 @@ public class Medicine implements Identifiable {
         this.id = ID;
         this.groupId = GROUP_ID;
         this.groupPos = groupPos;
-        this.adverseEffects = adverseEffects.trim();
-        this.posology = posology.trim();
+        this.adverseEffects = adverseEffects;
+        this.posology = posology;
         this.url = url;
     }
 
@@ -184,13 +188,13 @@ public class Medicine implements Identifiable {
     }
 
     /** @return the list of adverse effects, as text. */
-    public String getAdverseEffects()
+    public LocalizedText getAdverseEffects()
     {
         return this.adverseEffects;
     }
 
     /** @return the posology, as text. */
-    public String getPosology()
+    public LocalizedText getPosology()
     {
         return this.posology;
     }
@@ -242,15 +246,21 @@ public class Medicine implements Identifiable {
     @Override
     public String toString()
     {
+        final String MSG_POSOLOGY = Message.getFor( "medicineMsgPosology" )
+                                                .getMsg().getForCurrentLanguage();
+        final String MSG_ADVERSE_EFFECTS = Message.getFor( "medicineMsgAdverseEffects" )
+                                                .getMsg().getForCurrentLanguage();
         return String.format( Locale.getDefault(),
                              """
                              %s
-                             Posología:
+                             %s:
                              %s
-                             Efectos adversos:
+                             %s:
                              %s""",
                                      this.getId().toString(),
+                                     MSG_POSOLOGY,
                                      this.getPosology(),
+                                     MSG_ADVERSE_EFFECTS,
                                      this.getAdverseEffects()
         );
     }
@@ -286,8 +296,8 @@ public class Medicine implements Identifiable {
     private final Id id;
     private final int groupPos;
     private final MedicineGroup.Id groupId;
-    private final String posology;
-    private final String adverseEffects;
+    private final LocalizedText posology;
+    private final LocalizedText adverseEffects;
     private final String url;
     private static Map<Id, Medicine> allMedicines;
 }

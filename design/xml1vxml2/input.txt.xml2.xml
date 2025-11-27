@@ -1,0 +1,23 @@
+<ms>
+    <morbidity id="ANXIETY">
+        <name>
+            <text lang="es">Ansiedad o estrés</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </name>
+        <desc>
+            <text lang="es">Sentir ansiedad de modo ocasional                   es una parte normal de la vida.                   Sin embargo, las personas con trastornos de ansiedad                   con frecuencia tienen preocupaciones y miedos intensos,                   excesivos y persistentes sobre situaciones diarias.                   Con frecuencia, en los trastornos de ansiedad                   se dan episodios repetidos de sentimientos repentinos                   de ansiedad intensa y miedo o terror que alcanzan                   un máximo en una cuestión de minutos (ataques de pánico).                   No tenemos contraindicaciones, pero se optaría primero por tratamientos antidepresivos.                       El tratamiento preventivo sería con:                       - Betabloqueantes (propranolol, metoprolol).                       - Amitriptilina o venlafaxina.                       - Flunaricina.                       - Topiramato o zonisamida.                       - Candesartán o lisinopril.</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </desc>
+        <medicalTreatment>
+            <advisedGroup>B</advisedGroup>
+            <advisedGroup>D</advisedGroup>
+            <advised>FLUNARIZINA</advised>
+            <advised>TOPIRAMATO</advised>
+            <advised>ZONISAMIDA</advised>
+            <advised>CANDESARTAN</advised>
+            <advised>LISINOPRIL</advised>
+        </medicalTreatment>
+    </morbidity>
+</ms>

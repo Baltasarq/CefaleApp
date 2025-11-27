@@ -4,6 +4,7 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 
@@ -51,20 +52,28 @@ public class MIDASFormPlayer extends FormPlayer {
     @Override
     public String getFinalReport()
     {
+        final String MSG_ID_HIGH_DISABILITY = "midasMsgHighDisability";
+        final String MSG_ID_MODERATE_DISABILITY = "midasMsgModerateDisability";
+        final String MSG_ID_LOW_DISABILITY = "midasMsgLowDisability";
+        final String MSG_ID_NO_DISABILITY = "midasMsgNoDisability";
         String toret = "";
 
         if ( this.score > 21 ) {
-            toret = "Alta discapacidad.";
+            toret = Message.getFor( MSG_ID_HIGH_DISABILITY ).getMsg()
+                                                    .getForCurrentLanguage();
         }
         else
         if ( this.score > 10 ) {
-            toret = "Discapacidad moderada.";
+            toret = Message.getFor( MSG_ID_MODERATE_DISABILITY ).getMsg()
+                                                    .getForCurrentLanguage();
         }
         else
         if ( this.score > 5 ) {
-            toret = "Discapacidad baja.";
+            toret = Message.getFor( MSG_ID_LOW_DISABILITY ).getMsg()
+                                                    .getForCurrentLanguage();
         } else {
-            toret = "Discapacidad mínima o inexistente.";
+            toret = Message.getFor( MSG_ID_NO_DISABILITY ).getMsg()
+                                                    .getForCurrentLanguage();
         }
 
         return toret;

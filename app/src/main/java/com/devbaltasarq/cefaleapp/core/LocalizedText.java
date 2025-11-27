@@ -5,6 +5,7 @@ package com.devbaltasarq.cefaleapp.core;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +15,19 @@ import java.util.Set;
   * @see Language
  */
 public class LocalizedText {
+    public static final LocalizedText EMPTY = new LocalizedText( "#ERROR!!" );
+
+    /** Creates a new localized with invariant text inside.
+      * @param invariantText the initial invariant text.
+      */
+    public LocalizedText(String invariantText)
+    {
+        this();
+        this.add( Language.invariant, invariantText );
+    }
+
+    /** Creates a new localized text without any text
+     *  for nay language inside. */
     public LocalizedText()
     {
         this.texts = new HashMap<>();
@@ -57,11 +71,23 @@ public class LocalizedText {
         String toret = this.texts.get( lang );
 
         if ( toret == null ) {
-            throw new IllegalArgumentException(
-                            "L18nText: get() no text for lang: " + lang );
+            toret = this.texts.get( Language.invariant );
+
+            if ( toret == null ) {
+                throw new IllegalArgumentException(
+                                "L18nText: get() no text for lang: " + lang );
+            }
         }
 
         return toret;
+    }
+
+    /** Get the corresponding text for the current language.
+      * @return A string with the desired text.
+      */
+    public String getForCurrentLanguage()
+    {
+        return this.get( Language.langFromDefaultLocale() );
     }
 
     /** @return an iterable that holds all available languages. */
@@ -112,17 +138,23 @@ public class LocalizedText {
         return toret;
     }
 
+    /** @return true of this localizedtext does not have any text. */
+    public boolean isEmpty()
+    {
+        return this.texts.isEmpty();
+    }
+
     /** @return the english localized version of this text, if present. */
     @Override
     public String toString()
     {
         String toret = "!!";
-
-        if ( this.texts.containsKey( Language.en ) ) {
+        throw new Error( "LocalizedText::toString() invoked!!" );
+        /*if ( this.texts.containsKey( Language.invariant ) ) {
             toret = this.get( Language.en );
         }
 
-        return toret;
+        return toret;*/
     }
 
     private final Map<Language, String> texts;

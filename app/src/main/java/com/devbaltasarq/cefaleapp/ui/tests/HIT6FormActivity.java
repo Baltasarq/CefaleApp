@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
 import com.devbaltasarq.cefaleapp.core.questionnaire.HIT6FormPlayer;
 
@@ -87,6 +88,9 @@ public class HIT6FormActivity extends TestActivity {
     @Override
     public void showFormEnd()
     {
+        final String MSG_TEST_END = Message.getFor( "testMsgEnd" ).getMsg()
+                                                .getForCurrentLanguage();
+
         // Prepare form end
         super.showFormEnd();
 
@@ -98,7 +102,8 @@ public class HIT6FormActivity extends TestActivity {
         final String FINAL_REPORT = player.getFinalReport();
 
         // Set info
-        END_TEXT.append( "Final del cuestionario<br/><br/>" );
+        END_TEXT.append( MSG_TEST_END );
+        END_TEXT.append( "<br/><br/>" );
         END_TEXT.append( FINAL_REPORT );
         this.setTextInTextView( LBL_QUESTION, END_TEXT.toString() );
 

@@ -70,4 +70,5 @@
     <string name="err_unexpected">Error inesperado</string>
     <string name="lbl_morbidity">Morbilidad</string>
     <string name="msg_no_option_chosen">Escoja una opción</string>
+    <string name="lbl_pregnancy_treatment">Gestación y Lactancia</string>
 </resources>

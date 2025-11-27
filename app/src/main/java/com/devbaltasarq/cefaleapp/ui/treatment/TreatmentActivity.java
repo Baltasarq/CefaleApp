@@ -11,11 +11,9 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
+import com.devbaltasarq.cefaleapp.ui.CefaleAppActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public abstract class TreatmentActivity extends AppCompatActivity {
+public abstract class TreatmentActivity extends CefaleAppActivity {
     protected void init()
     {
         // Listeners
@@ -52,7 +50,7 @@ public abstract class TreatmentActivity extends AppCompatActivity {
         final List<Morbidity> LIST_MORBIDITIES = new ArrayList<>( MORBIDITIES.values() );
 
         LIST_MORBIDITIES.sort( Comparator.comparing( m -> m.getId().getKey() ) );
-        Util.sortIdentifiableI18n( LIST_MORBIDITIES );
+        this.sortIdentifiableI18n( LIST_MORBIDITIES );
 
         for(Morbidity idObj: LIST_MORBIDITIES) {
             this.buildEntry( LY, idObj );
@@ -92,7 +90,7 @@ public abstract class TreatmentActivity extends AppCompatActivity {
         }
 
         final LayoutInflater INFLATER = this.getLayoutInflater();
-        String name = MORBIDITY.getId().getName();
+        String name = MORBIDITY.getId().getName().getForCurrentLanguage();
 
         // Prepare name (separate different lines by separator)
         int posSeparator = -1;
@@ -100,7 +98,7 @@ public abstract class TreatmentActivity extends AppCompatActivity {
             char ch = name.charAt( i );
 
             if ( ch != ' '
-                    && !Character.isLetter( ch ) )
+                 && !Character.isLetter( ch ) )
             {
                 posSeparator = i;
                 break;

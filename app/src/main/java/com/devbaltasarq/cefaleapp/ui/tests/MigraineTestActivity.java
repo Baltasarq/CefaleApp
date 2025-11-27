@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineFormPlayer;
@@ -81,6 +82,8 @@ public class MigraineTestActivity extends TestActivity {
     @Override
     public void showFormEnd()
     {
+        final String MSG_END = Message.getFor( "testMsgEnd" ).getMsg()
+                                                    .getForCurrentLanguage();
         // Prepare form end
         super.showFormEnd();
 
@@ -94,7 +97,8 @@ public class MigraineTestActivity extends TestActivity {
         final ImageView BT_SHARE = this.buildButton( LY_IMAGE, android.R.drawable.ic_menu_share );
 
         // Set info
-        END_TEXT.append( "Final del cuestionario<br/><br/>" );
+        END_TEXT.append( MSG_END );
+        END_TEXT.append( "<br/><br/>" );
         END_TEXT.append( FINAL_REPORT );
         this.setTextInTextView( LBL_QUESTION, END_TEXT.toString() );
 

@@ -1,7 +1,7 @@
 # XML converter (c) 2025 Baltasar MIT License <jbgarcia@uvigo.es>
 # This is part of the CefaleApp project.
-# Its purpose is to convert XML from version 1 (just Spanish)
-# to version 2 (multilingual).
+# Its purpose is to convert XML for test questions
+# from version 1 (just Spanish) to version 2 (multilingual).
 
 """
 <q
@@ -47,9 +47,21 @@ def transform_text(q_node, sub_node, tag):
     text_en = ET.SubElement(sub_node, "text", attrib={"lang":"en"})
     text_pt = ET.SubElement(sub_node, "text", attrib={"lang":"pt"})
 
-    text_es.text = q_node.attrib[tag]
+    contents = q_node.attrib[tag]
+    text_es.text = contents
     text_en.text = "In English!!!"
     text_pt.text = "Em Portugués!!!"
+
+    if (contents.lower()[:2] == "si"
+     or contents.lower()[:2] == "sí"):
+        text_en.text = "Yes."
+        text_pt.text = "Sím."
+    ...
+
+    if contents.lower()[:2] == "no":
+        text_en.text = "No."
+        text_pt.text = "Non."
+    ...
 ...
 
 

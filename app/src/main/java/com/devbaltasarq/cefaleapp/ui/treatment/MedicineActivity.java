@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.RichText;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -49,24 +49,25 @@ public class MedicineActivity extends AppCompatActivity {
         final TextView LBL_MEDICINE_GROUP = this.findViewById( R.id.lblMedicineMedicineGroup );
         final FloatingActionButton BT_WEB = this.findViewById( R.id.btMedicineWeb );
         final ActionBar ACTION_BAR = this.getSupportActionBar();
+        final String MEDICINE_GROUP_NAME = medicine.getGroupId().getName().getForCurrentLanguage().toLowerCase();
         final String COMPLETE_GROUP_NAME = "<b>"
-                                    + medicine.getGroup().getClsId().getName()
+                                    + medicine.getGroup().getClsId().getName().getForCurrentLanguage()
                                     + "</b>.<br/>"
                                     + this.getString( R.string.lbl_medicine_group )
                                     + ": <i>"
-                                    + medicine.getGroupId().getName().toLowerCase()
+                                    + MEDICINE_GROUP_NAME
                                     + "</i>.";
 
         if ( ACTION_BAR != null ) {
             ACTION_BAR.setTitle( this.getString( R.string.lbl_medicine )
                                 + ": "
-                                + medicine.getId().getName() );
+                                + medicine.getId().getName().getForCurrentLanguage() );
         }
 
         // Set info
-        LBL_POSOLOGY.setText( medicine.getPosology() );
-        LBL_ADVERSE_EFFECTS.setText( medicine.getAdverseEffects() );
-        LBL_MEDICINE_GROUP.setText( Util.richTextFromHtml( COMPLETE_GROUP_NAME ) );
+        LBL_POSOLOGY.setText( medicine.getPosology().getForCurrentLanguage() );
+        LBL_ADVERSE_EFFECTS.setText( medicine.getAdverseEffects().getForCurrentLanguage() );
+        LBL_MEDICINE_GROUP.setText( new RichText( COMPLETE_GROUP_NAME ).get() );
         BT_WEB.setOnClickListener( v -> openVademecum( medicine.getUrl() ) );
     }
 

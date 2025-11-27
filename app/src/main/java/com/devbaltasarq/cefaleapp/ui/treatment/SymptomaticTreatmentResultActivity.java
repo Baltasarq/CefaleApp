@@ -12,19 +12,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Language;
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.RichText;
+import com.devbaltasarq.cefaleapp.core.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
-import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
 import com.devbaltasarq.cefaleapp.core.treatment.advisor.TreatmentStep;
+import com.devbaltasarq.cefaleapp.ui.CefaleAppActivity;
 
 import java.util.List;
 
 
-public class SymptomaticTreatmentResultActivity extends AppCompatActivity {
+public class SymptomaticTreatmentResultActivity extends CefaleAppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,20 +63,19 @@ public class SymptomaticTreatmentResultActivity extends AppCompatActivity {
             final View STEP_VIEW = INFLATER.inflate( R.layout.treatment_step_entry, null );
             final LinearLayout LY_MEDICINES = STEP_VIEW.findViewById( R.id.lyMedicines );
             final TextView LBL_DESC = STEP_VIEW.findViewById( R.id.lblDesc );
-            final List<Medicine> MEDICINES = Util.objListFromIdList( Medicine.getAll(), STEP.getMedicineIds() );
+            final List<Medicine> MEDICINES = Identifiable.objListFromIdList( Medicine.getAll(), STEP.getMedicineIds() );
             final String NUM = "<p><b>" + stepNum + "</b>.&nbsp;";
 
-            LBL_DESC.setText( Util.richTextFromHtml(
-                                    NUM + STEP.getDesc().get( LANG )
-                                    + "</p>") );
+            LBL_DESC.setText( new RichText( NUM + STEP.getDesc().get( LANG )
+                                                + "</p>" ).get() );
             ++stepNum;
 
             for(final Medicine MEDICINE: MEDICINES) {
                 final View MEDICINE_ENTRY = INFLATER.inflate( R.layout.medicine_entry, null );
                 final TextView LBL_MEDICINE = MEDICINE_ENTRY.findViewById( R.id.lblMedicine );
 
-                LBL_MEDICINE.setText( MEDICINE.getId().getName() );
-                MEDICINE_ENTRY.setOnClickListener( (v) -> Util.showMedicine( this, MEDICINE ) );
+                LBL_MEDICINE.setText( MEDICINE.getId().getName().getForCurrentLanguage() );
+                MEDICINE_ENTRY.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
                 LY_MEDICINES.addView( MEDICINE_ENTRY );
             }
 

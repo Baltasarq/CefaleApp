@@ -4,10 +4,9 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
-import androidx.annotation.NonNull;
-
-import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -24,125 +23,25 @@ public final class MigraineRepo {
     private static final int PRESSURE_HIGH_INFERIOR_LIMIT = 90;
     private static final int PRESSURE_LOW_SUPERIOR_LIMIT = 90;
 
-    public enum Frequency { ESPORADIC, LOW, HIGH, CHRONIC;
-        @Override
-        public String toString()
-        {
-            return STR_FREQ[ this.ordinal() ];
-        }
-
-        private static final String[] STR_FREQ = {
-                "esporádica",
-                "de baja frecuencia",
-                "de alta frecuencia",
-                "crónica"
-        };
-    }
-
-    public enum Id {
-        // Data branch
-        NOTES,
-        GENDER,
-        AGE,
-        HEIGHT,
-        WEIGHT,
-        HIGHPRESSURE,
-        LOWPRESSURE,
-        HASHISTORY,
-        FORMORETHANONEYEAR,
-        ISDEPRESSED,
-
-        // Screening
-        WASCEPHALEALIMITANT,
-        PHOTOPHOBIA,
-        NAUSEA,
-
-        // Migraine
-        HADMORETHANFIVEEPISODES,
-        MIGRAINEDURATION,
-        ISMIGRAINEINTENSE,
-        BETTERINDARKNESS,
-        ISCEPHALEAONESIDED,
-        ISPULSATING,
-        SOUNDPHOBIA,
-        EXERCISEWORSENS,
-        HADAURA,
-        MENSTRUATIONWORSENS,
-        CONTRACEPTIVESWORSENS,
-        HOWMANYMIGRAINE,
-
-        // Continue
-        AREYOUSURE,
-
-        // Tensional
-        WHOLEHEAD,
-        ISCEPHALEAHELMET,
-        ISTENSIONALINTENSE,
-        ISSTABBING,
-        ISTENSIONALWORSEONAFTERNOONS,
-        ISTENSIONALRELATEDTOSTRESS,
-        ISTENSIONALBETTERWHENDISTRACTED,
-        INSOMNIA,
-        SAD,
-        SOLVABLE,
-        HOWMANYTENSIONAL;
-
-        private static List<String> strValues = null;
-
-        /** @return the list of values, but as a list of strings. */
-        public static List<String> valuesAsString()
-        {
-            if ( strValues == null ) {
-                final Id[] VALUES = Id.values();
-                strValues = new ArrayList<>( VALUES.length );
-
-                for (final Id ID : VALUES) {
-                    strValues.add( ID.toString() );
-                }
-            }
-
-            return strValues;
-        }
-
-        /** Returns the equivalent value to the passed string,
-         *  as in "NOTES" -> Id.NOTES.
-         *
-         * @param str a string version of an Id.DATA value, such as "NOTES".
-         * @return an Id if the value is recognized, throws otherwise.
-         */
-        public static Id parse(String str) throws IllegalArgumentException
-        {
-            final List<String> VALUES_AS_STR = valuesAsString();
-            Id toret = null;
-
-            int i = 0;
-            str = str.trim().toUpperCase();
-
-            for(String value: VALUES_AS_STR) {
-                if ( str.equals( value ) ) {
-                    toret = values()[ i ];
-                    break;
-                }
-
-                ++i;
-            }
-
-            if ( toret == null ) {
-                throw new IllegalArgumentException( "unrecognized as Id: " + str );
-            }
-
-            return toret;
-        }
-    }
-
     private MigraineRepo()
     {
+        this( false );
+    }
+
+    private MigraineRepo(boolean debug)
+    {
+        this.debug = debug;
         this.data = new EnumMap<>( Id.class );
     }
 
     public void reset()
     {
         this.data.clear();
+    }
+
+    public boolean isInDebugMode()
+    {
+        return this.debug;
     }
 
     /** Stores a data piece in the repo.
@@ -172,7 +71,7 @@ public final class MigraineRepo {
         Value toret = this.getValue( id );
 
         if ( toret == null ) {
-            if ( Util.DEBUG ) {
+            if ( this.isInDebugMode() ) {
                 throw new NoSuchElementException( id.toString() );
             } else {
                 toret = Value.StrDefault;
@@ -188,7 +87,7 @@ public final class MigraineRepo {
         Value toret = this.getValue( id );
 
         if ( toret == null ) {
-            if ( Util.DEBUG ) {
+            if ( this.isInDebugMode() ) {
                 throw new NoSuchElementException( id.toString() );
             } else {
                 toret = Value.IntDefault;
@@ -204,7 +103,7 @@ public final class MigraineRepo {
         Value toret = this.getValue( id );
 
         if ( toret == null ) {
-            if ( Util.DEBUG ) {
+            if ( this.isInDebugMode() ) {
                 throw new NoSuchElementException( id.toString() );
             } else {
                 toret = Value.BoolDefault;
@@ -432,5 +331,117 @@ public final class MigraineRepo {
     }
 
     private final Map<Id, Value> data;
+    private final boolean debug;
     private static MigraineRepo repo;
+
+    public enum Frequency { ESPORADIC, LOW, HIGH, CHRONIC;
+        @Override
+        public String toString()
+        {
+            return STR_FREQ[ this.ordinal() ];
+        }
+
+        private static final String[] STR_FREQ = {
+                "esporádica",
+                "de baja frecuencia",
+                "de alta frecuencia",
+                "crónica"
+        };
+    }
+
+    public enum Id {
+        // Data branch
+        NOTES,
+        GENDER,
+        AGE,
+        HEIGHT,
+        WEIGHT,
+        HIGHPRESSURE,
+        LOWPRESSURE,
+        HASHISTORY,
+        FORMORETHANONEYEAR,
+        ISDEPRESSED,
+
+        // Screening
+        WASCEPHALEALIMITANT,
+        PHOTOPHOBIA,
+        NAUSEA,
+
+        // Migraine
+        HADMORETHANFIVEEPISODES,
+        MIGRAINEDURATION,
+        ISMIGRAINEINTENSE,
+        BETTERINDARKNESS,
+        ISCEPHALEAONESIDED,
+        ISPULSATING,
+        SOUNDPHOBIA,
+        EXERCISEWORSENS,
+        HADAURA,
+        MENSTRUATIONWORSENS,
+        CONTRACEPTIVESWORSENS,
+        HOWMANYMIGRAINE,
+
+        // Continue
+        AREYOUSURE,
+
+        // Tensional
+        WHOLEHEAD,
+        ISCEPHALEAHELMET,
+        ISTENSIONALINTENSE,
+        ISSTABBING,
+        ISTENSIONALWORSEONAFTERNOONS,
+        ISTENSIONALRELATEDTOSTRESS,
+        ISTENSIONALBETTERWHENDISTRACTED,
+        INSOMNIA,
+        SAD,
+        SOLVABLE,
+        HOWMANYTENSIONAL;
+
+        private static List<String> strValues = null;
+
+        /** @return the list of values, but as a list of strings. */
+        public static List<String> valuesAsString()
+        {
+            if ( strValues == null ) {
+                final Id[] VALUES = Id.values();
+                strValues = new ArrayList<>( VALUES.length );
+
+                for (final Id ID : VALUES) {
+                    strValues.add( ID.toString() );
+                }
+            }
+
+            return strValues;
+        }
+
+        /** Returns the equivalent value to the passed string,
+         *  as in "NOTES" -> Id.NOTES.
+         *
+         * @param str a string version of an Id.DATA value, such as "NOTES".
+         * @return an Id if the value is recognized, throws otherwise.
+         */
+        public static Id parse(String str) throws IllegalArgumentException
+        {
+            final List<String> VALUES_AS_STR = valuesAsString();
+            Id toret = null;
+
+            int i = 0;
+            str = str.trim().toUpperCase();
+
+            for(String value: VALUES_AS_STR) {
+                if ( str.equals( value ) ) {
+                    toret = values()[ i ];
+                    break;
+                }
+
+                ++i;
+            }
+
+            if ( toret == null ) {
+                throw new IllegalArgumentException( "unrecognized as Id: " + str );
+            }
+
+            return toret;
+        }
+    }
 }

@@ -92,7 +92,7 @@
             <summary>
                 <text lang="es">Peso</text>
                 <text lang="en">Weight</text>
-                <text lang="pt">Em Portugués!!!</text>
+                <text lang="pt">Peso</text>
             </summary>
             <contents>
                 <text lang="es">¿Peso (&lt;i&gt;kilos&lt;/i&gt;)?</text>
@@ -105,13 +105,19 @@
         <q id="data_highPressure" goto="data_lowPressure" type="int">
             <summary>
                 <text lang="es">Sistólica</text>
-                <text lang="en">Systolic<text>
+                <text lang="en">Systolic</text>
                 <text lang="pt">Sistólica</text>
             </summary>
             <contents>
-                <text lang="es">¿Tensión máxima (&lt;i&gt;sistólica&lt;/i&gt; en mm HG, por ejemplo 120)?</text>
-                <text lang="en">Maximum pressure (&lt;i&gt;systolic&lt;/i&gt; in mm Hg, for example 120)?</text>
-                <text lang="pt">Pressão máxima (&lt;i&gt;sistólica&lt;/i&gt; em mm Hg, por exemplo 120)?</text>
+                <text lang="es">¿Tensión máxima
+                                (&lt;i&gt;sistólica&lt;/i&gt; en mm HG,
+                                por ejemplo 120)?</text>
+                <text lang="en">Maximum pressure
+                                (&lt;i&gt;systolic&lt;/i&gt; in mm Hg,
+                                for example 120)?</text>
+                <text lang="pt">Pressão máxima
+                                (&lt;i&gt;sistólica&lt;/i&gt; em mm Hg,
+                                por exemplo 120)?</text>
             </contents>
         </q>
         <q id="data_lowPressure" goto="data_hasHistory" type="int">
@@ -121,9 +127,15 @@
                 <text lang="pt">Diastólica</text>
             </summary>
             <contents>
-                <text lang="es">¿Tensión mínima (&lt;i&gt;diastólica&lt;/i&gt; en mm HG, por ejemplo 80)?</text>
-                <text lang="en">Minimum pressure (&lt;i&gt;diastolic&lt;/i&gt; in mm Hg, for example 80)?</text>
-                <text lang="pt">Pressão mínima (&lt;i&gt;diastólica&lt;/i&gt; em mm Hg, por exemplo 80)?</text>
+                <text lang="es">¿Tensión mínima
+                                (&lt;i&gt;diastólica&lt;/i&gt; en mm HG,
+                                por ejemplo 80)?</text>
+                <text lang="en">Minimum pressure
+                                (&lt;i&gt;diastolic&lt;/i&gt; in mm Hg,
+                                for example 80)?</text>
+                <text lang="pt">Pressão mínima
+                                (&lt;i&gt;diastólica&lt;/i&gt; em mm Hg,
+                                por exemplo 80)?</text>
             </contents>
         </q>
         <q id="data_hasHistory" goto="data_forMoreThanOneYear" type="bool">
@@ -133,9 +145,12 @@
                 <text lang="pt">Antecedentes</text>
             </summary>
             <contents>
-                <text lang="es">¿En cuanto a antecedentes &lt;u&gt;familiares&lt;/u&gt; de migraña?</text>
-                <text lang="en">Regarding &lt;u&gt;family&lt;/u&gt; history of migraines?</text>
-                <text lang="pt">Quanto a antecedentes &lt;u&gt;familiares&lt;/u&gt; de enxaqueca?</text>
+                <text lang="es">¿En cuanto a antecedentes
+                                &lt;u&gt;familiares&lt;/u&gt; de migraña?</text>
+                <text lang="en">Regarding &lt;u&gt;family&lt;/u&gt;
+                                history of migraines?</text>
+                <text lang="pt">Quanto a antecedentes
+                                &lt;u&gt;familiares&lt;/u&gt; de enxaqueca?</text>
             </contents>
             <opt value="false">
                 <text lang="es">No los hay.</text>
@@ -155,9 +170,12 @@
                 <text lang="pt">Com cefaleias >1 ano</text>
             </summary>
             <contents>
-                <text lang="es">¿Lleva más de &lt;u&gt;un año&lt;/u&gt; con cefaleas?</text>
-                <text lang="en">Have you had headaches for over &lt;u&gt;a year&lt;/u&gt;?</text>
-                <text lang="pt">Você tem tido dores de cabeça há mais de &lt;u&gt;um ano&lt;/u&gt;?</text>
+                <text lang="es">¿Lleva más de &lt;u&gt;un año&lt;/u&gt;
+                                con cefaleas?</text>
+                <text lang="en">Have you had headaches
+                                for over &lt;u&gt;a year&lt;/u&gt;?</text>
+                <text lang="pt">Você tem tido dores de cabeça
+                                há mais de &lt;u&gt;um ano&lt;/u&gt;?</text>
             </contents>
             <opt value="false">
                 <text lang="es">No.</text>
@@ -180,9 +198,13 @@
                 <text lang="pt">Depressão</text>
             </summary>
             <contents>
-                <text lang="es">¿Está diagnosticado de &lt;u>depresión&lt;/u>, o toma medicación para ello?</text>
-                <text lang="en"></text>
-                <text lang="pt">É diagnosticado com &lt;u> depressão&lt;/u>, ou você toma medicação para isso?</text>
+                <text lang="es">¿Está diagnosticado de &lt;u>depresión&lt;/u>,
+                                o toma medicación para ello?</text>
+                <text lang="en">Have you been diagnosed with depression
+                                or are you taking medication
+                                for depression?</text>
+                <text lang="pt">É diagnosticado com &lt;u> depressão&lt;/u>,
+                                ou você toma medicação para isso?</text>
             </contents>
             <opt value="false">
                 <text lang="es">No.</text>
@@ -205,130 +227,508 @@
          3. PCD-JZ-TENSIONAL-1511: only the tensional branch.
     -->
     <branch id="screen" head="screen_wasCephaleaLimitant">
-        <q id="screen_wasCephaleaLimitant" type="bool" goto="screen_photoPhobia"
-            summary="Limitante"
-            text="En cuanto a lo &lt;b>limitante&lt;/b> del dolor de cabeza
-                  en los últimos &lt;u>tres meses&lt;/u>,
-                 ¿Le ha impedido realizar una &lt;b>vida normal&lt;/b> (en el &lt;i>trabajo&lt;/i>,
-                 en las &lt;i>relaciones familiares&lt;/i>, &lt;i>actividades de ocio&lt;/i>...)
-                 durante un día o más?">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="screen_wasCephaleaLimitant"
+            goto="screen_photoPhobia"
+            type="bool">
+            <summary>
+                <text lang="es">Limitante</text>
+                <text lang="en">Limiting</text>
+                <text lang="pt">Limitando</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    En cuanto a lo
+                    &lt;b&gt;limitante&lt;/b&gt; del dolor de cabeza
+                    en los últimos &lt;u&gt;tres meses&lt;/u&gt;,
+                    ¿Le ha impedido realizar un
+                    a &lt;b&gt;vida normal&lt;/b&gt;
+                    (en el &lt;i&gt;trabajo&lt;/i&gt;, en las
+                    &lt;i&gt;relaciones familiares&lt;/i&gt;,
+                    &lt;i&gt;actividades de ocio&lt;/i&gt;...)
+                    durante un día o más?
+                </text>
+                <text lang="en">
+                    Regarding how &lt;b&gt;disabling&lt;/b&gt;
+                    your headache is, in the past
+                    &lt;u&gt;three months&lt;/u&gt;, has it prevented you
+                    from leading a &lt;b&gt;normal life&lt;/b&gt;
+                    (&lt;i&gt;at work&lt;/i&gt;,
+                    in &lt;i&gt;household activities&lt;/i&gt;,
+                    in &lt;i&gt;family relationships&lt;/i&gt;,
+                    or &lt;i&gt;leisure activities&lt;/i&gt;)
+                    for one day or more?
+                </text>
+                <text lang="pt">
+                    Em relação à &lt;b&gt;limitação&lt;/b&gt;
+                    causada pela dor de cabeça,
+                    nos últimos &lt;u&gt;três meses&lt;/u&gt;,
+                    ela lhe impediu de levar
+                    uma &lt;b&gt;vida normal&lt;/b&gt;
+                    (&lt;i&gt;no trabalho&lt;/i&gt;,
+                    nas &lt;i&gt;atividades domésticas&lt;/i&gt;,
+                    nas &lt;i&gt;relações familiares&lt;/i&gt;
+                    ou em &lt;i&gt;atividades&lt;/i&gt; de lazer)
+                    por um dia ou mais?
+                </text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="screen_photoPhobia" type="bool" goto="screen_nausea"
-            text="Con el dolor de cabeza, ¿le molesta la luz &lt;u>más de lo habitual&lt;/u>?"
-            summary="Fotofobia">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="screen_photoPhobia" goto="screen_nausea" type="bool">
+            <summary>
+                <text lang="es">Fotofobia</text>
+                <text lang="en">Photophobia</text>
+                <text lang="pt">Fotofobia</text>
+            </summary>
+            <contents>
+                <text lang="es">
+                    Con el dolor de cabeza,
+                    ¿le molesta la &lt;i&gt;luz&lt;/i&gt; &lt;u&gt;
+                    más de lo habitual&lt;/u&gt;?</text>
+                <text lang="en">
+                    When you have a headache,
+                    does &lt;i&gt;light&lt;/i&gt;
+                    &lt;u&gt;bother you more than usual?&lt;/u&gt;
+                </text>
+                <text lang="pt">
+                    Quando você está com dor de cabeça,
+                    a &lt;i&gt;luz&lt;/i&gt;
+                    &lt;u&gt;incomoda mais do que o habitual&lt;/u&gt;?
+                </text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="screen_nausea" type="bool" goto="/"
-            text="Con el dolor de cabeza, ¿ha sentido &lt;i>náuseas&lt;/i> o &lt;i>vómitos&lt;/i>?"
-            summary="Náuseas/vómitos">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="screen_nausea" goto="/" type="bool">
+            <summary>
+                <text lang="es">Náuseas/vómitos</text>
+                <text lang="en">Nausea/vomit</text>
+                <text lang="pt">Náusea/vômito</text>
+            </summary>
+            <contents>
+                <text lang="es">Con el dolor de cabeza, ¿ha sentido
+                                &lt;i&gt;náuseas&lt;/i&gt;
+                                o &lt;i&gt;vómitos&lt;/i&gt;?</text>
+                <text lang="en">When you have a headache, do you experience
+                                &lt;i&gt;nausea&lt;/i&gt;
+                                or &lt;i&gt;vomiting&lt;/i&gt;?</text>
+                <text lang="pt">Quando você está com dor de cabeça,
+                                sente &lt;i&gt;náuseas&lt;/i&gt;
+                                ou tem &lt;i&gt;vômitos&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
     </branch>
 
     <!--- Branch migraine, specific questions -->
     <branch id="migraine" head="migraine_hadMoreThanFiveEpisodes" >
-        <q id="migraine_hadMoreThanFiveEpisodes" type="bool"
+
+        <q id="migraine_hadMoreThanFiveEpisodes"
             goto="migraine_migraineDuration"
-            text="¿Ha tenido &lt;u>cinco o más episodios&lt;/u> &lt;i>similares&lt;/i> de dolor de cabeza?"
-            summary="Episodios >5">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+            type="bool">
+            <summary>
+                <text lang="es">Episodios &gt;5</text>
+                <text lang="en">Episodes &gt;5</text>
+                <text lang="pt">Episódios &gt;5</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Ha tenido
+                                &lt;u&gt;cinco o más episodios&lt;/u&gt;
+                                &lt;i&gt;similares&lt;/i&gt;
+                                de dolor de cabeza?</text>
+                <text lang="en">Have you had at least
+                                &lt;u&gt;five or more&lt;/u&gt;
+                                &lt;i&gt;similar&lt;/i&gt;
+                                headache episodes?</text>
+                <text lang="pt">Você já teve pelo menos
+                                &lt;u&gt;cinco ou mais episódios&lt;/u&gt;
+                                &lt;i&gt;semelhantes&lt;/i&gt;
+                                de dor de cabeça?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_migraineDuration" type="bool"
+        <q id="migraine_migraineDuration"
             goto="migraine_isMigraineIntense"
-            text="¿El dolor de cabeza &lt;b>sin tratamiento&lt;/b> dura al menos
-                  entre &lt;i>cuatro horas&lt;/i> y &lt;i>hasta dos o tres días&lt;/i>?"
-            summary=">4h o 3 días">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+            type="bool">
+            <summary>
+                <text lang="es">&gt;4h o 3 días</text>
+                <text lang="en">&gt;4h or 3 days</text>
+                <text lang="pt">&gt;4h o 3 dias</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor de cabeza
+                                &lt;b&gt;sin tratamiento&lt;/b&gt;
+                                dura al menos entre
+                                &lt;i&gt;cuatro horas&lt;/i&gt;
+                                y &lt;i&gt;hasta dos
+                                o tres días&lt;/i&gt;?</text>
+                <text lang="en">Does your headache,
+                                &lt;b&gt;when untreated&lt;/b&gt;,
+                                last at least &lt;i&gt;four hours&lt;/i&gt;
+                                and up to
+                                &lt;i&gt;two or three days&lt;/i&gt;?</text>
+                <text lang="pt">A sua dor de cabeça,
+                                &lt;b&gt;quando não tratada&lt;/b&gt;,
+                                dura pelo menos &lt;i&gt;quatro&lt;/i&gt;
+                                horas e até
+                                &lt;i&gt;dois ou três dias&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_isMigraineIntense" type="bool"
+        <q  id="migraine_isMigraineIntense"
             goto="migraine_betterInDarkness"
-            text="¿Diría que su dolor de cabeza es &lt;i>intenso&lt;/i> o &lt;i>muy intenso&lt;/i>?"
-            summary="Intenso">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+            type="bool">
+            <summary>
+                <text lang="es">Intenso</text>
+                <text lang="en">Intense</text>
+                <text lang="pt">Intenso</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Diría que su dolor de cabeza
+                                es &lt;i&gt;intenso&lt;/i&gt;
+                                o &lt;i&gt;muy intenso&lt;/i&gt;?</text>
+                <text lang="en">Would you say your headache is
+                                &lt;i&gt;severe&lt;/i&gt;
+                                or &lt;i&gt;very severe?&lt;/i&gt;</text>
+                <text lang="pt">Você diria que sua dor de cabeça
+                                é &lt;i&gt;intensa&lt;/i&gt;
+                                ou &lt;i&gt;muito intensa&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_betterInDarkness" type="bool"
+        <q id="migraine_betterInDarkness"
             goto="migraine_isCephaleaOneSided"
-            text="¿Tuvo que &lt;u>acostarse&lt;/u> en una habitación a &lt;i>oscuras&lt;/i>,
-                  en &lt;i>silencio&lt;/i>?"
-            summary="Necesita descanso a oscuras">
-            <!-- This question is asked in order to enforce the last one:
-                 migraine_isIntense -->
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+            type="bool">
+            <summary>
+                <text lang="es">Necesita descanso a oscuras</text>
+                <text lang="en">Needs rest in darkness</text>
+                <text lang="pt">Precisa de descanso escuro</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Tuvo que &lt;u&gt;acostarse&lt;/u&gt;
+                                en una habitación a &lt;i&gt;oscuras&lt;/i&gt;,
+                                en &lt;i&gt;silencio&lt;/i&gt;?</text>
+                <text lang="en">Did you have to &lt;u&gt;lie down&lt;/u&gt;
+                                in a &lt;i&gt;dark&lt;/i&gt;
+                                and &lt;i&gt;quiet&lt;/i&gt; room?</text>
+                <text lang="pt">Você precisou &lt;u&gt;deitar-se&lt;/u&gt;
+                                em um quarto &lt;i&gt;escuro&lt;/i&gt;
+                                e &lt;i&gt;silencioso?&lt;/i&gt;</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_isCephaleaOneSided" type="bool" goto="migraine_isPulsating"
-            text="¿El dolor de cabeza es más &lt;i>intenso&lt;/i> en
-                  &lt;u>uno de los lados de la cabeza&lt;/u>, o &lt;u>en una de las sienes&lt;/u>?"
-            summary="Dolor en un lado"
-            pic="pic_headache_one_side_head">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="migraine_isCephaleaOneSided"
+            goto="migraine_isPulsating"
+            type="bool">
+            <summary>
+                <text lang="es">Dolor en un lado</text>
+                <text lang="en">One-sided pain</text>
+                <text lang="pt">Dor de um lado</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor de cabeza es más
+                                &lt;i&gt;intenso&lt;/i&gt;
+                                en &lt;u&gt;uno de los lados
+                                de la cabeza&lt;/u&gt;,
+                                o &lt;u&gt;en una
+                                de las sienes&lt;/u&gt;?</text>
+                <text lang="en">Is the headache more &lt;i&gt;intense&lt;/i&gt;
+                                on &lt;u&gt;one side&lt;/u&gt; of your head,
+                                or in &lt;u&gt;one of your temples&lt;/u&gt;?</text>
+                <text lang="pt">A dor de cabeça é mais &lt;i&gt;intensa&lt;/i&gt;
+                                em &lt;u&gt;um dos lados da cabeça&lt;/u&gt;,
+                                ou em &lt;u&gt;uma das têmporas&lt;/u&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_isPulsating" type="bool" goto="migraine_soundPhobia"
-            text="¿El dolor de cabeza es como un &lt;i>latido palpitante&lt;/i>?"
-            summary="Palpitante">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="migraine_isPulsating"
+            goto="migraine_soundPhobia"
+            type="bool">
+            <summary>
+                <text lang="es">Palpitante</text>
+                <text lang="en">Pulsating</text>
+                <text lang="pt">Pulsante</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor de cabeza es como
+                                un &lt;i&gt;latido palpitante&lt;/i&gt;?</text>
+                <text lang="en">Do you feel your headache as
+                                a &lt;i&gt;throbbing&lt;/i&gt;
+                                or &lt;i&gt;pulsating&lt;/i&gt; pain?</text>
+                <text lang="pt">Você sente a dor de cabeça
+                                como &lt;i&gt;uma pulsação&lt;/i&gt;,
+                                &lt;i&gt;latejante&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_soundPhobia" type="bool" goto="migraine_exerciseWorsens"
-            text="¿Le molestan &lt;i>los ruidos&lt;/i> o que la gente hable cuando tiene dolor de cabeza?"
-            summary="Sonofobia">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí ." />
+        <q id="migraine_soundPhobia"
+            goto="migraine_exerciseWorsens"
+            type="bool">
+            <summary>
+                <text lang="es">Sonofobia</text>
+                <text lang="en">Soundphobia</text>
+                <text lang="pt">Sonofobia</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Le molestan &lt;i&gt;los ruidos&lt;/i&gt;
+                                o que la gente &lt;i&gt;hable&lt;/i&gt;
+                                cuando tiene
+                                &lt;i&gt;dolor de cabeza?&lt;/i&gt;</text>
+                <text lang="en">Do &lt;i&gt;noises&lt;/i&gt;
+                                or people &lt;i&gt;talking&lt;/i&gt;
+                                bother you when you have a
+                                &lt;i&gt;headache&lt;/i&gt;?</text>
+                <text lang="pt">O &lt;i&gt;barulho&lt;/i&gt;
+                                ou as pessoas &lt;i&gt;falando&lt;/i&gt;
+                                incomodam você quando está
+                                com &lt;i&gt;dor de cabeça&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí .</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_exerciseWorsens" type="bool" goto="migraine_hadAura"
-            text="Cuando tiene dolor de cabeza,
-                  si tiene que realizar alguna &lt;i>actividad física&lt;/i>
-                  como cargar pesos o subir unas escaleras, ¿le &lt;u>empeora&lt;/u> el dolor?"
-            summary="El ejercicio lo empeora">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="migraine_exerciseWorsens"
+            goto="migraine_hadAura"
+            type="bool">
+            <summary>
+                <text lang="es">El ejercicio lo empeora</text>
+                <text lang="en">Exercise worsens it</text>
+                <text lang="pt">O exercício o piora</text>
+            </summary>
+            <contents>
+                <text lang="es">Cuando tiene dolor de cabeza,
+                                si tiene que realizar alguna
+                                &lt;i&gt;actividad física&lt;/i&gt;
+                                como cargar pesos o subir unas escaleras,
+                                ¿le &lt;u&gt;empeora&lt;/u&gt; el dolor?</text>
+                <text lang="en">When you have a headache,
+                                does &lt;i&gt;physical activity&lt;/i&gt;
+                                (like carrying heavy objects
+                                or climbing stairs),
+                                make the pain &lt;u&gt;worse&lt;/u&gt;?</text>
+                <text lang="pt">Quando você está com dor de cabeça,
+                                &lt;i&gt;atividades físicas&lt;/i&gt;
+                                como carregar peso ou subir escadas
+                                &lt;u&gt;pioram a dor&lt;/u&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_hadAura" type="bool" goto="migraine_menstruationWorsens"
-            text="Antes de iniciar el dolor de cabeza, o acompañando al dolor,
-                  ha notado alteraciones en la vista, como &lt;i>visión borrosa o nublada&lt;/i>,
-                  &lt;i>destellos luminosos&lt;/i>, &lt;i>líneas en zig-zag&lt;/i>,
-                  o &lt;i>puntos oscuros&lt;/i>?"
-            summary="Aura">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="migraine_hadAura"
+            goto="migraine_menstruationWorsens"
+            type="bool">
+            <summary>
+                <text lang="es">Aura</text>
+                <text lang="en">Aura</text>
+                <text lang="pt">Aura</text>
+            </summary>
+            <contents>
+                <text lang="es">Antes de iniciar el dolor de cabeza,
+                                o acompañando al dolor,
+                                ha notado alteraciones en la vista,
+                                como &lt;i&gt;visión borrosa
+                                o nublada&lt;/i&gt;,
+                                &lt;i&gt;destellos luminosos&lt;/i&gt;,
+                                &lt;i&gt;líneas en zig-zag&lt;/i&gt;,
+                                o &lt;i&gt;puntos oscuros&lt;/i&gt;?</text>
+                <text lang="en">Before the headache starts, or along with it,
+                                have you noticed visual disturbances such as
+                                &lt;i&gt;blurred or hazy vision&lt;/i&gt;,
+                                &lt;i&gt;flashing lights&lt;/i&gt;,
+                                &lt;i&gt;zigzag lines&lt;/i&gt;,
+                                &lt;i&gt;or dark spots&lt;/i&gt;?</text>
+                <text lang="pt">Antes de a dor de cabeça começar,
+                                ou junto com ela,
+                                você percebeu alterações na visão,
+                                como &lt;i&gt;visão embaçada ou turva&lt;/i&gt;,
+                                &lt;i&gt;luzes piscando&lt;/i&gt;,
+                                &lt;i&gt;linhas em zigue-zague&lt;/i&gt;
+                                ou &lt;i&gt;pontos escuros&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="migraine_menstruationWorsens" type="bool" goto="migraine_contraceptivesWorsens"
-            text="¿Su cefalea tiene relación con la &lt;u>menstruación&lt;/u>,
-                  de forma que la cefalea &lt;i>aparece&lt;/i> o se &lt;i>agrava&lt;/i> durante el ciclo?"
-            summary="Menstruación relacionada">
-            <!-- PCD_MENSTRUATIONWORSENS_NOTMALE_2017
+        <q id="migraine_menstruationWorsens"
+            goto="migraine_contraceptivesWorsens"
+            type="bool">
+            <summary>
+                <text lang="es">Menstruación relacionada</text>
+                <text lang="en">Related menstruation</text>
+                <text lang="pt">Menstruação relacionada</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Su cefalea tiene relación
+                                con la &lt;u&gt;menstruación&lt;/u&gt;,
+                                de forma que la cefalea
+                                &lt;i&gt;aparece&lt;/i&gt;
+                                o se &lt;i&gt;agrava&lt;/i&gt;
+                                durante el ciclo?</text>
+                <text lang="en">Is your headache related to
+                                &lt;u&gt;menstruation&lt;/u&gt;,
+                                in the sense that it &lt;i&gt;appears&lt;/i&gt;
+                                or &lt;i&gt;worsens&lt;/i&gt;
+                                during your menstrual cycle?</text>
+                <text lang="pt">Sua dor de cabeça está relacionada
+                                com a &lt;u&gt;menstruação&lt;/u&gt;,
+                                ou seja, ela &lt;i&gt;aparece&lt;/i&gt;
+                                ou &lt;i&gt;piora&lt;/i&gt;
+                                durante o ciclo menstrual?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
+        </q>
+
+        <!-- PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
                  This is only asked if the patient is female. -->
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
-        </q>
-
-        <q id="migraine_contraceptivesWorsens" type="bool" goto="migraine_howManyMigraine"
-            text="En caso de haber tomado &lt;u>anticonceptivos orales&lt;/u>,
-                  ¿experimentó un &lt;i>empeoramiento&lt;/i> de las cefaleas en intensidad o frecuencia?"
-            summary="Anticonceptivos relacionados">
-            <!-- PCD_CONTRACEPTIVESWORSENS_NOTMALE_2024
-                 This is only asked if the patient is female. -->
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="migraine_contraceptivesWorsens"
+            goto="migraine_howManyMigraine"
+            type="bool">
+            <summary>
+                <text lang="es">Anticonceptivos relacionados</text>
+                <text lang="en">Contraceptives are related</text>
+                <text lang="pt">Contraceptivos relacionados</text>
+            </summary>
+            <contents>
+                <text lang="es">En caso de haber tomado
+                                &lt;u&gt;anticonceptivos orales&lt;/u&gt;,
+                                ¿experimentó
+                                un &lt;i&gt;empeoramiento&lt;/i&gt;
+                                de las cefaleas
+                                en intensidad o frecuencia?</text>
+                <text lang="en">If you have taken oral contraceptives, did you experience a worsening of your headaches in terms of intensity or frequency?</text>
+                <text lang="pt">Caso tenha tomado anticoncepcionais orais, você percebeu uma piora das dores de cabeça em intensidade ou frequência?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
         <!-- PCD_HOW_MANY_MIGRAINE_1151
@@ -337,10 +737,26 @@
              8 to 14 days with migraine is labelled as "high frequency"
              15 or more days with migraine is labelled as "chronic frequency"
         -->
-        <q id="migraine_howManyMigraine" type="int" goto="/"
-            text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
-                  tiene &lt;u>al mes&lt;/u>?"
-            summary="Migrañas/mes" />
+        <q id="migraine_howManyMigraine"
+            type="int"
+            goto="/">
+            <summary>
+                <text lang="es">Migrañas/mes</text>
+                <text lang="en">Migraines</text>
+                <text lang="pt">Enxaqueca</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Cuántos días de dolor de cabeza
+                                &lt;b&gt;de este tipo&lt;/b&gt;
+                                tiene &lt;u&gt;al mes&lt;/u&gt;?</text>
+                <text lang="en">How many days &lt;u&gt;per month&lt;/u&gt;
+                                do you experience &lt;b&gt;this type&lt;/b&gt;
+                                of headache?</text>
+                <text lang="pt">Quantos dias &lt;u&gt;por mês&lt;/u&gt;
+                                você tem &lt;b&gt;esse tipo&lt;/b&gt;
+                                de dor de cabeça?</text>
+            </contents>
+        </q>
     </branch>
 
     <!--- Branch tensional, specific questions
@@ -348,28 +764,112 @@
           a tensional cephalea profile (stress, anxiety, depression, worrying).
     -->
     <branch id="tensional" head="tensional_wholeHead">
-        <q id="tensional_wholeHead" type="bool" goto="tensional_isCephaleaHelmet"
-            summary="Toda la cabeza"
-            text="¿En general, el &lt;i>dolor&lt;/i> afecta a &lt;u>toda la cabeza&lt;/u>?"
-            pic="pic_headache_whole_head">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+
+        <q id="tensional_wholeHead"
+            goto="tensional_isCephaleaHelmet"
+            type="bool">
+            <summary>
+                <text lang="es">Toda la cabeza</text>
+                <text lang="en">Whole-headed</text>
+                <text lang="pt">Toda a cabeça</text>
+            </summary>
+            <contents>
+                <text lang="es">¿En general, el &lt;i&gt;dolor&lt;/i&gt;
+                                afecta a
+                                &lt;u&gt;toda la cabeza&lt;/u&gt;?</text>
+                <text lang="en">In general, does the &lt;i&gt;pain&lt;/i&gt;
+                                affect your
+                                &lt;u&gt;entire head&lt;/u&gt;?</text>
+                <text lang="pt">Em geral, &lt;i&gt;a dor&lt;/i&gt;
+                                afeta
+                                &lt;u&gt;toda a sua cabeça&lt;/u&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_isCephaleaHelmet" type="bool" goto="tensional_isTensionalIntense"
-           summary="Casco o venda opresiva"
-           text="Las &lt;u>características&lt;/u> del dolor se parecen a tener &lt;i>un casco puesto en la cabeza&lt;/i>,
-                 o a llevar una &lt;i>banda-cinta opresiva&lt;/i> alrededor de la cabeza,
-                 o como &lt;i>un peso&lt;/i> encima de ella?">
-           <opt value="false" text="No." />
-           <opt value="true" text="Sí." />
+        <q id="tensional_isCephaleaHelmet"
+            goto="tensional_isTensionalIntense"
+            type="bool">
+            <summary>
+                <text lang="es">Casco o venda opresiva</text>
+                <text lang="en">Helmet or oppressive bandage</text>
+                <text lang="pt">Capacete ou bandagem opressiva</text>
+            </summary>
+            <contents>
+                <text lang="es">Las &lt;u&gt;características&lt;/u&gt;
+                                del dolor se parecen a tener
+                                &lt;i&gt;un casco puesto
+                                en la cabeza&lt;/i&gt;,
+                                o a llevar una
+                                &lt;i&gt;banda-cinta opresiva&lt;/i&gt;
+                                alrededor de la cabeza,
+                                o como &lt;i&gt;un peso&lt;/i&gt;
+                                encima de ella?</text>
+                <text lang="en">Does the pain feel like
+                                &lt;i&gt;wearing a helmet&lt;/i&gt;,
+                                having a &lt;i&gt;tight band&lt;/i&gt;
+                                around your head, or as if there were
+                                &lt;i&gt;a weight&lt;/i&gt;
+                                pressing on your head?</text>
+                <text lang="pt">A dor se parece a estar usando
+                                &lt;i&gt;um capacete&lt;/i&gt;,
+                                ter uma &lt;i&gt;faixa apertada&lt;/i&gt;
+                                ao redor da cabeça ou como se houvesse
+                                &lt;i&gt;um&lt;/i&gt; peso sobre
+                                a cabeça?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_isTensionalIntense" type="bool" goto="tensional_exerciseWorsens"
-            summary="Dolor intenso"
-            text="¿El dolor es &lt;i>intenso&lt;/i>, le &lt;b>impide&lt;/b> realizar &lt;u>tareas cotidianas&lt;/u>?">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_isTensionalIntense"
+            goto="tensional_exerciseWorsens"
+            type="bool">
+            <summary>
+                <text lang="es">Dolor intenso</text>
+                <text lang="en">Intense pain</text>
+                <text lang="pt">Dor intensa</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor es &lt;i&gt;intenso&lt;/i&gt;, le
+                                &lt;b&gt;impide&lt;/b&gt; realizar
+                                &lt;u&gt;tareas cotidianas&lt;/u&gt;?</text>
+                <text lang="en">Is the pain &lt;i&gt;intense&lt;/i&gt;,
+                                meaning it &lt;b&gt;prevents&lt;/b&gt;
+                                you from carrying out your
+                                &lt;u&gt;daily tasks&lt;/u&gt;?</text>
+                <text lang="pt">A dor é &lt;i&gt;intensa&lt;/i&gt;, ou seja,
+                                &lt;i&gt;impede&lt;/i&gt;
+                                você de realizar suas
+                                &lt;u&gt;atividades cotidianas&lt;/u&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
         <!-- PCD_EXERCISEWORSENS_2222 -->
@@ -377,36 +877,142 @@
            text="/" summary="/"
            goto="tensional_isStabbing" />
 
-        <q id="tensional_isStabbing" type="bool" goto="tensional_isTensionalWorseOnAfternoons"
-            summary="Hormigueo/punzadas"
-            text="¿Tiene otras sensaciones como &lt;i>hormigueo&lt;/i> o &lt;i>punzadas&lt;/i> en la cabeza?">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_isStabbing"
+            goto="tensional_isTensionalWorseOnAfternoons"
+            type="bool">
+            <summary>
+                <text lang="es">Hormigueo/punzadas</text>
+                <text lang="en">Tingle/stabbing</text>
+                <text lang="pt">Formigando/pontadas</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Tiene otras sensaciones como
+                                &lt;i&gt;hormigueo&lt;/i&gt;
+                                o &lt;i&gt;punzadas&lt;/i&gt;
+                                en la cabeza?</text>
+                <text lang="en">Do you experience other sensations such as
+                                &lt;i&gt;tingling&lt;/i&gt;
+                                or &lt;i&gt;stabbing&lt;/i&gt;
+                                pains in your head?</text>
+                <text lang="pt">Você sente outras sensações,
+                                como &lt;i&gt;formigamento&lt;/i&gt;
+                                ou &lt;i&gt;pontadas&lt;/i&gt;
+                                na cabeça?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_isTensionalWorseOnAfternoons" type="bool" goto="tensional_isTensionalRelatedToStress"
-            summary="Empeora por la tarde"
-            text="¿El dolor &lt;i>comienza&lt;/i> por &lt;u>la mañana&lt;/u>,
-                  va &lt;i>aumentando&lt;/i> a lo largo del día,
-                  y es &lt;i>peor&lt;/i> por &lt;u>la tarde&lt;/u>?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_isTensionalWorseOnAfternoons"
+            goto="tensional_isTensionalRelatedToStress"
+            type="bool">
+            <summary>
+                <text lang="es">Empeora por la tarde</text>
+                <text lang="en">Worsen in the afternoon</text>
+                <text lang="pt">Piorar à tarde</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor &lt;i&gt;comienza&lt;/i&gt;
+                                por &lt;u&gt;la mañana&lt;/u&gt;,
+                                va &lt;i&gt;aumentando&lt;/i&gt;
+                                a lo largo del día,
+                                y es &lt;i&gt;peor&lt;/i&gt;
+                                por &lt;u&gt;la tarde&lt;/u&gt;?</text>
+                <text lang="en">Does the headache &lt;i&gt;start&lt;/i&gt;
+                                in the &lt;u&gt;morning&lt;/u&gt;,
+                                &lt;i&gt;increase&lt;/i&gt; throughout the day,
+                                and become &lt;i&gt;worse&lt;/i&gt;
+                                in &lt;u&gt;the afternoon?&lt;/u&gt;</text>
+                <text lang="pt">A dor de cabeça &lt;i&gt;começa&lt;/i&gt;
+                                pela &lt;u&gt;manhã&lt;/u&gt;, vai
+                                &lt;i&gt;aumentando&lt;/i&gt; ao longo do dia e
+                                &lt;u&gt;piora&lt;/u&gt; à tarde?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_isTensionalRelatedToStress" type="bool" goto="tensional_isTensionalBetterWhenDistracted"
-            summary="Empeora con stress"
-            text="¿El dolor puede relacionarse con situaciones
-                  de &lt;i>estrés&lt;/i>, &lt;i>nerviosismo&lt;/i>, &lt;i>preocupaciones&lt;/i>...?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_isTensionalRelatedToStress"
+            goto="tensional_isTensionalBetterWhenDistracted"
+            type="bool">
+            <summary>
+                <text lang="es">Empeora con stress</text>
+                <text lang="en">Worse with stress</text>
+                <text lang="pt">Pior com estresse</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor puede relacionarse con situaciones
+                                de &lt;i&gt;estrés&lt;/i&gt;,
+                                &lt;i&gt;nerviosismo&lt;/i&gt;,
+                                &lt;i&gt;preocupaciones&lt;/i&gt;...?</text>
+                <text lang="en">Can the headache be related to situations
+                                of &lt;i&gt;stress&lt;/i&gt;,
+                                &lt;i&gt;nervousness&lt;/i&gt;,
+                                &lt;i&gt;worries&lt;/i&gt;...?</text>
+                <text lang="pt">A dor de cabeça pode estar relacionada com
+                                situações de &lt;i&gt;estresse&lt;/i&gt;,
+                                &lt;i&gt;nervosismo&lt;/i&gt;,
+                                &lt;i&gt;preocupações&lt;/i&gt;...?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_isTensionalBetterWhenDistracted" type="bool" goto="tensional_soundPhobia"
-            summary="Mejora con distracciones"
-            text="Las distracciones o el entretenimiento con tareas agradables,
-                  ¿hacen que el dolor sea &lt;i>menos intenso&lt;/i>?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_isTensionalBetterWhenDistracted"
+            goto="tensional_soundPhobia"
+            type="bool">
+            <summary>
+                <text lang="es">Mejora con distracciones</text>
+                <text lang="en">Better when distracted</text>
+                <text lang="pt">Melhora com distrações</text>
+            </summary>
+            <contents>
+                <text lang="es">Las distracciones o el entretenimiento
+                                con tareas agradables,
+                                ¿hacen que el dolor sea
+                                &lt;i&gt;menos intenso&lt;/i&gt;?</text>
+                <text lang="en">Do distractions or engaging in enjoyable
+                                activities make the headache
+                                &lt;i&gt;less intense&lt;/i&gt;?</text>
+                <text lang="pt">As distrações ou o entretenimento
+                                com tarefas agradáveis fazem com que
+                                a dor de cabeça fique
+                                &lt;i&gt;menos intensa&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
         <!-- PCD_SOUNDPHOBIA_2228 -->
@@ -414,26 +1020,102 @@
            text="/" summary="/"
            goto="tensional_insomnia" />
 
-        <q id="tensional_insomnia" type="bool" goto="tensional_sad"
-            summary="Insomnio"
-            text="¿Tiene problemas para &lt;b>dormir&lt;/b>?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_insomnia"
+            goto="tensional_sad"
+            type="bool">
+            <summary>
+                <text lang="es">Insomnio</text>
+                <text lang="en">Insomnia</text>
+                <text lang="pt">Insônia</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Tiene problemas para
+                                &lt;b&gt;dormir&lt;/b&gt;?</text>
+                <text lang="en">Do you have trouble
+                                &lt;b&gt;sleeping&lt;/b&gt;?</text>
+                <text lang="pt">Você tem problemas para
+                                &lt;b&gt;dormir&lt;/b&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_sad" type="bool" goto="tensional_solvable"
-            summary="Desánimo"
-            text="¿Se siente &lt;b>desanimado&lt;/b>, &lt;i>triste&lt;/i>, o &lt;i>irritable&lt;/i>...?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_sad"
+            goto="tensional_solvable"
+            type="bool">
+            <summary>
+                <text lang="es">Desánimo</text>
+                <text lang="en">Discouragement</text>
+                <text lang="pt">Desânimo</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Se siente &lt;b&gt;desanimado&lt;/b&gt;,
+                                &lt;i&gt;triste&lt;/i&gt;,
+                                o &lt;i&gt;irritable&lt;/i&gt;...?</text>
+                <text lang="en">Do you feel &lt;i&gt;down&lt;/i&gt;,
+                                &lt;i&gt;sad&lt;/i&gt;,
+                                or &lt;i&gt;irritable?&lt;/i&gt;</text>
+                <text lang="pt">Você se sente &lt;i&gt;desanimado&lt;/i&gt;,
+                                &lt;i&gt;triste&lt;/i&gt;
+                                ou &lt;i&gt;irritável&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
-        <q id="tensional_solvable" type="bool" goto="tensional_howManyTensional"
-            summary="Cede con medicación"
-            text="¿El dolor se &lt;u>alivia&lt;/u> o &lt;i>cede&lt;/u> con calmantes
-                  como &lt;i>paracetamol&lt;/i>, &lt;i>ibuprofeno&lt;/i> o &lt;i>nolotil&lt;/i>?" >
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="tensional_solvable"
+            goto="tensional_howManyTensional"
+            type="bool">
+            <summary>
+                <text lang="es">Cede con medicación</text>
+                <text lang="en">Relieves with medication</text>
+                <text lang="pt">Alivia com medicação</text>
+            </summary>
+            <contents>
+                <text lang="es">¿El dolor se &lt;u&gt;alivia&lt;/u&gt;
+                                o &lt;u&gt;cede&lt;/u&gt;
+                                con calmantes como
+                                &lt;i&gt;paracetamol&lt;/i&gt;,
+                                &lt;i&gt;ibuprofeno&lt;/i&gt;
+                                o &lt;i&gt;nolotil&lt;/i&gt;?</text>
+                <text lang="en">Does the headache &lt;u&gt;improve&lt;/u&gt;
+                                or &lt;u&gt;subside&lt;/u&gt; with painkillers
+                                like &lt;i&gt;paracetamol&lt;/i&gt;,
+                                &lt;i&gt;ibuprofen&lt;/i&gt;,
+                                &lt;i&gt;or metamizole&lt;/i&gt;?</text>
+                <text lang="pt">A dor de cabeça &lt;u&gt;melhora&lt;/u&gt;
+                                ou &lt;u&gt;desaparece&lt;/u&gt;
+                                com &lt;i&gt;analgésicos&lt;/i&gt;
+                                como &lt;i&gt;paracetamol&lt;/i&gt;,
+                                &lt;i&gt;ibuprofeno&lt;/i&gt;
+                                ou &lt;i&gt;metamizol&lt;/i&gt;?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
 
         <!-- PCD-HOW_MANY_TENSIONAL-1147
@@ -442,22 +1124,62 @@
                 - 4 to 7: "cefatea tensional de baja frecuencia"
                 - de 8 to 14: "cefatea tensional de alta frecuencia"
                 - 15 or more: "cefalea tensional crónica" -->
-        <q id="tensional_howManyTensional" type="int" goto="/"
-            summary="Tensionales/mes"
-            text="¿Cuántos días de dolor de cabeza &lt;b>de este tipo&lt;/b>
-                  tiene por &lt;u>mes&lt;/u>?" >
+        <q id="tensional_howManyTensional"
+            goto="/"
+            type="int">
+            <summary>
+                <text lang="es">Tensionales/mes</text>
+                <text lang="en">Tensional/month</text>
+                <text lang="pt">Tensional/mês</text>
+            </summary>
+            <contents>
+                <text lang="es">¿Cuántos días de dolor de cabeza
+                                &lt;b&gt;de este tipo&lt;/b&gt;
+                                tiene por &lt;u&gt;mes&lt;/u&gt;?</text>
+                <text lang="en">¿Cuántos días de dolor de cabeza
+                                &lt;b&gt;de este tipo&lt;/b&gt;
+                                tiene por &lt;u&gt;mes&lt;/u&gt;?</text>
+                <text lang="pt">Quantos dias por &lt;u&gt;mês&lt;/u&gt;
+                                você tem &lt;b&gt;esse tipo&lt;/u&gt;
+                                de dor de cabeça?</text>
+            </contents>
         </q>
     </branch>
+
     <!--- The "Do you want to continue?" branch
           (There is only one question here.)
     -->
     <branch id="continue" head="continue_areYouSure">
         <!-- PCD-CONTINUE-1338 -->
-        <q id="continue_areYouSure" type="bool" goto="/" summary="Continuar"
-            text="Además de lo comentado previamente,
-                  ¿tiene otros dolores de cabeza que quiera comentar?">
-            <opt value="false" text="No." />
-            <opt value="true" text="Sí." />
+        <q id="continue_areYouSure"
+            goto="/"
+            type="bool">
+            <summary>
+                <text lang="es">Continuar</text>
+                <text lang="en">Continue</text>
+                <text lang="pt">Continuar</text>
+            </summary>
+            <contents>
+                <text lang="es">Además de lo comentado previamente,
+                                ¿tiene otros dolores de cabeza
+                                que quiera mencionar?</text>
+                <text lang="en">Besides what was previously commented,
+                                do you have any other headaches
+                                you would like to mention?</text>
+                <text lang="pt">Além do que foi comentado anteriormente,
+                                você tem outras dores de cabeça
+                                que gostaria de comentar?</text>
+            </contents>
+            <opt value="false">
+                <text lang="es">No.</text>
+                <text lang="en">No.</text>
+                <text lang="pt">Non.</text>
+            </opt>
+            <opt value="true">
+                <text lang="es">Sí.</text>
+                <text lang="en">Yes.</text>
+                <text lang="pt">Sím.</text>
+            </opt>
         </q>
     </branch>
 </form>

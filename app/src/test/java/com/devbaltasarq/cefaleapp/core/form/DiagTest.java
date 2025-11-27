@@ -1,5 +1,10 @@
+// CefaleApp (c) 2023/24 Baltasar MIT License <baltasarq@uvigo.es>
+
+
 package com.devbaltasarq.cefaleapp.core.form;
 
+
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Diagnostic;
 import com.devbaltasarq.cefaleapp.core.questionnaire.MigraineRepo;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
@@ -15,7 +20,7 @@ public class DiagTest extends TestCase {
 
         this.repo = MigraineRepo.get();
         this.repo.reset();
-        this.diag = new Diagnostic( this.repo );
+        this.diag = new Diagnostic( this.repo, (s) -> Message.EMPTY );
     }
 
     public void testCalcTotalScreen()
@@ -47,7 +52,7 @@ public class DiagTest extends TestCase {
 
     public void testNoCephaleaIsSIT3()
     {
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT3, this.diag.decide() );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT3, this.diag.decide() );
     }
 
     public void testMigraineFourConditions()
@@ -62,15 +67,15 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.EXERCISEWORSENS, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.NAUSEA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
 
         this.repo.setValue( MigraineRepo.Id.HADAURA, new Value( true, ValueType.BOOL ) );
         System.out.println( this.diag.toString() );
         assertTrue( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
     }
 
     public void testMigraineThreeConditions()
@@ -84,15 +89,15 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.EXERCISEWORSENS, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.NAUSEA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
 
         this.repo.setValue( MigraineRepo.Id.HADAURA, new Value( true, ValueType.BOOL ) );
         System.out.println( this.diag.toString() );
         assertTrue( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
     }
 
     public void testMigraineTwoConditions()
@@ -107,15 +112,15 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.SOUNDPHOBIA, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.PHOTOPHOBIA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
 
         this.repo.setValue( MigraineRepo.Id.HADAURA, new Value( true, ValueType.BOOL ) );
         System.out.println( this.diag.toString() );
         assertTrue( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
     }
 
     public void testMigraineOneConditionSIT1()
@@ -125,15 +130,15 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.PHOTOPHOBIA, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.SOUNDPHOBIA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT1, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT1, decision );
 
         this.repo.setValue( MigraineRepo.Id.HADAURA, new Value( true, ValueType.BOOL ) );
         System.out.println( this.diag.toString() );
         assertTrue( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT1, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT1, decision );
     }
 
     public void testMigraineOneConditionSIT2()
@@ -144,20 +149,20 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.MENSTRUATIONWORSENS, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.NAUSEA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT2, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT2, decision );
     }
 
     public void testMigraineOneConditionSIT3()
     {
         this.repo.setValue( MigraineRepo.Id.ISCEPHALEAONESIDED, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT3, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT3, decision );
     }
 
     public void testTensional()
@@ -172,10 +177,10 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.SAD, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.ISDEPRESSED, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.TENSIONAL, decision );
+        assertEquals( Diagnostic.ConclusionId.TENSIONAL, decision );
     }
 
     public void testTensional2()
@@ -188,10 +193,10 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.ISSTABBING, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.ISTENSIONALBETTERWHENDISTRACTED, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.TENSIONAL, decision );
+        assertEquals( Diagnostic.ConclusionId.TENSIONAL, decision );
     }
 
     public void testMixedPredominantTensional()
@@ -214,10 +219,10 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.NAUSEA, new Value( true, ValueType.BOOL ) );
 
         // Conclusion
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIXED_TENSIONAL, decision );
+        assertEquals( Diagnostic.ConclusionId.MIXED_TENSIONAL, decision );
     }
 
     public void testMixedPredominantMigraine()
@@ -240,10 +245,10 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.NAUSEA, new Value( true, ValueType.BOOL ) );
 
         // Conclusion
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
         assertFalse( this.diag.hasAura() );
-        assertEquals( Diagnostic.Conclusion.MIXED_MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIXED_MIGRAINE, decision );
     }
 
     public void testExample1()
@@ -263,9 +268,9 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.PHOTOPHOBIA, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.SOUNDPHOBIA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT1, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT1, decision );
     }
 
     public void testExample2()
@@ -284,9 +289,9 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.PHOTOPHOBIA, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.SOUNDPHOBIA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT3, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT3, decision );
     }
 
     public void testExample3()
@@ -302,9 +307,9 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.WASCEPHALEALIMITANT, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.PHOTOPHOBIA, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT3, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT3, decision );
     }
 
     public void testExample4()
@@ -322,9 +327,9 @@ public class DiagTest extends TestCase {
 
         this.repo.setValue( MigraineRepo.Id.MENSTRUATIONWORSENS, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE_COMPATIBLE_SIT3, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE_COMPATIBLE_SIT3, decision );
     }
 
     public void testExample5()
@@ -344,9 +349,9 @@ public class DiagTest extends TestCase {
         this.repo.setValue( MigraineRepo.Id.MENSTRUATIONWORSENS, new Value( true, ValueType.BOOL ) );
         this.repo.setValue( MigraineRepo.Id.CONTRACEPTIVESWORSENS, new Value( true, ValueType.BOOL ) );
 
-        Diagnostic.Conclusion decision = this.diag.decide();
+        Diagnostic.ConclusionId decision = this.diag.decide();
         System.out.println( this.diag.toString() );
-        assertEquals( Diagnostic.Conclusion.MIGRAINE, decision );
+        assertEquals( Diagnostic.ConclusionId.MIGRAINE, decision );
     }
 
     private MigraineRepo repo;

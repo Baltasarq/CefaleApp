@@ -33,7 +33,7 @@ import androidx.core.widget.TextViewCompat;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Language;
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.RichText;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
@@ -280,7 +280,7 @@ public abstract class TestActivity extends AppCompatActivity {
     protected void setTextInTextView(final TextView LBL_QUESTION, String txt)
     {
         TextViewCompat.setTextAppearance( LBL_QUESTION, textSize );
-        LBL_QUESTION.setText( Util.richTextFromHtml( txt ) );
+        LBL_QUESTION.setText( new RichText( txt ).get() );
     }
 
     protected void buildAnswerSupportFor(final Question Q)

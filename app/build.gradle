@@ -19,11 +19,11 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdk 29
         targetSdk 36
-        versionCode 9
-        versionName '3.43'
+        versionCode 10
+        versionName '3.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '20250702'
+        versionNameSuffix '20251127'
     }
 
     buildTypes {
@@ -33,8 +33,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_16
-        targetCompatibility JavaVersion.VERSION_16
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true

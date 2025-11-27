@@ -12,16 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.Util;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
+import com.devbaltasarq.cefaleapp.ui.CefaleAppActivity;
 
 import java.util.List;
 
 
-public class PreventiveTreatmentResultActivity extends AppCompatActivity {
+public class PreventiveTreatmentResultActivity extends CefaleAppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,14 +52,14 @@ public class PreventiveTreatmentResultActivity extends AppCompatActivity {
         final LayoutInflater INFLATER = this.getLayoutInflater();
         final LinearLayout LY_PREVENTIVE = this.findViewById( R.id.lyPreventiveTreatment );
 
-        Util.sortIdentifiableI18n( medicineList );
+        this.sortIdentifiableI18n( medicineList );
 
         for(final Medicine MEDICINE: medicineList) {
             final View MED_VIEW = INFLATER.inflate( R.layout.medicine_entry, null );
             final TextView LBL_MEDICINE = MED_VIEW.findViewById( R.id.lblMedicine );
 
-            LBL_MEDICINE.setText( MEDICINE.getId().getName() );
-            LBL_MEDICINE.setOnClickListener( (v) -> Util.showMedicine( this, MEDICINE ) );
+            LBL_MEDICINE.setText( MEDICINE.getId().getName().getForCurrentLanguage() );
+            LBL_MEDICINE.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
             LY_PREVENTIVE.addView( MED_VIEW );
         }
 

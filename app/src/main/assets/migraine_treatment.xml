@@ -1,596 +1,1794 @@
 <?xml version="1.0" encoding="utf-8"?>
 <migraineTreatment>
     <!--
-        Class ANALG: analgésico.
-        Class PRVNT: preventivos.
+        Class ANALG: analgesic.
+        Class PRVNT: preventive.
     -->
     <medicineClasses>
-        <medicineClass id="PRVNT" name="Preventivo" />
-        <medicineClass id="ANALG" name="Analgésico" />
+        <medicineClass id="PRVNT">
+            <name>
+                <text lang="es">Preventivo</text>
+                <text lang="en">Preventive</text>
+                <text lang="pt">Preventivo</text>
+            </name>
+        </medicineClass>
+        <medicineClass id="ANALG">
+            <name>
+                <text lang="es">Analgésico</text>
+                <text lang="en">Analgesic</text>
+                <text lang="pt">Analgésico</text>
+            </name>
+        </medicineClass>
     </medicineClasses>
 
     <!-- A letter identifies each group id. -->
     <medicineGroups>
         <!-- A letter identifies each group id for preventive medicines. -->
-        <medicineGroup id="A" classId="PRVNT" name="Antihipertensivos" />
-        <medicineGroup id="B" classId="PRVNT" name="Betabloqueantes" />
-        <medicineGroup id="C" classId="PRVNT" name="Bloqueadores de calcio" />
-        <medicineGroup id="D" classId="PRVNT" name="Antidepresivos" />
-        <medicineGroup id="E" classId="PRVNT" name="Neuromoduladores" />
-        <medicineGroup id="F" classId="PRVNT" name="Anticuerpos monoclonales (uso hospitalario)" />
-        <medicineGroup id="G" classId="PRVNT" name="Toxina botulínica (uso hospitalario)" />
-        <medicineGroup id="H" classId="PRVNT" name="Gepantes (antagonista del receptor CGRP oral)" />
-        <!-- Analgesics: AINE, Triptanes, Ergóticos y Gepantes. -->
-        <medicineGroup id="AINE" classId="ANALG" name="AINE (antiinflamatorios no esteroideos)" />
-        <medicineGroup id="TRIPTANES" classId="ANALG" name="Triptanes (agonistas del receptor de la serotonina)" />
-        <medicineGroup id="ERGOTICOS" classId="ANALG" name="Ergóticos (agonistas de receptores serotoninérgicos)" />
-        <medicineGroup id="GEPANTES" classId="ANALG" name="Gepantes (antagonista del receptor CGRP oral)" />
-        <medicineGroup id="DIPTANES" classId="ANALG" name="Diptanes (agonista del receptor hidroxitriptamina 1F oral)" />
-        <medicineGroup id="DIPIRONAS" classId="ANALG" name="Dipironas" />
+        <medicineGroup id="A" classId="PRVNT">
+            <name>
+                <text lang="es">Antihipertensivos</text>
+                <text lang="en">Antihypertensives</text>
+                <text lang="pt">Anti-hipertensivos</text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="B" classId="PRVNT">
+            <name>
+                <text lang="es">Betabloqueantes</text>
+                <text lang="en">Beta blockers</text>
+                <text lang="pt">Bloqueadores beta</text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="C" classId="PRVNT">
+            <name>
+                <text lang="es">Bloqueadores de calcio</text>
+                <text lang="en">Calcium blockers</text>
+                <text lang="pt">Bloqueadores de cálcio</text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="D" classId="PRVNT">
+            <name>
+                <text lang="es">Antidepresivos</text>
+                <text lang="en">Antidepressants</text>
+                <text lang="pt">Antidepressivos</text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="E" classId="PRVNT">
+            <name>
+                <text lang="es">Neuromoduladores</text>
+                <text lang="en">Neuromodulators</text>
+                <text lang="pt">Neuromoduladores</text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="F" classId="PRVNT">
+            <name>
+                <text lang="es">
+                    Anticuerpos monoclonales (uso hospitalario)
+                </text>
+                <text lang="en">
+                    Monoclonal antibodies (hospital use)
+                </text>
+                <text lang="pt">
+                    Anticorpos monoclonais (uso hospitalar)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="G" classId="PRVNT">
+            <name>
+                <text lang="es">
+                    Toxina botulínica (uso hospitalario)
+                </text>
+                <text lang="en">
+                    Botulinum toxin (hospital use)
+                </text>
+                <text lang="pt">
+                    Toxina botulínica (uso hospitalar)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="H" classId="PRVNT">
+            <name>
+                <text lang="es">
+                    Gepantes (antagonista del receptor CGRP oral)
+                </text>
+                <text lang="en">
+                    Gepantes (oral CGRP receptor antagonist)
+                </text>
+                <text lang="pt">
+                    Gepantes (antagonista do receptor CGRP oral)
+                </text>
+            </name>
+        </medicineGroup>
+
+        <!-- Analgesics: a token identifies NSAID, Triptans, Ergotics and Gepantes. -->
+        <medicineGroup id="AINE" classId="ANALG">
+            <name>
+                <text lang="es">
+                    AINE (antiinflamatorios no esteroideos)
+                </text>
+                <text lang="en">
+                    NSAID (non-steroidal anti-inflammatories)
+                </text>
+                <text lang="pt">
+                    AINE (anti-inflamatórios não esteróides)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="TRIPTANES" classId="ANALG">
+            <name>
+                <text lang="es">
+                    Triptanes (agonistas del receptor de la serotonina)
+                </text>
+                <text lang="en">
+                    Triptans (serotonin receptor agonists)
+                </text>
+                <text lang="pt">
+                    Triptanos (agonistas dos receptores de serotonina)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="ERGOTICOS" classId="ANALG">
+            <name>
+                <text lang="es">
+                    Ergóticos (agonistas de receptores serotoninérgicos)
+                </text>
+                <text lang="en">
+                    Ergotics (serotonergic receptor agonists)
+                </text>
+                <text lang="pt">
+                    Ergóticos (agonistas dos receptores serotoninérgicos)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="GEPANTES" classId="ANALG">
+            <name>
+                <text lang="es">
+                    Gepantes (antagonista del receptor CGRP oral)
+                </text>
+                <text lang="en">
+                    Gepantes (oral CGRP receptor antagonist)
+                </text>
+                <text lang="pt">
+                    Gepantes (antagonista do receptor CGRP oral)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="DIPTANES" classId="ANALG">
+            <name>
+                <text lang="es">
+                    Diptanes (agonista del receptor hidroxitriptamina 1F oral)
+                </text>
+                <text lang="en">
+                    Diptanes (oral hydroxytryptamine 1F receptor agonist)
+                </text>
+                <text lang="pt">
+                    Diptanos (agonista do receptor 1F de hidroxitriptamina oral)
+                </text>
+            </name>
+        </medicineGroup>
+        <medicineGroup id="DIPIRONAS" classId="ANALG">
+            <name>
+                <text lang="es">Dipironas</text>
+                <text lang="en">Dipyrones</text>
+                <text lang="pt">Dipironas</text>
+            </name>
+        </medicineGroup>
     </medicineGroups>
 
     <medicines>
-        <medicine
-            id="ACIDO_VALPROICO"
-            name="Ácido valproico"
-            groupId="E"
-            posInGroup="1"
-            url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
+        <medicine id="ACIDO_VALPROICO"
+                groupId="E"
+                posInGroup="1"
+                url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
+            <name>
+                <text lang="es">Ácido valproico</text>
+                <text lang="en">Valproic acid</text>
+                <text lang="pt">Ácido valpróico</text>
+            </name>
             <posology>
-                Dosis mínima 300 mg/día; dosis recomendada 600 mg/día.
+                <text lang="es">
+                    Dosis mínima 300 mg/día;
+                    dosis recomendada 600 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 300 mg/day;
+                    recommended dose: 600 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 300 mg/dia;
+                    dose recomendada: 600 mg/dia.
+                </text>
             </posology>
             <adverseEffects>
-                En mujeres en edad fértil, por sus efectos teratogénicos y
-                posibilidad de autismo, debe tomarse obligatoriamente
-                con anticonceptivos seguros.
-                Somnolencia, cansancio, irritabilidad, inquietud durante el sueño,
-                ataxia, temblor distal, trastornos gastrointestinales,
-                aumento de peso, pérdida de cabello, elevación de transaminasas,
-                trombocitopenia.
+                <text lang="es">
+                    En mujeres en edad fértil, por sus efectos teratogénicos y
+                    posibilidad de autismo, debe tomarse obligatoriamente
+                    con anticonceptivos seguros.
+                    Somnolencia, cansancio, irritabilidad, inquietud durante el sueño,
+                    ataxia, temblor distal, trastornos gastrointestinales,
+                    aumento de peso, pérdida de cabello, elevación de transaminasas,
+                    trombocitopenia.
+                </text>
+                <text lang="en">
+                    In women of childbearing age,
+                    it must be taken together with reliable contraceptives.
+                    Common side effects: drowsiness, fatigue, irritability,
+                    restlessness during sleep, ataxia, distal tremor,
+                    gastrointestinal disturbances, weight gain, hair loss,
+                    elevated transaminases, thrombocytopenia.
+                </text>
+                <text lang="pt">
+                    Em mulheres em idade fértil deve ser tomado
+                    com anticonceptivos seguros.
+                    Efeitos secundários frequentes: sonolência, cansaço,
+                    irritabilidade, inquietação durante o sono, ataxia,
+                    tremor distal, distúrbios gastrointestinais,
+                    aumento de peso, queda de cabelo,
+                    elevação das transaminases, trombocitopenia.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="ALMOTRIPTAN"
-            name="Almotriptán"
-            groupId="TRIPTANES"
-            posInGroup="1"
-            url="https://www.vademecum.es/principios-activos-almotriptan-n02cc05-es">
+        <medicine id="ALMOTRIPTAN"
+                    groupId="TRIPTANES"
+                    posInGroup="1"
+                    url="https://www.vademecum.es/principios-activos-almotriptan-n02cc05-es">
+            <name>
+                <text lang="es">Almotriptán</text>
+                <text lang="en">Almotriptan</text>
+                <text lang="pt">Almotriptano</text>
+            </name>
             <posology>
-                Dosis: 12.5 mg, oral. Tomar 1 comprimido al inicio del dolor,
-                y si alivia pero no cede, repetir a las 2 horas.
-                La dosis máxima son 2 comprimidos en 24 horas.
+                <text lang="es">
+                    Dosis: 12.5 mg, oral. Tomar 1 comprimido
+                    al inicio del dolor, y si alivia pero no cede,
+                    repetir a las 2 horas.
+                    La dosis máxima son 2 comprimidos en 24 horas.
+                </text>
+                <text lang="en">
+                    Dose: 12.5 mg orally. Maximum 2 tablets in 24 hours.
+                </text>
+                <text lang="pt">
+                    Dose: 12,5 mg, oral. Máximo 2 comprimidos em 24 horas.
+                </text>
             </posology>
             <adverseEffects>
-                Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
-                náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
-                pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
-                enfermedad de Raynaud.
+                <text lang="es">
+                    Posible reacción cruzada con alérgicos a sulfamidas.
+                    Opresión torácica, náuseas, vómitos, mareos, vértigo,
+                    somnolencia. Contraindicados en pacientes
+                    con cardiopatía isquémica, hipertensión,
+                    enfermedad arterial periférica, enfermedad de Raynaud.
+                </text>
+                <text lang="en">
+                    Common side effects: possible cross-reaction
+                    in patients allergic to sulfonamides.
+                    Chest tightness, nausea, vomiting, dizziness,
+                    vertigo, drowsiness.
+                    Contraindicated in patients with ischemic heart disease,
+                    hypertension, peripheral arterial disease,
+                    or Raynaud’s disease.
+                </text>
+                <text lang="pt">
+                    Possível reação cruzada em alérgicos a sulfonamidas.
+                    Opressão torácica, náuseas, vômitos, tonturas, vertigem,
+                    sonolência. Contraindicado em cardiopatia isquêmica,
+                    hipertensão, doença arterial periférica
+                    ou doença de Raynaud.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="ELETRIPTAN"
-            name="Eletriptán"
-            groupId="TRIPTANES"
-            posInGroup="2"
-            url="https://www.vademecum.es/principios-activos-eletriptan-N02CC06-es">
+        <medicine id="ELETRIPTAN"
+                groupId="TRIPTANES"
+                posInGroup="2"
+                url="https://www.vademecum.es/principios-activos-eletriptan-N02CC06-es">
+            <name>
+                <text lang="es">Eletriptán</text>
+                <text lang="en">Eletriptan</text>
+                <text lang="pt">Eletriptano</text>
+            </name>
             <posology>
-                Comprimidos de 40 mg.
-                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
-                La dosis máxima son 2 comprimidos en 24 horas.
+                <text lang="es">
+                    Comprimidos de 40 mg.
+                    Tomar 1 comprimido al inicio del dolor,
+                    y si alivia pero no cede, repetir a las 2 horas.
+                    La dosis máxima son 2 comprimidos en 24 horas.
+                </text>
+                <text lang="en">Dosage: 40 mg orally.
+                    1 tablet at onset of pain; if partially relieved
+                    but not resolved, repeat after 2 hours.
+                    Maximum dose: 2 tablets in 24 hours.
+                </text>
+                <text lang="pt">
+                    Dose: 40 mg, via oral. 1 comprimido no início da dor;
+                    se aliviar parcialmente mas não cessar,
+                    repetir após 2 horas. Dose máxima:
+                    2 comprimidos em 24 horas.
+                    Efeitos adversos frequentes:
+                    possível reação cruzada em alérgicos a sulfonamidas.
+                    Opressão torácica, náuseas, vômitos, tontura, vertigem,
+                    sonolência. Contraindicado em cardiopatia isquêmica,
+                    hipertensão, doença arterial periférica
+                    ou doença de Raynaud.
+                </text>
             </posology>
             <adverseEffects>
-                Posible reacción cruzada con alérgicos a sulfamidas. Opresión torácica,
-                náuseas, vómitos, mareos, vértigo, somnolencia. Contraindicados en
-                pacientes con cardiopatía isquémica, hipertensión, enfermedad arterial periférica,
-                enfermedad de Raynaud.
+                <text lang="es">
+                    Posible reacción cruzada con alérgicos a sulfamidas.
+                    Opresión torácica, náuseas, vómitos, mareos, vértigo,
+                    somnolencia. Contraindicados en pacientes
+                    con cardiopatía isquémica, hipertensión,
+                    enfermedad arterial periférica, enfermedad de Raynaud.
+                </text>
+                <text lang="en">Common side effects: possible cross-reaction
+                    in patients allergic to sulfonamides. Chest tightness,
+                    nausea, vomiting, dizziness, vertigo, drowsiness.
+                    Contraindicated in patients with ischemic heart disease,
+                    hypertension, peripheral arterial disease,
+                    or Raynaud’s disease.
+                </text>
+                <text lang="pt">Possível reação cruzada
+                    em alérgicos a sulfamidas. Opressão torácica,
+                    náuseas, vômitos, tonturas, vertigem,
+                    sonolência. Contraindicado em pacientes
+                    com cardiopatia isquêmica, hipertensão,
+                    doença arterial periférica, doença de Raynaud.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="AMITRIPTILINA"
-            name="Amitriptilina"
-            groupId="D"
-            posInGroup="1"
-            url="https://www.vademecum.es/principios-activos-amitriptilina-n06aa09-es">
-            <posology>
-                Dosis mínima 10 mg/día; dosis recomendada 25 mg/día.
-            </posology>
-            <adverseEffects>
-                Sequedad de boca, sabor metálico, estreñimiento retención urinaria,
-                visión borrosa, trastorno de la acomodación hipotensión postural, somnolencia,
-                aumento de apetito, aumento de peso, elevación de transaminasas, alteración
-                de la líbido. Precaución con glaucoma e hipertrofia prostática.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="CAFERGOT"
-            name="Cafergot"
-            groupId="ERGOTICOS"
-            posInGroup="2"
-            url="https://www.vademecum.es/medicamento-cafergot+_570">
-            <posology>
-                Grageas de 1 mg. de tartrato de ergotamina.
-                En una crisis de migraña tomar 2 grageas al inicio del dolor,
-                y si no cede el dolor,
-                1 gragea adicional cada hora hasta un máximo de 6 grageas/día.
-                Tiene un máximo recomendado de 10 mg/semana.
-            </posology>
-            <adverseEffects>
-                Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor,
-                Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica
-                enfermedad de Raynaud. No se puede combinar con Triptán.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="CANDESARTAN"
-            name="Candesartán"
-            groupId="A"
-            posInGroup="1"
-            url="https://www.vademecum.es/medicamento-candesartan+alter_ficha_37176">
-            <posology>Dosis mínima 8mg/día; dosis recomendada 16 mg/día.</posology>
-            <adverseEffects>
-                Mareo, insomnio, hipotensión sin taquicardia refleja, ortostatismo, hiperpotasemia,
-                insuficiencia renal, erupción cutánea, angioedema, tos, astenia, congestión nasal,
-                dispepsia, diarrea, elevación de transaminasas.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="FLUNARIZINA"
-            name="Flunarizina"
+        <medicine id="FLUNARIZINA"
             groupId="C"
             posInGroup="1"
-            url="https://www.vademecum.es/principios-activos-flunarizina-N07CA03-es">
-            <posology>Dosis mínima 2.5 mg/día; dosis recomendada 5 mg/día.</posology>
-            <adverseEffects>
-                Cefalea, astenia, somnolencia, sequedad oral, visión borrosa, dermatitis,
-                aumento de peso. Precaución con hipotensión. Contraindicada si hay depresión.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="HEMICRANEAL"
-            name="Hemicraneal"
-            groupId="ERGOTICOS"
-            posInGroup="3"
-            url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
+            url="https://www.vademecum.es/principios-activos-flunarizina-n07ca03-es">
+            <name>
+                <text lang="es">Flunarizina</text>
+                <text lang="en">Flunarizine</text>
+                <text lang="pt">Flunarizina</text>
+            </name>
             <posology>
-                Grageas de 1mg de tartrato de ergotamina.
-                En una crisis de migraña tomar 2 grageas al inicio del dolor,
-                y si no cede el dolor,
-                1 gragea adicional cada hora hasta un máximo de 6 grageas/día.
-                Tiene un máximo recomendado de 10 mg/semana.
+                <text lang="es">
+                    Dosis mínima: 2.5 mg/día; dosis recomendada: 5 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 2.5 mg/day; recommended dose: 5 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 2,5 mg/dia; dose recomendada: 5 mg/dia.
+                </text>
             </posology>
             <adverseEffects>
-                Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
-                Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
-                enfermedad de Raynaud. No se puede combinar con Triptán.
+                <text lang="es">
+                    Efectos secundarios comunes: dolor de cabeza, astenia,
+                    mareo, boca seca, visión borrosa, dermatitis,
+                    aumento de peso. Debe tenerse precaución con
+                    la hipertensión. Contraindicado en caso de depresión.
+                </text>
+                <text lang="en">
+                    Efeitos secundários frequentes: cefaleia, astenia,
+                    sonolência, boca seca, visão turva, dermatite,
+                    ganho de peso. Precaução em hipotensão.
+                    Contraindicada em depressão.
+                </text>
+                <text lang="pt">
+                    Common side effects: headache, asthenia, drowsiness,
+                    dry mouth, blurred vision, dermatitis, weight gain.
+                    Caution with hypotension. Contraindicated in depression.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="LISINOPRIL"
-            name="Lisinopril"
-            groupId="A"
-            posInGroup="2"
-            url="https://www.vademecum.es/principios-activos-lisinopril-c09aa03-es">
-            <posology>Dosis mínima 5 mg/día; dosis recomendada 10 mg/día.</posology>
-            <adverseEffects>
-                Tos seca persistente, hipotensión, estomatitis, parestesias, erupción cutánea,
-                edema angioneurótico, disgeusia, hiperpotasemia, insuficiencia renal aguda
-                si existe estenosis bilateral de la arteria renal, artralgias.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="METOPROLOL"
-            name="Metoprolol"
-            groupId="B"
-            posInGroup="1"
-            url="https://www.vademecum.es/principios-activos-metoprolol-C07AB02-es">
-            <posology>Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.</posology>
-            <adverseEffects>
-                Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
-                astenia, disminución de la líbido, impotencia masculina,
-                síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="PROPRANOLOL"
-            name="Propranolol"
-            groupId="B"
-            posInGroup="2"
-            url="https://www.vademecum.es/principios-activos-propranolol-c07aa05-es">
-            <posology>Dosis mínima 30 mg/día; dosis recomendada 60 mg/día.</posology>
-            <adverseEffects>
-                Bradicardia, hipotensión, ortostatismo, vasoconstricción periférica, broncoespasmo,
-                astenia, disminución de la líbido, impotencia masculina,
-                síntomas del SNC (mareo, depresión, pesadillas -más frecuentes con Propranolol-).
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="RIZATRIPTAN"
-            name="Rizatriptán"
-            groupId="TRIPTANES"
-            posInGroup="3"
-            url="https://www.vademecum.es/principios-activos-rizatriptan-n02cc04-es">
+        <medicine id="AMITRIPTILINA"
+                groupId="D"
+                posInGroup="1"
+                url="https://www.vademecum.es/principios-activos-amitriptilina-n06aa09-es">
+            <name>
+                <text lang="es">Amitriptilina</text>
+                <text lang="en">Amitriptyline</text>
+                <text lang="pt">Amitriptilina</text>
+            </name>
             <posology>
-                10 mg, oral.
-                Existe un comprimido bucodispensable (liotab) de toma sublingual.
-                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
-                La dosis máxima son 2 comprimidos en 24 horas.
+                <text lang="es">
+                    Dosis mínima 10 mg/día; dosis recomendada 25 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 10 mg/day; recommended dose: 25 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 10 mg/dia; dose recomendada: 25 mg/dia.
+                </text>
             </posology>
             <adverseEffects>
-                Posible reacción cruzada con alérgicos y sulfamidas.
-                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
-                Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
-                enfermedad arterial periférica, enfermedad de Raynaud.
+                <text lang="es">
+                    Sequedad de boca, sabor metálico, estreñimiento,
+                    retención urinaria, visión borrosa,
+                    trastorno de la acomodación hipotensión postural,
+                    somnolencia, aumento de apetito, aumento de peso,
+                    elevación de transaminasas, alteración
+                    de la líbido.
+                    Precaución con glaucoma e hipertrofia prostática.
+                </text>
+                <text lang="en">
+                    Common side effects: dry mouth, metallic taste,
+                    constipation, urinary retention, blurred vision,
+                    accommodation disorder, postural hypotension,
+                    drowsiness, increased appetite, weight gain,
+                    elevated transaminases, decreased libido.
+                    Caution with glaucoma and prostatic hypertrophy.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: boca seca, sabor metálico,
+                    prisão de ventre, retenção urinária, visão turva,
+                    distúrbio de acomodação, hipotensão postural, sonolência,
+                    aumento do apetite, ganho de peso,
+                    elevação das transaminases, diminuição da libido.
+                    Precaução em glaucoma e hipertrofia prostática.
+                </text>
             </adverseEffects>
         </medicine>
 
         <medicine
-            id="SUMATRIPTAN"
-            name="Sumatriptán"
-            groupId="TRIPTANES"
-            posInGroup="4"
-            url="https://www.vademecum.es/principios-activos-sumatriptan-N02CC01-es">
+                id="CAFERGOT"
+                groupId="ERGOTICOS"
+                posInGroup="2"
+                url="https://www.vademecum.es/medicamento-cafergot+_570">
+
+            <name>
+                <text lang="es">Cafergot</text>
+                <text lang="en">Ergotamine / Caffeine</text>
+                <text lang="pt">Ergotamina / Cafeína</text>
+            </name>
             <posology>
-                50 mg, oral. 20 mg, nasal. 6 mg subcutáneo.
-                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
-                La dosis máxima son 2 comprimidos en 24 horas.
+                <text lang="es">
+                    Grageas de 1 mg. de tartrato de ergotamina.
+                    En una crisis de migraña tomar 2 grageas
+                    al inicio del dolor, y si no cede,
+                    1 gragea adicional cada hora hasta
+                    un máximo de 6 grageas/día.
+                    Tiene un máximo recomendado de 10 mg/semana.
+                </text>
+                <text lang="en">
+                    Dose: initially 2 tablets, then if needed 1 tablet
+                    every hour up to a maximum of 6 tablets/day
+                    or 10 mg/week.
+                </text>
+                <text lang="pt">
+                    Dose: inicialmente 2 drágeas, depois, se necessário,
+                    1 drágea a cada hora até o máximo de
+                    6 drágeas/dia ou 10 mg/semana.
+                </text>
             </posology>
             <adverseEffects>
-                Posible reacción cruzada con alérgicos y sulfamidas.
-                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
-                Contraindicados en pacientes con cardiopatía isquémica, hipertensión,
-                enfermedad arterial periférica, enfermedad de Raynaud.
+                <text lang="es">
+                    Náuseas, vómitos, dolor abdominal, parestesias,
+                    calambres musculares, angor. Contraindicado
+                    en cardiopatía isquemina,
+                    arteriopatía periférica, migraña hemipléjica
+                    enfermedad de Raynaud. No se puede combinar con Triptán.
+                </text>
+                <text lang="en">
+                    Common side effects: nausea, vomiting,
+                    abdominal pain, paresthesias, muscle cramps, angina.
+                    Contraindicated in ischemic heart disease,
+                    peripheral arteriopathy, hemiplegic migraine,
+                    Raynaud’s disease. MUST NOT be combined with triptans.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: náuseas, vômitos,
+                    dor abdominal, parestesias, cãibras musculares, angina.
+                    Contraindicado em cardiopatia isquêmica,
+                    arteriopatia periférica, enxaqueca hemiplégica,
+                    doença de Raynaud. NÃO deve ser combinado com triptanos.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="TOPIRAMATO"
-            name="Topiramato"
-            groupId="E"
-            posInGroup="2"
-            url="https://www.vademecum.es/medicamento-topiramato+aristo_ficha_40392">
-            <posology>Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.</posology>
-            <adverseEffects>
-                Astenia, mareos, fatiga, torpeza mental, parestesias distales,
-                somnolencia, síntomas depresivos, diarrea, litiasis renal, glaucoma, pérdida de peso.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="VENLAFAXINA"
-            name="Venlafaxina"
-            groupId="D"
-            posInGroup="2"
-            url="https://www.vademecum.es/medicamento-venlafaxina+combix_ficha_29037">
-            <posology>Dosis mínima 37.5 mg/día; dosis recomendada 75 mg/día.</posology>
-            <adverseEffects>
-                Astenia, fatiga, hipertensión arterial, sofocos,
-                anorexia, estreñimiento, náuseas, alteración de la líbido,
-                anorgasmia, disfunción eréctil.
-                Ocasionalmente, hipotensión, síncope, taquicardia.
-                Contraindicado: uso conjunto con IMAO.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="ZOLMITRIPTAN"
-            name="Zolmitriptán"
-            posInGroup="5"
-            groupId="TRIPTANES"
-            url="https://www.vademecum.es/medicamentos-principio-activo-zolmitriptan_4731_solo_1">
+        <medicine id="CANDESARTAN"
+                groupId="A"
+                posInGroup="1"
+                url="https://www.vademecum.es/medicamento-candesartan+alter_ficha_37176">
+            <name>
+                <text lang="es">Candesartán</text>
+                <text lang="en">Candesartan</text>
+                <text lang="pt">Candesartan</text>
+            </name>
             <posology>
-                2.5 mg y 5 mg, oral. 10 mg, nasal.
-                Existe una forma bucodispensable (liotab) sublingual,
-                y otra en dosificación intranasal.
-                Tomar 1 comprimido al inicio del dolor, y si alivia pero no cede, repetir a las 2 horas.
-                La dosis máxima son 2 comprimidos en 24 horas.
+                <text lang="es">
+                    Dosis mínima 8mg/día; dosis recomendada 16 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 8 mg/day; recommended dose: 16 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 8 mg/dia; dose recomendada: 16 mg/dia.
+                </text>
             </posology>
             <adverseEffects>
-                Posible reacción cruzada con alérgicos a sulfamidas.
-                Opresión torácica, náuseas, vómitos, mareos, vértigo, somnolencia.
-                Contraindicados en pacientes con cardiopatía isquémica,
-                hipertensión, enfermedad arterial periférica, enfermedad de Raynaud.
+                <text lang="es">
+                    Mareo, insomnio, hipotensión sin taquicardia refleja, ortostatismo, hiperpotasemia,
+                    insuficiencia renal, erupción cutánea, angioedema, tos, astenia, congestión nasal,
+                    dispepsia, diarrea, elevación de transaminasas.
+                </text>
+                <text lang="en">
+                    Common adverse effects: dizziness, insomnia,
+                    hypotension without reflex tachycardia, orthostasis,
+                    hyperkalemia, acute renal failure
+                    if bilateral renal artery stenosis is present,
+                    skin rash, angioedema, cough, asthenia, nasal congestion,
+                    dyspepsia, diarrhea, elevated transaminases.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos frequentes: tontura, insônia,
+                    hipotensão sem taquicardia reflexa, ortostatismo,
+                    hipercalemia, insuficiência renal aguda em caso de
+                    estenose bilateral da artéria renal, erupção cutânea,
+                    angioedema, tosse, astenia, congestão nasal, dispepsia,
+                    diarreia, elevação das transaminases.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="ZONISAMIDA"
-            name="Zonisamida"
-            posInGroup="3"
-            groupId="E"
-            url="https://www.vademecum.es/principios-activos-zonisamida-N03AX15-es">
-            <posology>Dosis mínima 50 mg/día; dosis recomendda 100 mg/día.</posology>
-            <maxDosage units="MG">100</maxDosage>
-            <adverseEffects>
-                Anorexia, pérdida de peso, irritabilidad, agitación trastorno de la memoria,
-                depresión, mareos, ataxia, somnolencia, dipolopia, diarrea, anhidrosis, fiebre,
-                nefrolitiasis.
-            </adverseEffects>
-        </medicine>
-
-        <medicine
-            id="BOTOX"
-            name="Bótox"
-            groupId="G"
-            posInGroup="1"
-            url="https://www.vademecum.es/espana/medicamento/37401/botox-50-unidades-allergan-polvo-para-solucion-inyectable">
+        <medicine id="HEMICRANEAL"
+                groupId="ERGOTICOS"
+                posInGroup="3"
+                url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
+            <name>
+                <text lang="es">Hemicraneal</text>
+                <text lang="en">Hemicraneal</text>
+                <text lang="pt">Hemicraneal</text>
+            </name>
             <posology>
-                Medicamento de uso hospitalario.
-                Se administra en inyecciones subcutáneas de 5 unidades
-                en varios puntos del cuero cabelludo (protocolo PREEMPT).
-                El número de inyecciones oscila entre 31 puntos (155 U) y 39 puntos (195 U).
+                <text lang="es">
+                    Grageas de 1mg de tartrato de ergotamina.
+                    En una crisis de migraña
+                    tomar 2 grageas al inicio del dolor,
+                    y si no cede, 1 gragea adicional cada hora
+                    hasta un máximo de 6 grageas/día.
+                    Tiene un máximo recomendado de 10 mg/semana.
+                </text>
+                <text lang="en">
+                    Not available in the UK.
+                </text>
+                <text lang="pt">
+                    Not available in Portugal.
+                </text>
             </posology>
             <adverseEffects>
-                Los problemas más frecuentes fueron dolor cervical,
-                debilidad muscular, sensación de rigidez muscular, y ptosis palpebral.
-                Está contraindicada en los pacientes con miastenia gravis.
+                <text lang="es">
+                    Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
+                    Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
+                    enfermedad de Raynaud. No se puede combinar con Triptán.
+                </text>
+                <text lang="en">
+                    Not available in the UK.
+                </text>
+                <text lang="pt">
+                    Not available in Portugal.
+                </text>
             </adverseEffects>
         </medicine>
 
         <medicine
-            id="ERENUMAB"
-            name="Erenumab"
+                id="LISINOPRIL"
+                groupId="A"
+                posInGroup="2"
+                url="https://www.vademecum.es/principios-activos-lisinopril-c09aa03-es">
+            <name>
+                <text lang="es">Lisinopril</text>
+                <text lang="en">Lisinopril</text>
+                <text lang="pt">Lisinopril</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 5 mg/día; dosis recomendada 10 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose 5 mg/day; recommended dose 10 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 5 mg/dia; dose recomendada: 10 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Tos seca persistente, hipotensión, estomatitis,
+                    parestesias, erupción cutánea,
+                    edema angioneurótico, disgeusia, hiperpotasemia,
+                    insuficiencia renal aguda si existe
+                    estenosis bilateral de la arteria renal, artralgias.
+                </text>
+                <text lang="en">
+                    Persistent dry cough, hypotension, stomatitis,
+                    paresthesias, skin rash, angioedema, dysgeusia,
+                    hyperkalemia, acute renal failure if
+                    bilateral renal artery stenosis exists, arthralgias.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos frequentes: tosse seca persistente,
+                    hipotensão, estomatite, parestesias, erupção cutânea,
+                    edema angioneurótico, disgeusia, hipercalemia,
+                    insuficiência renal aguda em caso de estenose bilateral
+                    da artéria renal, artralgias.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="METOPROLOL"
+                groupId="B"
+                posInGroup="1"
+                url="https://www.vademecum.es/principios-activos-metoprolol-C07AB02-es">
+            <name>
+                <text lang="es">Metoprolol</text>
+                <text lang="en">Metoprolol</text>
+                <text lang="pt">Metoprolol</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 50 mg/day; recommended dose: 100 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 50 mg/dia; dose recomendada: 100 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Bradicardia, hipotensión, ortostatismo,
+                    vasoconstricción periférica, broncoespasmo,
+                    astenia, disminución de la líbido, impotencia masculina,
+                    síntomas del SNC (mareo, depresión, pesadillas
+                    -más frecuentes con Propranolol-).
+                </text>
+                <text lang="en">
+                    Common side effects: bradycardia, hypotension,
+                    orthostasis, peripheral vasoconstriction, bronchospasm,
+                    asthenia, decreased libido, male impotence,
+                    CNS symptoms (dizziness, depression, nightmares
+                    – more frequent with propranolol).
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: bradicardia,
+                    hipotensão, ortostatismo, vasoconstrição periférica,
+                    broncoespasmo, astenia, diminuição da libido,
+                    impotência masculina,
+                    sintomas do SNC (tontura, depressão,
+                    pesadelos – mais frequente com propranolol).
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="PROPRANOLOL"
+                groupId="B"
+                posInGroup="2"
+                url="https://www.vademecum.es/principios-activos-propranolol-c07aa05-es">
+            <name>
+                <text lang="es">Propranolol</text>
+                <text lang="en">Propranolol</text>
+                <text lang="pt">Propranolol</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 30 mg/día; dosis recomendada 60 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 30 mg/day; recommended dose: 60 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 30 mg/dia; dose recomendada: 60 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Bradicardia, hipotensión, ortostatismo,
+                    vasoconstricción periférica, broncoespasmo,
+                    astenia, disminución de la líbido, impotencia masculina,
+                    síntomas del SNC (mareo, depresión,
+                    pesadillas -más frecuentes con Propranolol-).
+                </text>
+                <text lang="en">
+                    Common side effects: bradycardia, hypotension, orthostasis,
+                    peripheral vasoconstriction, bronchospasm, asthenia,
+                    decreased libido, male impotence, CNS symptoms
+                    (dizziness, depression, nightmares –
+                    more frequent with propranolol).
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: bradicardia, hipotensão,
+                    ortostatismo, vasoconstrição periférica, broncoespasmo,
+                    astenia, diminuição da libido, impotência masculina,
+                    sintomas do SNC (tontura, depressão, pesadelos
+                    – mais frequente com propranolol).
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="RIZATRIPTAN"
+                    groupId="TRIPTANES"
+                    posInGroup="3"
+                    url="https://www.vademecum.es/principios-activos-rizatriptan-n02cc04-es">
+            <name>
+                <text lang="es">Rizatriptán</text>
+                <text lang="en">Rizatriptan</text>
+                <text lang="pt">Rizatriptano</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    10 mg, oral.
+                    Existe un comprimido bucodispensable (liotab)
+                    de toma sublingual. Tomar 1 comprimido
+                    al inicio del dolor, y si alivia pero no cede,
+                    repetir a las 2 horas.
+                    La dosis máxima son 2 comprimidos en 24 horas.
+                </text>
+                <text lang="en">
+                    Dose: 10 mg orally. Maximum 2 tablets in 24 hours.
+                </text>
+                <text lang="pt">
+                    Dose: 10 mg, oral. Máximo 2 comprimidos em 24 horas.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Posible reacción cruzada con alérgicos y sulfamidas.
+                    Opresión torácica, náuseas, vómitos, mareos,
+                    vértigo, somnolencia. Contraindicados en pacientes
+                    con cardiopatía isquémica, hipertensión,
+                    enfermedad arterial periférica, enfermedad de Raynaud.
+                </text>
+                <text lang="en">
+                    Common side effects: possible cross-reaction
+                    in patients allergic to sulfonamides.
+                    Chest tightness, nausea, vomiting, dizziness, vertigo,
+                    drowsiness. Contraindicated in patients with
+                    ischemic heart disease, hypertension,
+                    peripheral arterial disease, or Raynaud’s disease.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: possível reação cruzada
+                    em alérgicos a sulfonamidas. Opressão torácica, náuseas,
+                    vômitos, tonturas, vertigem, sonolência.
+                    Contraindicado em cardiopatia isquêmica, hipertensão,
+                    doença arterial periférica ou doença de Raynaud.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="SUMATRIPTAN"
+                    groupId="TRIPTANES"
+                    posInGroup="4"
+                    url="https://www.vademecum.es/principios-activos-sumatriptan-N02CC01-es">
+            <name>
+                <text lang="es">Sumatriptán</text>
+                <text lang="en">Sumatriptan</text>
+                <text lang="pt">Sumatriptano</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    50 mg, oral. 20 mg, nasal. 6 mg subcutáneo.
+                    Tomar 1 comprimido al inicio del dolor,
+                    y si alivia pero no cede, repetir a las 2 horas.
+                    La dosis máxima son 2 comprimidos en 24 horas.
+                </text>
+                <text lang="en">
+                    Dose: 50 mg orally, 20 mg intranasally,
+                    6 mg subcutaneously. Maximum 2 tablets in 24 hours.
+                </text>
+                <text lang="pt">
+                    Dose: 50 mg oral, 20 mg nasal, 6 mg subcutâneo.
+                    Máximo 2 comprimidos em 24 horas.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Posible reacción cruzada con alérgicos y sulfamidas.
+                    Opresión torácica, náuseas, vómitos, mareos, vértigo,
+                    somnolencia. Contraindicados en pacientes
+                    con cardiopatía isquémica, hipertensión,
+                    enfermedad arterial periférica, enfermedad de Raynaud.
+                </text>
+                <text lang="en">
+                    Common side effects: possible cross-reaction
+                    in patients allergic to sulfonamides.
+                    Chest tightness, nausea, vomiting, dizziness, vertigo,
+                    drowsiness. Contraindicated in patients
+                    with ischemic heart disease, hypertension,
+                    peripheral arterial disease, or Raynaud’s disease.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes:
+                    possível reação cruzada em alérgicos a sulfonamidas.
+                    Opressão torácica, náuseas, vômitos, tonturas, vertigem,
+                    sonolência. Contraindicado em cardiopatia isquêmica,
+                    hipertensão, doença arterial periférica ou doença de Raynaud.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="TOPIRAMATO"
+                    groupId="E"
+                    posInGroup="2"
+                    url="https://www.vademecum.es/medicamento-topiramato+aristo_ficha_40392">
+            <name>
+                <text lang="es">Topiramato</text>
+                <text lang="en">Topiramate</text>
+                <text lang="pt">Topiramato</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 50 mg/día; dosis recomendada 100 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 50 mg/day; recommended dose: 100 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 50 mg/dia; dose recomendada: 100 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Astenia, mareos, fatiga, torpeza mental,
+                    parestesias distales, somnolencia, síntomas depresivos,
+                    diarrea, litiasis renal, glaucoma, pérdida de peso.
+                </text>
+                <text lang="en">
+                    Common side effects: asthenia, dizziness, fatigue,
+                    cognitive dulling, distal paresthesias, drowsiness,
+                    depressive symptoms, diarrhea, kidney stones,
+                    glaucoma, weight loss.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: astenia, tontura,
+                    fadiga, lentidão cognitiva, parestesias distais,
+                    sonolência, sintomas depressivos,
+                    diarreia, litíase renal, glaucoma, perda de peso.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="VENLAFAXINA"
+                    groupId="D"
+                    posInGroup="2"
+                    url="https://www.vademecum.es/medicamento-venlafaxina+combix_ficha_29037">
+            <name>
+                <text lang="es">Venlafaxina</text>
+                <text lang="en">Venlafaxine</text>
+                <text lang="pt">Venlafaxina</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 37.5 mg/día; dosis recomendada 75 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 37.5 mg/day; recommended dose: 75 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 37,5 mg/dia; dose recomendada: 75 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Astenia, fatiga, hipertensión arterial, sofocos,
+                    anorexia, estreñimiento, náuseas, alteración de la líbido,
+                    anorgasmia, disfunción eréctil.
+                    Ocasionalmente, hipotensión, síncope, taquicardia.
+                    Contraindicado: uso conjunto con IMAO.
+                </text>
+                <text lang="en">
+                    Common side effects: asthenia, fatigue,
+                    arterial hypertension, hot flashes, anorexia, constipation,
+                    nausea, decreased libido, anorgasmia, erectile dysfunction.
+                    Occasionally: hypotension, syncope, tachycardia.
+                    Contraindicated in combination with MAOIs.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: astenia, fadiga,
+                    hipertensão arterial, afrontamentos, anorexia,
+                    prisão de ventre, náuseas, diminuição da libido,
+                    anorgasmia, disfunção erétil.
+                    Ocasionalmente: hipotensão, síncope, taquicardia.
+                    Contraindicado em combinação com IMAOs.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="ZOLMITRIPTAN"
+                groupId="TRIPTANES"
+                posInGroup="5"
+                url="https://www.vademecum.es/medicamentos-principio-activo-zolmitriptan_4731_solo_1">
+            <name>
+                <text lang="es">Zolmitriptán</text>
+                <text lang="en">Zolmitriptan</text>
+                <text lang="pt">Zolmitriptano</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    2.5 mg y 5 mg, oral. 10 mg, nasal.
+                    Existe una forma bucodispensable (liotab) sublingual,
+                    y otra en dosificación intranasal.
+                    Tomar 1 comprimido al inicio del dolor,
+                    y si alivia pero no cede, repetir a las 2 horas.
+                    La dosis máxima son 2 comprimidos en 24 horas.
+                </text>
+                <text lang="en">
+                    Dose: 2.5 mg and 5 mg orally; 10 mg intranasally.
+                    Maximum 2 tablets of 5 mg in 24 hours.
+                </text>
+                <text lang="pt">
+                    Dose: 2,5 mg e 5 mg, oral; 10 mg, nasal.
+                    Máximo 2 comprimidos de 5 mg em 24 horas.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Posible reacción cruzada con alérgicos a sulfamidas.
+                    Opresión torácica, náuseas, vómitos,
+                    mareos, vértigo, somnolencia.
+                    Contraindicados en pacientes con cardiopatía isquémica,
+                    hipertensión, enfermedad arterial periférica,
+                    enfermedad de Raynaud.
+                </text>
+                <text lang="en">
+                    Common side effects: possible cross-reaction
+                    in patients allergic to sulfonamides.
+                    Chest tightness, nausea, vomiting, dizziness,
+                    vertigo, drowsiness. Contraindicated in patients
+                    with ischemic heart disease, hypertension,
+                    peripheral arterial disease, or Raynaud’s disease.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: possível reação cruzada
+                    em alérgicos a sulfonamidas. Opressão torácica, náuseas,
+                    vômitos, tonturas, vertigem, sonolência.
+                    Contraindicado em cardiopatia isquêmica, hipertensão,
+                    doença arterial periférica ou doença de Raynaud.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="ZONISAMIDA"
+                groupId="E"
+                posInGroup="3"
+                url="https://www.vademecum.es/principios-activos-zonisamida-N03AX15-es">
+            <name>
+                <text lang="es">Zonisamida</text>
+                <text lang="en">Zonisamide</text>
+                <text lang="pt">Zonisamida</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis mínima 50 mg/día; dosis recomendda 100 mg/día.
+                </text>
+                <text lang="en">
+                    Minimum dose: 50 mg/day; recommended dose: 100 mg/day.
+                </text>
+                <text lang="pt">
+                    Dose mínima: 50 mg/dia; dose recomendada: 100 mg/dia.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Anorexia, pérdida de peso, irritabilidad,
+                    agitación trastorno de la memoria,
+                    depresión, mareos, ataxia, somnolencia,
+                    dipolopia, diarrea, anhidrosis, fiebre,
+                    nefrolitiasis.
+                </text>
+                <text lang="en">
+                    Common side effects: anorexia, weight loss,
+                    irritability, agitation, memory disturbance,
+                    depression, dizziness, ataxia, drowsiness,
+                    diplopia, diarrhea, anhidrosis, fever.
+                    May cause nephrolithiasis.
+                </text>
+                <text lang="pt">
+                    Efeitos secundários frequentes: anorexia,
+                    perda de peso, irritabilidade, agitação,
+                    distúrbios de memória, depressão, tontura,
+                    ataxia, sonolência, diplopia,
+                    diarreia, anidrose, febre.
+                    Pode causar nefrolitíase.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="BOTOX"
+                    groupId="G"
+                    posInGroup="1"
+                    url="https://www.vademecum.es/espana/medicamento/37401/botox-50-unidades-allergan-polvo-para-solucion-inyectable">
+            <name>
+                <text lang="es">Bótox</text>
+                <text lang="en">Botox</text>
+                <text lang="pt">Botox</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Medicamento de uso hospitalario.
+                    Se administra en inyecciones subcutáneas de 5 unidades
+                    en varios puntos del cuero cabelludo (protocolo PREEMPT).
+                    El número de inyecciones oscila
+                    entre 31 puntos (155 U) y 39 puntos (195 U).
+                </text>
+                <text lang="en">
+                    Administered as subcutaneous injections of 5 units
+                    at multiple points on the scalp (PREEMPT protocol).
+                    The number of injections ranges from 31 points (155 U)
+                    to 39 points (195 U).
+                </text>
+                <text lang="pt">
+                    Administrada em injeções subcutâneas
+                    de 5 unidades em vários pontos do couro cabeludo
+                    (protocolo PREEMPT). O número de injeções varia
+                    entre 31 pontos (155 U) e 39 pontos (195 U).
+                    Efeitos adversos: Os problemas mais frequentes foram
+                    dor cervical, fraqueza muscular,
+                    sensação de rigidez muscular e ptose palpebral.
+                    Contraindicada em pacientes com miastenia gravis.
+                </text>
+            </posology>
+            <adverseEffects>
+                <text lang="es">
+                    Los problemas más frecuentes fueron dolor cervical,
+                    debilidad muscular, sensación de rigidez muscular,
+                    y ptosis palpebral. Está contraindicada
+                    en los pacientes con miastenia gravis.
+                </text>
+                <text lang="en">
+                    The most frequent problems are neck pain, muscle weakness,
+                    sensation of muscle stiffness, and eyelid ptosis.
+                    Contraindicated in patients with myasthenia gravis.
+                </text>
+                <text lang="pt">
+                    Os problemas mais frequentes foram dor cervical,
+                    fraqueza muscular, sensação de rigidez muscular
+                    e ptose palpebral. Contraindicada em pacientes
+                    com miastenia gravis.
+                </text>
+            </adverseEffects>
+        </medicine>
+
+        <medicine id="ERENUMAB"
             groupId="F"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-erenumab-n02cd01-es">
+            <name>
+                <text lang="es">Erenumab</text>
+                <text lang="en">Erenumab</text>
+                <text lang="pt">Erenumab</text>
+            </name>
             <posology>
-                Medicamento de uso hospitalario.
-                Plumas de 70 mg. y 140 mg., administración cutánea mensual.
+                <text lang="es">
+                    Medicamento de uso hospitalario.
+                    Plumas de 70 mg. y 140 mg., administración cutánea mensual.
+                </text>
+                <text lang="en">
+                    Prefilled pens of 70 mg and 140 mg, administered
+                    subcutaneously once monthly.
+                </text>
+                <text lang="pt">
+                    Canetas de 70 mg e 140 mg, administração subcutânea mensal.
+                </text>
             </posology>
             <adverseEffects>
-                Reacciones locales en el punto de inyección
-                (dolor, endurecimiento, enrojecimiento, picor).
-                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
+                <text lang="es">
+                    Reacciones locales en el punto de inyección
+                    (dolor, endurecimiento, enrojecimiento, picor).
+                    Estreñimiento. Puede ocurrir una reacción alérgica
+                    de hipersensibilidad.
+                </text>
+                <text lang="en">
+                    Local reactions at the injection site
+                    (pain, induration, redness, itching).
+                    Constipation.
+                    Hypersensitivity allergic reactions may occur.
+                </text>
+                <text lang="pt">
+                    Reações locais no local da injeção
+                    (dor, endurecimento, vermelhidão, prurido).
+                    Constipação. Pode ocorrer reação
+                    de hipersensibilidade alérgica.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="GALCANEZUMAB"
-            name="Galcanezumab"
+        <medicine id="GALCANEZUMAB"
             groupId="F"
             posInGroup="2"
             url="https://www.vademecum.es/principios-activos-galcanezumab-n02cd02-es">
+            <name>
+                <text lang="es">Galcanezumab</text>
+                <text lang="en">Galcanezumab</text>
+                <text lang="pt">Galcanezumab</text>
+            </name>
             <posology>
-                Plumas de 120 mg., administración subcutánea.
-                Primera dosis de 240 mg. (2 plumas), con mantenimiento de 120 mg/mes.
+                <text lang="es">
+                    Plumas de 120 mg., administración subcutánea.
+                    Primera dosis de 240 mg. (2 plumas),
+                    con mantenimiento de 120 mg/mes.
+                </text>
+                <text lang="en">
+                    Dosage: prefilled pens of 120 mg,
+                    administered subcutaneously.
+                    Initial dose of 240 mg (2 pens),
+                    followed by maintenance of 120 mg monthly.
+                </text>
+                <text lang="pt">
+                    Canetas de 120 mg, administração subcutânea.
+                    Primeira dose de 240 mg (2 canetas),
+                    manutenção de 120 mg/mês.
+                </text>
             </posology>
             <adverseEffects>
-                Reacciones locales en el punto de inyección
-                (dolor, endurecimiento, enrojecimiento, picor).
-                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
+                <text lang="es">
+                    Reacciones locales en el punto de inyección
+                    (dolor, endurecimiento, enrojecimiento, picor).
+                    Estreñimiento.
+                    Puede ocurrir una reacción alérgica de hipersensibilidad.
+                </text>
+                <text lang="en">
+                    Local reactions at the injection site
+                    (pain, induration, redness, itching).
+                    Constipation.
+                    Hypersensitivity allergic reactions may occur.
+                </text>
+                <text lang="pt">
+                    Reações locais no local da injeção
+                    (dor, endurecimento, vermelhidão, prurido).
+                    Constipação. Pode ocorrer reação
+                    de hipersensibilidade alérgica.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="FREMANEZUMAB"
-            name="Fremanezumab"
+        <medicine id="FREMANEZUMAB"
             groupId="F"
             posInGroup="3"
             url="https://www.vademecum.es/principios-activos-fremanezumab-n02cd03-es">
+            <name>
+                <text lang="es">Fremanezumab</text>
+                <text lang="en">Fremanezumab</text>
+                <text lang="pt">Fremanezumab</text>
+            </name>
             <posology>
-                Jeringa precargada de 225 mg., inyección subcutánea.
-                Puede administrarse 1 inyección de 225 mg. mensual
-                o 3 inyecciones de 225 mg. juntas (675 mg.) con periodicidad trimestral.
+                <text lang="es">
+                    Jeringa precargada de 225 mg., inyección subcutánea.
+                    Puede administrarse 1 inyección de 225 mg. mensual
+                    o 3 inyecciones de 225 mg. juntas (675 mg.)
+                    con periodicidad trimestral.
+                </text>
+                <text lang="en">
+                    Dosage: Prefilled syringe of 225 mg,
+                    subcutaneous injection.
+                    Either 1 injection of 225 mg monthly
+                    or 3 injections of 225 mg together (675 mg) every 3 months.
+                </text>
+                <text lang="pt">
+                    Seringa pré-carregada de 225 mg, injeção subcutânea.
+                    Pode ser administrada 1 injeção de 225 mg mensal
+                    ou 3 injeções de 225 mg juntas (675 mg) a cada 3 meses.
+                </text>
             </posology>
             <adverseEffects>
-                Reacciones locales en el punto de inyección
-                (dolor, endurecimiento, enrojecimiento, picor).
-                Estreñimiento. Puede ocurrir una reacción alérgica de hipersensibilidad.
+                <text lang="es">
+                    Reacciones locales en el punto de inyección
+                    (dolor, endurecimiento, enrojecimiento, picor).
+                    Estreñimiento.
+                    Puede ocurrir una reacción alérgica de hipersensibilidad.
+                </text>
+                <text lang="en">
+                    Local reactions at the injection site (pain, induration,
+                    redness, itching). Constipation.
+                    Hypersensitivity allergic reactions may occur.
+                </text>
+                <text lang="pt">
+                    Reações locais no local da injeção
+                    (dor, endurecimento, vermelhidão, prurido).
+                    Constipação.
+                    Pode ocorrer reação de hipersensibilidade alérgica.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="ASPIRINA"
-            name="Ácido acetil salicídico"
+        <medicine id="ASPIRINA"
             groupId="AINE"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-acetilsalicilico+acido-n02ba01">
-            <posology>500 – 1000 mg, oral (comprimido).</posology>
+            <name>
+                <text lang="es">Ácido acetil salicídico (aspirina)</text>
+                <text lang="en">Acetylsalicylic acid (aspirin)</text>
+                <text lang="pt">Ácido acetilsalicílico (aspirina)</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    500 – 1000 mg., oral (comprimido).
+                </text>
+                <text lang="en">
+                    500 – 1000 mg., orally (tablet).
+                </text>
+                <text lang="pt">
+                    500 – 1000 mg., via oral (comprimido).
+                </text>
+            </posology>
             <adverseEffects>
-                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
-                Elevación de transaminasas. Alteración de la coagulación.
-                Descompensación de la presión arterial.
-                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
-                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
-                del ductus arteriosus.
+                <text lang="es">
+                    Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                    Elevación de transaminasas. Alteración de la coagulación.
+                    Descompensación de la presión arterial.
+                    Descomprensación de la insuficiencia cardíaca
+                    por retención hidrosalina.
+                    En el embarazo no usar en el tercer trimestre
+                    por el riesgo de cierre prematuro del ductus arteriosus.
+                </text>
+                <text lang="en">
+                    NSAID-induced gastropathy (gastritis, peptic ulcer).
+                    Elevated transaminases. Altered coagulation.
+                    Decompensated blood pressure.
+                    Decompensated heart failure due to fluid retention.
+                    In pregnancy, avoid during the third trimester
+                    due to risk of premature closure of the ductus arteriosus.
+                </text>
+                <text lang="pt">
+                    Gastropatia induzida por AINE (gastrite, úlcera péptica).
+                    Elevação das transaminases. Alteração da coagulação.
+                    Descompensação da pressão arterial.
+                    Descompensação da insuficiência cardíaca
+                    por retenção hidrossalina.
+                    Na gravidez, não utilizar no terceiro trimestre
+                    devido ao risco de fechamento prematuro
+                    do ductus arteriosus.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="NAPROXENO-SODICO"
-            name="Naproxeno Sódico"
+        <medicine id="NAPROXENO-SODICO"
             groupId="AINE"
             posInGroup="2"
             url="https://www.vademecum.es/medicamentos-principio-activo-naproxeno+sodico_1080_solo_1">
-            <posology>500 -1100 mg; oral (comprimido).</posology>
+            <name>
+                <text lang="es">Naproxeno sódico</text>
+                <text lang="en">Naproxen sodium</text>
+                <text lang="pt">Naproxeno sódico</text>
+            </name>
+            <posology>
+                <text lang="es">500 - 1100 mg; oral (comprimido).</text>
+                <text lang="en">500 – 1000 mg, orally (tablet).</text>
+                <text lang="pt">500–1100 mg, via oral (comprimido).</text>
+            </posology>
             <adverseEffects>
-                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
-                Elevación de transaminasas. Alteración de la coagulación.
-                Descompensación de la presión arterial.
-                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
-                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
-                del ductus arteriosus.
+                <text lang="es">
+                    Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                    Elevación de transaminasas. Alteración de la coagulación.
+                    Descompensación de la presión arterial.
+                    Descomprensación de la insuficiencia cardíaca
+                    por retención hidrosalina. En el embarazo no usar en
+                    el tercer trimestre por el riesgo de cierre prematuro
+                    del ductus arteriosus.
+                </text>
+                <text lang="en">
+                    Adverse effects: NSAID-induced gastropathy
+                    (gastritis, peptic ulcer). Elevated transaminases.
+                    Altered coagulation. Decompensated blood pressure.
+                    Decompensated heart failure due to fluid retention.
+                    In pregnancy, avoid during the third trimester due to risk
+                    of premature closure of the ductus arteriosus.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: gastropatia induzida por AINE
+                    (gastrite, úlcera péptica).
+                    Elevação das transaminases. Alteração da coagulação.
+                    Descompensação da pressão arterial.
+                    Descompensação da insuficiência cardíaca
+                    por retenção hidrossalina.
+                    Na gravidez, não utilizar no terceiro trimestre
+                    devido ao risco de fechamento prematuro
+                    do ductus arteriosus.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="IBUPROFENO"
-            name="Ibuprofeno"
+        <medicine id="IBUPROFENO"
             groupId="AINE"
             posInGroup="3"
             url="https://www.vademecum.es/principios-activos-ibuprofeno-M01AE01-es">
-            <posology>600-1200 mg, oral (comprimido).</posology>
+            <name>
+                <text lang="es">Ibuprofeno</text>
+                <text lang="en">Ibuprofen</text>
+                <text lang="pt">Ibuprofeno</text>
+            </name>
+            <posology>
+                <text lang="es">600 - 1200 mg, oral (comprimido).</text>
+                <text lang="en">600 – 1200 mg, orally (tablet).</text>
+                <text lang="pt">600 – 1200 mg, via oral (comprimido).</text>
+            </posology>
             <adverseEffects>
-                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
-                Elevación de transaminasas. Alteración de la coagulación.
-                Descompensación de la presión arterial.
-                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
-                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
-                del ductus arteriosus.
+                <text lang="es">
+                    Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                    Elevación de transaminasas. Alteración de la coagulación.
+                    Descompensación de la presión arterial.
+                    Descomprensación de la insuficiencia cardíaca
+                    por retención hidrosalina.
+                    En el embarazo no usar en el tercer trimestre
+                    por el riesgo de cierre prematuro del ductus arteriosus.
+                </text>
+                <text lang="en">
+                    Adverse effects: NSAID-induced gastropathy
+                    (gastritis, peptic ulcer). Elevated transaminases.
+                    Altered coagulation. Decompensated blood pressure.
+                    Decompensated heart failure due to fluid retention.
+                    In pregnancy, avoid during the third trimester due to risk
+                    of premature closure of the ductus arteriosus.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: gastropatia induzida por AINE
+                    (gastrite, úlcera péptica). Elevação das transaminases.
+                    Alteração da coagulação.
+                    Descompensação da pressão arterial.
+                    Descompensação da insuficiência cardíaca
+                    por retenção hidrossalina. Na gravidez, não utilizar
+                    no terceiro trimestre devido ao risco
+                    de fechamento prematuro do ductus arteriosus.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="DICLOFENACO-SODICO"
-            name="Diclofenaco sódico"
+        <medicine id="DICLOFENACO-SODICO"
             groupId="AINE"
             posInGroup="4"
             url="https://www.vademecum.es/espana/medicamento/20759/artrotec-50-mg-200-microgramos-comprimidos-recubiertos">
-            <posology>50-100 mg, oral (comprimido). 100 mg via rectal (supositorio).</posology>
+            <name>
+                <text lang="es">Diclofenaco sódico</text>
+                <text lang="en">Diclofenac sodium</text>
+                <text lang="pt">Diclofenaco sódico</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    50 – 100 mg, oral (comprimido).
+                    100 mg via rectal (supositorio).
+                </text>
+                <text lang="en">
+                    50 – 100 mg, orally (tablet);
+                    100 mg rectally (suppository).
+                </text>
+                <text lang="pt">
+                    50 – 100 mg, via oral (comprimido);
+                    100 mg via retal (supositório).
+                </text>
+            </posology>
             <adverseEffects>
-                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
-                Elevación de transaminasas. Alteración de la coagulación.
-                Descompensación de la presión arterial.
-                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
-                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
-                del ductus arteriosus.
+                <text lang="es">
+                    Efectos adversos: Gastropatía por AINE
+                    (gastritis, ulcus). Elevación de transaminasas.
+                    Alteración de la coagulación.
+                    Descompensación de la presión arterial.
+                    Descomprensación de la insuficiencia cardíaca
+                    por retención hidrosalina.
+                    En el embarazo no usar en el tercer trimestre
+                    por el riesgo de cierre prematuro del ductus arteriosus.
+                </text>
+                <text lang="en">
+                    Adverse effects: NSAID-induced gastropathy
+                    (gastritis, peptic ulcer). Elevated transaminases.
+                    Altered coagulation. Decompensated blood pressure.
+                    Decompensated heart failure due to fluid retention.
+                    In pregnancy, avoid during the third trimester due to risk
+                    of premature closure of the ductus arteriosus.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: gastropatia induzida por AINE
+                    (gastrite, úlcera péptica).
+                    Elevação das transaminases. Alteração da coagulação.
+                    Descompensação da pressão arterial.
+                    Descompensação da insuficiência cardíaca
+                    por retenção hidrossalina.
+                    Na gravidez, não utilizar no terceiro trimestre
+                    devido ao risco de fechamento prematuro
+                    do ductus arteriosus.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="DEXKETOPROFENO-TROMETAMOL"
-            name="Dexketoprofeno trometamol"
+        <medicine id="DEXKETOPROFENO-TROMETAMOL"
             groupId="AINE"
             posInGroup="5"
             url="https://www.vademecum.es/medicamentos-principio-activo-dexketoprofeno+trometamol_2847_solo_1">
-            <posology>25-50 mg, oral (comprimido). 50mg via intramuscular.</posology>
+            <name>
+                <text lang="es">Dexketoprofeno trometamol</text>
+                <text lang="en">Dexketoprofen trometamol</text>
+                <text lang="pt">Dexquetoprofeno trometamol</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    25-50 mg, oral (comprimido).
+                    50mg via intramuscular.
+                </text>
+                <text lang="en">
+                    25–50 mg orally (tablet);
+                    50 mg intramuscularly.
+                </text>
+                <text lang="pt">
+                    25–50 mg via oral (comprimido);
+                    50 mg via intramuscular.
+                </text>
+            </posology>
             <adverseEffects>
-                Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
-                Elevación de transaminasas. Alteración de la coagulación.
-                Descompensación de la presión arterial.
-                Descomprensación de la insuficiencia cardíaca por retención hidrosalina.
-                En el embarazo no usar en el tercer trimestre por el riesgo de cierre prematuro
-                del ductus arteriosus.
+                <text lang="es">
+                    Efectos adversos: Gastropatía por AINE (gastritis, ulcus).
+                    Elevación de transaminasas. Alteración de la coagulación.
+                    Descompensación de la presión arterial.
+                    Descomprensación de la insuficiencia cardíaca
+                    por retención hidrosalina. En el embarazo no usar
+                    en el tercer trimestre por el riesgo de cierre prematuro
+                    del ductus arteriosus.
+                </text>
+                <text lang="en">
+                    Adverse effects: NSAID-induced gastropathy
+                    (gastritis, peptic ulcer). Elevated transaminases.
+                    Altered coagulation. Decompensated blood pressure.
+                    Decompensated heart failure due to fluid retention.
+                    In pregnancy, avoid during the third trimester due to risk
+                    of premature closure of the ductus arteriosus.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: gastropatia induzida por AINE
+                    (gastrite, úlcera péptica). Elevação das transaminases.
+                    Alteração da coagulação. Descompensação da pressão arterial.
+                    Descompensação da insuficiência cardíaca
+                    por retenção hidrossalina.
+                    Na gravidez, não utilizar no terceiro trimestre
+                    devido ao risco de fechamento prematuro
+                    do ductus arteriosus.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="METAMIZOL"
-            name="Metamizol (nolotil)"
+        <medicine id="METAMIZOL"
             groupId="DIPIRONAS"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-metamizol-sodico-N02BB02-es">
+            <name>
+                <text lang="es">Metamizol (nolotil)</text>
+                <text lang="en">Metamizole</text>
+                <text lang="pt">Metamizol</text>
+            </name>
             <posology>
-                Tomar dos cápsulas de 575 mg.
-                o una ampolla bebible de 2 g.</posology>
+                <text lang="es">
+                    Tomar dos cápsulas de 575 mg.
+                    o una ampolla bebible de 2 g.
+                </text>
+                <text lang="en">
+                    Take two 575 mg. capsules
+                    or one 2 g. oral ampoule.
+                </text>
+                <text lang="pt">
+                    Tomar duas cápsulas de 575 mg.
+                    ou uma ampola bebível de 2 g.
+                </text>
+            </posology>
             <adverseEffects>
-                Reacciones alérgicas. Hipotensión.
+                <text lang="es">
+                    Reacciones alérgicas. Hipotensión.
+                </text>
+                <text lang="en">
+                    Allergic reactions. Hypotension.
+                </text>
+                <text lang="pt">
+                    Reações alérgicas. Hipotensão.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="LASMIDITAN"
-            name="Lasmiditan"
+        <medicine id="LASMIDITAN"
             groupId="DIPTANES"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-lasmiditan-N02CC08-es">
-            <posology>Dosis inicial: 100 mg. Dosis máxima: 200 mg.</posology>
+            <name>
+                <text lang="es">Lasmiditan</text>
+                <text lang="en">Lasmiditan</text>
+                <text lang="pt">Lasmiditano</text>
+            </name>
+            <posology>
+                <text lang="es">
+                    Dosis inicial: 100 mg. Dosis máxima: 200 mg.
+                </text>
+                <text lang="en">
+                    Initial dose 100 mg. Maximum dose 200 mg.
+                </text>
+                <text lang="pt">
+                    Dose inicial de 100 mg. Dose máxima de 200 mg.
+                </text>
+            </posology>
             <adverseEffects>
-                Las reacciones adversas más frecuentes son mareos,
-                somnolencia, fatiga, parestesias, náuseas, vértigo, hipoestesia y debilidad
-                muscular. La mayoría de los eventos adversos mostraron una relación
-                dosis-respuesta.
+                <text lang="es">
+                    Las reacciones adversas más frecuentes son mareos,
+                    somnolencia, fatiga, parestesias, náuseas, vértigo,
+                    hipoestesia y debilidad muscular.
+                    La mayoría de los eventos adversos mostraron una relación
+                    dosis-respuesta.
+                </text>
+                <text lang="en">
+                    Adverse effects: the most frequent adverse reactions
+                    are dizziness, drowsiness, fatigue, paresthesias,
+                    nausea, vertigo, hypoesthesia, and muscle weakness.
+                    Most adverse events showed a dose–response relationship.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: As reações adversas mais frequentes
+                    são tontura, sonolência, fadiga, parestesias, náuseas,
+                    vertigem, hipoestesia e fraqueza muscular.
+                    A maioria dos eventos adversos
+                    mostrou relação dose–resposta.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="ATOGEPANT"
-            name="Atogepant"
+        <medicine id="ATOGEPANT"
             groupId="H"
             posInGroup="2"
             url="https://www.vademecum.es/principios-activos-atogepant-N02CD07-es">
+            <name>
+                <text lang="es">Atogepant</text>
+                <text lang="en">Atogepant</text>
+                <text lang="pt">Atogepant</text>
+            </name>
             <posology>
-                Uso hospitalario.
-                Dosis normal: 60 mg./día. En caso de insuficiencia renal
-                con aclaramiento de creatinina &lt; 30 ml./min. la dosis es de 10 mg./día.
+                <text lang="es">
+                    Uso hospitalario.
+                    Dosis normal: 60 mg./día. En caso de insuficiencia renal
+                    con aclaramiento de creatinina &lt; 30 ml./min.
+                    la dosis es de 10 mg./día.
+                </text>
+                <text lang="en">
+                    Dosage (hospital use): 60 mg/day.
+                    In cases of renal impairment
+                    with creatinine clearance &lt; 30 ml./min.,
+                    the dose is 10 mg/day.
+                    When co-administered with potent CYP3A4 or OATP inhibitors,
+                    the recommended dose is 10 mg./day.
+                </text>
+                <text lang="pt">
+                    Dose (uso hospitalar): 60 mg/dia.
+                    Em insuficiência renal com depuração
+                    de creatinina &lt; 30 ml./min., a dose é de 10 mg/dia.
+                    Quando administrado com inibidores potentes
+                    do CYP3A4 ou OATP, a dose recomendada é de 10 mg/dia.
+                </text>
             </posology>
             <adverseEffects>
-                Se indica en pacientes con al menos  cuatro cefaleas al mes.
-                Las reacciones adversas más frecuentes son náuseas, estreñimiento,
-                fatiga, somnolencia, pérdida de apetito, disminución de peso.
+                <text lang="es">
+                    Se indica en pacientes con al menos cuatro cefaleas al mes.
+                    Las reacciones adversas más frecuentes son náuseas,
+                    estreñimiento, fatiga, somnolencia, pérdida de apetito,
+                    disminución de peso.
+                </text>
+                <text lang="en">
+                    Adverse effects: the most frequent adverse reactions
+                    are nausea, constipation, fatigue, somnolence,
+                    loss of appetite, and weight loss.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos: Reações adversas mais frequentes:
+                    náuseas, constipação, fadiga, sonolência,
+                    perda de apetite, perda de peso.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="RIMEGEPANT"
-            name="Rimegepant"
+        <medicine id="RIMEGEPANT"
             groupId="GEPANTES"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-rimegepant-N02CD06-es">
+            <name>
+                <text lang="es">Rimegepant</text>
+                <text lang="en">Rimegepant</text>
+                <text lang="pt">Rimegepant</text>
+            </name>
             <posology>
-                Uso hospitalario. Dosis de 1 comprimido de 75 mg
-                en comprimidos bucodispersables (sublingual).
-                Una toma cuando se precise en cualquier momento del día.
+                <text lang="es">
+                    Uso hospitalario. Dosis de 1 comprimido de 75 mg.
+                    en comprimidos bucodispersables (sublingual).
+                    Una toma cuando se precise en cualquier momento del día.
+                </text>
+                <text lang="en">
+                    Dosage (hospital use): 75 mg orally disintegrating tablets
+                    (sublingual). As analgesic: 1 sublingual tablet of 75 mg.
+                    (as needed at any time of the day).
+                    Reimbursed for the symptomatic treatment of patients
+                    with migraine who do not respond to at least two triptans.
+                </text>
+                <text lang="pt">
+                    Uso hospitalar. Comprimidos orodispersíveis
+                    de 75 mg. (sublingual). Como analgésico:
+                    1 comprimido sublingual de 75 mg.
+                    (quando necessário em qualquer momento do dia).
+                    Financiado para o tratamento sintomático
+                    de pacientes com enxaqueca que não respondem
+                    a pelo menos dois triptanos.
+                </text>
             </posology>
             <adverseEffects>
-                Medicamento financiado para el tratamiento preventivo de pacientes con migraña
-                con una frecuencia entre 8 y 14 días/mes,
-                y con al menos tres fracasos a tratamientos preventivos previos.
-                Los efectos adversos frecuentes son los gastrointestinales.
-                Pueden ocurrir una reacción de hipersensibilidad
-                (disnea, erupción cutánea) en menos del 1% de los casos.
+                <text lang="es">
+                    Medicamento financiado para el tratamiento preventivo
+                    de pacientes con migraña con una frecuencia
+                    entre 8 y 14 días/mes, y con al menos
+                    tres fracasos a tratamientos preventivos previos.
+                    Los efectos adversos frecuentes son los gastrointestinales.
+                    Pueden ocurrir una reacción de hipersensibilidad
+                    (disnea, erupción cutánea) en &gt; 1% de los casos.
+                </text>
+                <text lang="en">
+                    Common adverse effects: gastrointestinal disturbances.
+                    Hypersensitivity reactions (dyspnea, skin rash)
+                    may occur in &lt; 1% of cases.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos frequentes: distúrbios gastrointestinais.
+                    Reação de hipersensibilidade (dispneia, erupção cutânea)
+                    em &lt; 1% dos casos.
+                </text>
             </adverseEffects>
         </medicine>
 
-        <medicine
-            id="PRVNT-RIMEGEPANT"
-            name="Rimegepant"
+        <medicine id="PRVNT-RIMEGEPANT"
             groupId="H"
             posInGroup="1"
             url="https://www.vademecum.es/principios-activos-rimegepant-N02CD06-es">
+            <name>
+                <text lang="es">Rimegepant</text>
+                <text lang="en">Rimegepant</text>
+                <text lang="pt">Rimegepant</text>
+            </name>
             <posology>
-                Uso hospitalario. Dosis de 1 comprimido de 75 mg
-                en comprimidos bucodispersables (sublingual). Una toma en días alternos.
+                <text lang="es">
+                    Uso hospitalario. Dosis de 1 comprimido de 75 mg.
+                    en comprimidos bucodispersables (sublingual).
+                    Una toma en días alternos.
+                    Medicamento financiado para el tratamiento preventivo
+                    de pacientes con migraña con una frecuencia
+                    entre 8 y 14 días/mes, y con al menos tres fracasos
+                    a tratamientos preventivos previos.
+                </text>
+                <text lang="en">
+                    One sublingual tablet of 75 mg on alternate days.
+                    Reimbursed for the preventive treatment of patients
+                    with migraine occurring 8–14 days/month,
+                    and with at least three prior failures
+                    of preventive therapies.
+                </text>
+                <text lang="pt">
+                    Un comprimido sublingual de 75 mg em dias alternados.
+                    Financiado para o tratamento preventivo de pacientes
+                    com enxaqueca com frequência entre 8 e 14 dias/mês
+                    e pelo menos três falhas em
+                    tratamentos preventivos prévios.
+                </text>
             </posology>
             <adverseEffects>
-                Medicamento financiado para el tratamiento preventivo de pacientes con migraña
-                con una frecuencia entre 8 y 14 días/mes,
-                y con al menos tres fracasos a tratamientos preventivos previos.
-                Los efectos adversos frecuentes son los gastrointestinales.
-                Pueden ocurrir una reacción de hipersensibilidad
-                (disnea, erupción cutánea) en menos del 1% de los casos.
+                <text lang="es">
+                    Los efectos adversos frecuentes son los gastrointestinales.
+                    Pueden ocurrir una reacción de hipersensibilidad
+                    (disnea, erupción cutánea) en menos del 1% de los casos.
+                </text>
+                <text lang="en">
+                    Common adverse effects: gastrointestinal disturbances.
+                    Hypersensitivity reactions (dyspnea, skin rash)
+                    may occur in &lt; 1% of cases.
+                    Not contraindicated in peripheral arterial
+                    disease/Raynaud’s disease.
+                </text>
+                <text lang="pt">
+                    Efeitos adversos frequentes: Distúrbios gastrointestinais.
+                    Reação de hipersensibilidade (dispneia, erupção cutânea)
+                    em &lt; 1% dos casos.
+                    Não contraindicado em arteriopatia
+                    periférica/doença de Raynaud.
+                </text>
             </adverseEffects>
         </medicine>
 
     </medicines>
 
     <morbidities>
-        <morbidity
-            id="PAIN_MODERATE"
-            name="Dolor de intensidad moderada"
-            desc="El dolor se describe como de moderada intensidad." />
+        <morbidity id="PAIN_MODERATE">
+            <name>
+                <text lang="es">Dolor de intensidad moderada</text>
+                <text lang="en">Moderate intensity pain</text>
+                <text lang="pt">Dor de intensidade moderada</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    El dolor se describe como de moderada intensidad.
+                </text>
+                <text lang="en">
+                    The pain is described as moderate in intensity.
+                </text>
+                <text lang="pt">
+                    A dor é descrita como de intensidade moderada.
+                </text>
+            </desc>
+        </morbidity>
 
-        <morbidity
-            id="PAIN_INTENSE"
-            name="Dolor de intensidad severa"
-            desc="El dolor se describe como de alta intensidad." />
+        <morbidity id="PAIN_INTENSE">
+            <name>
+                <text lang="es">Dolor de intensidad severa</text>
+                <text lang="en">Pain of severe intensity</text>
+                <text lang="pt">Dor de intensidade severa</text>
+            </name>
+            <desc>
+                <text lang="es">El dolor se describe como de alta intensidad.</text>
+                <text lang="en">The pain is described as high intensity.</text>
+                <text lang="pt">A dor é descrita como de alta intensidade.</text>
+            </desc>
+        </morbidity>
 
-        <morbidity
-            id="HYPERTENSION"
-            name="Hipertensión"
-            desc="La presión arterial alta es una enfermedad común que afecta a las arterias del cuerpo.
-                  También se conoce como hipertensión. Con la presión arterial alta,
-                  la fuerza que ejerce la sangre contra las paredes de las arterias
-                  es muy alta constantemente. El corazón debe trabajar más para bombear sangre.
-                    Si la hipertensión no está tratada, el tratamiento indicado es con:
+        <morbidity id="HYPERTENSION">
+            <name>
+                <text lang="es">Hipertensión</text>
+                <text lang="en">Hypertension</text>
+                <text lang="pt">Hipertensão</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La presión arterial alta es una enfermedad común
+                    que afecta a las arterias del cuerpo.
+                    También se conoce como hipertensión.
+                    Con la presión arterial alta, la fuerza
+                    que ejerce la sangre contra
+                    las paredes de las arterias es
+                    muy alta constantemente.
+                    El corazón debe trabajar más para bombear sangre.
+                    Si la hipertensión no está tratada,
+                    el tratamiento indicado es con:
                     - Candesartán o Lisinopril.
                     - Propranolol o Metoprolol.
                     - Amitriptilina.
                     - Topiramato o zonisamida.
-                    Si la hipertensión ya está tratada y controlada, valorar tratamiento con:
+                    Si la hipertensión ya está tratada y controlada,
+                    valorar tratamiento con:
                     - Flunarizina.
                     - Amitriptilina.
-                    - Topiramato o zonisamida.">
+                    - Topiramato o zonisamida.
+                </text>
+                <text lang="en">
+                    High blood pressure is a common disease
+                    that affects the body's arteries.
+                    It is also known as hypertension.
+                    With high blood pressure,
+                    the force that blood exerts against
+                    the walls of the arteries is constantly too high.
+                    The heart must work harder to pump blood.
+                    If hypertension is untreated,
+                    the indicated treatment is with:
+                    - Candesartan or Lisinopril.
+                    - Propranolol or Metoprolol.
+                    - Amitriptyline.
+                    - Topiramate or zonisamide.
+                    If hypertension is already treated
+                    and controlled, consider treatment with:
+                    - Flunarizine.
+                    - Amitriptyline.
+                    - Topiramate or zonisamide.
+                </text>
+                <text lang="pt">
+                    A pressão arterial alta é uma doença comum que afeta
+                    as artérias do corpo. Também é conhecida como hipertensão.
+                    Com a pressão arterial alta, a força que o sangue exerce
+                    contra as paredes das artérias
+                    é constantemente muito elevada.
+                    O coração precisa trabalhar mais para bombear o sangue.
+                    Se a hipertensão não estiver tratada,
+                    o tratamento indicado é com:
+                    - Candesartana ou Lisinopril.
+                    - Propranolol ou Metoprolol.
+                    - Amitriptilina.
+                    - Topiramato ou zonisamida.
+                    Se a hipertensão já estiver tratada e controlada,
+                    avaliar o tratamento com:
+                    - Flunarizina.
+                    - Amitriptilina.
+                    - Topiramato ou zonisamida.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>VENLAFAXINA</incompatible>
                 <advised>CANDESARTAN</advised>
@@ -604,24 +1802,72 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="HIPOTENSION"
-            name="Hipotensión"
-            desc="Lo que se considera presión arterial baja para una persona
-                  puede estar bien para otra. La presión arterial baja puede
-                  no causar ningún síntoma evidente o puede causar mareos y desmayos.
-                  Algunas veces, la presión arterial baja puede poner en riesgo la vida.
-                  Las causas de la presión arterial baja varían desde la deshidratación
-                  hasta afecciones médicas graves. Es importante averiguar
-                  qué es lo que causa la presión arterial baja para que pueda tratarse,
-                  de ser necesario.
-                  Contraindicados:
+        <morbidity id="HIPOTENSION">
+            <name>
+                <text lang="es">Hipotensión</text>
+                <text lang="en">Hypotension</text>
+                <text lang="pt">Hipotensão</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Lo que se considera presión arterial baja para una persona
+                    puede estar bien para otra. La presión arterial baja puede
+                    no causar ningún síntoma evidente
+                    o puede causar mareos y desmayos.
+                    Algunas veces, la presión arterial baja
+                    puede poner en riesgo la vida.
+                    Las causas de la presión arterial baja
+                    varían desde la deshidratación
+                    hasta afecciones médicas graves. Es importante averiguar
+                    qué es lo que causa la presión arterial baja
+                    para que pueda tratarse, de ser necesario.
+                    Contraindicados:
                     - fármacos betabloqueantes.
                     - fármacos anti-hipertensivos.
                     El tratamiento preventivo indicado sería:
                     - Venlafaxina.
                     - Flunarizina.
-                    - Topiramato o zonisamida.">
+                    - Topiramato o zonisamida.
+                </text>
+                <text lang="en">
+                    What is considered low blood pressure for one person
+                    may be fine for another. Low blood pressure may not cause
+                    any noticeable symptoms or it can cause
+                    dizziness and fainting.
+                    Sometimes, low blood pressure can be life-threatening.
+
+                    The causes of low blood pressure range from dehydration
+                    to serious medical conditions. It is important to determine
+                    what is causing the low blood pressure
+                    so that it can be treated, if necessary.
+                    Contraindicated:
+                    - Beta-blocker drugs.
+                    - Anti-hypertensive drugs.
+                    The indicated preventive treatment would be:
+                    - Venlafaxine.
+                    - Flunarizine.
+                    - Topiramate or zonisamida.
+                </text>
+                <text lang="pt">
+                    O que é considerado pressão arterial baixa para uma pessoa
+                    pode ser normal para outra. A pressão arterial baixa
+                    pode não causar nenhum sintoma evidente
+                    ou pode causar tonturas e desmaios. Algumas vezes,
+                    a pressão arterial baixa pode colocar a vida em risco.
+                    As causas da pressão arterial baixa
+                    variam desde a desidratação até condições médicas graves.
+                    É importante descobrir o que está causando
+                    a pressão arterial baixa para que possa ser tratada,
+                    se necessário.
+                    Contraindicados:
+                    - Fármacos betabloqueadores.
+                    - Fármacos anti-hipertensivos.
+                    O tratamento preventivo indicado seria:
+                    - Venlafaxina.
+                    - Flunarizina.
+                    - Topiramato ou zonisamida.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatibleGroup>A</incompatibleGroup>
                 <incompatibleGroup>B</incompatibleGroup>
@@ -632,51 +1878,154 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="ALLERGY_ACETILSALICIDIC_ACID"
-            name="Intolerancia o fallo de respuesta al ácido acetil salicílico"
-            desc="Una alergia o hipersensibilidad al AAS (ácido acetil salicílico),
-                  y a los AINE (medicamentos antinflamatorios no esteroideos),
-                  puede provocar cualquiera de los siguientes efectos:
-                  ronchas, picazón, inflamación, falta de aire, congestión nasal,
-                  sibilancia, debilidad o incluso desmayos.
-                  Otro problema puede ser el de simple intolerancia gástrica.
-                  También puede marcarse esta opción en caso de falta de
-                  respuesta a AINE.
-                  Contraindicados:
-                    - Todos los AINE.">
+        <morbidity id="ALLERGY_ACETILSALICIDIC_ACID">
+            <name>
+                <text lang="es">
+                    Intolerancia o fallo de respuesta al ácido acetil salicílico
+                </text>
+                <text lang="en">
+                    Aspirin intolerance or non-response
+                </text>
+                <text lang="pt">
+                    Intolerância ou não resposta à Aspirina
+                </text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Una alergia o hipersensibilidad al
+                    AAS (ácido acetil salicílico),
+                    y a los AINE
+                    (medicamentos antinflamatorios no esteroideos),
+                    puede provocar cualquiera de los siguientes efectos:
+                    ronchas, picazón, inflamación, falta de aire,
+                    congestión nasal, sibilancia, debilidad o incluso desmayos.
+                    Otro problema puede ser el de simple intolerancia gástrica.
+                    También puede marcarse esta opción en caso de
+                    falta de respuesta a AINE.
+                    Contraindicados:
+                    - Todos los AINE.
+                </text>
+                <text lang="en">
+                    An allergy or hypersensitivity to ASA
+                    (acetylsalicylic acid) and to NSAIDs
+                    (non-steroidal anti-inflammatory drugs) can cause any of
+                    the following effects: hives, itching, swelling,
+                    shortness of breath, nasal congestion, wheezing, weakness,
+                    or even fainting. Another problem can be
+                    simple gastric intolerance. This option can also
+                    be selected in case of a lack of response to NSAIDs.
+                    Contraindicated:
+                    - All NSAIDs.
+                </text>
+                <text lang="pt">
+                    Uma alergia ou hipersensibilidade ao AAS
+                    (ácido acetilsalicílico) e aos AINEs
+                    (medicamentos anti-inflamatórios não esteroides)
+                    pode provocar qualquer um dos seguintes efeitos:
+                    urticária, comichão, inchaço, falta de ar, congestão nasal,
+                    sibilos, fraqueza ou mesmo desmaios.
+                    Outro problema pode ser o de simples intolerância gástrica.
+                    Também se pode marcar esta opção
+                    em caso de falta de resposta a AINEs.
+                    Contraindicados:
+                    - Todos os AINEs.
+                </text>
+            </desc>
             <medicalTreatment>
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="ALLERGY_SULFADRUG"
-            name="Alergia a las sulfamidas"
-            desc="Los antibióticos que contienen sustancias químicas denominadas sulfonamidas
-                  pueden desencadenar una reacción si se tiene una alergia a sulfamidas.
-                  Contraindicados:
-                    - Todas las sulfamidas.">
+        <morbidity id="ALLERGY_SULFADRUG">
+            <name>
+                <text lang="es">Alergia a las sulfamidas</text>
+                <text lang="en">Allergy to sulfonamides</text>
+                <text lang="pt">Alergia a sulfonamidas</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Los antibióticos que contienen sustancias químicas
+                    denominadas sulfonamidas pueden desencadenar una reacción
+                    si se tiene una alergia a sulfamidas.
+                    Contraindicados:
+                    - Todas las sulfamidas.
+                </text>
+                <text lang="en">
+                    Antibiotics that contain chemicals called sulfonamides
+                    can trigger a reaction if you have a sulfonamide allergy.
+                    Contraindicated:
+                    - All sulfonamides.
+                </text>
+                <text lang="pt">
+                    Os antibióticos que contêm substâncias químicas
+                    denominadas sulfonamidas podem desencadear uma reação
+                    se houver alergia a sulfonamidas.
+                    Contraindicados:
+                    - Todas as sulfonamidas.
+                </text>
+            </desc>
             <medicalTreatment>
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="BRADYCARDIA"
-            name="Bradicardia – bloqueo aurículoventricular"
-            desc="La bradicardia puede ser un problema grave
-                  si la frecuencia cardíaca es muy lenta y el corazón
-                  no puede bombear suficiente sangre rica en oxígeno al cuerpo.
-                  Si esto ocurre, la persona puede sentirse mareado,
-                  muy cansado o débil y con falta de aliento.
-                  A veces la bradicardia no causa síntomas ni complicaciones.
-                  Contraindicados:
+        <morbidity id="BRADYCARDIA">
+            <name>
+                <text lang="es">Bradicardia – bloqueo aurículoventricular</text>
+                <text lang="en">Bradycardia – atrioventricular block</text>
+                <text lang="pt">Bradicardia – bloqueio atrioventricular</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La bradicardia puede ser un problema grave si
+                    la frecuencia cardíaca es muy lenta y el corazón
+                    no puede bombear suficiente sangre rica en oxígeno al cuerpo.
+                    Si esto ocurre, la persona puede sentirse mareado,
+                    muy cansado o débil y con falta de aliento.
+                    A veces la bradicardia no causa síntomas ni complicaciones.
+                    Contraindicados:
                     - fármacos betabloqueantes.
                     El tratamiento preventivo indicado sería:
                     - Flunarizina.
                     - Amitriptilina o venlafaxina.
                     - Topiramato o zonisamida.
                     - Ácido valproico.
-                    - Candesartán o lisinopril.">
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Bradycardia can be a serious problem if the heart rate
+                    is very slow and the heart cannot pump enough
+                    oxygen-rich blood to the body. If this happens,
+                    a person may feel dizzy, very tired, or weak,
+                    and experience shortness of breath.
+                    Sometimes bradycardia does not cause
+                    any symptoms or complications.
+                    Contraindicated:
+                    - Beta-blocker drugs.
+                    The indicated preventive treatment would be:
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A bradicardia pode ser um problema grave
+                    se a frequência cardíaca for muito lenta e
+                    o coração não conseguir bombear sangue suficiente
+                    e rico em oxigênio para o corpo.
+                    Se isso ocorrer, a pessoa pode sentir-se tonta,
+                    muito cansada ou fraca e com falta de ar.
+                    Às vezes, a bradicardia não causa
+                    sintomas nem complicações.
+                    Contraindicados:
+                    - Fármacos betabloqueadores.
+                    O tratamento preventivo indicado seria:
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatibleGroup>B</incompatibleGroup>
                 <advised>FLUNARIZINA</advised>
@@ -690,25 +2039,68 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="BRONQUIAL_ASTHMA"
-            name="Asma bronquial – Hiperreactividad bronquial"
-            desc="El asma es la enfermedad inflamatoria pulmonar más común,
-                  caracterizada por la presencia de inflamación crónica de la vía aérea,
-                  la hiperreactividad bronquial y el engrosamiento
-                  de las paredes de la vía aérea.
-                  Estos cambios son proporcionales
-                  a la severidad y duración de la enfermedad.
-                  La hiperreactividad bronquial es una respuesta exagerada
-                  frente a los alérgenos del ambiente que causan inflamación
-                  y obstrucción de la vía aérea.
-                  Contraindicados los fármacos betabloqueantes.
+        <morbidity id="BRONQUIAL_ASTHMA">
+            <name>
+                <text lang="es">Asma bronquial – Hiperreactividad bronquial</text>
+                <text lang="en">Bronchial asthma – Bronchial hyperreactivity</text>
+                <text lang="pt">Asma brônquica – Hiper-reatividade brônquica</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    El asma es la enfermedad inflamatoria pulmonar más común,
+                    caracterizada por la presencia de inflamación crónica
+                    de la vía aérea, la hiperreactividad bronquial
+                    y el engrosamiento de las paredes de la vía aérea.
+                    Estos cambios son proporcionales a la severidad
+                    y duración de la enfermedad.
+                    La hiperreactividad bronquial es una respuesta exagerada
+                    frente a los alérgenos del ambiente que causan inflamación
+                    y obstrucción de la vía aérea.
+                    Contraindicados los fármacos betabloqueantes.
                     El tratamiento preventivo indicado sería:
                     - Flunarizina.
                     - Amitriptilina o venlafaxina.
                     - Topiramato o zonisamida.
                     - Ácido valproico.
-                    - Candesartán o lisinopril.">
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Asthma is the most common pulmonary inflammatory disease,
+                    characterized by chronic inflammation of the airways,
+                    bronchial hyperreactivity, and thickening of
+                    the airway walls.
+                    These changes are proportional to the severity
+                    and duration of the disease.
+                    Bronchial hyperreactivity is an exaggerated response
+                    to environmental allergens that causes inflammation
+                    and obstruction of the airways.
+                    Beta-blocker drugs are contraindicated.
+                    The indicated preventive treatment would be:
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A asma é a doença inflamatória pulmonar mais comum,
+                    caracterizada pela presença de inflamação crônica
+                    das vias aéreas, hiper-reatividade brônquica
+                    e espessamento das paredes das vias aéreas.
+                    Essas alterações são proporcionais
+                    à severidade e duração da doença.
+                    A hiper-reatividade brônquica é uma resposta exagerada
+                    a alérgenos ambientais que causam inflamação
+                    e obstrução das vias aéreas.
+                    Contraindicados os fármacos betabloqueadores.
+                    O tratamento preventivo indicado seria:
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatibleGroup>B</incompatibleGroup>
                 <advised>FLUNARIZINA</advised>
@@ -722,20 +2114,52 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="RAYNAUD"
-            name="Arteriopatía periférica – Enfermedad de Raynaud"
-            desc="La enfermedad de Raynaud causa sensación
-                  de adormecimiento y frío en algunas zonas del cuerpo,
-                  como los dedos de las manos y de los pies,
-                  en respuesta a temperaturas frías o al estrés.
-                  Contraindicados los fármacos betabloqueantes.
-                     El tratamiento preventivo indicado sería:
-                     - Flunarizina.
-                     - Amitriptilina o venlafaxina.
-                     - Topiramato o zonisamida.
-                     - Ácido valproico.
-                     - Candesartán o lisinopril.">
+        <morbidity id="RAYNAUD">
+            <name>
+                <text lang="es">Arteriopatía periférica – Enfermedad de Raynaud</text>
+                <text lang="en">Peripheral Arterial Disease – Raynaud's Disease</text>
+                <text lang="pt">Arteriopatia Periférica – Doença de Raynaud</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La enfermedad de Raynaud causa sensación
+                    de adormecimiento y frío en algunas zonas del cuerpo,
+                    como los dedos de las manos y de los pies,
+                    en respuesta a temperaturas frías o al estrés.
+                    Contraindicados los fármacos betabloqueantes.
+                    El tratamiento preventivo indicado sería:
+                    - Flunarizina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Raynaud's disease causes a sensation of numbness
+                    and cold in some areas of the body,
+                    such as the fingers and toes, in response
+                    to cold temperatures or stress.
+                    Beta-blocker drugs are contraindicated.
+                    The indicated preventive treatment would be:
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A Doença de Raynaud causa sensação de dormência e frio
+                    em algumas áreas do corpo, como os dedos das mãos
+                    e dos pés, em resposta a temperaturas frias ou ao estresse.
+                    Contraindicados os fármacos betabloqueadores.
+                    O tratamento preventivo indicado seria:
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatibleGroup>B</incompatibleGroup>
                 <incompatibleGroup>F</incompatibleGroup>
@@ -751,25 +2175,66 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="DIABETES"
-            name="Diabetes Mellitus tratada con insulina"
-            desc="La diabetes mellitus (DM) es un conjunto
-                  de trastornos metabólicos, cuya característica
-                  común principal es la presencia
-                  de concentraciones elevadas de glucosa en la sangre
-                  de manera persistente o crónica,
-                  debido ya sea a un defecto en la producción de insulina,
-                  a una resistencia a la acción de ella para utilizar la glucosa,
-                  a un aumento en la producción de glucosa,
-                  o a una combinación de estas causas.
-                  Contraindicados los fármacos betabloqueantes.
+        <morbidity id="DIABETES">
+            <name>
+                <text lang="es">Diabetes Mellitus tratada con insulina</text>
+                <text lang="en">Insulin-treated Diabetes Mellitus</text>
+                <text lang="pt">Diabetes Mellitus tratada com insulina</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La diabetes mellitus (DM) es un conjunto
+                    de trastornos metabólicos, cuya característica
+                    común principal es la presencia de concentraciones elevadas
+                    de glucosa en la sangre de manera persistente o crónica,
+                    debido ya sea a un defecto en la producción de insulina,
+                    a una resistencia a la acción de ella
+                    para utilizar la glucosa, a un aumento
+                    en la producción de glucosa, o a una combinación
+                    de estas causas.
+                    Contraindicados los fármacos betabloqueantes.
                     El tratamiento preventivo indicado sería con:
                     - Flunarizina.
                     - Amitriptilina o venlafaxina.
                     - Topiramato o zonisamida.
                     - Ácido valproico.
-                    - Candesartán o lisinopril.">
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Diabetes mellitus (DM) is a group of metabolic disorders,
+                    whose main common characteristic is the presence of
+                    persistently or chronically high concentrations of
+                    glucose in the blood. This is due either to a defect
+                    in insulin production, a resistance to its action
+                    in utilizing glucose, an increase in glucose production,
+                    or a combination of these causes.
+                    Beta-blocker drugs are contraindicated.
+                    The indicated preventive treatment would be with:
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A diabetes mellitus (DM) é um conjunto
+                    de transtornos metabólicos,
+                    cuja principal característica comum é
+                    a presença de concentrações elevadas
+                    de glicose no sangue de maneira persistente ou crônica.
+                    Isto se deve a um defeito na produção de insulina,
+                    a uma resistência à sua ação para utilizar a glicose,
+                    a um aumento na produção de glicose ou
+                    a uma combinação destas causas.
+                    Contraindicados os fármacos betabloqueadores.
+                    O tratamento preventivo indicado seria com:
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatibleGroup>B</incompatibleGroup>
                 <advised>FLUNARIZINA</advised>
@@ -783,34 +2248,80 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="OBESITY"
-            name="Obesidad – Bulimia"
-            desc="Valor de IMC mayor que 30.
-                  La obesidad es una enfermedad crónica que se caracteriza
-                  por la acumulación excesiva del tejido adiposo en el cuerpo,
-                  es decir, cuando la reserva natural de energía
-                  de los seres humanos y de otros animales mamíferos
-                  (almacenada en forma de grasa corporal) se incrementa
-                  hasta un punto en que pone en riesgo la salud o la vida.
-                  La obesidad es el quinto factor principal de riesgo
-                  de defunción humana en el mundo.
-                  Cada año, fallecen por lo menos 2,8 millones de personas
-                  adultas como consecuencia de la obesidad.
-                     Contraindicada flunarizina.
-                     Contraindicada amitriptilina.
-                     Contraindicado el ácido valproico.
-                     El tratamiento preventivo inicial indicado sería con:
-                     Flunarizina.
-                     Amitriptilina o venlafaxina.
-                     Topiramato o zonisamida.
-                     Candesartán o lisinopril.">
+        <morbidity id="OBESITY">
+            <name>
+                <text lang="es">Obesidad – Bulimia</text>
+                <text lang="en">Obesity – Bulimia</text>
+                <text lang="pt">Obesidade – Bulimia</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Valor de IMC mayor que 30. La obesidad es
+                    una enfermedad crónica que se caracteriza
+                    por la acumulación excesiva
+                    del tejido adiposo en el cuerpo,es decir,
+                    cuando la reserva natural de energía
+                    de los seres humanos y de otros animales mamíferos
+                    (almacenada en forma de grasa corporal) se incrementa
+                    hasta un punto en que pone en riesgo la salud o la vida.
+                    La obesidad es el quinto factor principal de riesgo
+                    de defunción humana en el mundo.
+                    Cada año, fallecen por lo menos 2,8 millones de personas
+                    adultas como consecuencia de la obesidad.
+                    - Contraindicada flunarizina.
+                    - Contraindicada amitriptilina.
+                    - Contraindicado el ácido valproico.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    BMI value greater than 30. Obesity is a chronic disease
+                    characterized by the excessive accumulation
+                    of adipose tissue in the body; that is,
+                    when the natural energy reserve of humans
+                    and other mammals (stored as body fat) increases to a point
+                    where it risks health or life.
+                    Obesity is the fifth leading risk factor
+                    for human death in the world.
+                    Each year, at least 2.8 million adults
+                    die as a consequence of obesity.
+                    - Flunarizine is contraindicated.
+                    - Amitriptyline is contraindicated.
+                    - Valproic acid is contraindicated.
+                    The indicated initial preventive treatment would be with:
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    Valor de IMC maior que 30. A obesidade é uma doença crônica
+                    que se caracteriza pelo acúmulo excessivo
+                    de tecido adiposo no corpo; ou seja, quando
+                    a reserva natural de energia dos seres humanos
+                    e de outros mamíferos
+                    (armazenada na forma de gordura corporal) aumenta
+                    a um ponto em que coloca em risco a saúde ou a vida.
+                    A obesidade é o quinto principal fator de risco
+                    de morte humana no mundo. A cada ano, morrem pelo menos
+                    2,8 milhões de pessoas adultas como consequência
+                    da obesidade.
+                    - Flunarizina contraindicada.
+                    - Amitriptilina contraindicada.
+                    - Ácido valproico contraindicado.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>FLUNARIZINA</incompatible>
                 <incompatible>AMITRIPTILINA</incompatible>
                 <incompatible>ACIDO_VALPROICO</incompatible>
-                <advised>FLUNARIZINA</advised>
-                <advised>AMITRIPTILINA</advised>
                 <advised>VENLAFAXINA</advised>
                 <advised>TOPIRAMATO</advised>
                 <advised>ZONISAMIDA</advised>
@@ -819,23 +2330,59 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="ANOREXIA"
-            name="Anorexia – Bajo peso"
-            desc="La anorexia nerviosa,
-                  a menudo simplemente denominada 'anorexia',
-                  es un trastorno de la alimentación
-                  que se caracteriza por el peso corporal anormalmente bajo,
-                  el temor intenso a aumentar de peso
-                  y la percepción distorsionada del peso.
-                    Contraindicado topiramato.
-                    Contraindicado zonisamida.
-                    Contraindicada venlafaxina.
+        <morbidity id="ANOREXIA">
+            <name>
+                <text lang="es">Anorexia – Bajo peso</text>
+                <text lang="en">Anorexia – Low weight</text>
+                <text lang="pt">Anorexia – Baixo peso</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La anorexia nerviosa,
+                    a menudo simplemente denominada 'anorexia',
+                    es un trastorno de la alimentación que se caracteriza
+                    por el peso corporal anormalmente bajo,
+                    el temor intenso a aumentar de peso
+                    y la percepción distorsionada del peso.
+                    - Contraindicado topiramato.
+                    - Contraindicado zonisamida.
+                    - Contraindicada venlafaxina.
                     El tratamiento preventivo inicial indicado sería con:
                     - Flunarizina.
                     - Amitriptilina.
                     - Ácido valproico.
-                    - Candesartán o lisinopril.">
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Anorexia nervosa, often simply called 'anorexia',
+                    is an eating disorder characterized
+                    by abnormally low body weight, an intense fear
+                    of gaining weight, and a distorted perception of weight.
+                    - Topiramate is contraindicated.
+                    - Zonisamide is contraindicated.
+                    - Venlafaxine is contraindicated.
+                    The indicated initial preventive treatment would be with:
+                    - Flunarizine.
+                    - Amitriptyline.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A anorexia nervosa, frequentemente chamada simplesmente
+                    de 'anorexia', é um transtorno alimentar caracterizado
+                    pelo peso corporal anormalmente baixo,
+                    um medo intenso de ganhar peso
+                    e uma percepção distorcida do peso.
+                    - Topiramato contraindicado.
+                    - Zonisamida contraindicada.
+                    - Venlafaxina contraindicada.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Flunarizina.
+                    - Amitriptilina.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>TOPIRAMATO</incompatible>
                 <incompatible>ZONISAMIDA</incompatible>
@@ -847,24 +2394,69 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="DEPRESSION"
-            name="Depresión – distimia depresiva"
-            desc="La gravedad de la depresión puede ir desde
-                 episodios de tristeza leves y temporales hasta cuadros
-                 de depresión persistente y grave.
-                 La depresión clínica es la forma más grave de depresión
-                 y también se la denomina 'depresión mayor'
-                 o 'trastorno depresivo mayor'.
-                 No es igual a la depresión provocada por una pérdida,
-                 como la muerte de un ser querido, o por una enfermedad,
-                 como un trastorno tiroideo.
-                 Contraindicada Flunaricina.
-                 El tratamiento preventivo inicial indicado sería con:
-                 - Amitriptilina o venlafaxina.
-                 - Ácido valproico.
-                 - Topiramato o zonisamida.
-                 - Candesartán o lisinopril.">
+        <morbidity id="DEPRESSION">
+            <name>
+                <text lang="es">
+                    Depresión – distimia depresiva
+                </text>
+                <text lang="en">
+                    Depression – Dysthymia (Persistent Depressive Disorder)
+                </text>
+                <text lang="pt">
+                    Depressão – Distimia (Transtorno Depressivo Persistente)
+                </text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La gravedad de la depresión puede ir desde episodios
+                    de tristeza leves y temporales hasta cuadros
+                    de depresión persistente y grave. La depresión clínica es
+                    la forma más grave de depresión
+                    y también se la denomina 'depresión mayor'
+                    o 'trastorno depresivo mayor'.
+                    No es igual a la depresión provocada por una pérdida,
+                    como la muerte de un ser querido, o por una enfermedad,
+                    como un trastorno tiroideo.
+                    - Contraindicada Flunaricina.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Amitriptilina o venlafaxina.
+                    - Ácido valproico.
+                    - Topiramato o zonisamida.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    The severity of depression can range from mild,
+                    temporary episodes of sadness
+                    to persistent and severe states.
+                    Clinical depression is the most severe form of depression
+                    and is also called 'major depression'
+                    or 'major depressive disorder'. It is not the same as
+                    depression caused by a loss, such as the death of
+                    a loved one, or by an illness, such as a thyroid disorder.
+                    - Flunarizine is contraindicated.
+                    The indicated initial preventive treatment would be with:
+                    - Amitriptyline or venlafaxine.
+                    - Valproic acid.
+                    - Topiramate or zonisamida.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A gravidade da depressão pode variar desde episódios leves
+                    e temporários de tristeza até quadros
+                    de depressão persistente e grave. A depressão clínica é
+                    a forma mais grave de depressão e também é denominada
+                    'depressão maior' ou 'transtorno depressivo maior'.
+                    Ela não é igual à depressão provocada por uma perda,
+                    como a morte de um ente querido, ou por uma doença,
+                    como um distúrbio da tireoide.
+                    - Flunarizina contraindicada.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Amitriptilina ou venlafaxina.
+                    - Ácido valproico.
+                    - Topiramato ou zonisamida.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>FLUNARIZINA</incompatible>
                 <advised>AMITRIPTILINA</advised>
@@ -877,27 +2469,65 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="GLAUCOMA"
-            name="Glaucoma"
-            desc="El glaucoma es un grupo de afecciones del ojo
-                  que dañan el nervio óptico.
-                  El nervio óptico es el encargado de enviar
-                  la información visual del ojo al cerebro
-                  y es vital para tener una buena visión.
-                  Los daños en el nervio óptico a menudo están relacionados
-                  con una presión alta en los ojos.
-                  Sin embargo, el glaucoma se puede producir
-                  incluso con una presión ocular normal.
-                  Elevación de la presión intraocular.
+        <morbidity id="GLAUCOMA">
+            <name>
+                <text lang="es">Glaucoma</text>
+                <text lang="en">Glaucoma</text>
+                <text lang="pt">Glaucoma</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    El glaucoma es un grupo de afecciones del ojo
+                    que dañan el nervio óptico. El nervio óptico es
+                    el encargado de enviar la información visual
+                    del ojo al cerebro y es vital para tener
+                    una buena visión. Los daños en el nervio óptico
+                    a menudo están relacionados con una presión alta
+                    en los ojos. Sin embargo, el glaucoma se puede producir
+                    incluso con una presión ocular normal.
                     - Contraindicado topiramato.
                     - Contraindicada zonisamida.
                     - Contraindicada amitriptilina.
-                  El tratamiento indicado sería con:
+                    El tratamiento indicado sería con:
                     - Betabloqueantes (propranolol, metoprolol).
                     - Flunaricina.
                     - Venlafaxina.
-                    - Candesartán o lisinopril.">
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Glaucoma is a group of eye conditions that damage
+                    the optic nerve. The optic nerve is responsible
+                    for sending visual information from the eye to the brain
+                    and is vital for good vision. Damage to the optic nerve
+                    is often related to high pressure in the eyes.
+                    However, glaucoma can occur even with normal eye pressure.
+                    - Topiramate is contraindicated.
+                    - Zonisamide is contraindicated.
+                    - Amitriptyline is contraindicated.
+                    The indicated treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Flunarizine.
+                    - Venlafaxine.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    O glaucoma é um grupo de afecções oculares que danificam
+                    o nervo óptico. O nervo óptico é o responsável por enviar
+                    a informação visual do olho ao cérebro e é vital para
+                    uma boa visão. Os danos no nervo óptico frequentemente
+                    estão relacionados a uma pressão alta nos olhos.
+                    No entanto, o glaucoma pode ocorrer mesmo com
+                    uma pressão ocular normal.
+                    - Topiramato contraindicado.
+                    - Zonisamida contraindicada.
+                    - Amitriptilina contraindicada.
+                    O tratamento indicado seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Flunarizina.
+                    - Venlafaxina.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>TOPIRAMATO</incompatible>
                 <incompatible>ZONISAMIDA</incompatible>
@@ -910,20 +2540,53 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="LITIASIS"
-            name="Litiasis renal"
-            desc="Los cálculos renales (también llamados nefrolitiasis
-                  o urolitiasis) son depósitos duros hechos de minerales
-                  y sales que se forman dentro de los riñones.
-                - Contraindicado topiramato.
-                - Contraindicada zonisamida.
-                El tratamiento preventivo inicial sería con:
-                - Betabloqueantes (propranolol, metoprolol).
-                - Flunaricina.
-                - Amitriptilina o venlafaxina.
-                - Ácido valproico.
-                - Candesartán o lisinopril.">
+        <morbidity id="LITIASIS">
+            <name>
+                <text lang="es">Litiasis renal</text>
+                <text lang="en">Kidney stones (Renal lithiasis)</text>
+                <text lang="pt">Cálculo renal (Litíase renal)</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Los cálculos renales (también llamados nefrolitiasis
+                    o urolitiasis) son depósitos duros hechos de minerales
+                    y sales que se forman dentro de los riñones.
+                    - Contraindicado topiramato.
+                    - Contraindicada zonisamida.
+                    El tratamiento preventivo inicial sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Flunaricina.
+                    - Amitriptilina o venlafaxina.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Kidney stones (also called nephrolithiasis or urolithiasis)
+                    are hard deposits made of minerals and salts
+                    that form inside the kidneys.
+                    - Topiramate is contraindicated.
+                    - Zonisamide is contraindicated.
+                    The initial preventive treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    Os cálculos renais (também chamados de nefrolitíase
+                    ou urolitíase) são depósitos duros feitos de minerais
+                    e sais que se formam dentro dos rins.
+                    - Topiramato contraindicado.
+                    - Zonisamida contraindicada.
+                    O tratamento preventivo inicial seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>TOPIRAMATO</incompatible>
                 <incompatible>ZONISAMIDA</incompatible>
@@ -937,21 +2600,50 @@
             </medicalTreatment>
         </morbidity>
 
-        <morbidity
-            id="HORMONAL_CONTRACEPTIVES"
-            name="Toma de anticonceptivos hormonales"
-            desc="Los anticonceptivos orales son medicamentos
-                  que se utilizan para evitar el embarazo,
-                  basándose en hormonas.
-                  Topiramato puede disminuir el efecto anticonceptivo.
-                  El tratamiento preventivo inicial indicado sería con:
-                  - Betabloqueantes (propranolol, metoprolol).
-                  - Flunaricina.
-                  - Amitriptilina o venlafaxina.
-                  - Topiramato o zonisamida.
-                  - Ácido valproico.
-                  - Candesartán o lisinopril.">
-
+        <morbidity id="HORMONAL_CONTRACEPTIVES">
+            <name>
+                <text lang="es">Toma de anticonceptivos hormonales</text>
+                <text lang="en">Use of hormonal contraceptives</text>
+                <text lang="pt">Uso de contraceptivos hormonais</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Los anticonceptivos orales son medicamentos que se utilizan
+                    para evitar el embarazo, basándose en hormonas.
+                    Topiramato puede disminuir el efecto anticonceptivo.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Flunaricina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Ácido valproico.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Oral contraceptives are medications used
+                    to prevent pregnancy, based on hormones.
+                    Topiramate may decrease the contraceptive effect.
+                    The indicated initial preventive treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Valproic acid.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    Os contraceptivos orais são medicamentos utilizados
+                    para evitar a gravidez, baseados em hormônios.
+                    O topiramato pode diminuir o efeito contraceptivo.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Ácido valproico.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>TOPIRAMATO</incompatible>
                 <advisedGroup>B</advisedGroup>
@@ -963,25 +2655,60 @@
                 <advised>LISINOPRIL</advised>
                 <advised>ZONISAMIDA</advised>
             </medicalTreatment>
-
         </morbidity>
 
-        <morbidity
-                id="POLYCYSTIC_OVARY"
-                name="Mujer con ovario poliquístico"
-                desc="El síndrome de ovario poliquístico
-                      es un problema hormonal que se produce durante
-                      la edad reproductiva femenina.
-                      Las mujeres afectadas pueden experimentar tanto
-                      prolongados períodos menstruales como su total ausencia.
-                      Contraindicado el ácido valproico.
-                      - El tratamiento preventivo inicial indicado sería con:
-                      - Betabloqueantes (propranolol, metoprolol).
-                      - Flunaricina.
-                      - Amitriptilina o venlafaxina.
-                      - Topiramato o zonisamida.
-                      - Candesartán o lisinopril.">
-
+        <morbidity id="POLYCYSTIC_OVARY">
+            <name>
+                <text lang="es">Mujer con ovario poliquístico</text>
+                <text lang="en">
+                    Woman with Polycystic Ovary Syndrome (PCOS)
+                </text>
+                <text lang="pt">
+                    Mulher com Síndrome do Ovário Policístico (SOP)
+                </text>
+            </name>
+            <desc>
+                <text lang="es">
+                    El síndrome de ovario poliquístico es
+                    un problema hormonal que se produce durante
+                    la edad reproductiva femenina.
+                    Las mujeres afectadas pueden experimentar tanto
+                    prolongados períodos menstruales como su total ausencia.
+                    - Contraindicado el ácido valproico.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Flunaricina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Polycystic ovary syndrome is a hormonal problem
+                    that occurs during a woman's reproductive age.
+                    Affected women may experience either prolonged
+                    menstrual periods or a total absence of them.
+                    - Valproic acid is contraindicated.
+                    The indicated initial preventive treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A Síndrome do Ovário Policístico é um problema hormonal
+                    que ocorre durante a idade reprodutiva feminina.
+                    As mulheres afetadas podem experimentar tanto
+                    períodos menstruais prolongados quanto sua ausência total.
+                    - Ácido valproico contraindicado.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>ACIDO_VALPROICO</incompatible>
                 <advisedGroup>B</advisedGroup>
@@ -993,25 +2720,57 @@
                 <advised>CANDESARTAN</advised>
                 <advised>LISINOPRIL</advised>
             </medicalTreatment>
-
         </morbidity>
 
-        <morbidity
-            id="CHRONIC_LIVER_DISEASE"
-            name="Hepatopatía crónica"
-            desc="La hepatitis C es una infección vírica
-                que causa la hinchazón del hígado, denominada inflamación.
-                La hepatitis C puede derivar en graves daños hepáticos.
-                El virus de la hepatitis C (VHC) se propaga a través
-                del contacto con sangre que contiene el virus.
-                Contraindicado ácido valproico.
-                El tratamiento preventivo inicial indicado sería con:
-                - Betabloqueantes (propranolol, metoprolol).
-                - Flunaricina.
-                - Amitriptilina o venlafaxina.
-                - Topiramato o zonisamida.
-                - Candesartán o lisinopril.">
-
+        <morbidity id="CHRONIC_LIVER_DISEASE">
+            <name>
+                <text lang="es">Hepatopatía crónica</text>
+                <text lang="en">Chronic liver disease</text>
+                <text lang="pt">Doença hepática crônica</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    La hepatitis C es una infección vírica que causa
+                    la hinchazón del hígado, denominada inflamación.
+                    La hepatitis C puede derivar en graves daños hepáticos.
+                    El virus de la hepatitis C (VHC) se propaga a través
+                    del contacto con sangre que contiene el virus.
+                    - Contraindicado ácido valproico.
+                    El tratamiento preventivo inicial indicado sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Flunaricina.
+                    - Amitriptilina o venlafaxina.
+                    - Topiramato o zonisamida.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Hepatitis C is a viral infection that causes swelling
+                    of the liver, called inflammation. Hepatitis C can lead
+                    to serious liver damage. The hepatitis C virus (HCV)
+                    spreads through contact with blood containing the virus.
+                    - Valproic acid is contraindicated.
+                    The indicated initial preventive treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Flunarizine.
+                    - Amitriptyline or venlafaxine.
+                    - Topiramate or zonisamida.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    A hepatite C é uma infecção viral que causa
+                    o inchaço do fígado, denominado inflamação.
+                    A hepatite C pode resultar em graves danos hepáticos.
+                    O vírus da hepatite C (HCV) se propaga através
+                    do contato com sangue que contém o vírus.
+                    - Ácido valproico contraindicado.
+                    O tratamento preventivo inicial indicado seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Flunarizina.
+                    - Amitriptilina ou venlafaxina.
+                    - Topiramato ou zonisamida.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <incompatible>ACIDO_VALPROICO</incompatible>
                 <advisedGroup>B</advisedGroup>
@@ -1023,28 +2782,71 @@
                 <advised>CANDESARTAN</advised>
                 <advised>LISINOPRIL</advised>
             </medicalTreatment>
-
         </morbidity>
 
-        <morbidity
-            id="ANXIETY"
-            name="Ansiedad o estrés"
-            desc="Sentir ansiedad de modo ocasional
-                  es una parte normal de la vida.
-                  Sin embargo, las personas con trastornos de ansiedad
-                  con frecuencia tienen preocupaciones y miedos intensos,
-                  excesivos y persistentes sobre situaciones diarias.
-                  Con frecuencia, en los trastornos de ansiedad
-                  se dan episodios repetidos de sentimientos repentinos
-                  de ansiedad intensa y miedo o terror que alcanzan
-                  un máximo en una cuestión de minutos (ataques de pánico).
-                  No tenemos contraindicaciones, pero se optaría primero por tratamientos antidepresivos.
-                      El tratamiento preventivo sería con:
-                      - Betabloqueantes (propranolol, metoprolol).
-                      - Amitriptilina o venlafaxina.
-                      - Flunaricina.
-                      - Topiramato o zonisamida.
-                      - Candesartán o lisinopril.">
+        <morbidity id="ANXIETY">
+            <name>
+                <text lang="es">Ansiedad o estrés</text>
+                <text lang="en">Anxiety or stress</text>
+                <text lang="pt">Ansiedade ou stress</text>
+            </name>
+            <desc>
+                <text lang="es">
+                    Sentir ansiedad de modo ocasional
+                    es una parte normal de la vida.
+                    Sin embargo, las personas con trastornos de ansiedad
+                    con frecuencia tienen preocupaciones y miedos intensos,
+                    excesivos y persistentes sobre situaciones diarias.
+                    Con frecuencia, en los trastornos de ansiedad
+                    se dan episodios repetidos de sentimientos repentinos
+                    de ansiedad intensa y miedo o terror que alcanzan
+                    un máximo en una cuestión de minutos (ataques de pánico).
+                    No tenemos contraindicaciones, pero se optaría primero
+                    por tratamientos antidepresivos.
+                    El tratamiento preventivo sería con:
+                    - Betabloqueantes (propranolol, metoprolol).
+                    - Amitriptilina o venlafaxina.
+                    - Flunaricina.
+                    - Topiramato o zonisamida.
+                    - Candesartán o lisinopril.
+                </text>
+                <text lang="en">
+                    Feeling anxiety occasionally is a normal part of life.
+                    However, people with anxiety disorders frequently have
+                    intense, excessive, and persistent worries and fears
+                    about everyday situations. Often, anxiety disorders involve
+                    repeated episodes of sudden feelings of intense anxiety
+                    and fear or terror that reach a peak
+                    within minutes (panic attacks).
+                    We have no contraindications,
+                    but antidepressant treatments would be tried first.
+                    Preventive treatment would be with:
+                    - Beta-blockers (propranolol, metoprolol).
+                    - Amitriptyline or venlafaxine.
+                    - Flunarizine.
+                    - Topiramate or zonisamide.
+                    - Candesartan or lisinopril.
+                </text>
+                <text lang="pt">
+                    Sentir ansiedade ocasionalmente
+                    é uma parte normal da vida. No entanto,
+                    as pessoas com transtornos de ansiedade
+                    frequentemente têm preocupações e medos intensos,
+                    excessivos e persistentes sobre situações do dia a dia.
+                    Muitas vezes, nos transtornos de ansiedade,
+                    ocorrem episódios repetidos de sentimentos súbitos
+                    de ansiedade intensa e medo ou terror que atingem
+                    um pico em questão de minutos (ataques de pânico).
+                    Não temos contraindicações, mas optar-se-ia primeiro
+                    por tratamentos antidepressivos.
+                    O tratamento preventivo seria com:
+                    - Betabloqueadores (propranolol, metoprolol).
+                    - Amitriptilina ou venlafaxina.
+                    - Flunarizina.
+                    - Topiramato ou zonisamida.
+                    - Candesartana ou lisinopril.
+                </text>
+            </desc>
             <medicalTreatment>
                 <advisedGroup>B</advisedGroup>
                 <advisedGroup>D</advisedGroup>
@@ -1058,41 +2860,547 @@
 
     </morbidities>
 
-    <treatmentMessages>
+    <messages>
+        <!-- Conclusions -->
+        <message id="conclusionMsgMigraine">
+            <contents>
+                <text lang="es">
+                    migraña
+                </text>
+                <text lang="en">
+                    migraine
+                </text>
+                <text lang="pt">
+                    enxaqueca
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgTensional">
+            <contents>
+                <text lang="es">
+                    cefalea tensional
+                </text>
+                <text lang="en">
+                    tension headache
+                </text>
+                <text lang="pt">
+                    cefaleia tensional
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgMixedTensional">
+            <contents>
+                <text lang="es">
+                    cefalea mixta con predominio tensional
+                </text>
+                <text lang="en">
+                    mixed headache with tension-type predominance
+                </text>
+                <text lang="pt">
+                    cefaleia mista com predominância tensional
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgMixedMigraine">
+            <contents>
+                <text lang="es">
+                    cefalea mixta con predominio migrañoso
+                </text>
+                <text lang="en">
+                    mixed headache with migrainous predominance
+                </text>
+                <text lang="pt">
+                    cefaleia mista com predominância migranosa
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgChkDoctor">
+            <contents>
+                <text lang="es">
+                    Consulte con su médico
+                </text>
+                <text lang="en">
+                    Consult your doctor
+                </text>
+                <text lang="pt">
+                    Consulte o seu médico
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgWithAura">
+            <contents>
+                <text lang="es">
+                    con aura
+                </text>
+                <text lang="en">
+                    with aura
+                </text>
+                <text lang="pt">
+                    com aura
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgExplLessFiveEpisodes">
+            <contents>
+                <text lang="es">
+                    Probable, migraña de menos de cinco episodios.
+                </text>
+                <text lang="en">
+                    Probable, migraine with fewer than five episodes.
+                </text>
+                <text lang="pt">
+                    Provável, enxaqueca com menos de cinco episódios.
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgExplDoesNotFulfill">
+            <contents>
+                <text lang="es">
+                    No cumple con la duración de un episodio de migraña.
+                </text>
+                <text lang="en">
+                    It does not meet the duration criteria for a migraine episode.
+                </text>
+                <text lang="pt">
+                    Não preenche o critério de duração para um episódio de enxaqueca.
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgExplRelevantSymptoms">
+            <contents>
+                <text lang="es">
+                    Síntomas relevantes.
+                </text>
+                <text lang="en">
+                    Relevant symptoms.
+                </text>
+                <text lang="pt">
+                    Sintomas relevantes.
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgSit1">
+            <contents>
+                <text lang="es">
+                    Su cefalea podría ser una migraña.
+                    No cumple estrictamente los criterios clínicos
+                    para una confirmación diagnóstica,
+                    por lo que debe consultar con su Médico de Familia
+                    o con su neurólogo.
+                </text>
+                <text lang="en">
+                    Your headache could be a migraine.
+                    It does not strictly meet the clinical criteria for
+                    a diagnostic confirmation,
+                    so you should consult with your Family Doctor
+                    or your neurologist.
+                </text>
+                <text lang="pt">
+                    A sua cefaleia pode ser uma enxaqueca.
+                    Ela não preenche estritamente os critérios clínicos
+                    para uma confirmação diagnóstica, por isso deve consultar
+                    o seu Médico de Família ou o seu neurologista.
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgSit2">
+            <contents>
+                <text lang="es">
+                    Su cefalea es clínicamente compatible
+                    con una cefalea migrañosa.
+                    No cumple estrictamente los criterios clínicos
+                    para una confirmación diagnóstica, por lo que debe consultar
+                    con su Médico de Familia o con su neurólogo.
+                </text>
+                <text lang="en">
+                    Your headache is clinically compatible with
+                    a migrainous headache. It does not strictly meet
+                    the clinical criteria for a diagnostic confirmation,
+                    so you should consult with your Family Doctor
+                    or your neurologist.
+                </text>
+                <text lang="pt">
+                    A sua cefaleia é clinicamente compatível com
+                    uma cefaleia migranosa.
+                    Ela não preenche estritamente os critérios clínicos
+                    para uma confirmação diagnóstica,
+                    por isso deve consultar o seu Médico de Família
+                    ou o seu neurologista.
+                </text>
+            </contents>
+        </message>
+
+        <message id="conclusionMsgSit3">
+            <contents>
+                <text lang="es">
+                    Su cefalea no cumple con los criterios clínicos de migraña,
+                    y debe consultar con su Médico de Familia
+                    o con su neurólogo.
+                </text>
+                <text lang="en">
+                    Your headache does not meet the clinical criteria
+                    for migraine, and you should consult with
+                    your Family Doctor or your neurologist.
+                </text>
+                <text lang="pt">
+                    A sua cefaleia não preenche os critérios clínicos
+                    para enxaqueca, e deve consultar o seu Médico de Família
+                    ou o seu neurologista.
+                </text>
+            </contents>
+        </message>
+
+        <!-- Tests -->
+        <message id="testMsgEnd">
+            <contents>
+                <text lang="es">
+                    Fin de cuestionario
+                </text>
+                <text lang="en">
+                    End of questionnaire
+                </text>
+                <text lang="pt">
+                    Fim do questionário
+                </text>
+            </contents>
+        </message>
+
+        <!-- HIT6 test -->
+        <message id="hit6MsgScore">
+            <contents>
+                <text lang="es">
+                    puntos
+                </text>
+                <text lang="en">
+                    score
+                </text>
+                <text lang="pt">
+                    escore
+                </text>
+            </contents>
+        </message>
+
+        <message id="hit6MsgSevere">
+            <contents>
+                <text lang="es">
+                    Impacto severo: sus cefaleas impactan
+                    y limitan siempre su día a día.
+                </text>
+                <text lang="en">
+                    Severe impact: your headaches always impact
+                    and limit your daily life.
+                </text>
+                <text lang="pt">
+                    Impacto severo: as suas cefaleias impactam
+                    e limitam sempre o seu dia a dia.
+                </text>
+            </contents>
+        </message>
+
+        <message id="hit6MsgImportant">
+            <contents>
+                <text lang="es">
+                    Impacto importante: sus cefaleas limitan
+                    casi siempre su vida.
+                </text>
+                <text lang="en">
+                    Significant impact: your headaches
+                    almost always limit your life.
+                </text>
+                <text lang="pt">
+                    Impacto importante: as suas cefaleias limitam
+                    quase sempre a sua vida.
+                </text>
+            </contents>
+        </message>
+
+        <message id="hit6MsgModerate">
+            <contents>
+                <text lang="es">
+                    Impacto moderado: sus cefaleas casi no limitan
+                    las tareas en su día a día.
+                </text>
+                <text lang="en">
+                    Moderate impact: your headaches hardly limit
+                    your daily tasks.
+                </text>
+                <text lang="pt">
+                    Impacto moderado: as suas cefaleias quase não limitam
+                    as tarefas no seu dia a dia.
+                </text>
+            </contents>
+        </message>
+
+        <message id="hit6MsgMinimum">
+            <contents>
+                <text lang="es">
+                    Impacto mínimo: sus cefaleas no limitan su vida.
+                </text>
+                <text lang="en">
+                    Minimal impact: your headaches do not limit your life.
+                </text>
+                <text lang="pt">
+                    Impacto mínimo: as suas cefaleias não limitam a sua vida.
+                </text>
+            </contents>
+        </message>
+
+        <!-- MIDAS test -->
+        <message id="midasMsgHighDisability">
+            <contents>
+                <text lang="es">
+                    Alta discapacidad.
+                </text>
+                <text lang="en">
+                    High disability.
+                </text>
+                <text lang="pt">
+                    Alta incapacidade.
+                </text>
+            </contents>
+        </message>
+
+        <message id="midasMsgModerateDisability">
+            <contents>
+                <text lang="es">
+                    Discapacidad moderada.
+                </text>
+                <text lang="en">
+                    Moderate disability.
+                </text>
+                <text lang="pt">
+                    Incapacidade moderada.
+                </text>
+            </contents>
+        </message>
+
+        <message id="midasMsgLowDisability">
+            <contents>
+                <text lang="es">
+                    Discapacidad baja.
+                </text>
+                <text lang="en">
+                    Low disability.
+                </text>
+                <text lang="pt">
+                    Baixa incapacidade.
+                </text>
+            </contents>
+        </message>
+
+        <message id="midasMsgNoDisability">
+            <contents>
+                <text lang="es">
+                    Discapacidad mínima o inexistente.
+                </text>
+                <text lang="en">
+                    Minimal or non-existent disability.
+                </text>
+                <text lang="pt">
+                    Incapacidade mínima ou inexistente.
+                </text>
+            </contents>
+        </message>
+
+        <!-- Medicine -->
+        <message id="medicineMsgPosology">
+            <contents>
+                <text lang="es">
+                    Posología
+                </text>
+                <text lang="en">
+                    Posology
+                </text>
+                <text lang="pt">
+                    Posologia
+                </text>
+            </contents>
+        </message>
+
+        <message id="medicineMsgAdverseEffects">
+            <contents>
+                <text lang="es">
+                    Efectos adversos
+                </text>
+                <text lang="en">
+                    Adverse effects
+                </text>
+                <text lang="pt">
+                    Efeitos adversos
+                </text>
+            </contents>
+        </message>
+
         <!-- Weak pain -->
-        <treatmentMessage lang="ES" id="startWithAINE">
-            Empezar con medicamentos AINE.
-            Si tras dos horas el dolor se alivia pero no cede,
-            puede repetir la dosis.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="useTRIPTAN">Tomar medicamentos TRIPTANES.</treatmentMessage>
-        <treatmentMessage lang="ES" id="useErgoticsAfterAINE">
-            Si la migraña es esporádica de baja frecuencia, también se pueden usar ergóticos.
-            Puede combinarse con AINE (si no hay intolerancia).
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="useRimegepantLasmiditan">
-            Una posibilidad es el uso de Lasmiditan y Rimegepant.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="useMetamizol">
-            Otra alternativa es el Metamizol, si las posibilidades anteriores no funcionan.
-        </treatmentMessage>
+        <message id="startWithAINE">
+            <contents>
+                <text lang="es">
+                    Empezar con medicamentos AINE.
+                    Si tras dos horas el dolor se alivia pero no cede,
+                    puede repetir la dosis.
+                </text>
+                <text lang="en">
+                    Start with NSAID medications.
+                    If after two hours the pain is relieved
+                    but does not subside, you can repeat the dose.
+                </text>
+                <text lang="pt">
+                    Iniciar com medicamentos AINEs.
+                    Se após duas horas a dor aliviar mas não ceder,
+                    pode repetir a dose.
+                </text>
+            </contents>
+        </message>
+
+        <message id="useTRIPTAN">
+            <contents>
+                <text lang="es">
+                    Tomar medicamentos TRIPTANES.
+                </text>
+                <text lang="en">
+                    Take TRIPTAN medications.
+                </text>
+                <text lang="pt">
+                    Tomar medicamentos TRIPTANOS.
+                </text>
+            </contents>
+        </message>
+
+        <message id="useErgoticsAfterAINE">
+            <contents>
+                <text lang="es">
+                    Si la migraña es esporádica de baja frecuencia,
+                    también se pueden usar ergóticos.
+                    Puede combinarse con AINE (si no hay intolerancia).
+                </text>
+                <text lang="en">
+                    If the migraine is sporadic and of low frequency,
+                    ergotic alkaloids can also be used.
+                    It can be combined with NSAIDs
+                    (if there is no intolerance).
+                </text>
+                <text lang="pt">
+                    Se a enxaqueca for esporádica e de baixa frequência,
+                    também se podem usar alcaloides ergotamínicos.
+                    Pode ser combinada com AINEs (se não houver intolerância).
+                </text>
+            </contents>
+        </message>
+        <message id="useRimegepantLasmiditan">
+            <contents>
+                <text lang="es">
+                    Una posibilidad es el uso de Lasmiditan y Rimegepant.
+                </text>
+                <text lang="en">
+                    One possibility is the use of Lasmiditan and Rimegepant.
+                </text>
+                <text lang="pt">
+                    Uma possibilidade é o uso de Lasmiditano e Rimegepante.
+                </text>
+            </contents>
+        </message>
+        <message id="useMetamizol">
+            <contents>
+                <text lang="es">
+                    Otra alternativa es el Metamizol,
+                    si las posibilidades anteriores no funcionan.
+                </text>
+                <text lang="en">
+                    Another alternative is Metamizole,
+                    if the previous options do not work.
+                </text>
+                <text lang="pt">
+                    Outra alternativa é o Metamizol,
+                    se as possibilidades anteriores não funcionarem.
+                </text>
+            </contents>
+        </message>
 
         <!-- Severe pain -->
-        <treatmentMessage lang="ES" id="startWithTRIPTAN">
-            Empezar con medicamentos TRIPTAN, si no hay alergia a las sulfamidas.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="combineTRIPTANWithAINE">
-            Se puede combinar el TRIPTAN con un AINE si la respuesta al TRIPTAN es parcial.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="useERGOTICS">
-            Los ergóticos pueden ser útiles si la migraña es esporádica o de baja frecuencia.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="combineERGOTICSwithAINE">
-            Los ergóticos pueden ser combinados con AINE.
-        </treatmentMessage>
-        <treatmentMessage lang="ES" id="combineRimegepantLasmiditanWithAINE">
-            Rimegepant y Lasmiditán pueden ser combinados con AINE.
-        </treatmentMessage>
-    </treatmentMessages>
+        <message id="startWithTRIPTAN">
+            <contents>
+                <text lang="es">
+                    Empezar con medicamentos TRIPTAN,
+                    si no hay alergia a las sulfamidas.
+                </text>
+                <text lang="en">
+                    Start with TRIPTAN medications,
+                    if there is no allergy to sulfonamides (sulfa drugs).
+                </text>
+                <text lang="pt">
+                    Iniciar com medicamentos TRIPTANOS,
+                    se não houver alergia às sulfamidas.
+                </text>
+            </contents>
+        </message>
+        <message id="combineTRIPTANWithAINE">
+            <contents>
+                <text lang="es">
+                    Se puede combinar el TRIPTAN con un AINE
+                    si la respuesta al TRIPTAN es parcial.
+                </text>
+                <text lang="en">
+                    The TRIPTAN can be combined with an NSAID
+                    if the response to the TRIPTAN is partial.
+                </text>
+                <text lang="pt">
+                    O TRIPTANO pode ser combinado com um AINE
+                    se a resposta ao TRIPTANO for parcial.
+                </text>
+            </contents>
+        </message>
+        <message id="useERGOTICS">
+            <contents>
+                <text lang="es">
+                    Los ergóticos pueden ser útiles si
+                    la migraña es esporádica o de baja frecuencia.
+                </text>
+                <text lang="en">
+                    Ergotics can be useful if
+                    the migraine is sporadic or of low frequency.
+                </text>
+                <text lang="pt">
+                    Os ergóticos podem ser úteis se
+                    a enxaqueca for esporádica ou de baixa frequência.
+                </text>
+            </contents>
+        </message>
+        <message id="combineERGOTICSwithAINE">
+            <contents>
+                <text lang="es">
+                    Los ergóticos pueden ser combinados con AINE.
+                </text>
+                <text lang="en">
+                    Ergotics can be combined with NSAIDs.
+                </text>
+                <text lang="pt">
+                    Os ergóticos podem ser combinados com AINEs.
+                </text>
+            </contents>
+        </message>
+        <message id="combineRimegepantLasmiditanWithAINE">
+            <contents>
+                <text lang="es">
+                    Rimegepant y Lasmiditán pueden ser combinados con AINE.
+                </text>
+                <text lang="en">
+                    Rimegepant and Lasmiditan can be combined with NSAIDs.
+                </text>
+                <text lang="pt">
+                    Rimegepanto e Lasmiditano podem ser combinados com AINEs.
+                </text>
+            </contents>
+        </message>
+    </messages>
 
 </migraineTreatment>

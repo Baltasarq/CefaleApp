@@ -9,6 +9,7 @@ import java.util.Locale;
 
 /** Provides support for language identification. */
 public enum Language {
+    invariant( Locale.ROOT ),
     es( new Locale( "es" ) ),
     en( Locale.ENGLISH ),
     pt( new Locale( "pt" ));
@@ -40,7 +41,7 @@ public enum Language {
      * @return the corresponding Language instance.
      * @see Language::langFromLocale
      */
-    static public Language langFromDefaultLocale()
+    public static Language langFromDefaultLocale()
     {
         return langFromLocale( Locale.getDefault() );
     }
@@ -50,24 +51,22 @@ public enum Language {
       * @return the corresponding Language instance.
       * @see Language::langFromLanguageCode
       */
-    static public Language langFromLocale(Locale l)
+    public static Language langFromLocale(Locale l)
     {
         return langFromLanguageCode( l.getLanguage() );
     }
 
     /** Gets the Language instance corresponding to a language code.
       * @param languageCode the ISO 639 language code, like "es"
-      * @return a Language instance. It never returns null.
+      * @return a Language instance, or the invariant if not found.
       */
-    static public Language langFromLanguageCode(String languageCode)
+    public static Language langFromLanguageCode(String languageCode)
     {
-        Language toret = null;
+        Language toret = Language.invariant;
 
         try {
             toret = valueOf( languageCode );
         } catch (IllegalArgumentException e) {
-            toret = en;
-
             if ( languageCode.equals( GALICIAN ) ) {
                 toret = es;
             }
@@ -76,14 +75,16 @@ public enum Language {
         return toret;
     }
 
-    static public int size()
+    public static int size()
     {
         return values().length;
     }
 
-    static public final String GALICIAN = "gl";
-    static public final String PORTUGUESE = "pt";
-    static public final String SPANISH = "es";
+    public static final String INVARIANT = "invariant";
+    public static final String SPANISH = "es";
+    public static final String ENGLISH = "en";
+    public static final String PORTUGUESE = "pt";
+    public static final String GALICIAN = "gl";
 
     private final Locale locale;
 }

@@ -26,4 +26,12 @@
         android:backgroundTint="?colorSecondary"
         android:text="@string/lbl_symptomatic_treatment"/>
 
+    <Button         android:id="@+id/btPregnancyTreatment"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="?colorSecondary"
+        android:text="@string/lbl_pregnancy_treatment"/>
+
 </LinearLayout>

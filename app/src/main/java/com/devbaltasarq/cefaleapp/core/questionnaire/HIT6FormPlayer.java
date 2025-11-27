@@ -4,6 +4,7 @@
 package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Value;
 
 
@@ -50,21 +51,34 @@ public class HIT6FormPlayer extends FormPlayer {
     @Override
     public String getFinalReport()
     {
-        String toret = "(" + this.score + " puntos) ";
+        final String MSG_HIT6_SCORE = "hit6MsgScore";
+        final String MSG_HIT6_SEVERE = "hit6MsgSevere";
+        final String MSG_HIT6_IMPORTANT = "hit6MsgImportant";
+        final String MSG_HIT6_MODERATE = "hit6MsgModerate";
+        final String MSG_HIT6_MINIMUM = "hit6MsgMinimum";
+        String toret = "";
 
         if ( this.score > 60 ) {
-            toret += "Impacto severo: sus cefaleas impactan y limitan siempre su día a día.";
+            toret += Message.getFor( MSG_HIT6_SEVERE ).getMsg()
+                                                    .getForCurrentLanguage();
         }
         else
         if ( this.score > 56 ) {
-            toret += "Impacto importante: sus cefaleas limitan casi siempre su vida.";
+            toret += Message.getFor( MSG_HIT6_IMPORTANT ).getMsg()
+                                                    .getForCurrentLanguage();
         }
         else
         if ( this.score > 50 ) {
-            toret += "Impacto moderado: sus cefaleas casi no limitan las tareas en su día a día.";
+            toret += Message.getFor( MSG_HIT6_MODERATE ).getMsg()
+                                                    .getForCurrentLanguage();
         } else {
-            toret += "Impacto mínimo: sus cefaleas no limitan su vida.";
+            toret += Message.getFor( MSG_HIT6_MINIMUM ).getMsg()
+                                                    .getForCurrentLanguage();
         }
+
+        toret += "(" + Message.getFor( MSG_HIT6_SCORE ).getMsg()
+                                                .getForCurrentLanguage()
+                + ": " + this.score + ".)";
 
         return toret;
     }

@@ -4,10 +4,9 @@
 package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
-import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
 import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 
@@ -56,10 +55,9 @@ public class PreventiveTreatmentAdvisor extends TreatmentAdvisor {
             }
         }
 
-        return new ArrayList<>(
-                Util.objListFromIdList(
-                        Medicine.getAll(),
-                        this.advisedMedicineIds ));
+        return new ArrayList<>( Identifiable.objListFromIdList(
+                                    Medicine.getAll(),
+                                    this.advisedMedicineIds ));
     }
 
     private final Set<Medicine.Id> advisedMedicineIds;

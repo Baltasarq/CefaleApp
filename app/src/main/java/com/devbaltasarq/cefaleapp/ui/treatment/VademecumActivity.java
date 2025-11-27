@@ -18,7 +18,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.treatment.Identifiable;
+import com.devbaltasarq.cefaleapp.core.Language;
+import com.devbaltasarq.cefaleapp.core.Identifiable;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineClass;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
@@ -110,7 +111,7 @@ public class VademecumActivity extends AppCompatActivity {
     {
         final List<T> L_OBJS = new ArrayList<>( C_ID_OBJS );
 
-        L_OBJS.sort( Comparator.comparing( e -> e.getId().getName() ));
+        L_OBJS.sort( Comparator.comparing( e -> e.getId().getName().getForCurrentLanguage() ));
         LY.removeAllViews();
 
         for(Identifiable idObj: L_OBJS) {
@@ -120,7 +121,7 @@ public class VademecumActivity extends AppCompatActivity {
 
     private void buildEntry(final LinearLayout LY, final Identifiable ID_OBJ)
     {
-        String name = ID_OBJ.getId().getName();
+        String name = ID_OBJ.getId().getName().get( Language.langFromDefaultLocale() );
 
         // Prepare name (separate different lines by separator)
         int posSeparator = -1;
@@ -199,7 +200,7 @@ public class VademecumActivity extends AppCompatActivity {
                     final View SUB_ENTRY_VIEW = INFLATER.inflate( R.layout.medicine_entry, null );
                     final TextView SUB_TV = SUB_ENTRY_VIEW.findViewById( R.id.lblMedicine );
 
-                    SUB_TV.setText( MEDICINE.getId().getName() );
+                    SUB_TV.setText( MEDICINE.getId().getName().getForCurrentLanguage() );
                     LY_SUB_ENTRIES.addView( SUB_ENTRY_VIEW );
                     SUB_TV.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
                 }

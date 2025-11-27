@@ -1,11 +1,10 @@
-// FormPlayer (c) 20023 Baltasar MIT License <baltasarq@uvigo.es>
+// CefaleApp (c) 20023 Baltasar MIT License <baltasarq@uvigo.es>
 
 
 package com.devbaltasarq.cefaleapp.ui;
 
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,15 +17,9 @@ import android.widget.TextView;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.AppInfo;
-import com.devbaltasarq.cefaleapp.core.Language;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends CefaleAppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -49,46 +42,12 @@ public class AboutActivity extends AppCompatActivity {
 
         // Prepare
         LBL_APP_INFO.getSettings().setJavaScriptEnabled( true );
-        this.loadL10nHTML( LBL_APP_INFO );
+        this.loadL10nHTML( LBL_APP_INFO, "about.html" );
         TV_VERSION.setText( AppInfo.FULL_NAME );
         BT_ABOUT.setOnClickListener( this::buttonPressed );
         BT_INFO.setOnClickListener( this::buttonPressed );
         BT_DETAIL.setOnClickListener( this::buttonPressed );
         this.buttonPressed( BT_DETAIL );
-    }
-
-    private void loadL10nHTML(final WebView WV)
-    {
-        String aboutHTML;
-
-        try {
-            InputStream reader =
-                    this.getResources().getAssets().open("about.html");
-            byte[] buffer = new byte[8192];
-            int bytesRead;
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-            while ((bytesRead = reader.read(buffer)) != -1) {
-                output.write(buffer, 0, bytesRead);
-            }
-
-            aboutHTML = new String( output.toByteArray(), StandardCharsets.UTF_8 );
-        } catch(IOException exc)
-        {
-            aboutHTML = "Loading about.html: "
-                                    + this.getString( R.string.err_io );
-            aboutHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + exc.getClass().getSimpleName();
-            aboutHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + exc.getMessage();
-        }
-
-        aboutHTML = aboutHTML
-                        .replace( "$LANG",
-                                Language.langFromDefaultLocale().toString() );
-
-        // Set the HTML
-        WV.loadData( aboutHTML,
-                "text/html",
-                "UTF-8" );
     }
 
     private void buttonPressed(View v)

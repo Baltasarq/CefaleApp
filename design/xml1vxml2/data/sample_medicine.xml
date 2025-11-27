@@ -1,0 +1,22 @@
+     <medicines>
+        <medicine
+            id="ACIDO_VALPROICO"
+            name="Ácido valproico"
+            groupId="E"
+            posInGroup="1"
+            url="https://www.vademecum.es/medicamento-acido+valproico+aurovitas_ficha_49201">
+            <posology>
+                Dosis mínima 300 mg/día; dosis recomendada 600 mg/día.
+            </posology>
+            <adverseEffects>
+                En mujeres en edad fértil, por sus efectos teratogénicos y
+                posibilidad de autismo, debe tomarse obligatoriamente
+                con anticonceptivos seguros.
+                Somnolencia, cansancio, irritabilidad, inquietud durante el sueño,
+                ataxia, temblor distal, trastornos gastrointestinales,
+                aumento de peso, pérdida de cabello, elevación de transaminasas,
+                trombocitopenia.
+            </adverseEffects>
+        </medicine>
+	</medicines>
+	

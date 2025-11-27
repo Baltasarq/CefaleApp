@@ -1,0 +1,419 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script>
+        const DOC_TITLE = {
+            "es": "Tratamiento durante la gestación y lactancia",
+            "en": "Treatment during pregnancy and lactation",
+            "pt": "Tratamento durante a gravidez e lactação"
+        };
+
+        function show(strLang)
+        {
+            strLang = strLang.trim().toLowerCase();
+
+            const LANG_TITLE = "title_" + strLang;
+            const LANG_INFO = "info_" + strLang;
+            const TITLES = document.getElementsByClassName( LANG_TITLE );
+            const INFOS = document.getElementsByClassName( LANG_INFO );
+
+            for(let element of TITLES) {
+                element.style.display = "block";
+            }
+
+            for(let element of INFOS) {
+                element.style.display = "block";
+            }
+
+            document.title = DOC_TITLE[ strLang ];
+            document.documentElement.lang = strLang;
+        }
+
+        window.onload = function() { show( "$LANG" ); }
+    </script>
+</head>
+<body style="font-size: 20">
+
+<h2>
+    <span class="title_es" style="display:none">
+        Recomendaciones sobre el tratamiento sintomático
+    </span>
+    <span class="title_en" style="display:none">
+        Recommendations on symptomatic treatment
+    </span>
+    <span class="title_pt" style="display:none">
+        Recomendações sobre tratamento sintomático
+    </span>
+</h2>
+
+<h3>
+    <span class="title_es" style="display:none">
+        Gestación
+    </span>
+    <span class="title_en" style="display:none">
+        Pregnancy
+    </span>
+    <span class="title_pt" style="display:none">
+        Gravidez
+    </span>
+</h3>
+
+<ol>
+    <li>
+        <span class="info_es" style="display:none">
+            Paracetamol: seguro durante todo el embarazo.
+        </span>
+        <span class="info_en" style="display:none">
+            Paracetamol: safe throughout pregnancy.
+        </span>
+        <span class="info_pt" style="display:none">
+            Paracetamol: seguro durante toda a gravidez.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Antiinflamatorios no esteroideos
+            (ibuprofeno, naproxeno, diclofenaco):
+            pueden emplearse con bajo riesgo durante el primer
+            y segundo trimestre del embarazo, pero debe suspenderse
+            en el tercer trimestre
+            (riesgo de cierre prematura del ductus arterioso).
+        </span>
+        <span class="info_en" style="display:none">
+            Non-steroidal anti-inflammatory drugs
+            (ibuprofen, naproxen, diclofenac):
+            may be used with low risk during the first
+            and second trimester of pregnancy,
+            but must be discontinued
+            in the third trimester
+            (risk of premature closure of the ductus arteriosus).
+        </span>
+        <span class="info_pt" style="display:none">
+            Anti-inflamatórios não esteroides
+            (ibuprofeno, naproxeno, diclofenaco):
+            podem ser usados com baixo risco durante o primeiro
+            e o segundo trimestre da gravidez, mas devem ser suspensos
+            no terceiro trimestre
+            (risco de fechamento prematuro do ducto arterioso).
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            El metamizol (Nolotil) también puede emplearse durante el primer
+            y segundo trimestre de la gestación.
+            Tened en mente los avisos de seguridad de la AEMPS.
+        </span>
+        <span class="info_en" style="display:none">
+            Metamizole (Nolotil) can also be used during
+            the first and second trimester of pregnancy.
+            Keep in mind the safety warnings from the AEMPS.
+        </span>
+        <span class="info_pt" style="display:none">
+            Metamizol (Nolotil) também pode ser utilizado durante
+            o primeiro e o segundo trimestre da gestação.
+            Tenham em mente os alertas de segurança da AEMPS.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Triptanes. Son medicamentos con bajo riesgo
+            y pueden emplearse en el embarazo.
+            El triptán que dispone de más datos sobre seguridad
+            en la gestación es el sumatriptan (Imigran)
+            que es el de primera elección.
+        </span>
+        <span class="info_en" style="display:none">
+            Triptans. These are medications with low risk
+            and can be used during pregnancy.
+            The triptan with the most safety data in pregnancy
+            is sumatriptan (Imigran), which is the first-choice option.
+        </span>
+        <span class="info_pt" style="display:none">
+            Triptanos. São medicamentos de baixo risco
+            e podem ser utilizados na gravidez. O triptano que possui
+            mais dados de segurança na gestação é o sumatriptano (Imigran),
+            sendo o de primeira escolha.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            En caso de necesidad, puede utilizarse de forma puntual
+            medicación opiode.
+        </span>
+        <span class="info_en" style="display:none">
+            If necessary, opioid medication can be used on an occasional basis.
+        </span>
+        <span class="info_pt" style="display:none">
+            Em caso de necessidade, pode ser utilizada
+            de forma pontual medicação opioide.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            En caso de náuseas o vómitos, se puede emplear
+            la metoclopramida (Primperam) o el ondansetrón (Yatrox).
+        </span>
+        <span class="info_en" style="display:none">
+            In case of nausea or vomiting, metoclopramide (Primperan)
+            or ondansetron (Zofran) can be used.
+        </span>
+        <span class="info_pt" style="display:none">
+            Em caso de náuseas ou vómitos,
+            pode ser utilizada a metoclopramida (Primperan)
+            ou o ondansetrão (Yatrox).
+        </span>
+    </li>
+</ol>
+
+<h3>
+    <span class="title_es" style="display:none">
+        Lactancia
+    </span>
+    <span class="title_en" style="display:none">
+        Lactation
+    </span>
+    <span class="title_pt" style="display:none">
+        Lactação
+    </span>
+</h3>
+
+<ol>
+    <li>
+        <span class="info_es" style="display:none">
+            Todos los tratamientos indicados en esta aplicación
+            (triptanes, AINEs, paracetamol) están clasificados
+            como de riesgo bajo o muy bajo para su uso durante la lactancia.
+        </span>
+        <span class="info_en" style="display:none">
+            All treatments indicated in this application
+            (triptans, NSAIDs, paracetamol) are classified
+            as low or very low risk for use during lactation.
+        </span>
+        <span class="info_pt" style="display:none">
+            Todos os tratamentos indicados nesta aplicação
+            (triptanos, NSAIDs, paracetamol)
+            estão classificados como de risco baixo
+            ou muito baixo para uso durante a lactação.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Se aconseja consultar la página web:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+        <span class="info_en" style="display:none">
+            It is advisable to consult the website:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+        <span class="info_pt" style="display:none">
+            É aconselhável consultar o site:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+    </li>
+</ol>
+
+<h2>
+    <span class="title_es" style="display:none">
+        Recomendaciones sobre el tratamiento preventivo
+    </span>
+    <span class="title_en" style="display:none">
+        Recommendations on preventive treatment
+    </span>
+    <span class="title_pt" style="display:none">
+        Recomendações sobre tratamento preventivo
+    </span>
+</h2>
+
+<h3>
+    <span class="title_es" style="display:none">
+        Gestación
+    </span>
+    <span class="title_en" style="display:none">
+        Pregnancy
+    </span>
+    <span class="title_pt" style="display:none">
+        Gravidez
+    </span>
+</h3>
+
+<ol>
+    <li>
+        <span class="info_es" style="display:none">
+            Contraindicados: Topiramato y ácido valproico.
+        </span>
+        <span class="info_en" style="display:none">
+            Contraindicated: Topiramate and valproic acid.
+        </span>
+        <span class="info_pt" style="display:none">
+            Contraindicados: Topiramato e ácido valproico.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            En caso de un predominio de las auras,
+            el neuromodulador de elección es la lamotrigina.
+        </span>
+        <span class="info_en" style="display:none">
+            In cases where auras are the predominant feature,
+            the neuromodulator of choice is lamotrigine.
+        </span>
+        <span class="info_pt" style="display:none">
+            Em caso de predomínio de auras,
+            o neuromodulador de escolha é a lamotrigina.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Los betabloqueantes (propranolol, metoprolol)
+            se consideran fármacos seguros durante la gestación.
+            Son los fármacos preventivos de primera elección en la gestación.
+            Debe suspenderse en las proximidades de la fecha prevista del parto.
+        </span>
+        <span class="info_en" style="display:none">
+            Beta-blockers (propranolol, metoprolol)
+            are considered safe medications during pregnancy.
+            They are the first-choice preventive drugs during pregnancy.
+            They should be discontinued near the expected delivery date.
+        </span>
+        <span class="info_pt" style="display:none">
+            Os betabloqueadores (propranolol, metoprolol)
+            são considerados medicamentos seguros durante a gestação.
+            São os fármacos preventivos de primeira escolha na gestação.
+            Devem ser suspensos nas proximidades da data prevista do parto.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            La amitriptilina en dosis bajas (25 mg/día) se considera segura
+            durante la gestación. Se recomienda la suspensión
+            en las proximidades de la fecha prevista del parto.
+        </span>
+        <span class="info_en" style="display:none">
+            Low-dose amitriptyline (25 mg/day)
+            is considered safe during pregnancy.
+            It is recommended to discontinue it near
+            the expected delivery date.
+        </span>
+        <span class="info_pt" style="display:none">
+            A amitriptilina em doses baixas (25 mg/dia)
+            é considerada segura durante a gestação.
+            Recomenda-se a suspensão nas proximidades
+            da data prevista do parto.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Otras alternativas farmacológicas: se consideran seguros
+            durante la gestación los suplementos
+            de magnesio (hasta 400 mg/día)
+            y la Coenzyma Q10 (100mg/día).
+        </span>
+        <span class="info_en" style="display:none">
+            Other pharmacological alternatives:
+            magnesium supplements (up to 400 mg/day)
+            and Coenzyme Q10 (100 mg/day)
+            are considered safe during pregnancy.
+        </span>
+        <span class="info_pt" style="display:none">
+            Outras alternativas farmacológicas:
+            os suplementos de magnésio (até 400 mg/dia)
+            e a Coenzima Q10 (100 mg/dia)
+            são considerados seguros durante a gestação.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            El bloqueo anestésico
+            de los nervios pericraneales es eficaz y seguro.
+        </span>
+        <span class="info_en" style="display:none">
+            Anesthetic block of the pericranial nerves
+            is effective and safe.
+        </span>
+        <span class="info_pt" style="display:none">
+            O bloqueio anestésico dos nervos pericranianos
+            é eficaz e seguro.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            En pacientes refractarias la toxina botulínica (Botox)
+            es una opción segura (proteína de alto peso molecular
+            que no atraviesa la barrera placentaria).
+        </span>
+        <span class="info_en" style="display:none">
+            In refractory patients, botulinum toxin (Botox)
+            is a safe option (it is a high molecular weight protein
+            that does not cross the placental barrier).
+        </span>
+        <span class="info_pt" style="display:none">
+            Em pacientes refratárias, a toxina botulínica (Botox)
+            é uma opção segura (proteína de alto peso molecular
+            que não atravessa a barreira placentária).
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            A la espera de más información sobre seguridad,
+            los anticuerpos monoclonales
+            (erenumab, galcanezumab, fremanezumab) están contraindicados.
+        </span>
+        <span class="info_en" style="display:none">
+            Pending more safety information,
+            monoclonal antibodies (erenumab, galcanezumab, fremanezumab)
+            are contraindicated.
+        </span>
+        <span class="info_pt" style="display:none">
+            À espera de mais informações sobre segurança,
+            os anticorpos monoclonais
+            (erenumab, galcanezumab, fremanezumab)
+            estão contraindicados.
+        </span>
+    </li>
+</ol>
+
+<h3>
+    <span class="title_es" style="display:none">
+        Lactancia
+    </span>
+    <span class="title_en" style="display:none">
+        Lactation
+    </span>
+    <span class="title_pt" style="display:none">
+        Lactação
+    </span>
+</h3>
+
+<ol>
+    <li>
+        <span class="info_es" style="display:none">
+            Todos los fármacos preventivos de la migraña representan
+            un riesgo bajo o muy bajo durante la lactancia.
+        </span>
+        <span class="info_en" style="display:none">
+            All preventive migraine medications
+            represent a low or very low risk during breastfeeding.
+        </span>
+        <span class="info_pt" style="display:none">
+            Todos os medicamentos preventivos para enxaqueca representam
+            um risco baixo ou muito baixo durante a amamentação.
+        </span>
+    </li>
+    <li>
+        <span class="info_es" style="display:none">
+            Se aconseja consultar la página web:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+        <span class="info_en" style="display:none">
+            It is advisable to consult the website:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+        <span class="info_pt" style="display:none">
+            É aconselhável consultar o site:
+            <a href="http://www.e-lactancia.org">www.e-lactancia.org</a>.
+        </span>
+    </li>
+</ol>
+
+</body>
+</html>

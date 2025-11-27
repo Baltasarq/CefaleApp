@@ -5,8 +5,6 @@ package com.devbaltasarq.cefaleapp.ui.treatment;
 
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,12 +16,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.devbaltasarq.cefaleapp.R;
-import com.devbaltasarq.cefaleapp.core.Util;
+import com.devbaltasarq.cefaleapp.core.Identifiable;
+import com.devbaltasarq.cefaleapp.core.RichText;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.Morbidity;
+import com.devbaltasarq.cefaleapp.ui.CefaleAppActivity;
 
 
-public class MorbidityActivity extends AppCompatActivity {
+public class MorbidityActivity extends CefaleAppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,13 +50,13 @@ public class MorbidityActivity extends AppCompatActivity {
         final TextView LBL_COMPATIBLE_MEDICINES = this.findViewById( R.id.lblCompatibleMedicines );
         final TextView LBL_INCOMPATIBLE_MEDICINES = this.findViewById( R.id.lblIncompatibleMedicines );
         final Map<Medicine.Id, Medicine> ALL_MEDICINES = Medicine.getAll();
-        final List<Medicine> MID_COMPATIBLE = Util.objListFromIdList( ALL_MEDICINES, morbidity.getAllAdvisedMedicines() );
-        final List<Medicine> MID_INCOMPATIBLE = Util.objListFromIdList( ALL_MEDICINES, morbidity.getAllIncompatibleMedicines() );
+        final List<Medicine> MID_COMPATIBLE = Identifiable.objListFromIdList( ALL_MEDICINES, morbidity.getAllAdvisedMedicines() );
+        final List<Medicine> MID_INCOMPATIBLE = Identifiable.objListFromIdList( ALL_MEDICINES, morbidity.getAllIncompatibleMedicines() );
 
-        this.setTitle( morbidity.getId().getName() );
-        LBL_DETAILS.setText( Util.formatText( morbidity.getDesc() ) );
+        this.setTitle( morbidity.getId().getName().getForCurrentLanguage() );
+        LBL_DETAILS.setText( RichText.formatText( morbidity.getDesc().getForCurrentLanguage() ) );
 
-        Util.sortIdentifiableI18n( MID_COMPATIBLE );
+        this.sortIdentifiableI18n( MID_COMPATIBLE );
 
         // Build compatible medicines
         if ( !MID_COMPATIBLE.isEmpty() ) {
@@ -89,8 +89,8 @@ public class MorbidityActivity extends AppCompatActivity {
         final View MEDICINE_ENTRY = INFLATER.inflate( R.layout.medicine_entry, null );
         final TextView LBL_MEDICINE = MEDICINE_ENTRY.findViewById( R.id.lblMedicine );
 
-        LBL_MEDICINE.setText( MEDICINE.getId().getName() );
-        LBL_MEDICINE.setOnClickListener( (v) -> Util.showMedicine( this, MEDICINE ) );
+        LBL_MEDICINE.setText( MEDICINE.getId().getName().getForCurrentLanguage() );
+        LBL_MEDICINE.setOnClickListener( (v) -> this.showMedicine( MEDICINE ) );
         return MEDICINE_ENTRY;
     }
 

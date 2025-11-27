@@ -6,6 +6,9 @@ package com.devbaltasarq.cefaleapp.core.treatment;
 
 import androidx.annotation.NonNull;
 
+import com.devbaltasarq.cefaleapp.core.Identifiable;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +23,7 @@ public class MedicineGroup implements Identifiable {
           * @param key the char for the group.
           * @param name the name of the group.
           */
-        public Id(String key, String name)
+        public Id(String key, LocalizedText name)
         {
             final String KEY = key.toUpperCase();
 
@@ -43,7 +46,7 @@ public class MedicineGroup implements Identifiable {
 
         /** @return the name of the group. */
         @Override
-        public String getName()
+        public LocalizedText getName()
         {
             return this.id.getName();
         }

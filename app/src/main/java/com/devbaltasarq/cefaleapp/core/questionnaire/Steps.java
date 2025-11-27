@@ -156,7 +156,7 @@ public class Steps {
             final Value VALUE = this.REPO.getValue( ID );
 
             TORET.append( "<b>" );
-            TORET.append( Q.getSummary() );
+            TORET.append( Q.getSummary().getForCurrentLanguage() );
             TORET.append( "</b>" );
             TORET.append( ':' );
             TORET.append( ' ' );

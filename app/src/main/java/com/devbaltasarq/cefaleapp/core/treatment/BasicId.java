@@ -4,12 +4,15 @@
 package com.devbaltasarq.cefaleapp.core.treatment;
 
 
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
+
 public class BasicId implements Nameable {
     /** Creates a new Basic Id
       * @param key the key for this id.
       * @param name the name of this id.
       */
-    public BasicId(String key, String name)
+    public BasicId(String key, LocalizedText name)
     {
         if ( key == null
           || key.isBlank() )
@@ -17,19 +20,17 @@ public class BasicId implements Nameable {
             throw new Error( "BasicId: invalid null key" );
         }
 
-        if ( name == null
-          || name.isBlank() )
-        {
-            name = "";
+        if ( name == null ) {
+            name = new LocalizedText();
         }
 
         this.key = key.trim().toUpperCase();
-        this.name = name.trim();
+        this.name = name;
     }
 
     /** @return the name of the group. */
     @Override
-    public String getName()
+    public LocalizedText getName()
     {
         return this.name;
     }
@@ -65,5 +66,5 @@ public class BasicId implements Nameable {
     }
 
     private final String key;
-    private final String name;
+    private final LocalizedText name;
 }

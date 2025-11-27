@@ -5,24 +5,18 @@ package com.devbaltasarq.cefaleapp.core.questionnaire;
 
 
 import com.devbaltasarq.cefaleapp.core.LocalizedText;
-import com.devbaltasarq.cefaleapp.core.XMLToolBox;
+import com.devbaltasarq.cefaleapp.core.XMLLoader;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.BasicQuestion;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Branch;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Option;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.Question;
 import com.devbaltasarq.cefaleapp.core.questionnaire.form.ReferenceQuestion;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 
 public class FormXMLLoader {
@@ -45,23 +39,15 @@ public class FormXMLLoader {
 
         numQuestion = 1;
 
-        try {
-            final DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
-            final DocumentBuilder DB = DBF.newDocumentBuilder();
-            final Document DOM = DB.parse( in );
-            final Element DOC = DOM.getDocumentElement();
-            final NodeList BR_NODES = DOC.getElementsByTagName( ETQ_BRANCH );
+        final Element DOC = new XMLLoader().load( in );
+        final NodeList BR_NODES = DOC.getElementsByTagName( ETQ_BRANCH );
 
-            for(int i = 0; i < BR_NODES.getLength(); ++i) {
-                TORET.addBranch( loadBranch( TORET, (Element) BR_NODES.item( i ) ) );
-            }
-
-            String headBranchId = XMLToolBox.getXMLAttributeOrThrow( DOC, ETQ_HEAD );
-            TORET.setHeadId( headBranchId );
-        } catch(ParserConfigurationException | SAXException exc)
-        {
-            throw new IOException( exc.getMessage() );
+        for(int i = 0; i < BR_NODES.getLength(); ++i) {
+            TORET.addBranch( loadBranch( TORET, (Element) BR_NODES.item( i ) ) );
         }
+
+        String headBranchId = XMLLoader.getXMLAttributeOrThrow( DOC, ETQ_HEAD );
+        TORET.setHeadId( headBranchId );
 
         return TORET;
     }
@@ -69,8 +55,8 @@ public class FormXMLLoader {
     private static Branch loadBranch(Form form, Element branchElement) throws IOException
     {
         // Load branch's info
-        String id = XMLToolBox.getXMLAttributeOrThrow( branchElement, ETQ_ID );
-        String headQuestionId = XMLToolBox.getXMLAttributeOrThrow( branchElement, ETQ_HEAD );
+        String id = XMLLoader.getXMLAttributeOrThrow( branchElement, ETQ_ID );
+        String headQuestionId = XMLLoader.getXMLAttributeOrThrow( branchElement, ETQ_HEAD );
         final Branch TORET = new Branch( form, id );
 
         // Load branch
@@ -89,15 +75,15 @@ public class FormXMLLoader {
             final NodeList OPT_NODES = Q_NODE.getElementsByTagName( ETQ_OPT );
 
             // Load basic data
-            String id = XMLToolBox.getXMLAttributeOrThrow( Q_NODE, ETQ_ID );
-            String gotoId = XMLToolBox.getXMLAttributeOrThrow( Q_NODE, ETQ_GOTO );
+            String id = XMLLoader.getXMLAttributeOrThrow( Q_NODE, ETQ_ID );
+            String gotoId = XMLLoader.getXMLAttributeOrThrow( Q_NODE, ETQ_GOTO );
 
             // Is it a reference to another question?
             boolean isReference = false;
 
             if ( Q_NODE.hasAttribute( ETQ_REFERENCE ) ) {
                 isReference = Boolean.parseBoolean(
-                                        XMLToolBox.getXMLAttributeOrThrow(
+                                        XMLLoader.getXMLAttributeOrThrow(
                                                         Q_NODE,
                                                         ETQ_REFERENCE ) );
             }
@@ -107,34 +93,26 @@ public class FormXMLLoader {
             if ( isReference ) {
                 bq = new ReferenceQuestion( numQuestion, id, gotoId );
             } else {
-                final Element CONTENTS = XMLToolBox.getXMLSubElement( Q_NODE, ETQ_CONTENTS );
-                final Element SUMMARY = XMLToolBox.getXMLSubElement( Q_NODE, ETQ_SUMMARY );
-
-                if ( SUMMARY == null ) {
-                    throw new IOException( "missing summary for: " + id );
-                }
-
-                if ( CONTENTS == null ) {
-                    throw new IOException( "missing contents for: " + id );
-                }
+                final Element CONTENTS = XMLLoader.getXMLSubElementOrThrow( Q_NODE, ETQ_CONTENTS );
+                final Element SUMMARY = XMLLoader.getXMLSubElementOrThrow( Q_NODE, ETQ_SUMMARY );
 
                 // Load the attributes of the regular question
                 QB.setId( id );
                 QB.setNum( numQuestion );
                 QB.setGotoId( gotoId );
-                QB.setText( XMLToolBox.readXMLL10nText( CONTENTS ) );
-                QB.setSummary( XMLToolBox.readXMLL10nText( SUMMARY ) );
+                QB.setText( XMLLoader.readXMLL10nText( CONTENTS ) );
+                QB.setSummary( XMLLoader.readXMLL10nText( SUMMARY ) );
 
                 if ( Q_NODE.hasAttribute( ETQ_PIC ) ) {
                     QB.setPic(
-                            XMLToolBox.getXMLAttributeOrThrow(
+                            XMLLoader.getXMLAttributeOrThrow(
                                             Q_NODE,
                                             ETQ_PIC ) );
                 }
 
                 if ( Q_NODE.hasAttribute( ETQ_TYPE ) ) {
                     QB.setValueType(
-                            XMLToolBox.getXMLAttributeOrThrow(
+                            XMLLoader.getXMLAttributeOrThrow(
                                             Q_NODE,
                                             ETQ_TYPE ) );
                 }
@@ -156,8 +134,8 @@ public class FormXMLLoader {
     private static Option loadOpt(final Element OPT_NODE)
             throws IOException
     {
-        final LocalizedText TEXT = XMLToolBox.readXMLL10nText( OPT_NODE );
-        final String VALUE = XMLToolBox.getXMLAttributeOrThrow( OPT_NODE, ETQ_VALUE );
+        final LocalizedText TEXT = XMLLoader.readXMLL10nText( OPT_NODE );
+        final String VALUE = XMLLoader.getXMLAttributeOrThrow( OPT_NODE, ETQ_VALUE );
 
         return new Option( TEXT, VALUE );
     }

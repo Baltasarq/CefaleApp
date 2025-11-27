@@ -5,6 +5,7 @@ package com.devbaltasarq.cefaleapp.core.treatment.advisor;
 
 
 import com.devbaltasarq.cefaleapp.core.LocalizedText;
+import com.devbaltasarq.cefaleapp.core.Message;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.core.treatment.MedicineGroup;
 
@@ -21,7 +22,7 @@ public class TreatmentStep {
      * @param desc the description of the step.
      * @param groupId the id of the medicine group to use in this step.
      */
-    public TreatmentStep(TreatmentMessage desc, MedicineGroup.Id groupId)
+    public TreatmentStep(Message desc, MedicineGroup.Id groupId)
     {
         final MedicineGroup GRP = Objects.requireNonNull(
                                         MedicineGroup.getAll().get( groupId ) );
@@ -38,12 +39,12 @@ public class TreatmentStep {
       * @param desc the description of the step.
       * @param medicineIds the ids of the medicine to use in this step.
       */
-    public TreatmentStep(TreatmentMessage desc, Medicine.Id[] medicineIds)
+    public TreatmentStep(Message desc, Medicine.Id[] medicineIds)
     {
         this.initFrom( desc, medicineIds );
     }
 
-    private void initFrom(TreatmentMessage desc, Medicine.Id[] medicineIds)
+    private void initFrom(Message desc, Medicine.Id[] medicineIds)
     {
         this.desc = desc;
 
@@ -76,6 +77,6 @@ public class TreatmentStep {
         return new ArrayList<>( this.medicineIds );
     }
 
-    private TreatmentMessage desc;
+    private Message desc;
     private List<Medicine.Id> medicineIds;
 }

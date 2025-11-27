@@ -4,6 +4,9 @@
 package com.devbaltasarq.cefaleapp.core.treatment;
 
 
+import com.devbaltasarq.cefaleapp.core.Identifiable;
+import com.devbaltasarq.cefaleapp.core.LocalizedText;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,7 +20,7 @@ public class Morbidity implements Identifiable {
          * @param key the char for the group.
          * @param name the name of the group.
          */
-        public Id(String key, String name)
+        public Id(String key, LocalizedText name)
         {
             if ( key == null
               || key.isBlank() )
@@ -46,7 +49,7 @@ public class Morbidity implements Identifiable {
 
         /** @return the name of the group. */
         @Override
-        public String getName()
+        public LocalizedText getName()
         {
             return this.id.getName();
         }
@@ -128,7 +131,7 @@ public class Morbidity implements Identifiable {
         private static IdsRepo ids = null;
     }
 
-    public Morbidity(Id id, String desc)
+    public Morbidity(Id id, LocalizedText desc)
     {
         this.id = id;
         this.desc = desc;
@@ -145,7 +148,7 @@ public class Morbidity implements Identifiable {
     }
 
     /** @return the description of this morbidity. */
-    public String getDesc()
+    public LocalizedText getDesc()
     {
         return this.desc;
     }
@@ -244,7 +247,7 @@ public class Morbidity implements Identifiable {
     @Override
     public String toString()
     {
-        String name = this.getId().getName();
+        String name = this.getId().getName().toString();
         String[] nameParts = name.split( " " );
 
         return nameParts[ 0 ] + ": " + this.getDesc();
@@ -277,7 +280,7 @@ public class Morbidity implements Identifiable {
     }
 
     private final Id id;
-    private final String desc;
+    private final LocalizedText desc;
     private final List<MedicineGroup.Id> incompatibleGroups;
     private final List<MedicineGroup.Id> advisedGroups;
     private final List<Medicine.Id> incompatibleMedicines;

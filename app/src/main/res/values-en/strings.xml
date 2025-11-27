@@ -53,4 +53,5 @@
     <string name="msg_test_hit">HIT Test. This test asks the patient a short series of questions to determine the impact of migraines on their life.</string>
     <string name="msg_treatment">Treatment advisor: consultation of recommended preventive treatments for the various comorbidities present in migraine patients.</string>
     <string name="msg_test_migraine">Migraine Test. A series of questions thoroughly examines the patient\'s symptoms to provide, with equal detail, a diagnosis regarding migraine suffering.</string>
+    <string name="lbl_pregnancy_treatment">Pregnancy and lactation</string>
 </resources>

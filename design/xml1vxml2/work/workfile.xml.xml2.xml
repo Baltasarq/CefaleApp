@@ -1,0 +1,24 @@
+<qs>
+    <q id="continue_areYouSure" goto="/" type="bool">
+        <summary>
+            <text lang="es">Continuar</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </summary>
+        <contents>
+            <text lang="es">Además de lo comentado previamente,                   ¿tiene otros dolores de cabeza que quiera comentar?</text>
+            <text lang="en">In English!!!</text>
+            <text lang="pt">Em Portugués!!!</text>
+        </contents>
+        <opt value="false">
+            <text lang="es">No.</text>
+            <text lang="en">No.</text>
+            <text lang="pt">Non.</text>
+        </opt>
+        <opt value="true">
+            <text lang="es">Sí.</text>
+            <text lang="en">Yes.</text>
+            <text lang="pt">Sím.</text>
+        </opt>
+    </q>
+</qs>

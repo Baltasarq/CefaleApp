@@ -1,0 +1,24 @@
+<medicines>
+<medicine
+            id="HEMICRANEAL"
+            name="Hemicraneal"
+            groupId="ERGOTICOS"
+            posInGroup="3"
+            url="https://www.vademecum.es/medicamento-hemicraneal_ficha_1876">
+            <posology>
+                Grageas de 1mg de tartrato de ergotamina.
+                En una crisis de migraña tomar 2 grageas al inicio del dolor,
+                y si no cede el dolor,
+                1 gragea adicional cada hora hasta un máximo de 6 grageas/día.
+                Tiene un máximo recomendado de 10 mg/semana.
+            </posology>
+            <adverseEffects>
+                Náuseas, vómitos, dolor abdominal, parestesias, calambres musculares, angor.
+                Contraindicado en cardiopatía isquemina, arteriopatía periférica, migraña hemipléjica,
+                enfermedad de Raynaud. No se puede combinar con Triptán.
+            </adverseEffects>
+        </medicine>
+
+       
+
+</medicines>
