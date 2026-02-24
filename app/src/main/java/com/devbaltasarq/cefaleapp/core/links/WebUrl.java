@@ -13,6 +13,8 @@ import java.util.Objects;
 
 /** Represents a FAQ entry with its question and answer. */
 public class WebUrl {
+    private static final String AMPERSAND_ESCAPED = "&amp;";
+
     /** Creates a new WebUrl entry.
       * @param id the id of this entry.
       * @param lang the language of this link.
@@ -31,7 +33,7 @@ public class WebUrl {
         this.id = id.trim();
         this.lang = Language.valueOf( lang.trim().toLowerCase() );
         this.src = src.trim();
-        this.url = url.trim();
+        this.url = url.trim().replace( AMPERSAND_ESCAPED, "&" );
         this.desc = desc;
     }
 
