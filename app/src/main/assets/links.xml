@@ -1,33 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <links>
     <link
-        id="url_wikipedia_es"
-        src="Wikipedia"
+        id="url_aemice_es"
+        src="AEMICE"
         lang="es"
-        desc="Descripción básica de la migraña."
-        url="https://es.wikipedia.org/wiki/Migraña" />
+        desc="AEMICE: Asociación Española de Migraña y Cefalea."
+        url="http://www.dolordecabeza.net/" />
     <link
-        id="url_wikipedia_en"
-        src="Wikipedia"
-        lang="en"
-        desc="Basic description of migraines."
-        url="https://en.wikipedia.org/wiki/Migraine" />
+        id="url_somospacientes_es"
+        src="Somospacientes.com"
+        lang="es"
+        desc="Somos pacientes: Ahora por fin controlo mi migraña."
+        url="https://www.somospacientes.com/noticias/al-dia/asociaciones/campana-informativa-de-aepac-en-el-dia-europeo-de-accion-contra-la-migrana/attachment/ahora-por-fin-controlo-mi-migrana/" />
     <link
-        id="url_wikipedia_pt"
-        src="Wikipedia"
-        lang="pt"
-        desc="Descrição básica da enxaqueca."
+        id="url_sedene_comic_es"
+        src="Sociedad Española de Enfermería Neurológica"
+        lang="es"
+        desc="Migracómic: mi migraña sin bulos."
         url="https://pt.wikipedia.org/wiki/Enxaqueca" />
     <link
-        id="url_novartis_es"
-        src="Novartis"
+        id="url_pfizer_youtube_premonicion_es"
+        src="Pfizer"
         lang="es"
-        desc="Estudio de la migraña."
-        url="https://www.novartis.com/ar-es/news/migrana-mucho-mas-que-un-dolor-de-cabeza" />
+        desc="Premonición: un thriller sobre concienciación de la migraña."
+        url="https://www.youtube.com/watch?v=AieM9w_6SII" />
     <link
-        id="url_mayo_clinic"
-        src="Mayo Clinic"
+        id="url_dolordecabeza_net_cefalea_edad_es"
+        src="dolordecabeza.net"
+        lang="es"
+        desc="Cefalea y migraña en personas mayores: qué cambia con la edad."
+        url="https://www.dolordecabeza.net/cefalea-y-migrana-en-personas-mayores-que-cambia-con-la-edad/" />
+    <link
+        id="url_podcast_dr_porta_youtube_comic_es"
+        src="Dr. Porta-Etessam"
+        lang="es"
+        desc="Dr Porta-Etessam (Entiende tu dolor de cabeza y como tratarlo)."
+        url="https://pt.wikipedia.org/wiki/Enxaqueca" />
+
+    <!-- PT -->
+    <link
+        id="url_migraportugal_pt"
+        src="MIGRAPortugal"
+        lang="pt"
+        desc="Associação Portuguesa de Doentes com Enxaqueca e Cefaleias."
+        url="http://www.dolordecabeza.net/" />
+    <link
+        id="url_migraportugal_cefaleia_pt"
+        src="MIGRAPortugal"
+        lang="pt"
+        desc="O que são Cefaleias?"
+        url="https://migraportugal.pt/sobre-cefaleias/cefaleias/" />
+    <link
+        id="url_dolordecabeza_net_cefalea_edad_pt"
+        src="dolordecabeza.net"
+        lang="pt"
+        desc="Cefaleia e enxaqueca nos idosos: o que muda com a idade?"
+        url="https://www-dolordecabeza-net.translate.goog/cefalea-y-migrana-en-personas-mayores-que-cambia-con-la-edad/?_x_tr_sl=es&amp;_x_tr_tl=en&amp;_x_tr_hl=es&amp;_x_tr_pto=wapp" />
+
+    <!-- EN -->
+    <link
+        id="url_association_migraine_disorders_en"
+        src="Association of migraine disorders"
         lang="en"
-        desc="Migraine study."
-        url="https://www.mayoclinic.org/diseases-conditions/migraine-headache/symptoms-causes/syc-20360201" />
+        desc="Association of migraine disorders"
+        url="https://www.migrainedisorders.org/" />
+    <link
+        id="url_association_migraine_disorders_en"
+        src="American Migraine Foundation"
+        lang="en"
+        desc="Migraine 101"
+        url="https://americanmigrainefoundation.org/migraine-101/" />
+    <link
+        id="url_dolordecabeza_net_cefalea_edad_en"
+        src="dolordecabeza.net"
+        lang="en"
+        desc="Headache and migraine in older people: what changes with age."
+        url="https://www-dolordecabeza-net.translate.goog/cefalea-y-migrana-en-personas-mayores-que-cambia-con-la-edad/?_x_tr_sl=es&amp;_x_tr_tl=en&amp;_x_tr_hl=es&amp;_x_tr_pto=wapp" />
 </links>
