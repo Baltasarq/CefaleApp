@@ -111,7 +111,14 @@ public class WebUrl {
             throw new Error( "FAQ are not yet loaded." );
         }
 
-        return new HashMap<>( all.get( LANG ) );
+        final var TORET = new HashMap<String, WebUrl>();
+        var linkEntries = all.get( LANG );
+
+        if ( linkEntries != null ) {
+            TORET.putAll( linkEntries );
+        }
+
+        return TORET;
     }
 
     private final String id;
