@@ -17,7 +17,7 @@
         src="Sociedad Española de Enfermería Neurológica"
         lang="es"
         desc="Migracómic: mi migraña sin bulos."
-        url="https://pt.wikipedia.org/wiki/Enxaqueca" />
+        url="https://sedene.com/mi-migrana-sin-bulos/" />
     <link
         id="url_pfizer_youtube_premonicion_es"
         src="Pfizer"
@@ -31,11 +31,11 @@
         desc="Cefalea y migraña en personas mayores: qué cambia con la edad."
         url="https://www.dolordecabeza.net/cefalea-y-migrana-en-personas-mayores-que-cambia-con-la-edad/" />
     <link
-        id="url_podcast_dr_porta_youtube_comic_es"
+        id="url_podcast_dr_porta_es"
         src="Dr. Porta-Etessam"
         lang="es"
         desc="Dr Porta-Etessam (Entiende tu dolor de cabeza y como tratarlo)."
-        url="https://pt.wikipedia.org/wiki/Enxaqueca" />
+        url="https://cristinamitre.com/dolor-cabeza-como-tratarlo-jesus-porta-etessam-episodio-199/" />
 
     <!-- PT -->
     <link
@@ -43,7 +43,7 @@
         src="MIGRAPortugal"
         lang="pt"
         desc="Associação Portuguesa de Doentes com Enxaqueca e Cefaleias."
-        url="http://www.dolordecabeza.net/" />
+        url="https://migraportugal.pt/" />
     <link
         id="url_migraportugal_cefaleia_pt"
         src="MIGRAPortugal"
@@ -65,7 +65,7 @@
         desc="Association of migraine disorders"
         url="https://www.migrainedisorders.org/" />
     <link
-        id="url_association_migraine_disorders_en"
+        id="url_american_migraine_foundation_en"
         src="American Migraine Foundation"
         lang="en"
         desc="Migraine 101"
