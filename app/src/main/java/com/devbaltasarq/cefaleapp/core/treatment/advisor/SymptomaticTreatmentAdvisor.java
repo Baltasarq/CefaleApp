@@ -13,8 +13,10 @@ import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 /** Creates a list of steps for a symptomatic treatment. */
@@ -57,6 +59,10 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     Medicine.Id.get( "RIMEGEPANT" ) );
             final Medicine.Id ID_LASMIDITAN = Objects.requireNonNull(
                     Medicine.Id.get( "LASMIDITAN" ) );
+            final Medicine.Id ID_SUMATRIPTAN = Objects.requireNonNull(
+                    Medicine.Id.get( "SUMATRIPTAN" ) );
+            final Medicine.Id ID_ALMOTRIPTAN = Objects.requireNonNull(
+                    Medicine.Id.get( "ALMOTRIPTAN" ) );
             final Message MSG_USE_TRIPTAN = Objects.requireNonNull(
                     Message.getFor( "useTRIPTAN" ));
             final Message MSG_START_WITH_AINE = Objects.requireNonNull(
@@ -77,6 +83,13 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     Message.getFor( "combineERGOTICSWithAINE" ));
             final Message MSG_COMBINE_RIMEGEPANT_LASMIDITAN_WITH_AINE = Objects.requireNonNull(
                     Message.getFor( "combineRimegepantLasmiditanWithAINE" ));
+            final Medicine.Id[] TRIPTANS_ALLOWED_SULFALLERGIC = Objects.requireNonNull(
+                    MedicineGroup.getAll().get( GRP_TRIPTAN_ID ) ).getMedicines().stream()
+                            .filter( m -> !m.getId().equals( ID_SUMATRIPTAN )
+                                                         && !m.getId().equals( ID_ALMOTRIPTAN ) )
+                            .map( Medicine::getId )
+                            .collect( Collectors.toList() )
+                            .toArray( new Medicine.Id[ 0 ] );
 
             // Create a list with all analgesic medicines
             this.treatmentSteps.clear();
@@ -87,22 +100,22 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     // Start with AINE
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
-
-                    // Ergotics can be useful if migraine is esporadic or of low frequency.
-                    this.treatmentSteps.add(
-                            new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
-                } else {
-                    // Allergy to sulf-drug
-                    if ( !SULFADRUG_ALLERGY ) {
-                        // Empezar con Triptán
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_USE_TRIPTAN, GRP_TRIPTAN_ID ) );
-                    }
-
-                    // Ergotics can be usefult if migraine is esporadic or of low frequency.
-                    this.treatmentSteps.add(
-                            new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
                 }
+
+                // Sulfallergy?
+                if ( !SULFADRUG_ALLERGY ) {
+                    // Empezar con Triptán
+                    this.treatmentSteps.add(
+                            new TreatmentStep( MSG_USE_TRIPTAN, GRP_TRIPTAN_ID ) );
+                } else {
+                    // Empezar con Triptán
+                    this.treatmentSteps.add(
+                            new TreatmentStep( MSG_USE_TRIPTAN, TRIPTANS_ALLOWED_SULFALLERGIC ) );
+                }
+
+                // Ergotics can be useful if migraine is esporadic or of low frequency.
+                this.treatmentSteps.add(
+                    new TreatmentStep( MSG_USE_ERGOTICS_AFTER_AINE, GRP_ERGOTICS_ID ) );
             }
             else
             if ( IS_PAIN_INTENSE ) {
@@ -111,23 +124,22 @@ public class SymptomaticTreatmentAdvisor extends TreatmentAdvisor {
                     // Start with triptán
                     this.treatmentSteps.add(
                             new TreatmentStep( MSG_START_WITH_TRIPTAN, GRP_TRIPTAN_ID ) );
-
-                    if ( !AINE_ALLERGY ) {
-                        // You can combine TRIPTAN with AINE
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_COMBINE_TRIPTAN_WITH_AINE, GRP_AINE_ID ) );
-                    }
                 } else {
-                    if ( !AINE_ALLERGY ) {
-                        // Start with AINE
-                        this.treatmentSteps.add(
-                                new TreatmentStep( MSG_START_WITH_AINE, GRP_AINE_ID ) );
-                    }
-
-                    // Ergotics might be useful if migraine is esporadic or of low frequency.
                     this.treatmentSteps.add(
-                            new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
+                            new TreatmentStep( MSG_START_WITH_TRIPTAN, TRIPTANS_ALLOWED_SULFALLERGIC ) );
                 }
+
+                if ( !AINE_ALLERGY ) {
+                    // You can combine TRIPTAN with AINE
+                    this.treatmentSteps.add(
+                            new TreatmentStep( MSG_COMBINE_TRIPTAN_WITH_AINE, GRP_AINE_ID ) );
+                }
+
+                // Ergotics might be useful if migraine is esporadic or of low frequency.
+                this.treatmentSteps.add(
+                        new TreatmentStep( MSG_USE_ERGOTICS, GRP_ERGOTICS_ID ) );
+            } else {
+                throw new Error( "Advisor.createResultList(): pain must be moderate or severe !!!" );
             }
 
             // Other analgesics: Lasmisitan, rimegepant, metamizol
