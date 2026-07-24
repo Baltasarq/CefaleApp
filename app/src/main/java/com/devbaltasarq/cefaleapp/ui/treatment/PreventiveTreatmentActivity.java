@@ -19,10 +19,11 @@ import com.devbaltasarq.cefaleapp.core.treatment.TreatmentAdvisor;
 import com.devbaltasarq.cefaleapp.core.treatment.advisor.PreventiveTreatmentAdvisor;
 import com.devbaltasarq.cefaleapp.ui.tests.MigraineTestActivity;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class PreventiveTreatmentActivity extends TreatmentActivity {
@@ -167,7 +168,10 @@ public class PreventiveTreatmentActivity extends TreatmentActivity {
         final Intent INTENT = new Intent( this, PreventiveTreatmentResultActivity.class );
         final TreatmentAdvisor ADVISOR = new PreventiveTreatmentAdvisor( MORBIDITY_IDS );
 
-        PreventiveTreatmentResultActivity.medicineList = (List<Medicine>) ADVISOR.createResultList();
+        PreventiveTreatmentResultActivity.medicineList =
+                                            ADVISOR.createResultList().stream()
+                                                .map( Medicine.class::cast )
+                                                .collect( Collectors.toList() );
         this.startActivity( INTENT );
     }
 

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Identifiable;
 import com.devbaltasarq.cefaleapp.core.Language;
+import com.devbaltasarq.cefaleapp.core.LocaleCompat;
 import com.devbaltasarq.cefaleapp.core.treatment.Medicine;
 import com.devbaltasarq.cefaleapp.ui.treatment.MedicineActivity;
 
@@ -51,7 +52,7 @@ public class CefaleAppActivity extends AppCompatActivity {
                 output.write( buffer, 0, bytesRead );
             }
 
-            htmlBody = output.toString( StandardCharsets.UTF_8 );
+            htmlBody = new String( output.toByteArray(), StandardCharsets.UTF_8 );
         } catch(IOException exc)
         {
             htmlBody = "Loading " + ASSET_NAME + ": "
@@ -73,7 +74,7 @@ public class CefaleAppActivity extends AppCompatActivity {
       */
     public void sortIdentifiableI18n(final List<? extends Identifiable> IDENTIFIABLES)
     {
-        final Collator COLLATOR = Collator.getInstance( new Locale( "es","ES" ));
+        final Collator COLLATOR = Collator.getInstance( LocaleCompat.of( LocaleCompat.Id.ES ) );
 
         IDENTIFIABLES.sort( (m1, m2) ->
                 COLLATOR.compare(

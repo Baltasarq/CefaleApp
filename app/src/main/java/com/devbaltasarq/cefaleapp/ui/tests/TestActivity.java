@@ -33,6 +33,7 @@ import androidx.core.widget.TextViewCompat;
 
 import com.devbaltasarq.cefaleapp.R;
 import com.devbaltasarq.cefaleapp.core.Language;
+import com.devbaltasarq.cefaleapp.core.LocaleCompat;
 import com.devbaltasarq.cefaleapp.core.RichText;
 import com.devbaltasarq.cefaleapp.core.questionnaire.Form;
 import com.devbaltasarq.cefaleapp.core.questionnaire.FormPlayer;
@@ -155,7 +156,7 @@ public abstract class TestActivity extends AppCompatActivity {
             this.getApplicationContext(),
             (status) -> {
                 if (status == TextToSpeech.SUCCESS ) {
-                    this.ttEngine.setLanguage( Locale.forLanguageTag( "es-ES" ) );
+                    this.ttEngine.setLanguage( LocaleCompat.of( LocaleCompat.Id.ES ) );
                 }
             });
 

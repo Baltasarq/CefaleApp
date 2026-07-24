@@ -1,10 +1,18 @@
+# Executables
 app/release
+app/debug
 
 # Secrets
 secrets.xml
 manual-cefaleapp-backup.odt
 *.odt#
+
 # Gradle & IntelliJ trash
+.project
+.settings
+app/.settings
+app/.project
+app/.classpath
 *.iml
 .gradle
 /local.properties

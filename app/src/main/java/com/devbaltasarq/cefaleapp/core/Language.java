@@ -9,10 +9,10 @@ import java.util.Locale;
 
 /** Provides support for language identification. */
 public enum Language {
-    invariant( Locale.ROOT ),
-    es( new Locale( "es" ) ),
-    en( Locale.ENGLISH ),
-    pt( new Locale( "pt" ));
+    invariant( LocaleCompat.of( LocaleCompat.Id.INVARIANT ) ),
+    es( LocaleCompat.of( LocaleCompat.Id.ES ) ),
+    en( LocaleCompat.of( LocaleCompat.Id.EN ) ),
+    pt( LocaleCompat.of( LocaleCompat.Id.PT ) );
 
     Language(Locale l)
     {
